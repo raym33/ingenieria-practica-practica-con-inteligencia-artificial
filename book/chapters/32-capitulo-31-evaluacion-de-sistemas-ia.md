@@ -164,6 +164,89 @@ Si mejora en calidad pero duplica coste sin justificarlo, no se publica.
 
 Si mejora en benchmarks generales pero empeora en tus casos reales, no se publica.
 
+### Error analysis y failure modes reales
+
+Una señal repetida en equipos que llevan IA a producción es que las métricas genéricas se quedan cortas.
+
+Medir "alucinación", "toxicidad" o "calidad general" puede servir como primera barrera, pero no te dice por qué tu producto falla en tu dominio.
+
+Un sistema de soporte no falla solo porque "alucine".
+
+Puede fallar porque:
+
+- cita una política antigua;
+- responde bien pero al cliente equivocado;
+- no detecta que faltan datos;
+- usa una fuente sin permisos;
+- convierte una excepción legal en regla general;
+- genera una respuesta útil pero demasiado larga para el canal;
+- propone una acción que soporte no puede ejecutar.
+
+El trabajo de evaluación de mayor retorno suele ser el análisis de errores.
+
+Proceso práctico:
+
+1. Mira interacciones reales.
+2. Etiqueta fallos observados.
+3. Agrupa fallos en modos recurrentes.
+4. Mide cuántas veces aparece cada modo.
+5. Decide si el fallo se arregla con prompt, retrieval, tool, datos, UX o política.
+6. Crea un evaluador para ese modo de fallo.
+7. Mide si el evaluador se alinea con revisión humana.
+
+Ejemplo de taxonomía:
+
+```json
+{
+  "failure_mode": "wrong_policy_version",
+  "description": "La respuesta usa una política obsoleta aunque existe una versión nueva.",
+  "detection": "fuente citada con fecha anterior a la fuente esperada",
+  "severity": "high",
+  "fix_owner": "retrieval",
+  "evaluator": "expected_source_version_check"
+}
+```
+
+El objetivo no es tener nombres elegantes.
+
+El objetivo es que cada fallo frecuente tenga dueño y prueba.
+
+### Señales de usuario como evaluación
+
+No todos los fallos llegan como bug report.
+
+En productos IA, muchos fallos son silenciosos: el usuario lee, no confía, cierra la ventana y no vuelve.
+
+Por eso la evaluación debe mirar también comportamiento:
+
+- intentos de regenerar respuesta;
+- edición manual intensa;
+- copiar o no copiar;
+- compartir;
+- tiempo hasta abandonar;
+- preguntas repetidas con reformulación;
+- cambio de canal a humano;
+- feedback negativo;
+- cancelación de una acción sugerida.
+
+Estas señales no sustituyen a una suite de evaluación.
+
+La complementan.
+
+Si muchos usuarios regeneran respuestas de una misma intención, no tienes "un problema general de modelo".
+
+Tienes un workflow concreto que revisar.
+
+Clusterizar interacciones por intención ayuda a pasar de:
+
+> "El asistente no convence."
+
+a:
+
+> "El flujo de resumen de tickets de facturación falla cuando hay tres o más productos en el pedido."
+
+Eso sí se puede arreglar.
+
 ## 31.5 Métricas
 
 Las métricas no son decoración. Son el sistema nervioso del producto.
@@ -175,6 +258,9 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 - **tool call accuracy**
 - **unsafe action rate**
 - **coste por caso**
+- **failure mode coverage**
+- **human judge agreement**
+- **regeneration rate por intención**
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 

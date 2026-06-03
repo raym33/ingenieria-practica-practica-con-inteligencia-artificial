@@ -177,7 +177,9 @@
   "latencia": [
     "06-capitulo-5-como-elegir-un-modelo.md",
     "30-capitulo-29-agentes-de-voz.md",
-    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+    "35-capitulo-34-costes-latencia-y-rendimiento.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "37-capitulo-36-despliegue-y-operacion.md"
   ],
   "privacidad": [
     "29-capitulo-28-memoria.md",
@@ -244,5 +246,34 @@
     "40-capitulo-39-ui-ux-para-productos-con-ia.md",
     "42-capitulo-41-equipos-roles-y-proceso.md",
     "43-capitulo-42-venta-consultoria-e-implantacion.md"
+  ],
+  "prompt-injection": [
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "34-capitulo-33-seguridad-prompt-injection-y-abuso.md"
+  ],
+  "supply-chain": [
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "34-capitulo-33-seguridad-prompt-injection-y-abuso.md"
+  ],
+  "failure-modes": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "fallos-silenciosos": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "40-capitulo-39-ui-ux-para-productos-con-ia.md"
+  ],
+  "deuda-tecnica": [
+    "14-capitulo-13-vibe-coding.md",
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "llmops": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md",
+    "37-capitulo-36-despliegue-y-operacion.md"
   ]
 }

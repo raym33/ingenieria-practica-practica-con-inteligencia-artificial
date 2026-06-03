@@ -221,6 +221,106 @@ El router no debe decidir solo por coste.
 
 Debe decidir por riesgo, dificultad, latencia esperada y valor del resultado.
 
+### Costes inducidos por código generado
+
+El coste de IA no termina en la llamada al modelo.
+
+Un asistente de código puede introducir un bug que dispare costes de infraestructura:
+
+- logs en bucle;
+- cardinalidad explosiva en métricas;
+- retries infinitos;
+- llamadas repetidas a APIs externas;
+- jobs batch sin límite;
+- consultas caras;
+- colas que no drenan;
+- trazas demasiado verbosas.
+
+Por eso la revisión de código generado debe mirar efectos de segundo orden.
+
+No basta con preguntar:
+
+> ¿Compila?
+
+Hay que preguntar:
+
+> ¿Qué pasa si esto se ejecuta mil veces por minuto?
+
+Checklist para código generado que toca producción:
+
+- ¿puede generar logs en bucle?;
+- ¿tiene límites de retry?;
+- ¿tiene timeout?;
+- ¿tiene rate limit?;
+- ¿puede crear cardinalidad alta en métricas?;
+- ¿puede disparar costes por evento?;
+- ¿hay alerta de coste?;
+- ¿hay kill-switch?;
+- ¿hay dry-run?;
+- ¿hay rollback?
+
+Un pequeño bug de logging puede costar más que muchas llamadas al modelo.
+
+La factura no distingue si el error lo escribió una persona o un agente.
+
+### Latencia como sistema distribuido
+
+Cuando un producto IA va lento, la causa no siempre es "el modelo".
+
+Puede estar en:
+
+- gateway;
+- autenticación;
+- tokenización;
+- routing;
+- cold start;
+- KV cache;
+- filtros de seguridad;
+- streaming;
+- retrieval;
+- reranking;
+- tool externa;
+- observabilidad;
+- facturación;
+- red entre regiones.
+
+La inferencia moderna es un sistema distribuido.
+
+Diagnóstico práctico:
+
+```text
+latencia_total =
+  red_cliente
+  + api_gateway
+  + auth
+  + retrieval
+  + reranking
+  + cola_modelo
+  + inferencia
+  + safety
+  + tools
+  + postprocesado
+  + streaming
+```
+
+Si solo mides `model_ms`, verás una parte de la película.
+
+Mide cada etapa.
+
+Luego decide:
+
+- mover región;
+- activar streaming;
+- reducir contexto;
+- precalentar workers;
+- cambiar modelo;
+- quitar reranking en preguntas fáciles;
+- pasar tareas lentas a batch;
+- cachear respuestas seguras;
+- separar flujos interactivos y no interactivos.
+
+La latencia se optimiza con trazas, no con intuición.
+
 
 ## 34.5 Métricas
 
@@ -233,6 +333,9 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 - **cache hit rate**
 - **retry rate**
 - **coste de revisión humana**
+- **coste por log/evento**
+- **cost anomaly alerts**
+- **latencia por etapa**
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 

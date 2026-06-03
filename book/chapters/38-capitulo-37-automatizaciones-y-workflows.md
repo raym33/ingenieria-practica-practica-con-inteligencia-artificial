@@ -72,6 +72,76 @@ Criterio para apagar o revertir:
 
 Cuando no puedes completar esta ficha, el proyecto todavía está demasiado borroso.
 
+### Núcleo determinístico, IA en los bordes
+
+Una señal práctica que se repite en sistemas reales es esta:
+
+> La mayor parte del flujo debería ser determinístico. El LLM solo debería entrar donde hay incertidumbre que aporta valor resolver.
+
+Ejemplo de soporte:
+
+```text
+ticket recibido
+  -> validar cliente
+  -> buscar contrato
+  -> clasificar intención con LLM
+  -> recuperar documentación
+  -> generar borrador con LLM
+  -> validar formato
+  -> pedir revisión humana
+  -> enviar por workflow determinístico
+```
+
+El LLM no tiene que decidir todo.
+
+Puede ayudar en:
+
+- clasificación;
+- extracción;
+- resumen;
+- redacción;
+- priorización;
+- explicación;
+- detección de anomalías.
+
+Pero otros pasos deberían ser código, reglas o workflow:
+
+- permisos;
+- cálculo de importes;
+- envío;
+- actualización de estado;
+- auditoría;
+- límites de coste;
+- confirmaciones;
+- retries.
+
+Cada llamada al modelo añade coste, latencia y posibilidad de fallo.
+
+Si un paso se puede resolver con una regla clara, usa una regla clara.
+
+### Matriz de decisión
+
+Usa LLM cuando:
+
+- el input sea variable;
+- la tarea requiera lenguaje;
+- haya ambigüedad real;
+- el coste del error esté controlado;
+- la mejora de experiencia sea clara.
+
+Usa workflow determinístico cuando:
+
+- la regla sea estable;
+- haya permisos o dinero;
+- la acción sea externa;
+- el resultado deba ser reproducible;
+- el fallo sea caro;
+- la explicación deba ser auditada.
+
+El diseño maduro no es "agente contra workflow".
+
+Es workflow con puntos inteligentes.
+
 
 ## 37.5 Métricas
 
@@ -83,6 +153,8 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 - **automatizaciones completadas**
 - **fallos por integración**
 - **satisfacción interna**
+- **LLM calls por workflow**
+- **deterministic step ratio**
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 

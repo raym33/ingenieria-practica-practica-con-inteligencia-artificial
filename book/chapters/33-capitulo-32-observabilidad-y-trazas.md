@@ -184,6 +184,77 @@ La trazabilidad no exige vigilancia total.
 
 Exige evidencia suficiente y respeto por los datos.
 
+### Fallos silenciosos
+
+En un sistema IA, muchos fallos no lanzan excepción.
+
+El servidor responde 200.
+
+La UI muestra una respuesta.
+
+El log parece limpio.
+
+Y aun así el usuario piensa:
+
+> Esto no me sirve.
+
+Luego se va.
+
+Ese es un fallo de producto, aunque no haya stack trace.
+
+Para detectar fallos silenciosos, mide señales implícitas:
+
+- regeneraciones;
+- reformulaciones inmediatas;
+- abandono tras respuesta;
+- copiar cero veces;
+- edición excesiva antes de usar;
+- escalado a humano;
+- cancelación de acción;
+- scroll rápido sin interacción;
+- sesiones que no vuelven.
+
+Y señales explícitas:
+
+- thumbs down;
+- motivo de rechazo;
+- comentario de usuario;
+- reporte de fuente incorrecta;
+- marca de "no resolvió mi tarea".
+
+La observabilidad buena conecta estas señales con la traza completa.
+
+No basta saber que hubo feedback negativo.
+
+Hay que saber qué intención tenía el usuario, qué fuentes se recuperaron, qué modelo respondió, qué tool se llamó y qué versión del prompt estaba activa.
+
+### Clusterizar por intención
+
+Cuando acumules suficientes trazas, no las mires una a una.
+
+Agrúpalas por intención.
+
+Ejemplo:
+
+```text
+intención: resumir tickets de facturación
+volumen semanal: 840
+feedback negativo: 18%
+regeneraciones: 24%
+causa probable: el resumen pierde productos secundarios
+acción: convertir el flujo en workflow semideterminístico
+```
+
+El objetivo es transformar una masa de conversaciones en una cola de mejoras de producto.
+
+Primero arreglas los clusters con más volumen, más frustración o más riesgo.
+
+Este enfoque evita una trampa común: intentar mejorar "el asistente" en abstracto.
+
+No mejoras el asistente.
+
+Mejoras workflows concretos.
+
 
 ## 32.5 Métricas
 
@@ -196,6 +267,9 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 - **respuestas sin fuente**
 - **feedback negativo**
 - **interacciones escaladas a humano**
+- **regeneration rate**
+- **intent failure rate**
+- **silent abandonment rate**
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 

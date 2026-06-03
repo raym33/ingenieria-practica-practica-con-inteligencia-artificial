@@ -822,7 +822,65 @@ Los productos necesitan arquitecturas útiles.
 
 ---
 
-## 14.30 Reglas para producto comercial
+## 14.30 Reglas contra deuda técnica inducida por agentes
+
+Los agentes de código pueden producir mucho código rápido.
+
+Ese es el beneficio.
+
+También es el peligro.
+
+En codebases compartidas, con varios ingenieros y tráfico real, el coste no está solo en que el código funcione hoy.
+
+Está en:
+
+- complejidad accidental;
+- abstracciones innecesarias;
+- edge cases sin cubrir;
+- memory leaks;
+- retries sin límite;
+- logs excesivos;
+- funciones demasiado grandes;
+- duplicación;
+- dependencias innecesarias;
+- tests débiles;
+- onboarding más difícil.
+
+Una regla práctica:
+
+> Si no puedes explicar el cambio generado, no deberías mergearlo.
+
+Plantilla de reglas:
+
+```markdown
+## Anti-Debt Rules
+
+- Do not generate large rewrites without a written plan.
+- Prefer small diffs.
+- Do not introduce abstractions without a concrete repeated need.
+- Do not add dependencies unless justified.
+- Do not change public contracts silently.
+- Every production change must include tests or an explicit reason.
+- Review logging, retries, loops and resource usage.
+- Remove unused code created during exploration.
+- Keep the simplest implementation that satisfies the requirement.
+```
+
+Para tareas no triviales, invierte tiempo antes de pedir código:
+
+- alcance;
+- constraints;
+- archivos afectados;
+- comportamiento esperado;
+- comportamiento prohibido;
+- comandos de verificación;
+- criterio de done.
+
+Una hora de especificación puede ahorrar días de limpieza.
+
+---
+
+## 14.31 Reglas para producto comercial
 
 Si el repo será vendido o usado por clientes:
 
@@ -841,7 +899,7 @@ El agente debe saber que no está haciendo solo una demo.
 
 ---
 
-## 14.31 Reglas para proyectos locales
+## 14.32 Reglas para proyectos locales
 
 Para IA local:
 
@@ -860,7 +918,7 @@ Muy útil para productos local-first.
 
 ---
 
-## 14.32 Reglas para costes
+## 14.33 Reglas para costes
 
 ```markdown
 ## Cost Rules
@@ -878,7 +936,7 @@ Coste debe ser visible.
 
 ---
 
-## 14.33 Reglas para observabilidad
+## 14.34 Reglas para observabilidad
 
 ```markdown
 ## Observability Rules
@@ -899,7 +957,7 @@ Sin observabilidad, no hay producción.
 
 ---
 
-## 14.34 Reglas para prompts
+## 14.35 Reglas para prompts
 
 ```markdown
 ## Prompt Rules
@@ -915,7 +973,7 @@ Esto conecta con los capítulos anteriores.
 
 ---
 
-## 14.35 Reglas para evaluación
+## 14.36 Reglas para evaluación
 
 ```markdown
 ## Evaluation Rules
@@ -932,7 +990,7 @@ Cada cambio en IA puede alterar comportamiento.
 
 ---
 
-## 14.36 Reglas para datos ficticios
+## 14.37 Reglas para datos ficticios
 
 ```markdown
 ## Test Data Rules
@@ -947,7 +1005,7 @@ Los agentes generan tests. Hay que evitar datos reales.
 
 ---
 
-## 14.37 Reglas para documentación
+## 14.38 Reglas para documentación
 
 ```markdown
 ## Documentation Rules
@@ -967,7 +1025,7 @@ La documentación debe seguir al código.
 
 ---
 
-## 14.38 Reglas para commits
+## 14.39 Reglas para commits
 
 ```markdown
 ## Commit Rules
@@ -986,7 +1044,7 @@ Pero si lo hacen, que sea con reglas.
 
 ---
 
-## 14.39 Reglas para pull requests
+## 14.40 Reglas para pull requests
 
 ```markdown
 ## Pull Request Rules
@@ -1005,7 +1063,7 @@ Esto ayuda a revisar trabajo generado por IA.
 
 ---
 
-## 14.40 Reglas para “no hacer”
+## 14.41 Reglas para “no hacer”
 
 Una sección de “no hacer” es muy útil.
 
@@ -1027,7 +1085,7 @@ Los límites explícitos reducen sorpresas.
 
 ---
 
-## 14.41 Cómo introducir reglas en un repo existente
+## 14.42 Cómo introducir reglas en un repo existente
 
 Proceso:
 
@@ -1048,7 +1106,7 @@ Itera.
 
 ---
 
-## 14.42 Cómo saber si las reglas funcionan
+## 14.43 Cómo saber si las reglas funcionan
 
 Señales positivas:
 
@@ -1077,7 +1135,7 @@ Si las reglas no funcionan, hazlas más concretas y más cortas.
 
 ---
 
-## 14.43 Reglas cortas vs reglas largas
+## 14.44 Reglas cortas vs reglas largas
 
 Reglas largas pueden ser completas, pero el modelo puede ignorar parte.
 
@@ -1095,7 +1153,7 @@ No metas todo en un único archivo gigante.
 
 ---
 
-## 14.44 Reglas y jerarquía
+## 14.45 Reglas y jerarquía
 
 Organiza:
 
@@ -1113,7 +1171,7 @@ No conviertas `AGENTS.md` en una enciclopedia.
 
 ---
 
-## 14.45 Reglas para este libro
+## 14.46 Reglas para este libro
 
 Este libro también puede tener reglas para agentes.
 
@@ -1142,7 +1200,7 @@ Esto permitirá que Codex, Claude o Grok actualicen capítulos sin romper la lí
 
 ---
 
-## 14.46 Plantilla AGENTS.md para este libro
+## 14.47 Plantilla AGENTS.md para este libro
 
 ```markdown
 # AGENTS.md
@@ -1190,7 +1248,7 @@ Esta plantilla debería ir al repo del libro.
 
 ---
 
-## 14.47 Antipatrones
+## 14.48 Antipatrones
 
 ### No tener reglas
 
@@ -1230,7 +1288,7 @@ El agente no entiende qué se está construyendo.
 
 ---
 
-## 14.48 Ideas clave del capítulo
+## 14.49 Ideas clave del capítulo
 
 - Los agentes de código necesitan reglas persistentes.
 - Las reglas convierten contexto del proyecto en instrucciones reutilizables.
@@ -1244,7 +1302,7 @@ El agente no entiende qué se está construyendo.
 
 ---
 
-## 14.49 Checklist práctica
+## 14.50 Checklist práctica
 
 Para crear reglas de agentes:
 
@@ -1271,7 +1329,7 @@ Para crear reglas de agentes:
 
 ---
 
-## 14.50 Qué puede cambiar en el futuro
+## 14.51 Qué puede cambiar en el futuro
 
 Cambiarán:
 

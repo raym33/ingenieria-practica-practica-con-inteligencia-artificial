@@ -71,6 +71,85 @@ Criterio para apagar o revertir:
 
 Cuando no puedes completar esta ficha, el proyecto todavía está demasiado borroso.
 
+### El gap entre chat y sistemas mission-critical
+
+Pasar de un chat interno a un sistema conectado a producción no es un cambio incremental.
+
+Es otro tipo de proyecto.
+
+En un chat aislado, los riesgos principales son calidad de respuesta, coste y experiencia.
+
+En un sistema mission-critical aparecen capas nuevas:
+
+- permisos reales;
+- datos sensibles;
+- auditoría;
+- trazas de acciones;
+- revisión humana;
+- integración con sistemas existentes;
+- rollback;
+- gestión de cambios de modelo;
+- soporte operativo;
+- responsables por área.
+
+El error frecuente es pensar:
+
+> Ya tenemos el prototipo. Solo falta conectarlo.
+
+Conectar suele ser la parte difícil.
+
+Checklist antes de conectar producción:
+
+- ¿qué sistemas toca?;
+- ¿qué datos lee?;
+- ¿qué datos escribe?;
+- ¿qué usuario autoriza cada acción?;
+- ¿qué logs quedan?;
+- ¿qué ocurre si cambia el modelo?;
+- ¿qué ocurre si sube el coste?;
+- ¿qué ocurre si una tool falla?;
+- ¿quién revisa incidentes?;
+- ¿quién puede apagar el sistema?
+
+Si estas preguntas no tienen respuesta, el prototipo todavía no está listo para producción.
+
+### Cambios de modelo como evento operativo
+
+Los modelos cambian.
+
+Mejoran, empeoran, se abaratan, suben de precio, alteran estilo, cambian tool calling, modifican latencia o dejan de estar disponibles.
+
+Cada cambio de modelo debe tratarse como una release.
+
+No como un ajuste menor.
+
+Plan mínimo:
+
+```text
+1. Ejecutar suite de evaluación.
+2. Comparar calidad, coste y latencia.
+3. Revisar tool calls.
+4. Revisar casos de permisos.
+5. Probar en staging.
+6. Publicar con porcentaje limitado.
+7. Monitorizar regresiones.
+8. Mantener rollback.
+```
+
+La arquitectura debe permitir cambiar de modelo sin rehacer todo el producto.
+
+Eso implica separar:
+
+- prompts;
+- contratos de salida;
+- tools;
+- evaluación;
+- routing;
+- observabilidad;
+- políticas de seguridad.
+
+Cuando todo está acoplado al modelo de moda, cada actualización del proveedor se convierte en un susto.
+
 
 ## 36.5 Métricas
 
@@ -82,6 +161,8 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 - **errores por versión**
 - **coste por deploy**
 - **tiempo hasta detectar fallo**
+- **model change regression rate**
+- **rollback time**
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 
