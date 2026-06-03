@@ -13,8 +13,23 @@ export default function RootLayout({ children }) {
       <body>
         <SiteHeader />
         {children}
+        <footer className="site-footer">
+          <div className="shell footer-grid">
+            <div>
+              <strong>De preguntar a construir</strong>
+              <p>Revista, libro vivo y radar práctico sobre ingeniería con inteligencia artificial.</p>
+            </div>
+            <div>
+              <span>Autor</span>
+              <p>Ramon Guillamon · Creative Commons</p>
+            </div>
+            <div>
+              <span>Contacto</span>
+              <p>learntouseai@gmail.com</p>
+            </div>
+          </div>
+        </footer>
       </body>
     </html>
   );
 }
-

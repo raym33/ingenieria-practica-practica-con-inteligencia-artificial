@@ -17,6 +17,10 @@ export function SiteHeader() {
             <small>Radar práctico para builders</small>
           </span>
         </Link>
+        <div className="masthead-meta" aria-label="Estado editorial">
+          <span>Radar diario</span>
+          <strong>Inferencia · RAG · Agentes · Hardware</strong>
+        </div>
       </div>
       <nav className="section-nav" aria-label="Principal">
         <div className="shell nav-links">
