@@ -878,6 +878,167 @@ Para tareas no triviales, invierte tiempo antes de pedir código:
 
 Una hora de especificación puede ahorrar días de limpieza.
 
+### Deuda por precedente
+
+Hay una forma nueva de deuda técnica que aparece con agentes de código.
+
+No es solo que el agente escriba mal una función.
+
+Es que esa función entra en el repositorio, queda como contexto y el siguiente agente la interpreta como patrón correcto.
+
+El ciclo puede ser así:
+
+```text
+cambio pobre -> merge -> contexto del repo -> siguiente agente copia patrón -> más deuda
+```
+
+Este riesgo es especialmente fuerte cuando:
+
+- se aceptan diffs grandes;
+- no hay revisión humana real;
+- los tests son superficiales;
+- el agente añade abstracciones sin necesidad;
+- las reglas del repo son vagas;
+- el equipo premia velocidad visible por encima de mantenibilidad.
+
+Una regla práctica:
+
+> No solo revises si el código funciona. Revisa si quieres que futuros agentes lo imiten.
+
+Preguntas de revisión:
+
+- ¿Este patrón debería repetirse?
+- ¿El nombre comunica bien?
+- ¿La abstracción tiene una necesidad real?
+- ¿El test protege comportamiento o solo congela implementación?
+- ¿El agente copió un mal patrón existente?
+- ¿El diff reduce o aumenta claridad?
+
+### Workflow spec-driven
+
+Para código de producción, la spec debe ser el contrato.
+
+El agente no debería recibir solo:
+
+```text
+Implementa esta feature.
+```
+
+Debería recibir:
+
+```text
+Objetivo:
+Alcance incluido:
+Alcance excluido:
+Archivos permitidos:
+Archivos prohibidos:
+Restricciones:
+Criterios de aceptación:
+Comandos de validación:
+Riesgos:
+Rollback:
+```
+
+La separación más importante:
+
+> El agente que planifica no debería tener automáticamente permiso para ejecutar.
+
+Un flujo más sano:
+
+```text
+humano escribe problema
+  -> agente propone spec
+  -> humano aprueba alcance
+  -> agente implementa diff pequeño
+  -> tests rápidos
+  -> revisión adversarial
+  -> revisión humana
+  -> CI
+  -> despliegue por fases
+```
+
+Este flujo parece más lento que "dale y que programe".
+
+En repos compartidos suele ser más rápido, porque evita días de limpieza.
+
+### Repo preparado para agentes
+
+Un agente es mucho mejor cuando el repo puede validarse rápido.
+
+Checklist de repo agent-friendly:
+
+- comandos de instalación claros;
+- variables de entorno documentadas;
+- `.env.example` actualizado;
+- tests rápidos de menos de 5-10 segundos para cambios comunes;
+- pre-commit hooks útiles;
+- lint local;
+- fixtures de prueba;
+- datos sintéticos;
+- CI con mensajes legibles;
+- documentación de arquitectura;
+- instrucciones para reproducir errores.
+
+Si el build depende de conocimiento tribal en Slack, el agente adivinará.
+
+Si el agente tiene que esperar diez minutos de CI para descubrir un error obvio, el workflow se vuelve caro.
+
+### Revisión adversarial
+
+Un patrón útil es pedir a otro agente o a otra sesión que revise el cambio como crítico.
+
+No para que sea desagradable.
+
+Para que busque lo que el agente ejecutor no quiso mirar:
+
+- alcance innecesario;
+- seguridad;
+- permisos;
+- datos sensibles;
+- dependencias;
+- migraciones;
+- tests débiles;
+- mal precedente;
+- cambios silenciosos de contrato;
+- loops sin límite;
+- retries peligrosos.
+
+El prompt descargable `templates/agents/adversarial-review-prompt.md` sirve como base.
+
+### SOP vivo
+
+Los equipos maduros no intentan recordar todos los fallos.
+
+Los convierten en procedimiento.
+
+Cada vez que el agente falla de forma repetida, el equipo actualiza:
+
+- `AGENTS.md`;
+- spec template;
+- tests;
+- checklist de PR;
+- SOP del workflow;
+- prompt de revisión;
+- regla de seguridad.
+
+Un SOP vivo es memoria operativa.
+
+No es burocracia si elimina errores repetidos.
+
+### Plantillas descargables
+
+El companion GitHub incluye plantillas en `templates/agents/`:
+
+- `AGENTS.md`;
+- `code-task-spec.md`;
+- `adversarial-review-prompt.md`;
+- `security-test-prompt.md`;
+- `sop-agent-workflow.md`.
+
+Úsalas como punto de partida, no como dogma.
+
+La regla es adaptar cada plantilla al riesgo real del repositorio.
+
 ---
 
 ## 14.31 Reglas para producto comercial
@@ -1296,6 +1457,9 @@ El agente no entiende qué se está construyendo.
 - Las reglas deben cubrir proyecto, stack, estructura, comandos, seguridad, tests y definición de done.
 - Lo más importante: cambios pequeños, no secretos, tests, no sobreingeniería y revisión del diff.
 - Para RAG, agentes y MCP hacen falta reglas específicas de seguridad.
+- En producción, la spec debe limitar alcance, archivos permitidos, archivos excluidos y criterios de aceptación.
+- La deuda inducida por agentes puede convertirse en precedente para futuros agentes.
+- Un SOP vivo convierte fallos repetidos en reglas, tests y gates.
 - Las reglas deben ser lo bastante cortas para seguirse y lo bastante concretas para ser útiles.
 - Un libro vivo también debe tener reglas para agentes editoriales.
 - Las reglas no sustituyen revisión humana, pero reducen caos.
@@ -1323,6 +1487,11 @@ Para crear reglas de agentes:
 - ¿Hay reglas de documentación?
 - ¿Hay sección “Do Not”?
 - ¿Hay formato de respuesta final?
+- ¿Hay plantilla de spec?
+- ¿Hay revisión adversarial?
+- ¿Hay prompt de seguridad para APIs y tools?
+- ¿Hay SOP vivo para fallos repetidos?
+- ¿Hay métricas de tiempo de validación, diffs rechazados y hallazgos de seguridad?
 - ¿Las reglas son legibles?
 - ¿Están actualizadas?
 - ¿Se han probado con una tarea real?

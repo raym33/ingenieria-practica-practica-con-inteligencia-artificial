@@ -95,6 +95,67 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 - Hay tests de prompt injection.
 - Hay tests de tools.
 - Hay pruebas manuales de UX.
+- Hay tests de seguridad para APIs generadas o modificadas con IA.
+- Los tests escritos por IA han sido revisados por una persona.
+- Los cambios de agentes de código pasan por revisión adversarial.
+
+### Testing específico para código generado por agentes
+
+El código generado por agentes no necesita un tipo mágico de test.
+
+Necesita más disciplina sobre tests normales.
+
+Antes de mergear un cambio de agente, revisa:
+
+- si tocó más archivos de los esperados;
+- si añadió tests o solo cambió implementación;
+- si los tests comprueban comportamiento observable;
+- si cubre permisos;
+- si cubre entradas vacías, nulas, largas y maliciosas;
+- si protege rutas autenticadas;
+- si evita IDOR;
+- si evita exponer secretos en responses o logs;
+- si las migraciones son seguras;
+- si las tools de escritura exigen permiso y confirmación.
+
+Una buena práctica es ejecutar un gate de seguridad cuando el cambio toca:
+
+- autenticación;
+- autorización;
+- APIs;
+- base de datos;
+- tools;
+- MCP;
+- datos sensibles;
+- despliegue.
+
+El companion incluye `templates/agents/security-test-prompt.md` para generar una primera batería de tests.
+
+Importante: no confíes automáticamente en tests generados por IA.
+
+Un test malo puede dar falsa confianza.
+
+Revisa que el test falle cuando el bug existe y pase cuando el comportamiento correcto está implementado.
+
+### Métricas de validación con agentes
+
+No midas solo "hemos ido más rápido".
+
+Mide:
+
+- tiempo hasta validación rápida;
+- número de archivos tocados por tarea;
+- porcentaje de diffs rechazados;
+- porcentaje de código generado modificado por revisión humana;
+- hallazgos de seguridad antes de merge;
+- regresiones por release;
+- rollbacks de cambios asistidos por IA;
+- tests generados por hora de revisión;
+- cobertura de flujos críticos.
+
+La productividad real no es producir más código.
+
+Es producir más cambios correctos con menos deuda posterior.
 
 
 ## 40.7 Antipatrones

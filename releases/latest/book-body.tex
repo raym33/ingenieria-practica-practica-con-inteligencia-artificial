@@ -27917,6 +27917,246 @@ Para tareas no triviales, invierte tiempo antes de pedir código:
 
 Una hora de especificación puede ahorrar días de limpieza.
 
+\subsection{Deuda por precedente}\label{deuda-por-precedente}
+
+Hay una forma nueva de deuda técnica que aparece con agentes de código.
+
+No es solo que el agente escriba mal una función.
+
+Es que esa función entra en el repositorio, queda como contexto y el
+siguiente agente la interpreta como patrón correcto.
+
+El ciclo puede ser así:
+
+\begin{lstlisting}
+cambio pobre -> merge -> contexto del repo -> siguiente agente copia patrón -> más deuda
+\end{lstlisting}
+
+Este riesgo es especialmente fuerte cuando:
+
+\begin{itemize}
+\tightlist
+\item
+  se aceptan diffs grandes;
+\item
+  no hay revisión humana real;
+\item
+  los tests son superficiales;
+\item
+  el agente añade abstracciones sin necesidad;
+\item
+  las reglas del repo son vagas;
+\item
+  el equipo premia velocidad visible por encima de mantenibilidad.
+\end{itemize}
+
+Una regla práctica:
+
+\begin{quote}
+No solo revises si el código funciona. Revisa si quieres que futuros
+agentes lo imiten.
+\end{quote}
+
+Preguntas de revisión:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Este patrón debería repetirse?
+\item
+  ¿El nombre comunica bien?
+\item
+  ¿La abstracción tiene una necesidad real?
+\item
+  ¿El test protege comportamiento o solo congela implementación?
+\item
+  ¿El agente copió un mal patrón existente?
+\item
+  ¿El diff reduce o aumenta claridad?
+\end{itemize}
+
+\subsection{Workflow spec-driven}\label{workflow-spec-driven}
+
+Para código de producción, la spec debe ser el contrato.
+
+El agente no debería recibir solo:
+
+\begin{lstlisting}
+Implementa esta feature.
+\end{lstlisting}
+
+Debería recibir:
+
+\begin{lstlisting}
+Objetivo:
+Alcance incluido:
+Alcance excluido:
+Archivos permitidos:
+Archivos prohibidos:
+Restricciones:
+Criterios de aceptación:
+Comandos de validación:
+Riesgos:
+Rollback:
+\end{lstlisting}
+
+La separación más importante:
+
+\begin{quote}
+El agente que planifica no debería tener automáticamente permiso para
+ejecutar.
+\end{quote}
+
+Un flujo más sano:
+
+\begin{lstlisting}
+humano escribe problema
+  -> agente propone spec
+  -> humano aprueba alcance
+  -> agente implementa diff pequeño
+  -> tests rápidos
+  -> revisión adversarial
+  -> revisión humana
+  -> CI
+  -> despliegue por fases
+\end{lstlisting}
+
+Este flujo parece más lento que ``dale y que programe''.
+
+En repos compartidos suele ser más rápido, porque evita días de
+limpieza.
+
+\subsection{Repo preparado para
+agentes}\label{repo-preparado-para-agentes}
+
+Un agente es mucho mejor cuando el repo puede validarse rápido.
+
+Checklist de repo agent-friendly:
+
+\begin{itemize}
+\tightlist
+\item
+  comandos de instalación claros;
+\item
+  variables de entorno documentadas;
+\item
+  \passthrough{\lstinline!.env.example!} actualizado;
+\item
+  tests rápidos de menos de 5-10 segundos para cambios comunes;
+\item
+  pre-commit hooks útiles;
+\item
+  lint local;
+\item
+  fixtures de prueba;
+\item
+  datos sintéticos;
+\item
+  CI con mensajes legibles;
+\item
+  documentación de arquitectura;
+\item
+  instrucciones para reproducir errores.
+\end{itemize}
+
+Si el build depende de conocimiento tribal en Slack, el agente
+adivinará.
+
+Si el agente tiene que esperar diez minutos de CI para descubrir un
+error obvio, el workflow se vuelve caro.
+
+\subsection{Revisión adversarial}\label{revisiuxf3n-adversarial}
+
+Un patrón útil es pedir a otro agente o a otra sesión que revise el
+cambio como crítico.
+
+No para que sea desagradable.
+
+Para que busque lo que el agente ejecutor no quiso mirar:
+
+\begin{itemize}
+\tightlist
+\item
+  alcance innecesario;
+\item
+  seguridad;
+\item
+  permisos;
+\item
+  datos sensibles;
+\item
+  dependencias;
+\item
+  migraciones;
+\item
+  tests débiles;
+\item
+  mal precedente;
+\item
+  cambios silenciosos de contrato;
+\item
+  loops sin límite;
+\item
+  retries peligrosos.
+\end{itemize}
+
+El prompt descargable
+\passthrough{\lstinline!templates/agents/adversarial-review-prompt.md!}
+sirve como base.
+
+\subsection{SOP vivo}\label{sop-vivo}
+
+Los equipos maduros no intentan recordar todos los fallos.
+
+Los convierten en procedimiento.
+
+Cada vez que el agente falla de forma repetida, el equipo actualiza:
+
+\begin{itemize}
+\tightlist
+\item
+  \passthrough{\lstinline!AGENTS.md!};
+\item
+  spec template;
+\item
+  tests;
+\item
+  checklist de PR;
+\item
+  SOP del workflow;
+\item
+  prompt de revisión;
+\item
+  regla de seguridad.
+\end{itemize}
+
+Un SOP vivo es memoria operativa.
+
+No es burocracia si elimina errores repetidos.
+
+\subsection{Plantillas descargables}\label{plantillas-descargables}
+
+El companion GitHub incluye plantillas en
+\passthrough{\lstinline!templates/agents/!}:
+
+\begin{itemize}
+\tightlist
+\item
+  \passthrough{\lstinline!AGENTS.md!};
+\item
+  \passthrough{\lstinline!code-task-spec.md!};
+\item
+  \passthrough{\lstinline!adversarial-review-prompt.md!};
+\item
+  \passthrough{\lstinline!security-test-prompt.md!};
+\item
+  \passthrough{\lstinline!sop-agent-workflow.md!}.
+\end{itemize}
+
+Úsalas como punto de partida, no como dogma.
+
+La regla es adaptar cada plantilla al riesgo real del repositorio.
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \section{14.31 Reglas para producto
@@ -28407,6 +28647,14 @@ capítulo}\label{ideas-clave-del-capuxedtulo-13}
 \item
   Para RAG, agentes y MCP hacen falta reglas específicas de seguridad.
 \item
+  En producción, la spec debe limitar alcance, archivos permitidos,
+  archivos excluidos y criterios de aceptación.
+\item
+  La deuda inducida por agentes puede convertirse en precedente para
+  futuros agentes.
+\item
+  Un SOP vivo convierte fallos repetidos en reglas, tests y gates.
+\item
   Las reglas deben ser lo bastante cortas para seguirse y lo bastante
   concretas para ser útiles.
 \item
@@ -28457,6 +28705,17 @@ Para crear reglas de agentes:
   ¿Hay sección ``Do Not''?
 \item
   ¿Hay formato de respuesta final?
+\item
+  ¿Hay plantilla de spec?
+\item
+  ¿Hay revisión adversarial?
+\item
+  ¿Hay prompt de seguridad para APIs y tools?
+\item
+  ¿Hay SOP vivo para fallos repetidos?
+\item
+  ¿Hay métricas de tiempo de validación, diffs rechazados y hallazgos de
+  seguridad?
 \item
   ¿Las reglas son legibles?
 \item
@@ -62986,7 +63245,113 @@ demasiado caro.
   Hay tests de tools.
 \item
   Hay pruebas manuales de UX.
+\item
+  Hay tests de seguridad para APIs generadas o modificadas con IA.
+\item
+  Los tests escritos por IA han sido revisados por una persona.
+\item
+  Los cambios de agentes de código pasan por revisión adversarial.
 \end{itemize}
+
+\subsection{Testing específico para código generado por
+agentes}\label{testing-especuxedfico-para-cuxf3digo-generado-por-agentes}
+
+El código generado por agentes no necesita un tipo mágico de test.
+
+Necesita más disciplina sobre tests normales.
+
+Antes de mergear un cambio de agente, revisa:
+
+\begin{itemize}
+\tightlist
+\item
+  si tocó más archivos de los esperados;
+\item
+  si añadió tests o solo cambió implementación;
+\item
+  si los tests comprueban comportamiento observable;
+\item
+  si cubre permisos;
+\item
+  si cubre entradas vacías, nulas, largas y maliciosas;
+\item
+  si protege rutas autenticadas;
+\item
+  si evita IDOR;
+\item
+  si evita exponer secretos en responses o logs;
+\item
+  si las migraciones son seguras;
+\item
+  si las tools de escritura exigen permiso y confirmación.
+\end{itemize}
+
+Una buena práctica es ejecutar un gate de seguridad cuando el cambio
+toca:
+
+\begin{itemize}
+\tightlist
+\item
+  autenticación;
+\item
+  autorización;
+\item
+  APIs;
+\item
+  base de datos;
+\item
+  tools;
+\item
+  MCP;
+\item
+  datos sensibles;
+\item
+  despliegue.
+\end{itemize}
+
+El companion incluye
+\passthrough{\lstinline!templates/agents/security-test-prompt.md!} para
+generar una primera batería de tests.
+
+Importante: no confíes automáticamente en tests generados por IA.
+
+Un test malo puede dar falsa confianza.
+
+Revisa que el test falle cuando el bug existe y pase cuando el
+comportamiento correcto está implementado.
+
+\subsection{Métricas de validación con
+agentes}\label{muxe9tricas-de-validaciuxf3n-con-agentes}
+
+No midas solo ``hemos ido más rápido''.
+
+Mide:
+
+\begin{itemize}
+\tightlist
+\item
+  tiempo hasta validación rápida;
+\item
+  número de archivos tocados por tarea;
+\item
+  porcentaje de diffs rechazados;
+\item
+  porcentaje de código generado modificado por revisión humana;
+\item
+  hallazgos de seguridad antes de merge;
+\item
+  regresiones por release;
+\item
+  rollbacks de cambios asistidos por IA;
+\item
+  tests generados por hora de revisión;
+\item
+  cobertura de flujos críticos.
+\end{itemize}
+
+La productividad real no es producir más código.
+
+Es producir más cambios correctos con menos deuda posterior.
 
 \section{40.7 Antipatrones}\label{antipatrones-28}
 

@@ -29,6 +29,24 @@
     "25-capitulo-24-que-es-un-agente-de-ia.md",
     "27-capitulo-26-mcp.md"
   ],
+  "agentes-de-codigo": [
+    "13-capitulo-12-prompts-para-crear-software.md",
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "agents-md": [
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md"
+  ],
+  "spec-driven": [
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "code-agent-governance": [
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "34-capitulo-33-seguridad-prompt-injection-y-abuso.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
   "agentes": [
     "12-capitulo-11-tecnicas-avanzadas.md",
     "13-capitulo-12-prompts-para-crear-software.md",
@@ -169,7 +187,9 @@
     "27-capitulo-26-mcp.md",
     "31-capitulo-30-laboratorio-de-implementacion.md",
     "34-capitulo-33-seguridad-prompt-injection-y-abuso.md",
-    "36-capitulo-35-datos-privacidad-y-gobernanza.md"
+    "36-capitulo-35-datos-privacidad-y-gobernanza.md",
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "41-capitulo-40-testing-y-calidad.md"
   ],
   "costes": [
     "06-capitulo-5-como-elegir-un-modelo.md",
@@ -217,6 +237,7 @@
     "40-capitulo-39-ui-ux-para-productos-con-ia.md"
   ],
   "testing": [
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
     "32-capitulo-31-evaluacion-de-sistemas-ia.md",
     "41-capitulo-40-testing-y-calidad.md"
   ],
@@ -295,6 +316,11 @@
   "deuda-tecnica": [
     "14-capitulo-13-vibe-coding.md",
     "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "agent-behavior-debt": [
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
     "41-capitulo-40-testing-y-calidad.md"
   ],
   "llmops": [

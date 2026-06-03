@@ -32,6 +32,7 @@ Estos son los siguientes labs que más aumentarían el valor práctico del proye
 | `tool-call-eval/` | Cómo evaluar llamadas a herramientas con argumentos válidos, permisos y errores. |
 | `prompt-regression/` | Cómo detectar que un cambio de prompt mejora un caso y rompe otro. |
 | `release-manifest/` | Cómo versionar modelo, prompt, índice, tools y evaluación por release. |
+| `code-agent-governance/` | Cómo usar specs, reglas, revisión adversarial y gates antes de mergear código generado. |
 
 ## Criterio de calidad
 
@@ -49,4 +50,3 @@ Un lab se considera útil si:
 El libro debe enseñar a construir con IA, no solo a hablar de IA.
 
 Por eso el companion GitHub debe crecer como una biblioteca de experimentos pequeños, reproducibles y conectados con problemas reales: RAG, evaluación, observabilidad, coste, latencia, seguridad, agentes y operación.
-
