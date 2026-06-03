@@ -130,6 +130,39 @@
     "33-capitulo-32-observabilidad-y-trazas.md",
     "34-capitulo-33-seguridad-prompt-injection-y-abuso.md"
   ],
+  "context-engineering": [
+    "19-capitulo-18-problemas-reales-en-rag.md",
+    "20-capitulo-19-rag-avanzado.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+  ],
+  "retrieval-engineering": [
+    "18-capitulo-17-arquitectura-rag-basica.md",
+    "19-capitulo-18-problemas-reales-en-rag.md",
+    "20-capitulo-19-rag-avanzado.md",
+    "21-capitulo-20-herramientas-rag.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
+  ],
+  "metadata-filtering": [
+    "19-capitulo-18-problemas-reales-en-rag.md",
+    "20-capitulo-19-rag-avanzado.md",
+    "34-capitulo-33-seguridad-prompt-injection-y-abuso.md",
+    "36-capitulo-35-datos-privacidad-y-gobernanza.md"
+  ],
+  "hybrid-search": [
+    "20-capitulo-19-rag-avanzado.md",
+    "21-capitulo-20-herramientas-rag.md"
+  ],
+  "reranking": [
+    "20-capitulo-19-rag-avanzado.md",
+    "21-capitulo-20-herramientas-rag.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+  ],
+  "retrieval-eval": [
+    "20-capitulo-19-rag-avanzado.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md"
+  ],
   "papers": [
     "12-capitulo-11-tecnicas-avanzadas.md",
     "20-capitulo-19-rag-avanzado.md"

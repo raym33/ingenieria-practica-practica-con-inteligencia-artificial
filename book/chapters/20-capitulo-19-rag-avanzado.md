@@ -83,6 +83,66 @@ datos → extracción → chunking → metadata → retrieval → prompt → mod
 
 La técnica avanzada debe resolver un fallo medido.
 
+### RAG de producción como context engineering
+
+El RAG de demo suele verse así:
+
+```text
+chunking -> embeddings -> vector DB -> top-k -> LLM
+```
+
+Ese flujo sirve para aprender.
+
+Pero en producción suele ser insuficiente.
+
+Un RAG de producción se parece más a esto:
+
+```text
+corpus design
+  -> extracción
+  -> chunking estructural
+  -> metadata obligatoria
+  -> permisos
+  -> búsqueda híbrida
+  -> filtros
+  -> reranking
+  -> compresión
+  -> síntesis con fuentes
+  -> evaluación
+  -> observabilidad
+```
+
+La diferencia no es estética.
+
+En producción no recuperas "texto parecido".
+
+Construyes contexto útil, autorizado, fresco, citable y suficientemente limpio para que el modelo pueda responder sin inventar.
+
+Por eso una forma más precisa de pensar RAG avanzado es:
+
+> RAG es ingeniería de contexto con evaluación.
+
+### Checklist de retrieval engineering
+
+Antes de añadir otra capa de agentes o cambiar de modelo, revisa:
+
+- ¿el corpus está separado por cliente, producto, departamento o tenant?;
+- ¿cada chunk conserva documento, sección, página, fecha y permisos?;
+- ¿hay metadata filtering antes de mostrar resultados al modelo?;
+- ¿hay búsqueda híbrida cuando importan nombres, códigos o términos exactos?;
+- ¿hay reranking cuando top-k trae ruido?;
+- ¿hay query rewriting cuando los usuarios preguntan con lenguaje informal?;
+- ¿hay parent-child retrieval cuando el chunk necesita contexto mayor?;
+- ¿hay context compression cuando sobra ruido?;
+- ¿hay freshness pipeline para documentos que caducan?;
+- ¿hay respuesta "no encontrado" cuando el contexto no basta?;
+- ¿se evalúa retrieval por separado de generación?;
+- ¿se registran fuentes recuperadas, descartadas y citadas?
+
+Si no puedes responder estas preguntas, el problema quizá no sea el LLM.
+
+Quizá tu sistema todavía no sabe construir contexto.
+
 ---
 
 ## 19.2 Búsqueda híbrida
@@ -386,6 +446,79 @@ Limitaciones:
 - requiere estructura documental.
 
 Muy útil cuando las respuestas requieren ver el entorno de un fragmento.
+
+### Metadata filtering como permiso, no como detalle
+
+En RAG empresarial, los metadatos no son solo decoración para mostrar citas bonitas.
+
+Son parte del control de acceso.
+
+Metadatos mínimos frecuentes:
+
+- tenant;
+- usuario o grupo autorizado;
+- departamento;
+- producto;
+- idioma;
+- país;
+- fecha de vigencia;
+- versión;
+- tipo documental;
+- confidencialidad;
+- estado: borrador, publicado, obsoleto.
+
+Un fallo clásico es indexar todo junto y confiar en que el modelo "entenderá" qué fuente aplica.
+
+No lo hará de forma fiable.
+
+Ejemplo:
+
+```text
+Pregunta sobre cliente A
+  -> retrieval trae documento de cliente B
+  -> modelo sintetiza con fuente equivocada
+  -> respuesta parece plausible
+```
+
+Esto no es alucinación pura.
+
+Es contaminación de corpus.
+
+La defensa empieza antes del modelo:
+
+```text
+permission filter -> scoped retrieval -> reranking -> generation
+```
+
+El modelo solo debería ver contexto que el usuario puede ver y que aplica al caso.
+
+### Evaluación de retrieval
+
+Evalúa retrieval antes de evaluar la respuesta final.
+
+Métricas útiles:
+
+- **Recall@K**: si las fuentes esperadas aparecen entre los K resultados.
+- **MRR**: qué tan arriba aparece la primera fuente correcta.
+- **Precision@K**: cuánto ruido entra entre los resultados.
+- **source coverage**: si cubres todas las fuentes necesarias.
+- **permission leak rate**: si aparecen documentos no autorizados.
+- **freshness error rate**: si recuperas documentos obsoletos.
+- **groundedness**: si la respuesta usa lo recuperado.
+- **faithfulness**: si la respuesta no contradice las fuentes.
+- **hallucination rate**: respuestas no soportadas por contexto.
+
+El companion incluye `labs/rag-retrieval-eval/` como laboratorio mínimo.
+
+Ejecuta:
+
+```bash
+python3 labs/rag-retrieval-eval/retrieval_eval.py
+```
+
+El objetivo no es simular un vector store completo.
+
+El objetivo es aprender la disciplina: pregunta, fuentes esperadas, top-k, métricas y permisos.
 
 ---
 

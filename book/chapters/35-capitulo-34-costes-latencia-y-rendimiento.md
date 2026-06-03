@@ -198,6 +198,50 @@ Primero encuentra la causa:
 
 Optimizar un sistema que aún no funciona solo produce un sistema barato que falla.
 
+### Optimización específica en RAG
+
+En RAG, coste y latencia no viven solo en el modelo generador.
+
+También viven en:
+
+- query rewriting;
+- embeddings;
+- búsqueda híbrida;
+- filtros;
+- reranking;
+- compresión;
+- síntesis;
+- citas;
+- validación;
+- observabilidad.
+
+Patrones útiles:
+
+- cachear resultados de retrieval para consultas frecuentes;
+- cachear respuestas solo si permisos, tenant y versión documental coinciden;
+- enrutar preguntas simples a un flujo sin reranker;
+- usar reranker solo cuando el top-k inicial tiene baja confianza;
+- reducir contexto antes de cambiar a modelo más caro;
+- separar flujos interactivos de flujos batch;
+- medir latencia p95 por etapa, no solo total;
+- degradar con gracia: menos resultados, modelo más pequeño o respuesta diferida.
+
+Regla importante:
+
+> En RAG, una caché insegura puede ser peor que no tener caché.
+
+Una respuesta cacheada debe estar asociada a:
+
+- usuario o grupo;
+- tenant;
+- permisos;
+- versión de documentos;
+- versión de prompt;
+- modelo;
+- fecha de caducidad.
+
+Si no puedes invalidarla correctamente, úsala solo para datos públicos o de bajo riesgo.
+
 ### Router de modelos
 
 No todo necesita el mismo modelo.

@@ -171,6 +171,47 @@ Chunking no es un detalle.
 
 Es arquitectura.
 
+### Pronombres y comparaciones huérfanas
+
+Un fallo frecuente en producción aparece cuando el chunk conserva una frase, pero pierde el referente.
+
+Ejemplo:
+
+```text
+También aplica durante los primeros 30 días.
+```
+
+¿Qué aplica?
+
+¿La garantía?
+
+¿La devolución?
+
+¿La penalización?
+
+Otro caso:
+
+```text
+Este plan tiene un límite superior al anterior.
+```
+
+¿Qué plan?
+
+¿Superior en precio, usuarios, almacenamiento o soporte?
+
+El overlap no siempre arregla esto. A veces solo duplica ruido.
+
+Soluciones:
+
+- chunking por estructura real;
+- conservar título y subtítulo;
+- añadir contexto jerárquico;
+- usar parent-child retrieval;
+- enriquecer chunks con resumen de sección;
+- evaluar preguntas que dependan de pronombres, comparaciones y excepciones.
+
+Si el chunk no se entiende fuera de su página, probablemente no debe indexarse solo.
+
 ---
 
 ## 18.5 Pérdida de contexto jerárquico
@@ -247,6 +288,40 @@ Solución:
 - medir top-k.
 
 El modelo no puede responder bien si recibe fuentes malas.
+
+### Contaminación de corpus
+
+La contaminación ocurre cuando el sistema recupera una fuente parecida, pero perteneciente al cliente, empresa, producto, país o versión equivocados.
+
+Ejemplo:
+
+```text
+Pregunta: política de devoluciones de Cliente A
+Fuente recuperada: política de devoluciones de Cliente B
+Respuesta: mezcla reglas de ambos
+```
+
+El resultado puede parecer razonable y aun así ser grave.
+
+No basta con decir al modelo:
+
+```text
+usa solo documentos relevantes
+```
+
+La defensa debe estar en retrieval:
+
+- filtrar por tenant;
+- filtrar por permisos;
+- filtrar por producto;
+- filtrar por fecha de vigencia;
+- filtrar por estado del documento;
+- separar corpus cuando el riesgo lo justifique;
+- evaluar fugas de recuperación.
+
+En RAG de producción, metadata filtering es una medida de seguridad.
+
+No una mejora opcional.
 
 ---
 

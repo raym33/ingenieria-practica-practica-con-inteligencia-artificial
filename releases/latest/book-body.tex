@@ -35055,6 +35055,60 @@ Chunking no es un detalle.
 
 Es arquitectura.
 
+\subsection{Pronombres y comparaciones
+huérfanas}\label{pronombres-y-comparaciones-huuxe9rfanas}
+
+Un fallo frecuente en producción aparece cuando el chunk conserva una
+frase, pero pierde el referente.
+
+Ejemplo:
+
+\begin{lstlisting}
+También aplica durante los primeros 30 días.
+\end{lstlisting}
+
+¿Qué aplica?
+
+¿La garantía?
+
+¿La devolución?
+
+¿La penalización?
+
+Otro caso:
+
+\begin{lstlisting}
+Este plan tiene un límite superior al anterior.
+\end{lstlisting}
+
+¿Qué plan?
+
+¿Superior en precio, usuarios, almacenamiento o soporte?
+
+El overlap no siempre arregla esto. A veces solo duplica ruido.
+
+Soluciones:
+
+\begin{itemize}
+\tightlist
+\item
+  chunking por estructura real;
+\item
+  conservar título y subtítulo;
+\item
+  añadir contexto jerárquico;
+\item
+  usar parent-child retrieval;
+\item
+  enriquecer chunks con resumen de sección;
+\item
+  evaluar preguntas que dependan de pronombres, comparaciones y
+  excepciones.
+\end{itemize}
+
+Si el chunk no se entiende fuera de su página, probablemente no debe
+indexarse solo.
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \section{18.5 Pérdida de contexto
@@ -35153,6 +35207,52 @@ Solución:
 \end{itemize}
 
 El modelo no puede responder bien si recibe fuentes malas.
+
+\subsection{Contaminación de corpus}\label{contaminaciuxf3n-de-corpus}
+
+La contaminación ocurre cuando el sistema recupera una fuente parecida,
+pero perteneciente al cliente, empresa, producto, país o versión
+equivocados.
+
+Ejemplo:
+
+\begin{lstlisting}
+Pregunta: política de devoluciones de Cliente A
+Fuente recuperada: política de devoluciones de Cliente B
+Respuesta: mezcla reglas de ambos
+\end{lstlisting}
+
+El resultado puede parecer razonable y aun así ser grave.
+
+No basta con decir al modelo:
+
+\begin{lstlisting}
+usa solo documentos relevantes
+\end{lstlisting}
+
+La defensa debe estar en retrieval:
+
+\begin{itemize}
+\tightlist
+\item
+  filtrar por tenant;
+\item
+  filtrar por permisos;
+\item
+  filtrar por producto;
+\item
+  filtrar por fecha de vigencia;
+\item
+  filtrar por estado del documento;
+\item
+  separar corpus cuando el riesgo lo justifique;
+\item
+  evaluar fugas de recuperación.
+\end{itemize}
+
+En RAG de producción, metadata filtering es una medida de seguridad.
+
+No una mejora opcional.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -36836,6 +36936,89 @@ datos → extracción → chunking → metadata → retrieval → prompt → mod
 
 La técnica avanzada debe resolver un fallo medido.
 
+\subsection{RAG de producción como context
+engineering}\label{rag-de-producciuxf3n-como-context-engineering}
+
+El RAG de demo suele verse así:
+
+\begin{lstlisting}
+chunking -> embeddings -> vector DB -> top-k -> LLM
+\end{lstlisting}
+
+Ese flujo sirve para aprender.
+
+Pero en producción suele ser insuficiente.
+
+Un RAG de producción se parece más a esto:
+
+\begin{lstlisting}
+corpus design
+  -> extracción
+  -> chunking estructural
+  -> metadata obligatoria
+  -> permisos
+  -> búsqueda híbrida
+  -> filtros
+  -> reranking
+  -> compresión
+  -> síntesis con fuentes
+  -> evaluación
+  -> observabilidad
+\end{lstlisting}
+
+La diferencia no es estética.
+
+En producción no recuperas ``texto parecido''.
+
+Construyes contexto útil, autorizado, fresco, citable y suficientemente
+limpio para que el modelo pueda responder sin inventar.
+
+Por eso una forma más precisa de pensar RAG avanzado es:
+
+\begin{quote}
+RAG es ingeniería de contexto con evaluación.
+\end{quote}
+
+\subsection{Checklist de retrieval
+engineering}\label{checklist-de-retrieval-engineering}
+
+Antes de añadir otra capa de agentes o cambiar de modelo, revisa:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿el corpus está separado por cliente, producto, departamento o
+  tenant?;
+\item
+  ¿cada chunk conserva documento, sección, página, fecha y permisos?;
+\item
+  ¿hay metadata filtering antes de mostrar resultados al modelo?;
+\item
+  ¿hay búsqueda híbrida cuando importan nombres, códigos o términos
+  exactos?;
+\item
+  ¿hay reranking cuando top-k trae ruido?;
+\item
+  ¿hay query rewriting cuando los usuarios preguntan con lenguaje
+  informal?;
+\item
+  ¿hay parent-child retrieval cuando el chunk necesita contexto mayor?;
+\item
+  ¿hay context compression cuando sobra ruido?;
+\item
+  ¿hay freshness pipeline para documentos que caducan?;
+\item
+  ¿hay respuesta ``no encontrado'' cuando el contexto no basta?;
+\item
+  ¿se evalúa retrieval por separado de generación?;
+\item
+  ¿se registran fuentes recuperadas, descartadas y citadas?
+\end{itemize}
+
+Si no puedes responder estas preguntas, el problema quizá no sea el LLM.
+
+Quizá tu sistema todavía no sabe construir contexto.
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \section{19.2 Búsqueda híbrida}\label{buxfasqueda-huxedbrida}
@@ -37291,6 +37474,112 @@ Limitaciones:
 \end{itemize}
 
 Muy útil cuando las respuestas requieren ver el entorno de un fragmento.
+
+\subsection{Metadata filtering como permiso, no como
+detalle}\label{metadata-filtering-como-permiso-no-como-detalle}
+
+En RAG empresarial, los metadatos no son solo decoración para mostrar
+citas bonitas.
+
+Son parte del control de acceso.
+
+Metadatos mínimos frecuentes:
+
+\begin{itemize}
+\tightlist
+\item
+  tenant;
+\item
+  usuario o grupo autorizado;
+\item
+  departamento;
+\item
+  producto;
+\item
+  idioma;
+\item
+  país;
+\item
+  fecha de vigencia;
+\item
+  versión;
+\item
+  tipo documental;
+\item
+  confidencialidad;
+\item
+  estado: borrador, publicado, obsoleto.
+\end{itemize}
+
+Un fallo clásico es indexar todo junto y confiar en que el modelo
+``entenderá'' qué fuente aplica.
+
+No lo hará de forma fiable.
+
+Ejemplo:
+
+\begin{lstlisting}
+Pregunta sobre cliente A
+  -> retrieval trae documento de cliente B
+  -> modelo sintetiza con fuente equivocada
+  -> respuesta parece plausible
+\end{lstlisting}
+
+Esto no es alucinación pura.
+
+Es contaminación de corpus.
+
+La defensa empieza antes del modelo:
+
+\begin{lstlisting}
+permission filter -> scoped retrieval -> reranking -> generation
+\end{lstlisting}
+
+El modelo solo debería ver contexto que el usuario puede ver y que
+aplica al caso.
+
+\subsection{Evaluación de retrieval}\label{evaluaciuxf3n-de-retrieval}
+
+Evalúa retrieval antes de evaluar la respuesta final.
+
+Métricas útiles:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Recall@K}: si las fuentes esperadas aparecen entre los K
+  resultados.
+\item
+  \textbf{MRR}: qué tan arriba aparece la primera fuente correcta.
+\item
+  \textbf{Precision@K}: cuánto ruido entra entre los resultados.
+\item
+  \textbf{source coverage}: si cubres todas las fuentes necesarias.
+\item
+  \textbf{permission leak rate}: si aparecen documentos no autorizados.
+\item
+  \textbf{freshness error rate}: si recuperas documentos obsoletos.
+\item
+  \textbf{groundedness}: si la respuesta usa lo recuperado.
+\item
+  \textbf{faithfulness}: si la respuesta no contradice las fuentes.
+\item
+  \textbf{hallucination rate}: respuestas no soportadas por contexto.
+\end{itemize}
+
+El companion incluye \passthrough{\lstinline!labs/rag-retrieval-eval/!}
+como laboratorio mínimo.
+
+Ejecuta:
+
+\begin{lstlisting}[language=bash]
+python3 labs/rag-retrieval-eval/retrieval_eval.py
+\end{lstlisting}
+
+El objetivo no es simular un vector store completo.
+
+El objetivo es aprender la disciplina: pregunta, fuentes esperadas,
+top-k, métricas y permisos.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -61392,6 +61681,90 @@ Primero encuentra la causa:
 
 Optimizar un sistema que aún no funciona solo produce un sistema barato
 que falla.
+
+\subsection{Optimización específica en
+RAG}\label{optimizaciuxf3n-especuxedfica-en-rag}
+
+En RAG, coste y latencia no viven solo en el modelo generador.
+
+También viven en:
+
+\begin{itemize}
+\tightlist
+\item
+  query rewriting;
+\item
+  embeddings;
+\item
+  búsqueda híbrida;
+\item
+  filtros;
+\item
+  reranking;
+\item
+  compresión;
+\item
+  síntesis;
+\item
+  citas;
+\item
+  validación;
+\item
+  observabilidad.
+\end{itemize}
+
+Patrones útiles:
+
+\begin{itemize}
+\tightlist
+\item
+  cachear resultados de retrieval para consultas frecuentes;
+\item
+  cachear respuestas solo si permisos, tenant y versión documental
+  coinciden;
+\item
+  enrutar preguntas simples a un flujo sin reranker;
+\item
+  usar reranker solo cuando el top-k inicial tiene baja confianza;
+\item
+  reducir contexto antes de cambiar a modelo más caro;
+\item
+  separar flujos interactivos de flujos batch;
+\item
+  medir latencia p95 por etapa, no solo total;
+\item
+  degradar con gracia: menos resultados, modelo más pequeño o respuesta
+  diferida.
+\end{itemize}
+
+Regla importante:
+
+\begin{quote}
+En RAG, una caché insegura puede ser peor que no tener caché.
+\end{quote}
+
+Una respuesta cacheada debe estar asociada a:
+
+\begin{itemize}
+\tightlist
+\item
+  usuario o grupo;
+\item
+  tenant;
+\item
+  permisos;
+\item
+  versión de documentos;
+\item
+  versión de prompt;
+\item
+  modelo;
+\item
+  fecha de caducidad.
+\end{itemize}
+
+Si no puedes invalidarla correctamente, úsala solo para datos públicos o
+de bajo riesgo.
 
 \subsection{Router de modelos}\label{router-de-modelos}
 

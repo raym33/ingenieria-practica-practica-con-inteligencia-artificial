@@ -19,6 +19,7 @@ Los labs no buscan ser frameworks completos. Buscan aislar una decisión para qu
 | Lab | Tema | Capítulo relacionado | Objetivo |
 | --- | --- | --- | --- |
 | `meta-evaluation/` | Meta-evaluación de jueces LLM | Capítulo 31 | Comprobar si un juez detecta degradaciones controladas. |
+| `rag-retrieval-eval/` | Evaluación de retrieval RAG | Capítulos 18-19 | Medir Recall@K, MRR y fugas de permisos antes de optimizar generación. |
 
 ## Labs prioritarios que debe añadir el libro
 
@@ -26,7 +27,6 @@ Estos son los siguientes labs que más aumentarían el valor práctico del proye
 
 | Lab propuesto | Qué demostraría |
 | --- | --- |
-| `rag-recall/` | Cómo medir recall y precisión de recuperación antes de culpar al modelo. |
 | `trace-dashboard/` | Cómo guardar una traza mínima y convertirla en métricas de producto. |
 | `cost-latency-router/` | Cómo comparar modelos por coste, latencia y calidad para una misma tarea. |
 | `tool-call-eval/` | Cómo evaluar llamadas a herramientas con argumentos válidos, permisos y errores. |
