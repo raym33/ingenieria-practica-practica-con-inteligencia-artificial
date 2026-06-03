@@ -24,7 +24,7 @@ export function SiteHeader() {
           <Link href="/biblioteca/">IA aplicada</Link>
           <Link href="/rutas/">Guías</Link>
           <Link href="/leer/09-capitulo-8-hardware-real-para-ia-local/">Hardware</Link>
-          <Link href="/leer/31-capitulo-30-laboratorio-de-implementacion/">Labs</Link>
+          <Link href="/labs/">Labs</Link>
           <Link href="/descargas/">Descargas</Link>
         </div>
       </nav>

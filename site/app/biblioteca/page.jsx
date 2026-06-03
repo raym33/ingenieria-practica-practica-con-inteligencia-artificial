@@ -8,6 +8,14 @@ export const metadata = {
 
 export default function BibliotecaPage() {
   const chapters = getChapters();
+  const sections = [
+    ["Fundamentos", "modelos, prompts, contexto", "/leer/05-capitulo-4-llms-para-ingenieros-ocupados/"],
+    ["Modelos y hardware", "APIs, local, Apple Silicon, GPU", "/leer/09-capitulo-8-hardware-real-para-ia-local/"],
+    ["RAG", "retrieval, reranking, permisos", "/leer/20-capitulo-19-rag-avanzado/"],
+    ["Agentes", "tools, MCP, memoria, voz", "/leer/28-capitulo-27-arquitecturas-agenticas/"],
+    ["Producción", "evals, trazas, seguridad, costes", "/leer/37-capitulo-36-despliegue-y-operacion/"],
+    ["Producto", "workflows, integraciones, UX, venta", "/leer/38-capitulo-37-automatizaciones-y-workflows/"]
+  ];
 
   return (
     <main className="section shell">
@@ -15,6 +23,14 @@ export default function BibliotecaPage() {
       <p className="section-lead">
         Capítulos del libro en formato web. Usa el buscador para saltar a temas como RAG, modelos locales, agentes, prompts o hardware.
       </p>
+      <div className="topic-grid">
+        {sections.map(([title, description, href]) => (
+          <Link className="topic-card" href={href} key={title}>
+            <strong>{title}</strong>
+            <span>{description}</span>
+          </Link>
+        ))}
+      </div>
       <ChapterSearch chapters={chapters} />
       <div className="chapter-grid">
         {chapters.map((chapter) => (
@@ -30,4 +46,3 @@ export default function BibliotecaPage() {
     </main>
   );
 }
-
