@@ -4,44 +4,123 @@ import { getChapters, getRadarItems } from "../lib/content";
 export default function HomePage() {
   const chapters = getChapters();
   const radarItems = getRadarItems();
-  const latest = chapters.slice(0, 6);
+  const leadChapter = chapters.find((chapter) => chapter.file === "45-capitulo-44-roadmap-de-aprendizaje.md") || chapters[0];
+  const productionChapter = chapters.find((chapter) => chapter.file === "37-capitulo-36-despliegue-y-operacion.md");
+  const hardwareChapter = chapters.find((chapter) => chapter.file === "09-capitulo-8-hardware-real-para-ia-local.md");
+  const evalChapter = chapters.find((chapter) => chapter.file === "32-capitulo-31-evaluacion-de-sistemas-ia.md");
+  const costChapter = chapters.find((chapter) => chapter.file === "35-capitulo-34-costes-latencia-y-rendimiento.md");
+  const labChapter = chapters.find((chapter) => chapter.file === "31-capitulo-30-laboratorio-de-implementacion.md");
+  const featured = [productionChapter, hardwareChapter, evalChapter, costChapter, labChapter].filter(Boolean);
+  const latestRadar = radarItems.slice(0, 5);
+  const topicRows = [
+    { label: "Modelos locales", href: "/leer/08-capitulo-7-modelos-locales/", kicker: "Ollama, LM Studio, MLX, GGUF" },
+    { label: "RAG real", href: "/leer/20-capitulo-19-rag-avanzado/", kicker: "retrieval, reranking, permisos" },
+    { label: "Agentes", href: "/leer/28-capitulo-27-arquitecturas-agenticas/", kicker: "tools, memoria, límites" },
+    { label: "Producción", href: "/leer/37-capitulo-36-despliegue-y-operacion/", kicker: "evals, trazas, rollback" }
+  ];
 
   return (
     <main>
-      <section className="hero">
-        <div className="shell hero-inner">
-          <div className="eyebrow">Libro vivo de Ramon Guillamon</div>
-          <h1>De preguntar a construir</h1>
+      <section className="news-hero shell">
+        <article className="lead-story">
+          <div className="story-label">Especial actualizado</div>
+          <h1>La guía práctica para construir sistemas de IA que aguanten producción</h1>
           <p>
-            Una guía práctica para estudiar, diseñar y construir sistemas reales con inteligencia artificial:
-            modelos, prompts, agentes, RAG, hardware local y producción.
+            Capítulos, radar técnico, pruebas locales y checklists para programadores que necesitan estar al día en IA,
+            software, modelos, agentes, RAG y hardware real.
           </p>
           <div className="actions">
-            <Link className="button primary" href="/leer/00-prefacio-de-preguntar-a-construir/">Empezar a leer</Link>
-            <Link className="button secondary" href="/biblioteca/">Ver capítulos</Link>
-            <Link className="button secondary" href="/rutas/">Elegir ruta</Link>
+            <Link className="button primary" href={`/leer/${leadChapter.slug}/`}>Leer la guía principal</Link>
+            <Link className="button secondary dark" href="/radar/">Ver radar diario</Link>
           </div>
+        </article>
+        <aside className="latest-panel" aria-label="Últimas señales">
+          <div className="panel-heading">
+            <span>Últimas señales</span>
+            <Link href="/radar/">Todas</Link>
+          </div>
+          <div className="headline-list">
+            {latestRadar.map((item) => (
+              <a className="headline-item" href={item.url || "/radar/"} key={item.id || item.title}>
+                <strong>{item.title}</strong>
+                <span>{(item.tags || []).slice(0, 3).join(" · ") || item.sourceName || "Radar"}</span>
+              </a>
+            ))}
+          </div>
+        </aside>
+      </section>
+
+      <section className="ticker-band">
+        <div className="shell ticker-inner">
+          <strong>Hoy en el radar</strong>
+          <span>modelos locales</span>
+          <span>RAG en producción</span>
+          <span>costes y latencia</span>
+          <span>agentes de código</span>
+          <span>hardware Apple Silicon y GPU</span>
         </div>
       </section>
 
-      <section className="section shell">
-        <h2>Estudia el libro en la web</h2>
-        <p className="section-lead">
-          La edición web está pensada para navegar por capítulos, buscar conceptos y seguir las actualizaciones del radar editorial sin depender solo del PDF.
-        </p>
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Centro de estudio</div>
+            <h2>Libro, radar y banco de pruebas en un solo sitio</h2>
+          </div>
+          <Link className="text-link" href="/biblioteca/">Explorar biblioteca</Link>
+        </div>
         <div className="stats">
           <div className="stat"><strong>{chapters.length}</strong><span>capítulos</span></div>
           <div className="stat"><strong>{radarItems.length}</strong><span>señales recientes</span></div>
-          <div className="stat"><strong>PDF</strong><span>edición descargable</span></div>
-          <div className="stat"><strong>CC</strong><span>Creative Commons</span></div>
+          <div className="stat"><strong>Labs</strong><span>código ejecutable</span></div>
+          <div className="stat"><strong>PDF</strong><span>versión descargable</span></div>
         </div>
       </section>
 
       <section className="section shell">
-        <h2>Ruta de lectura</h2>
+        <div className="front-grid">
+          <div>
+            <div className="section-header">
+              <div>
+                <div className="eyebrow">Guías destacadas</div>
+                <h2>Lo que un builder necesita esta semana</h2>
+              </div>
+            </div>
+            <div className="story-grid">
+              {featured.map((chapter) => (
+                <Link className="story-card" href={`/leer/${chapter.slug}/`} key={chapter.slug}>
+                  <span>{chapter.readingTime} min</span>
+                  <h3>{chapter.title}</h3>
+                  <p>{chapter.excerpt}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <aside className="side-rail">
+            <div className="panel-heading">
+              <span>Secciones rápidas</span>
+            </div>
+            {topicRows.map((topic) => (
+              <Link className="topic-row" href={topic.href} key={topic.href}>
+                <strong>{topic.label}</strong>
+                <span>{topic.kicker}</span>
+              </Link>
+            ))}
+          </aside>
+        </div>
+      </section>
+
+      <section className="section shell">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Rutas prácticas</div>
+            <h2>Aprende por objetivo, no por orden de índice</h2>
+          </div>
+          <Link className="text-link" href="/rutas/">Ver rutas</Link>
+        </div>
         <div className="chapter-grid">
-          {latest.map((chapter) => (
-            <Link className="chapter-card" href={`/leer/${chapter.slug}/`} key={chapter.slug}>
+          {chapters.slice(0, 6).map((chapter) => (
+            <Link className="chapter-card dense" href={`/leer/${chapter.slug}/`} key={chapter.slug}>
               <div>
                 <h3>{chapter.title}</h3>
                 <p>{chapter.excerpt}</p>
