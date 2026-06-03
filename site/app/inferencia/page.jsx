@@ -87,6 +87,17 @@ const trends = [
   ["TurboQuant", "Radar", "Madurez fuera de QVAC e impacto en calidad/velocidad."]
 ];
 
+const caveats = [
+  ["LM Studio + Gemma 4", "El `mmproj` puede romper la carga; por ahora conviene distinguir texto de multimodal."],
+  ["Contexto anunciado", "256K nativo no significa 256K cómodo en GGUF/llama.cpp; pide prueba con memoria y TTFT."],
+  ["Tokens/s aislado", "21 t/s puede verse bien mientras el TTFT en prompts reales resulta doloroso."],
+  ["Qwen frente a Gemma", "En JSON, F1 o tareas estructuradas un modelo menor puede ganar por mucho."],
+  ["Mac 16 GB", "10 GB RSS deja poco margen si también hay IDE, navegador, Docker y servicios locales."],
+  ["Strix Halo", "TOPS y memoria unificada no bastan si el runtime no usa NPU o exige particionar memoria."],
+  ["MLX long-context", "Los 256K impresionan, pero muchas pruebas viven en Macs de muchísima RAM."],
+  ["MTP avanzado", "Puede ser rápido y estable con una receta exacta; otras variantes especulativas fallan."]
+];
+
 export default function InferenciaPage() {
   const radar = getRadarItems();
   const models = getModelItems();
@@ -190,6 +201,23 @@ export default function InferenciaPage() {
               <span>{action}</span>
               <h3>{title}</h3>
               <p>{verify}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Verificaciones</div>
+            <h2>Lo que matiza los benchmarks antes de convertirlos en recomendación</h2>
+          </div>
+        </div>
+        <div className="caveat-grid">
+          {caveats.map(([title, text]) => (
+            <article className="caveat-card" key={title}>
+              <strong>{title}</strong>
+              <p>{text}</p>
             </article>
           ))}
         </div>

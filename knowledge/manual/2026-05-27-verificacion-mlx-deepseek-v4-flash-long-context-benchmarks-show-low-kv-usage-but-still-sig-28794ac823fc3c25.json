@@ -1,0 +1,22 @@
+{
+  "rawId": "83a28d087d1aad9e",
+  "title": "Verificación: MLX DeepSeek V4 Flash long-context benchmarks show low KV usage but still significant on consumer GPUs",
+  "url": "https://x.com/sakurayukiai/status/2059631866240536897",
+  "publishedAt": "2026-05-27",
+  "summary": "Claim revisado: MLX Q2 version of DeepSeek V4 Flash has 'unbelievably low' memory usage up to 256K context (detailed table: 158.5GB total / 1.76GB KV at 256K on M3 Ultra). Evidencia: Reply highlighting that even the 'low' 119GB+ KV cache at high context 'makes my consumer GPU weep'. Notes every token needs memory bandwidth seat.. Caveat editorial: Impressive relative numbers on high-RAM Apple Silicon (512GB) do not translate directly to typical consumer GPUs (24-48GB VRAM); KV cache remains a hard limit for long context.. Reproducibilidad: high - references the full benchmark table (pp/tg speeds, mem, KV GB, batch TPS, perplexity) with exact quant and hardware.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "mlx",
+    "apple-silicon",
+    "kv-cache",
+    "contexto-largo",
+    "benchmark"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

@@ -1,0 +1,22 @@
+{
+  "rawId": "ee2649cbc58a5acd",
+  "title": "Verificación: MTP + KV cache quant + tensor split stable and fast on dual 3090 (60-72 t/s coding)",
+  "url": "https://x.com/JoelDeTeves/status/2061528922672828445",
+  "publishedAt": "2026-06-01",
+  "summary": "Claim revisado: MTP delivers big speedups (e.g. +78% on Qwen 27B) making local models daily-driver viable. Evidencia: Detailed config on 2x RTX 3090: Qwen3.6-27B-MTP Q4_K_M, tensor split, KV q8_0 cache, MTP draft, ctx 131072. Achieved 60 t/s average / 72 t/s coding. Notes 'rock solid with MTP alone'. Full settings listed (n-gpu-layers, flash-attn, cont-batching, cache-type-k/v, spec-draft params, etc.).. Caveat editorial: Not stable with certain ngram spec variants; best with pure MTP. Still requires multi-GPU setup for these numbers.. Reproducibilidad: high - complete command-line style settings, model, quant, hardware, achieved speeds, stability notes.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "cuantizacion",
+    "nvidia",
+    "kv-cache",
+    "mtp",
+    "benchmark"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

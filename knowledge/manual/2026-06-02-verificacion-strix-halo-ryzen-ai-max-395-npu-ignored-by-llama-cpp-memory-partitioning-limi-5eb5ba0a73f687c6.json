@@ -1,0 +1,20 @@
+{
+  "rawId": "15d32afc1dec5b05",
+  "title": "Verificación: Strix Halo (Ryzen AI Max+ 395) NPU ignored by llama.cpp + memory partitioning limits confirmed by user",
+  "url": "https://x.com/KuittinenPetri/status/2061693416224817281",
+  "publishedAt": "2026-06-02",
+  "summary": "Claim revisado: AMD Strix Halo offers strong local AI potential with 50 TOPS NPU and up to 128GB unified memory. Evidencia: Detailed user report on Ryzen AI Max+ 395: llama.cpp does not use NPU (everything on GPU), image/video gen 'painfully slow' (5x slower than owner's DGX Spark), memory config maxes GPU at ~96GB of 128GB LPDDR5X (requires reboot to change). 'AMD Chat' useless.. Caveat editorial: Software ecosystem lag is real; NPU underutilized, memory access restricted vs NVIDIA unified approach, gen workloads lag significantly.. Reproducibilidad: high - specific hardware model, exact limitations observed, comparison to another device owned by same user.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "llama-cpp",
+    "amd",
+    "nvidia"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

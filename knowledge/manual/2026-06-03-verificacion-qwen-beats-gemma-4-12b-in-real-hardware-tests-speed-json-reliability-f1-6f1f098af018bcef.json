@@ -1,0 +1,19 @@
+{
+  "rawId": "affcb00187cea88a",
+  "title": "Verificación: Qwen beats Gemma 4 12B in real hardware tests (speed, JSON reliability, F1)",
+  "url": "https://x.com/EduardoCGatesC/status/2062285921655968156",
+  "publishedAt": "2026-06-03",
+  "summary": "Claim revisado: Gemma 4 12B is a strong local multimodal model with good benchmarks and efficiency. Evidencia: Direct comparison on Dell Pro14: Qwen 3.5B 3.6× faster, 3.2× higher throughput, 100% valid JSON (Gemma ~50%), +67% F1 on tags. Conclusion: Qwen 'destroza' in speed and reliability on real hardware.. Caveat editorial: Model quality + structured output reliability can outweigh raw architecture/marketing claims; Gemma 4 underperforms Qwen in practical agentic/JSON tasks on same hardware.. Reproducibilidad: medium - specific hardware and metrics reported in context of Gemma 4 discussion.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "multimodal",
+    "benchmark"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "nota_breve"
+}

@@ -922,6 +922,33 @@ a {
   font-size: 13px;
 }
 
+.caveat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.caveat-card {
+  min-height: 150px;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--teal);
+}
+
+.caveat-card strong {
+  display: block;
+  color: var(--blue);
+  font-size: 18px;
+  line-height: 1.15;
+}
+
+.caveat-card p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .check-row {
   padding: 13px 0;
   border-bottom: 1px solid var(--line);
@@ -1256,6 +1283,7 @@ a {
   .runtime-grid,
   .metric-strip,
   .trend-grid,
+  .caveat-grid,
   .magazine-shelf,
   .cover-teasers,
   .magazine-columns {

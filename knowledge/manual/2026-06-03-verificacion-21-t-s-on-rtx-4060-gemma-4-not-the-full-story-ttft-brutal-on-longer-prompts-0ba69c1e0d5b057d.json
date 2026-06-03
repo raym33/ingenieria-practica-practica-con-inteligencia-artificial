@@ -1,0 +1,22 @@
+{
+  "rawId": "24d0281db82a6222",
+  "title": "Verificación: 21 t/s on RTX 4060 Gemma 4 not the full story - TTFT brutal on longer prompts",
+  "url": "https://x.com/bygregorr/status/2062277665139163345",
+  "publishedAt": "2026-06-03",
+  "summary": "Claim revisado: Gemma 4 12B Q4_K_M delivers solid 21 t/s inference on consumer RTX 4060 (llama.cpp). Evidencia: User reports running similar Q4 setup for transaction parsing; TTFT on 400-token system prompt was 'brutal' on comparable hardware. Asks specifically about longer contexts.. Caveat editorial: Generation speed (tok/s) can look good while TTFT/prefill on realistic prompts (system + context) is poor; questions real-world usability beyond raw decode speed.. Reproducibilidad: medium - anecdotal but directly tied to the exact claim and hardware class.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "llama-cpp",
+    "cuantizacion",
+    "nvidia",
+    "ttft",
+    "benchmark"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "nota_breve"
+}

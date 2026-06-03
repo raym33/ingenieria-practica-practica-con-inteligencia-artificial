@@ -1,0 +1,22 @@
+{
+  "rawId": "5a868566d095c90b",
+  "title": "Verificación: Gemma 4 12B native context more realistically 131K than advertised 256K",
+  "url": "https://x.com/1g6/status/2062282620675706950",
+  "publishedAt": "2026-06-03",
+  "summary": "Claim revisado: Gemma 4 12B has 256K native context (from @analogalok and official posts). Evidencia: Direct reply in the 21 t/s RTX 4060 thread noting practical limit appears closer to 131K.. Caveat editorial: Official/native context length marketing vs real usable context in current implementations (llama.cpp GGUF).. Reproducibilidad: medium - no new benchmark, but direct observation in active discussion thread.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "gguf",
+    "llama-cpp",
+    "nvidia",
+    "contexto-largo",
+    "benchmark"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "nota_breve"
+}

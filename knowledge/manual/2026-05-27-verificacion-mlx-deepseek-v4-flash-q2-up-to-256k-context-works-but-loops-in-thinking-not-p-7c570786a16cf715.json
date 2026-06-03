@@ -1,0 +1,21 @@
+{
+  "rawId": "bb18b7ced10dfe7c",
+  "title": "Verificación: MLX DeepSeek V4 Flash Q2 up to 256K context works but 'loops in thinking' - not prime time yet",
+  "url": "https://x.com/ivanfioravanti/status/2059541183332827449",
+  "publishedAt": "2026-05-27",
+  "summary": "Claim revisado: MLX enables impressive long-context (256K) with low KV memory on high-end Apple Silicon. Evidencia: Full benchmark table for Q2KExperts-Q8Rest-mlx on M3 Ultra 512GB: speeds, mem (158.5GB at 256K), KV (1.76GB), batch TPS, perplexity ~1.16. Author notes 'Not yet ready for the prime time, because it loops in thinking here and there, I'm investigating. Next test is distributed!'. Caveat editorial: Author's own caveat on stability (thinking loops); impressive numbers but requires custom branch and high-RAM hardware. Not plug-and-play for production.. Reproducibilidad: high - exhaustive table, exact model/quant recipe, command example, hardware, known issues stated by author.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "mlx",
+    "apple-silicon",
+    "contexto-largo",
+    "benchmark"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

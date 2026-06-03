@@ -1,0 +1,20 @@
+{
+  "rawId": "76735f6d392ce987",
+  "title": "Verificación: Mac Gemma 4 12B ~10GB RSS leaves little headroom on 16GB systems with other apps",
+  "url": "https://x.com/mugen_shuu/status/2062298019761172558",
+  "publishedAt": "2026-06-03",
+  "summary": "Claim revisado: Gemma 4 12B Q4_K_M on Mac (llama.cpp Metal) uses only ~10GB RSS at 32K context - very efficient. Evidencia: Reply in the Mac setup thread: '不够用，16GB还得开几个docker，哪有那么多剩余内存给llm' (not enough; 16GB Mac still needs to run Docker etc.).. Caveat editorial: 10GB RSS for the model + server leaves minimal margin on base 16GB Macs when running browsers, IDEs, or containers simultaneously.. Reproducibilidad: high - directly references the exact 10GB / 16GB+ Mac claim and full command in the thread.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "llama-cpp",
+    "cuantizacion",
+    "apple-silicon"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

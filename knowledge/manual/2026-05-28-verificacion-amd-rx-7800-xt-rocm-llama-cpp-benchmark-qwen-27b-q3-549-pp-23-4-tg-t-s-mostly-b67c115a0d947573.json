@@ -1,0 +1,21 @@
+{
+  "rawId": "4922f29e0fddd01b",
+  "title": "Verificación: AMD RX 7800 XT ROCm llama.cpp benchmark (Qwen 27B Q3: 549 pp / 23.4 tg t/s) - mostly confirmed, more testing planned",
+  "url": "https://x.com/NeoAIForecast/status/2059847270808629531",
+  "publishedAt": "2026-05-28",
+  "summary": "Claim revisado: Strong prefill and decent generation on older/smaller AMD cards with ROCm 7.2.3 + HIP llama.cpp. Evidencia: Original post with full stack (Ubuntu 24.04.4, Kernel 6.17, ROCm 7.2.3, gfx1101, exact pp512/tg128 numbers, Q3_K_M). Replies positive ('impressive', 'solid for the price'). Author commits to 'ROCm vs Vulkan comparisons' and real tasks.. Caveat editorial: Numbers are early; full validation and direct Vulkan comparison still pending from the same tester.. Reproducibilidad: high - complete reproducible stack, model, quant, exact benchmark commands implied (pp/tg), photo of results.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "llama-cpp",
+    "cuantizacion",
+    "amd",
+    "benchmark"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

@@ -1,0 +1,23 @@
+{
+  "rawId": "874568e15fd0a0ae",
+  "title": "Verificación: LM Studio Gemma 4 12B/E4B GGUF fails to load with bundled mmproj (text-only workaround)",
+  "url": "https://x.com/UtaAoya/status/2062303744663150953",
+  "publishedAt": "2026-06-03",
+  "summary": "Claim revisado: Gemma 4 GGUF models load easily in LM Studio like other models (as promoted in Ollama/LM Studio integrations). Evidencia: Detailed bug report: models fail with 'Unknown projector type' in clip.cpp when mmproj-*.gguf is present. Workaround: move mmproj files out of model dir. Full steps, logs, PowerShell commands, affected runtimes (CPU/ROCm/Vulkan), LM Studio 0.4.15 + llama.cpp v2.20.0. Successful load after removal shown.. Caveat editorial: Bundled multimodal projector not supported yet in LM Studio/llama.cpp for Gemma 4; forces text-only or breaks loading. Affects both E4B and 12B variants from lmstudio-community.. Reproducibilidad: high - exact model paths, commands to move files, logs, environment details, and before/after behavior provided.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "verificacion",
+    "inferencia",
+    "gguf",
+    "ollama",
+    "lm-studio",
+    "llama-cpp",
+    "amd",
+    "multimodal"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}
