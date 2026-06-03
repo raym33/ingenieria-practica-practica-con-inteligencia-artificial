@@ -1,0 +1,1452 @@
+{
+  "stamp": "2026-06-04",
+  "proposals": [
+    {
+      "itemId": "2026-06-03-holo3-1-fast-local-computer-use-agents-d2e3ba1600ccbcd8",
+      "title": "Holo3.1: Fast & Local Computer Use Agents",
+      "url": "https://huggingface.co/blog/Hcompany/holo31",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "open-source",
+        "modelos",
+        "herramientas",
+        "agentes"
+      ],
+      "targetChapters": [
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Holo3.1: Fast & Local Computer Use Agents\" en 06-capitulo-5-como-elegir-un-modelo.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-langchain-anthropic-1-4-4-be779684bab74f7d",
+      "title": "langchain-anthropic==1.4.4",
+      "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.4",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "rag",
+        "agentes",
+        "herramientas",
+        "claude"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"langchain-anthropic==1.4.4\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-node-rust-lancedb-v0-30-0-7bbd61f1c63331af",
+      "title": "Node/Rust LanceDB v0.30.0",
+      "url": "https://github.com/lancedb/lancedb/releases/tag/v0.30.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "rag",
+        "vector-db",
+        "agentes"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Node/Rust LanceDB v0.30.0\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-20-0-2649a743735af154",
+      "title": "v0.20.0",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "hardware",
+        "rag",
+        "claude",
+        "openai"
+      ],
+      "targetChapters": [
+        "01-introduccion-la-nueva-ingenieria-con-ia.md",
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "23-capitulo-22-chatbots-para-soporte.md",
+        "31-capitulo-30-laboratorio-de-implementacion.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.20.0\" en 01-introduccion-la-nueva-ingenieria-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-20-1-093bc4482dd59788",
+      "title": "v0.20.1",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.1",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "hardware",
+        "openai"
+      ],
+      "targetChapters": [
+        "01-introduccion-la-nueva-ingenieria-con-ia.md",
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "23-capitulo-22-chatbots-para-soporte.md",
+        "31-capitulo-30-laboratorio-de-implementacion.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.20.1\" en 01-introduccion-la-nueva-ingenieria-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-20-2-953fc5c5333a9287",
+      "title": "v0.20.2",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.2",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "openai"
+      ],
+      "targetChapters": [
+        "01-introduccion-la-nueva-ingenieria-con-ia.md",
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "23-capitulo-22-chatbots-para-soporte.md",
+        "31-capitulo-30-laboratorio-de-implementacion.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.20.2\" en 01-introduccion-la-nueva-ingenieria-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-21-0-8a658322a56cf9a6",
+      "title": "v0.21.0",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.21.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "hardware",
+        "rag",
+        "openai"
+      ],
+      "targetChapters": [
+        "01-introduccion-la-nueva-ingenieria-con-ia.md",
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "23-capitulo-22-chatbots-para-soporte.md",
+        "31-capitulo-30-laboratorio-de-implementacion.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.21.0\" en 01-introduccion-la-nueva-ingenieria-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-22-0-c3467903128f3d6e",
+      "title": "v0.22.0",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.22.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "hardware",
+        "rag",
+        "agentes",
+        "openai"
+      ],
+      "targetChapters": [
+        "01-introduccion-la-nueva-ingenieria-con-ia.md",
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "23-capitulo-22-chatbots-para-soporte.md",
+        "31-capitulo-30-laboratorio-de-implementacion.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.22.0\" en 01-introduccion-la-nueva-ingenieria-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-24-0-0eb467d318861837",
+      "title": "v0.24.0",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.24.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos",
+        "hardware",
+        "agentes",
+        "codex",
+        "openai"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "26-capitulo-25-function-calling.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.24.0\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-30-0-57072a42b39dea97",
+      "title": "v0.30.0",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.30.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos",
+        "hardware"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "26-capitulo-25-function-calling.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.30.0\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-30-2-ac5c71c10253753e",
+      "title": "v0.30.2",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.30.2",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos",
+        "hardware",
+        "agentes",
+        "codex"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "26-capitulo-25-function-calling.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.30.2\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-aessedai-step-3-5-flash-gguf-7d9f451a3174c287",
+      "title": "AesSedai/Step-3.5-Flash-GGUF",
+      "url": "https://huggingface.co/AesSedai/Step-3.5-Flash-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"AesSedai/Step-3.5-Flash-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-aymanebiri-ob-nanonets-gguf-c32a6bbbf088433b",
+      "title": "aymanebiri/ob-nanonets-GGUF",
+      "url": "https://huggingface.co/aymanebiri/ob-nanonets-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "multimodal",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"aymanebiri/ob-nanonets-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-b9491-6b44c659b918418f",
+      "title": "b9491",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9491",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "35-capitulo-34-costes-latencia-y-rendimiento.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9491\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-b9493-58024a40eb98af52",
+      "title": "b9493",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9493",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "35-capitulo-34-costes-latencia-y-rendimiento.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9493\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-b9494-5bce8627b7c6f98d",
+      "title": "b9494",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9494",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "35-capitulo-34-costes-latencia-y-rendimiento.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9494\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-b9495-5f9dc1fdf47667f1",
+      "title": "b9495",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9495",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "35-capitulo-34-costes-latencia-y-rendimiento.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9495\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-b9496-69d9580f8c9596d8",
+      "title": "b9496",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9496",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "35-capitulo-34-costes-latencia-y-rendimiento.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9496\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-brunobkr-offellia-f16-gemma-4-12b-it-gguf-ff236a67098f2a71",
+      "title": "Brunobkr/OFFELLIA_f16_gemma-4-12B-it.gguf",
+      "url": "https://huggingface.co/Brunobkr/OFFELLIA_f16_gemma-4-12B-it.gguf",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "multimodal",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Brunobkr/OFFELLIA_f16_gemma-4-12B-it.gguf\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-brunobkr-offellia-iq4-nl-gemma-4-12b-it-gguf-930285f724648d61",
+      "title": "Brunobkr/OFFELLIA_IQ4_NL_gemma-4-12B-it.gguf",
+      "url": "https://huggingface.co/Brunobkr/OFFELLIA_IQ4_NL_gemma-4-12B-it.gguf",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Brunobkr/OFFELLIA_IQ4_NL_gemma-4-12B-it.gguf\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-cs-552-2026-mnlplus-multilingual-model-fcccafa3ce262a0f",
+      "title": "cs-552-2026-mnlplus/multilingual_model",
+      "url": "https://huggingface.co/cs-552-2026-mnlplus/multilingual_model",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "modelos",
+        "modelos-locales",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"cs-552-2026-mnlplus/multilingual_model\" en 06-capitulo-5-como-elegir-un-modelo.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-cs-552-2026-momy-general-knowledge-model-f7291c73a1013013",
+      "title": "cs-552-2026-momy/general_knowledge_model",
+      "url": "https://huggingface.co/cs-552-2026-momy/general_knowledge_model",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "modelos",
+        "modelos-locales",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"cs-552-2026-momy/general_knowledge_model\" en 06-capitulo-5-como-elegir-un-modelo.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-devquasar-google-gemma-4-e2b-it-gguf-0d656a38ee5d42d2",
+      "title": "DevQuasar/google.gemma-4-E2B-it-GGUF",
+      "url": "https://huggingface.co/DevQuasar/google.gemma-4-E2B-it-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "multimodal",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"DevQuasar/google.gemma-4-E2B-it-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-exploring-easy-boosts-for-lidar-semantic-scene-completion-536a10cbc36d3a72",
+      "title": "Exploring Easy Boosts for Lidar Semantic Scene Completion",
+      "url": "https://arxiv.org/abs/2606.03992v1",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "agentes",
+        "papers",
+        "software",
+        "modelos"
+      ],
+      "targetChapters": [
+        "12-capitulo-11-tecnicas-avanzadas.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+        "24-capitulo-23-diferencia-entre-chatbot-copiloto-y-agente.md",
+        "25-capitulo-24-que-es-un-agente-de-ia.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Exploring Easy Boosts for Lidar Semantic Scene Completion\" en 12-capitulo-11-tecnicas-avanzadas.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-humanoid-gpt-scaling-data-and-structure-for-zero-shot-motion-tracking-125a3fe82fa4c855",
+      "title": "Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking",
+      "url": "https://arxiv.org/abs/2606.03985v1",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "rag",
+        "papers",
+        "modelos",
+        "openai"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Humanoid-GPT: Scaling Data and Structure for Zero-Shot Motion Tracking\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-iagobusca-mineru2-5-pro-2605-1-2b-gguf-f2bc1e9d45f7040d",
+      "title": "iagobusca/MinerU2.5-Pro-2605-1.2B-GGUF",
+      "url": "https://huggingface.co/iagobusca/MinerU2.5-Pro-2605-1.2B-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"iagobusca/MinerU2.5-Pro-2605-1.2B-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-imaginative-perception-tokens-enhance-spatial-reasoning-in-multimodal-language-models-6cdd7a7d21e4ba90",
+      "title": "Imaginative Perception Tokens Enhance Spatial Reasoning in Multimodal Language Models",
+      "url": "https://arxiv.org/abs/2606.03988v1",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "rag",
+        "papers",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Imaginative Perception Tokens Enhance Spatial Reasoning in Multimodal Language Models\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-imaginative-perception-tokens-enhance-spatial-reasoning-in-multimodal-language-models-94baa83edb80e4f6",
+      "title": "Imaginative Perception Tokens Enhance Spatial Reasoning in Multimodal Language Models",
+      "url": "https://arxiv.org/abs/2606.03988v1",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "agentes",
+        "papers",
+        "software",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "12-capitulo-11-tecnicas-avanzadas.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+        "24-capitulo-23-diferencia-entre-chatbot-copiloto-y-agente.md",
+        "25-capitulo-24-que-es-un-agente-de-ia.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Imaginative Perception Tokens Enhance Spatial Reasoning in Multimodal Language Models\" en 12-capitulo-11-tecnicas-avanzadas.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-jinaai-jina-embeddings-v5-omni-nano-5cfe87ec2e554308",
+      "title": "jinaai/jina-embeddings-v5-omni-nano",
+      "url": "https://huggingface.co/jinaai/jina-embeddings-v5-omni-nano",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "multimodal",
+        "codigo",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"jinaai/jina-embeddings-v5-omni-nano\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-jinaai-jina-embeddings-v5-omni-nano-classification-f82bccdfcfce023e",
+      "title": "jinaai/jina-embeddings-v5-omni-nano-classification",
+      "url": "https://huggingface.co/jinaai/jina-embeddings-v5-omni-nano-classification",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "multimodal",
+        "codigo",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"jinaai/jina-embeddings-v5-omni-nano-classification\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-jinaai-jina-embeddings-v5-omni-nano-clustering-335eabaab269698e",
+      "title": "jinaai/jina-embeddings-v5-omni-nano-clustering",
+      "url": "https://huggingface.co/jinaai/jina-embeddings-v5-omni-nano-clustering",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "multimodal",
+        "codigo",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"jinaai/jina-embeddings-v5-omni-nano-clustering\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-jinaai-jina-embeddings-v5-omni-nano-retrieval-74981567a680bd1c",
+      "title": "jinaai/jina-embeddings-v5-omni-nano-retrieval",
+      "url": "https://huggingface.co/jinaai/jina-embeddings-v5-omni-nano-retrieval",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "multimodal",
+        "codigo",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"jinaai/jina-embeddings-v5-omni-nano-retrieval\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-jinaai-jina-embeddings-v5-omni-nano-text-matching-c7569cbb0b1bd77e",
+      "title": "jinaai/jina-embeddings-v5-omni-nano-text-matching",
+      "url": "https://huggingface.co/jinaai/jina-embeddings-v5-omni-nano-text-matching",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "multimodal",
+        "codigo",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"jinaai/jina-embeddings-v5-omni-nano-text-matching\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-jinaai-jina-embeddings-v5-omni-small-classification-d04673871606a26b",
+      "title": "jinaai/jina-embeddings-v5-omni-small-classification",
+      "url": "https://huggingface.co/jinaai/jina-embeddings-v5-omni-small-classification",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "multimodal",
+        "codigo",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"jinaai/jina-embeddings-v5-omni-small-classification\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-jinaai-jina-embeddings-v5-omni-small-clustering-33a857f59fe821c5",
+      "title": "jinaai/jina-embeddings-v5-omni-small-clustering",
+      "url": "https://huggingface.co/jinaai/jina-embeddings-v5-omni-small-clustering",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "multimodal",
+        "codigo",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"jinaai/jina-embeddings-v5-omni-small-clustering\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-jinaai-jina-embeddings-v5-omni-small-retrieval-7624e4efb44bab2d",
+      "title": "jinaai/jina-embeddings-v5-omni-small-retrieval",
+      "url": "https://huggingface.co/jinaai/jina-embeddings-v5-omni-small-retrieval",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "multimodal",
+        "codigo",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"jinaai/jina-embeddings-v5-omni-small-retrieval\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-jinaai-jina-embeddings-v5-omni-small-text-matching-4e0c97541193ddef",
+      "title": "jinaai/jina-embeddings-v5-omni-small-text-matching",
+      "url": "https://huggingface.co/jinaai/jina-embeddings-v5-omni-small-text-matching",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "multimodal",
+        "codigo",
+        "audio",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"jinaai/jina-embeddings-v5-omni-small-text-matching\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-joaorobson-kalm-embedding-gemma3-12b-2511-39b72b2a983a57c0",
+      "title": "joaorobson/KaLM-Embedding-Gemma3-12B-2511",
+      "url": "https://huggingface.co/joaorobson/KaLM-Embedding-Gemma3-12B-2511",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "reranking",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"joaorobson/KaLM-Embedding-Gemma3-12B-2511\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-langchain-deepseek-1-1-0-a70453955a3077eb",
+      "title": "langchain-deepseek==1.1.0",
+      "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-deepseek%3D%3D1.1.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "rag",
+        "agentes",
+        "herramientas",
+        "modelos",
+        "openai"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"langchain-deepseek==1.1.0\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-lmstudio-community-gemma-4-12b-it-gguf-08e0159fb7f44790",
+      "title": "lmstudio-community/gemma-4-12B-it-GGUF",
+      "url": "https://huggingface.co/lmstudio-community/gemma-4-12B-it-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"lmstudio-community/gemma-4-12B-it-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-arsenic-shahrazad-12b-v4-4-2-mtp-gguf-a86108c63211ff06",
+      "title": "mradermacher/Arsenic-Shahrazad-12B-v4.4.2-mtp-GGUF",
+      "url": "https://huggingface.co/mradermacher/Arsenic-Shahrazad-12B-v4.4.2-mtp-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/Arsenic-Shahrazad-12B-v4.4.2-mtp-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-h100-qwen3-14b-monespacesante-cpt-i1-gguf-ed1123bab6a799fd",
+      "title": "mradermacher/H100-Qwen3-14B-MonEspaceSante-CPT-i1-GGUF",
+      "url": "https://huggingface.co/mradermacher/H100-Qwen3-14B-MonEspaceSante-CPT-i1-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/H100-Qwen3-14B-MonEspaceSante-CPT-i1-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-hemlock-philter-14b-gguf-8ab1974efc12253a",
+      "title": "mradermacher/Hemlock-Philter-14B-GGUF",
+      "url": "https://huggingface.co/mradermacher/Hemlock-Philter-14B-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/Hemlock-Philter-14B-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-hemlock-philter-14b-i1-gguf-4feff674651e3838",
+      "title": "mradermacher/Hemlock-Philter-14B-i1-GGUF",
+      "url": "https://huggingface.co/mradermacher/Hemlock-Philter-14B-i1-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/Hemlock-Philter-14B-i1-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-hemlock-tincture-14b-gguf-794acee113c858f3",
+      "title": "mradermacher/Hemlock-Tincture-14B-GGUF",
+      "url": "https://huggingface.co/mradermacher/Hemlock-Tincture-14B-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "codigo",
+        "modelos",
+        "agentes",
+        "codex"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "12-capitulo-11-tecnicas-avanzadas.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/Hemlock-Tincture-14B-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-pllum-12b-base-2512-i1-gguf-74b74427bb3c9429",
+      "title": "mradermacher/PLLuM-12B-base-2512-i1-GGUF",
+      "url": "https://huggingface.co/mradermacher/PLLuM-12B-base-2512-i1-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos",
+        "rag"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "17-capitulo-16-que-problema-resuelve-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/PLLuM-12B-base-2512-i1-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-qwen3-0-6b-accabot-gguf-bcdd8a264695427e",
+      "title": "mradermacher/Qwen3-0.6B-Accabot-GGUF",
+      "url": "https://huggingface.co/mradermacher/Qwen3-0.6B-Accabot-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "embeddings",
+        "modelos",
+        "rag"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "17-capitulo-16-que-problema-resuelve-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/Qwen3-0.6B-Accabot-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-qwen3-0-6b-accabot-gguf-e4b9194eacac7487",
+      "title": "mradermacher/Qwen3-0.6B-Accabot-GGUF",
+      "url": "https://huggingface.co/mradermacher/Qwen3-0.6B-Accabot-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "gguf",
+        "cuantizacion",
+        "modelos",
+        "modelos-locales"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/Qwen3-0.6B-Accabot-GGUF\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-trinity-mini-base-pre-anneal-gguf-4868e9b91f566a46",
+      "title": "mradermacher/Trinity-Mini-Base-Pre-Anneal-GGUF",
+      "url": "https://huggingface.co/mradermacher/Trinity-Mini-Base-Pre-Anneal-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/Trinity-Mini-Base-Pre-Anneal-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-trinity-mini-base-pre-anneal-i1-gguf-7ad3a87031640505",
+      "title": "mradermacher/Trinity-Mini-Base-Pre-Anneal-i1-GGUF",
+      "url": "https://huggingface.co/mradermacher/Trinity-Mini-Base-Pre-Anneal-i1-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/Trinity-Mini-Base-Pre-Anneal-i1-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-mradermacher-trinity-nano-base-pre-anneal-i1-gguf-300749c6b074be12",
+      "title": "mradermacher/Trinity-Nano-Base-Pre-Anneal-i1-GGUF",
+      "url": "https://huggingface.co/mradermacher/Trinity-Nano-Base-Pre-Anneal-i1-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"mradermacher/Trinity-Nano-Base-Pre-Anneal-i1-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-neuron-populations-exhibit-divergent-selectivity-with-scale-4ac78f3f9f999b3f",
+      "title": "Neuron Populations Exhibit Divergent Selectivity with Scale",
+      "url": "https://arxiv.org/abs/2606.03990v1",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "agentes",
+        "papers",
+        "software",
+        "modelos"
+      ],
+      "targetChapters": [
+        "12-capitulo-11-tecnicas-avanzadas.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+        "24-capitulo-23-diferencia-entre-chatbot-copiloto-y-agente.md",
+        "25-capitulo-24-que-es-un-agente-de-ia.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Neuron Populations Exhibit Divergent Selectivity with Scale\" en 12-capitulo-11-tecnicas-avanzadas.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-newtphys-do-foundation-models-understand-newtonian-physics-18726e8ed5f2fb08",
+      "title": "NewtPhys: Do Foundation Models Understand Newtonian Physics?",
+      "url": "https://arxiv.org/abs/2606.03986v1",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "rag",
+        "papers",
+        "modelos",
+        "cuantizacion"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"NewtPhys: Do Foundation Models Understand Newtonian Physics?\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-pabloreyespo-llama-3-1-70b-latamgpt-sft-1-0-gguf-5f1e18774965f1b6",
+      "title": "pabloreyespo/Llama-3.1-70B-LatamGPT-SFT-1.0-GGUF",
+      "url": "https://huggingface.co/pabloreyespo/Llama-3.1-70B-LatamGPT-SFT-1.0-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos",
+        "openai"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "15-capitulo-14-reglas-para-agentes-de-codigo.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"pabloreyespo/Llama-3.1-70B-LatamGPT-SFT-1.0-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-pruhanlp-user2-1c-code-e9f0ffbdd666e7c7",
+      "title": "PruhaNLP/USER2-1C-code",
+      "url": "https://huggingface.co/PruhaNLP/USER2-1C-code",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "embeddings",
+        "rag",
+        "codigo",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"PruhaNLP/USER2-1C-code\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-rafabtx-gemma-4-12b-it-gguf-btx-08c185d8ba3090b3",
+      "title": "RAFABTX/Gemma-4-12B-IT-GGUF-BTX",
+      "url": "https://huggingface.co/RAFABTX/Gemma-4-12B-IT-GGUF-BTX",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"RAFABTX/Gemma-4-12B-IT-GGUF-BTX\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-rafw007-gemma4-26b-claude-coder-gguf-3744c10577fc2cfa",
+      "title": "rafw007/gemma4-26b-claude-coder-GGUF",
+      "url": "https://huggingface.co/rafw007/gemma4-26b-claude-coder-GGUF",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "huggingface",
+        "gguf",
+        "cuantizacion",
+        "modelos-locales",
+        "ollama",
+        "codigo",
+        "modelos",
+        "agentes",
+        "codex",
+        "claude"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"rafw007/gemma4-26b-claude-coder-GGUF\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-simuscene-simulation-ready-compositional-3d-scene-reconstruction-from-a-single-image-db974e0d272f214c",
+      "title": "SimuScene: Simulation-Ready Compositional 3D Scene Reconstruction from a Single Image",
+      "url": "https://arxiv.org/abs/2606.03994v1",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "rag",
+        "papers",
+        "cuantizacion"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"SimuScene: Simulation-Ready Compositional 3D Scene Reconstruction from a Single Image\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-simuscene-simulation-ready-compositional-3d-scene-reconstruction-from-a-single-image-f1403b1cf9e64ea6",
+      "title": "SimuScene: Simulation-Ready Compositional 3D Scene Reconstruction from a Single Image",
+      "url": "https://arxiv.org/abs/2606.03994v1",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "agentes",
+        "papers",
+        "software",
+        "cuantizacion"
+      ],
+      "targetChapters": [
+        "12-capitulo-11-tecnicas-avanzadas.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+        "24-capitulo-23-diferencia-entre-chatbot-copiloto-y-agente.md",
+        "25-capitulo-24-que-es-un-agente-de-ia.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"SimuScene: Simulation-Ready Compositional 3D Scene Reconstruction from a Single Image\" en 12-capitulo-11-tecnicas-avanzadas.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-v0-30-3-280d907db0b2fb73",
+      "title": "v0.30.3",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.30.3",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "26-capitulo-25-function-calling.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.30.3\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-v0-30-4-bdab94b74f40d593",
+      "title": "v0.30.4",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.30.4-rc0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "26-capitulo-25-function-calling.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.30.4\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-04-yoctosecond-imaging-of-the-ground-state-of-129-xe-at-the-large-hadron-collider-5ef44b437d871ef5",
+      "title": "Yoctosecond imaging of the ground state of $^{129}$Xe at the Large Hadron Collider",
+      "url": "https://arxiv.org/abs/2606.03993v1",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "agentes",
+        "papers",
+        "software",
+        "cuantizacion",
+        "inferencia"
+      ],
+      "targetChapters": [
+        "12-capitulo-11-tecnicas-avanzadas.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+        "24-capitulo-23-diferencia-entre-chatbot-copiloto-y-agente.md",
+        "25-capitulo-24-que-es-un-agente-de-ia.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Yoctosecond imaging of the ground state of $^{129}$Xe at the Large Hadron Collider\" en 12-capitulo-11-tecnicas-avanzadas.md. Revisar la fuente antes de incorporarla a la edición pública."
+    }
+  ]
+}

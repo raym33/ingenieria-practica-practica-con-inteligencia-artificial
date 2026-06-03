@@ -532,6 +532,38 @@ a {
   text-transform: uppercase;
 }
 
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.model-card {
+  min-height: 245px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--gold);
+  background: var(--surface);
+}
+
+.model-card h2 {
+  margin: 8px 0;
+  color: var(--blue);
+  font-size: 18px;
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+}
+
+.model-card p {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .chapter-grid,
 .route-grid {
   display: grid;
@@ -839,7 +871,8 @@ a {
   .route-grid,
   .story-grid,
   .topic-grid,
-  .lab-grid {
+  .lab-grid,
+  .model-grid {
     grid-template-columns: 1fr;
   }
 

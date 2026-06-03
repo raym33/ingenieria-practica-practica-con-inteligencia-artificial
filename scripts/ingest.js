@@ -53,6 +53,40 @@ for (const source of sources.github || []) {
   }
 }
 
+for (const source of sources.huggingfaceModels || []) {
+  if (source.enabled === false) continue;
+  try {
+    const params = new URLSearchParams();
+    if (source.filter) params.set("filter", source.filter);
+    if (source.search) params.set("search", source.search);
+    if (source.sort) params.set("sort", source.sort);
+    if (source.direction) params.set("direction", String(source.direction));
+    params.set("limit", String(source.limit || maxItemsPerSource));
+
+    const models = JSON.parse(await fetchText(`https://huggingface.co/api/models?${params.toString()}`));
+    const minDownloads = Number(source.minDownloads || 0);
+    for (const model of models.slice(0, source.limit || maxItemsPerSource)) {
+      const downloads = Number(model.downloads || 0);
+      if (downloads < minDownloads) continue;
+      const modelId = model.modelId || model.id;
+      const modelTags = [...new Set([...(source.tags || []), ...inferHuggingFaceTags(model)])];
+      items.push({
+        rawId: hash(`${source.id}:${modelId}:${model.lastModified || model.createdAt || ""}`),
+        sourceId: source.id,
+        sourceName: source.name,
+        sourceType: "huggingface-model",
+        title: modelId,
+        url: `https://huggingface.co/${modelId}`,
+        publishedAt: model.lastModified || model.createdAt || stamp,
+        summary: summarizeHuggingFaceModel(model),
+        tags: modelTags
+      });
+    }
+  } catch (error) {
+    errors.push({ source: source.id, type: "huggingface-model", error: String(error.message || error) });
+  }
+}
+
 for (const source of sources.arxiv || []) {
   if (source.enabled === false) continue;
   try {
@@ -67,6 +101,38 @@ for (const source of sources.arxiv || []) {
   } catch (error) {
     errors.push({ source: source.id, type: "arxiv", error: String(error.message || error) });
   }
+}
+
+function inferHuggingFaceTags(model) {
+  const text = `${model.modelId || model.id || ""} ${(model.tags || []).join(" ")} ${model.pipeline_tag || ""} ${model.library_name || ""}`.toLowerCase();
+  const tags = [];
+  const add = (tag, words) => {
+    if (words.some((word) => text.includes(word))) tags.push(tag);
+  };
+  add("gguf", ["gguf"]);
+  add("mlx", ["mlx"]);
+  add("ollama", ["ollama"]);
+  add("cuantizacion", ["quant", "q4", "q5", "q6", "q8", "awq", "gptq", "gguf"]);
+  add("embeddings", ["embedding", "sentence-similarity"]);
+  add("reranking", ["rerank", "reranker"]);
+  add("multimodal", ["vision", "vlm", "image-text-to-text", "multimodal"]);
+  add("codigo", ["code", "coder", "programming"]);
+  add("audio", ["audio", "speech", "whisper"]);
+  add("seguridad", ["guard", "safety", "moderation"]);
+  return tags;
+}
+
+function summarizeHuggingFaceModel(model) {
+  const fields = [
+    `Modelo: ${model.modelId || model.id}`,
+    model.pipeline_tag ? `pipeline: ${model.pipeline_tag}` : "",
+    model.library_name ? `librería: ${model.library_name}` : "",
+    Number.isFinite(Number(model.downloads)) ? `descargas: ${model.downloads}` : "",
+    Number.isFinite(Number(model.likes)) ? `likes: ${model.likes}` : "",
+    model.lastModified ? `última modificación: ${model.lastModified}` : "",
+    (model.tags || []).length ? `tags: ${(model.tags || []).slice(0, 16).join(", ")}` : ""
+  ].filter(Boolean);
+  return fields.join(". ");
 }
 
 function sleep(ms) {

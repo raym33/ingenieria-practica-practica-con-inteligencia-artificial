@@ -18,7 +18,13 @@ export function writeJson(relativePath, value) {
 }
 
 export function todayStamp(date = new Date()) {
-  return date.toISOString().slice(0, 10);
+  const formatter = new Intl.DateTimeFormat("en-CA", {
+    timeZone: process.env.BOOK_TIME_ZONE || "Europe/Madrid",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  });
+  return formatter.format(date);
 }
 
 export function slugify(input) {
@@ -143,4 +149,3 @@ export function run(command, args, options = {}) {
     encoding: "utf8"
   });
 }
-

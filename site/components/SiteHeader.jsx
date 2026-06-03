@@ -21,6 +21,7 @@ export function SiteHeader() {
       <nav className="section-nav" aria-label="Principal">
         <div className="shell nav-links">
           <Link href="/radar/">Últimas señales</Link>
+          <Link href="/modelos/">Modelos</Link>
           <Link href="/biblioteca/">IA aplicada</Link>
           <Link href="/rutas/">Guías</Link>
           <Link href="/leer/09-capitulo-8-hardware-real-para-ia-local/">Hardware</Link>

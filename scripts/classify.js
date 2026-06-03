@@ -27,14 +27,21 @@ function heuristic(item) {
     if (words.some((word) => text.includes(word))) tags.add(tag);
   };
   addIf("modelos", ["model", "llm", "gpt", "claude", "gemini", "llama", "mistral", "qwen"]);
-  addIf("hardware", ["gpu", "nvidia", "amd", "apple silicon", "vram", "mlx", "hardware"]);
-  addIf("rag", ["rag", "retrieval", "embedding", "vector", "rerank"]);
+  addIf("modelos-locales", ["gguf", "ollama", "lm studio", "mlx", "llama.cpp", "local model"]);
+  addIf("hardware", ["gpu", "nvidia", "amd", "apple silicon", "vram", "mlx", "hardware", "cuda", "metal"]);
+  addIf("rag", ["rag", "retrieval", "embedding", "embeddings", "vector", "rerank"]);
+  addIf("embeddings", ["embedding", "embeddings", "sentence-similarity"]);
+  addIf("reranking", ["rerank", "reranker"]);
+  addIf("gguf", ["gguf"]);
+  addIf("mlx", ["mlx"]);
+  addIf("cuantizacion", ["quant", "quantization", "cuantizacion", "q4", "q5", "q6", "q8", "awq", "gptq"]);
+  addIf("inferencia", ["inference", "inferencia", "vllm", "tgi", "sglang", "llama.cpp"]);
   addIf("agentes", ["agent", "agents", "tool use", "computer use", "codex"]);
   addIf("codex", ["codex"]);
   addIf("claude", ["claude", "anthropic"]);
   addIf("openai", ["openai", "gpt"]);
   return {
-    type: item.sourceType === "arxiv" ? "paper" : item.sourceType.includes("github") ? "repo_release" : "news",
+    type: item.sourceType === "arxiv" ? "paper" : item.sourceType === "huggingface-model" ? "model" : item.sourceType.includes("github") ? "repo_release" : "news",
     relevance: tags.size > (item.tags || []).length ? "media" : "baja",
     confidence: item.sourceType === "manual" ? "media" : item.sourceType === "arxiv" ? "media" : "alta",
     volatility: ["modelos", "hardware"].some((tag) => tags.has(tag)) ? "alta" : "media",

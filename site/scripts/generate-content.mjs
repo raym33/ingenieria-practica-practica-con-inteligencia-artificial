@@ -115,10 +115,20 @@ if (radar.length === 0) {
 
 fs.writeFileSync(path.join(dataDir, "radar.json"), JSON.stringify(radar, null, 2));
 
+const modelRadar = radar
+  .filter((item) => item.sourceType === "huggingface-model" || (item.tags || []).some((tag) => ["modelos", "modelos-locales", "gguf", "mlx", "embeddings"].includes(tag)))
+  .sort((a, b) => {
+    const sourceScore = (item) => item.sourceType === "huggingface-model" ? 0 : 1;
+    return sourceScore(a) - sourceScore(b) || String(b.createdAt || b.publishedAt).localeCompare(String(a.createdAt || a.publishedAt));
+  })
+  .slice(0, 80);
+
+fs.writeFileSync(path.join(dataDir, "models.json"), JSON.stringify(modelRadar, null, 2));
+
 const latestRelease = path.join(projectRoot, "releases/latest");
 if (fs.existsSync(latestRelease)) {
   const pdf = fs.readdirSync(latestRelease).find((file) => file.endsWith(".pdf"));
   if (pdf) fs.copyFileSync(path.join(latestRelease, pdf), path.join(downloadsDir, "de-preguntar-a-construir.pdf"));
 }
 
-console.log(`Generated ${chapters.length} chapters and ${radar.length} radar items.`);
+console.log(`Generated ${chapters.length} chapters, ${radar.length} radar items and ${modelRadar.length} model items.`);

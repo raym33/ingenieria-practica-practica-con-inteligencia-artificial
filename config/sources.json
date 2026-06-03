@@ -57,6 +57,38 @@
       "tags": ["rag", "vector-db"]
     }
   ],
+  "huggingfaceModels": [
+    {
+      "id": "hf-text-generation-recent",
+      "name": "Hugging Face modelos de texto recientes",
+      "filter": "text-generation",
+      "sort": "lastModified",
+      "direction": -1,
+      "limit": 20,
+      "minDownloads": 0,
+      "tags": ["huggingface", "modelos", "modelos-locales"]
+    },
+    {
+      "id": "hf-gguf-recent",
+      "name": "Hugging Face GGUF recientes",
+      "search": "GGUF",
+      "sort": "lastModified",
+      "direction": -1,
+      "limit": 20,
+      "minDownloads": 0,
+      "tags": ["huggingface", "gguf", "cuantizacion", "modelos-locales"]
+    },
+    {
+      "id": "hf-embedding-recent",
+      "name": "Hugging Face embeddings recientes",
+      "filter": "sentence-similarity",
+      "sort": "lastModified",
+      "direction": -1,
+      "limit": 12,
+      "minDownloads": 0,
+      "tags": ["huggingface", "embeddings", "rag"]
+    }
+  ],
   "arxiv": [
     {
       "id": "rag-recent",

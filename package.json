@@ -15,7 +15,9 @@
     "site:build": "npm run --prefix site build",
     "site:dev": "cd site && npm install && npm run dev",
     "daily": "node scripts/daily.js",
-    "add": "node scripts/add-manual-item.js"
+    "daily:radar": "node scripts/daily-radar.js",
+    "add": "node scripts/add-manual-item.js",
+    "import:grok": "node scripts/import-grok-json.js"
   },
   "dependencies": {
     "marked": "17.0.1",
