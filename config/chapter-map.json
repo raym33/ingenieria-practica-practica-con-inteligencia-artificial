@@ -329,5 +329,21 @@
   "ragas": [
     "20-capitulo-19-rag-avanzado.md",
     "32-capitulo-31-evaluacion-de-sistemas-ia.md"
+  ],
+  "meta-evaluacion": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
+  ],
+  "meta-evaluation": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
+  ],
+  "judge-eval": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "cohens-kappa": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
+  ],
+  "metaevaluator": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
   ]
 }

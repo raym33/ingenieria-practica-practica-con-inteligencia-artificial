@@ -59421,6 +59421,235 @@ La meta-evaluación es especialmente importante cuando usas LLM-as-judge,
 porque un juez puede sonar convincente y aun así no detectar el fallo
 que importa.
 
+\subsection{Evitar el colapso de
+meta-evaluación}\label{evitar-el-colapso-de-meta-evaluaciuxf3n}
+
+El riesgo de un juez LLM no es solo que se equivoque.
+
+Es que varios jueces se pongan de acuerdo entre sí mientras se alejan
+del criterio real del dominio.
+
+Eso puede ocurrir cuando:
+
+\begin{itemize}
+\tightlist
+\item
+  todos los jueces prefieren respuestas largas;
+\item
+  todos penalizan abstención aunque sea correcta;
+\item
+  todos premian tono seguro;
+\item
+  todos ignoran una regla regulatoria;
+\item
+  todos pasan por alto una omisión crítica;
+\item
+  todos comparan contra respuestas generadas por otro modelo, no contra
+  criterio experto.
+\end{itemize}
+
+El resultado parece científico.
+
+Pero mide una convención interna de modelos, no calidad real.
+
+Para evitarlo, ancla los jueces a cuatro cosas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  reglas deterministas cuando existan;
+\item
+  ejemplos etiquetados por expertos;
+\item
+  perturbaciones controladas;
+\item
+  revisión humana periódica.
+\end{enumerate}
+
+\subsection{Perturbaciones
+controladas}\label{perturbaciones-controladas}
+
+Las perturbaciones son una de las formas más prácticas de evaluar al
+evaluador.
+
+Tomas una respuesta buena y la degradas de forma conocida.
+
+Ejemplos:
+
+\begin{itemize}
+\tightlist
+\item
+  cambiar un importe;
+\item
+  eliminar una cita;
+\item
+  introducir una fuente antigua;
+\item
+  quitar una advertencia de seguridad;
+\item
+  añadir una acción no permitida;
+\item
+  cambiar tono empático por tono hostil;
+\item
+  añadir una recomendación inventada;
+\item
+  omitir una condición contractual.
+\end{itemize}
+
+El juez debería bajar la puntuación y detectar el modo de fallo.
+
+Métricas útiles:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{detection rate}: porcentaje de perturbaciones detectadas;
+\item
+  \textbf{mean score delta}: cuánto baja la puntuación ante una
+  degradación;
+\item
+  \textbf{false negative rate}: perturbaciones graves que el juez deja
+  pasar;
+\item
+  \textbf{false positive rate}: respuestas buenas marcadas como malas;
+\item
+  \textbf{severity correlation}: si fallos más graves bajan más la
+  puntuación.
+\end{itemize}
+
+Ejemplo de resultado:
+
+\begin{lstlisting}
+{
+  "judge": "support-policy-judge-v3",
+  "domain": "soporte",
+  "perturbations": 120,
+  "detection_rate": 0.86,
+  "mean_score_delta": 3.1,
+  "false_negative_rate": 0.08,
+  "needs_revision": false
+}
+\end{lstlisting}
+
+Si el juez no detecta perturbaciones obvias, no está listo para
+producción.
+
+\subsection{Acuerdo con humanos}\label{acuerdo-con-humanos}
+
+Cuando tengas etiquetas humanas, mide acuerdo.
+
+No basta con mirar ejemplos y decir ``se parece''.
+
+Mide:
+
+\begin{itemize}
+\tightlist
+\item
+  accuracy;
+\item
+  F1 por failure mode;
+\item
+  Cohen's Kappa si hay varios anotadores;
+\item
+  correlación de puntuaciones;
+\item
+  falsos negativos en casos de alto riesgo.
+\end{itemize}
+
+Un juez puede tener buena accuracy global y aun así fallar donde más
+importa.
+
+Por eso conviene separar por severidad.
+
+Un falso negativo en un caso legal, médico o financiero crítico pesa más
+que un desacuerdo de estilo.
+
+\subsection{Consistencia y sesgos del
+juez}\label{consistencia-y-sesgos-del-juez}
+
+Además de detectar errores, el juez debe ser estable.
+
+Prueba:
+
+\begin{itemize}
+\tightlist
+\item
+  mismo input varias veces;
+\item
+  orden invertido de respuestas comparadas;
+\item
+  respuesta corta frente a respuesta larga;
+\item
+  formato con markdown y sin markdown;
+\item
+  idioma o tono distinto;
+\item
+  ejemplos con abstención correcta.
+\end{itemize}
+
+Sesgos frecuentes:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{verbosity bias}: preferir respuestas largas;
+\item
+  \textbf{position bias}: preferir la primera opción comparada;
+\item
+  \textbf{confidence bias}: premiar seguridad aunque sea falsa;
+\item
+  \textbf{format bias}: confundir buena estructura con verdad;
+\item
+  \textbf{model-family bias}: preferir estilo de una familia de modelos.
+\end{itemize}
+
+El juez no debe evaluar belleza.
+
+Debe evaluar el criterio definido.
+
+\subsection{Laboratorio local}\label{laboratorio-local}
+
+El repositorio del libro incluye un laboratorio mínimo en:
+
+\begin{lstlisting}
+labs/meta-evaluation/
+\end{lstlisting}
+
+El ejemplo usa un juez heurístico local para mostrar el mecanismo sin
+depender de APIs externas:
+
+\begin{lstlisting}[language=bash]
+python3 labs/meta-evaluation/meta_eval_judge.py
+\end{lstlisting}
+
+En un sistema real, sustituye el juez heurístico por:
+
+\begin{itemize}
+\tightlist
+\item
+  un LLM-as-judge con structured outputs;
+\item
+  un scorer determinista;
+\item
+  una herramienta de evaluación;
+\item
+  una combinación de juez LLM y revisión humana.
+\end{itemize}
+
+La arquitectura del laboratorio es deliberadamente simple:
+
+\begin{lstlisting}
+ejemplos buenos
+  -> perturbaciones controladas
+  -> juez
+  -> detection rate
+  -> mean delta
+  -> missed cases
+\end{lstlisting}
+
+Si esta idea no funciona en pequeño, no la escales.
+
 \subsection{Benchmarks públicos}\label{benchmarks-puxfablicos}
 
 Los benchmarks públicos pueden ser útiles.

@@ -431,6 +431,154 @@ Ejemplo:
 
 La meta-evaluación es especialmente importante cuando usas LLM-as-judge, porque un juez puede sonar convincente y aun así no detectar el fallo que importa.
 
+### Evitar el colapso de meta-evaluación
+
+El riesgo de un juez LLM no es solo que se equivoque.
+
+Es que varios jueces se pongan de acuerdo entre sí mientras se alejan del criterio real del dominio.
+
+Eso puede ocurrir cuando:
+
+- todos los jueces prefieren respuestas largas;
+- todos penalizan abstención aunque sea correcta;
+- todos premian tono seguro;
+- todos ignoran una regla regulatoria;
+- todos pasan por alto una omisión crítica;
+- todos comparan contra respuestas generadas por otro modelo, no contra criterio experto.
+
+El resultado parece científico.
+
+Pero mide una convención interna de modelos, no calidad real.
+
+Para evitarlo, ancla los jueces a cuatro cosas:
+
+1. reglas deterministas cuando existan;
+2. ejemplos etiquetados por expertos;
+3. perturbaciones controladas;
+4. revisión humana periódica.
+
+### Perturbaciones controladas
+
+Las perturbaciones son una de las formas más prácticas de evaluar al evaluador.
+
+Tomas una respuesta buena y la degradas de forma conocida.
+
+Ejemplos:
+
+- cambiar un importe;
+- eliminar una cita;
+- introducir una fuente antigua;
+- quitar una advertencia de seguridad;
+- añadir una acción no permitida;
+- cambiar tono empático por tono hostil;
+- añadir una recomendación inventada;
+- omitir una condición contractual.
+
+El juez debería bajar la puntuación y detectar el modo de fallo.
+
+Métricas útiles:
+
+- **detection rate**: porcentaje de perturbaciones detectadas;
+- **mean score delta**: cuánto baja la puntuación ante una degradación;
+- **false negative rate**: perturbaciones graves que el juez deja pasar;
+- **false positive rate**: respuestas buenas marcadas como malas;
+- **severity correlation**: si fallos más graves bajan más la puntuación.
+
+Ejemplo de resultado:
+
+```json
+{
+  "judge": "support-policy-judge-v3",
+  "domain": "soporte",
+  "perturbations": 120,
+  "detection_rate": 0.86,
+  "mean_score_delta": 3.1,
+  "false_negative_rate": 0.08,
+  "needs_revision": false
+}
+```
+
+Si el juez no detecta perturbaciones obvias, no está listo para producción.
+
+### Acuerdo con humanos
+
+Cuando tengas etiquetas humanas, mide acuerdo.
+
+No basta con mirar ejemplos y decir "se parece".
+
+Mide:
+
+- accuracy;
+- F1 por failure mode;
+- Cohen's Kappa si hay varios anotadores;
+- correlación de puntuaciones;
+- falsos negativos en casos de alto riesgo.
+
+Un juez puede tener buena accuracy global y aun así fallar donde más importa.
+
+Por eso conviene separar por severidad.
+
+Un falso negativo en un caso legal, médico o financiero crítico pesa más que un desacuerdo de estilo.
+
+### Consistencia y sesgos del juez
+
+Además de detectar errores, el juez debe ser estable.
+
+Prueba:
+
+- mismo input varias veces;
+- orden invertido de respuestas comparadas;
+- respuesta corta frente a respuesta larga;
+- formato con markdown y sin markdown;
+- idioma o tono distinto;
+- ejemplos con abstención correcta.
+
+Sesgos frecuentes:
+
+- **verbosity bias**: preferir respuestas largas;
+- **position bias**: preferir la primera opción comparada;
+- **confidence bias**: premiar seguridad aunque sea falsa;
+- **format bias**: confundir buena estructura con verdad;
+- **model-family bias**: preferir estilo de una familia de modelos.
+
+El juez no debe evaluar belleza.
+
+Debe evaluar el criterio definido.
+
+### Laboratorio local
+
+El repositorio del libro incluye un laboratorio mínimo en:
+
+```text
+labs/meta-evaluation/
+```
+
+El ejemplo usa un juez heurístico local para mostrar el mecanismo sin depender de APIs externas:
+
+```bash
+python3 labs/meta-evaluation/meta_eval_judge.py
+```
+
+En un sistema real, sustituye el juez heurístico por:
+
+- un LLM-as-judge con structured outputs;
+- un scorer determinista;
+- una herramienta de evaluación;
+- una combinación de juez LLM y revisión humana.
+
+La arquitectura del laboratorio es deliberadamente simple:
+
+```text
+ejemplos buenos
+  -> perturbaciones controladas
+  -> juez
+  -> detection rate
+  -> mean delta
+  -> missed cases
+```
+
+Si esta idea no funciona en pequeño, no la escales.
+
 ### Benchmarks públicos
 
 Los benchmarks públicos pueden ser útiles.
