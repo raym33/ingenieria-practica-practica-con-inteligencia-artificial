@@ -1,0 +1,20 @@
+{
+  "name": "living-book-radar",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "sync": "node scripts/sync-chapters.js",
+    "ingest": "node scripts/ingest.js",
+    "classify": "node scripts/classify.js",
+    "propose": "node scripts/propose-changes.js",
+    "build": "node scripts/build-book.js",
+    "publish": "node scripts/publish.js",
+    "dashboard": "node scripts/dashboard.js",
+    "site:generate": "cd site && node scripts/generate-content.mjs",
+    "site:build": "cd site && npm install && npm run build",
+    "site:dev": "cd site && npm install && npm run dev",
+    "daily": "node scripts/daily.js",
+    "add": "node scripts/add-manual-item.js"
+  }
+}

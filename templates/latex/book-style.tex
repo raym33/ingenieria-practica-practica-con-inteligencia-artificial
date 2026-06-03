@@ -1,0 +1,150 @@
+\usepackage[a4paper,inner=28mm,outer=22mm,top=24mm,bottom=27mm,headheight=15pt]{geometry}
+\usepackage[spanish,es-nodecimaldot]{babel}
+\usepackage{microtype}
+\usepackage{fontspec}
+\usepackage{xcolor}
+\usepackage{pagecolor}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{etoolbox}
+\usepackage{hyperref}
+\usepackage{newunicodechar}
+\tcbuselibrary{breakable,skins}
+
+\setmainfont{Avenir Next}[
+  Path=/System/Library/Fonts/,
+  Extension=.ttc,
+  UprightFont=*,
+  BoldFont=*,
+  ItalicFont=*,
+  BoldItalicFont=*
+]
+\setsansfont{Avenir Next}[
+  Path=/System/Library/Fonts/,
+  Extension=.ttc,
+  UprightFont=*,
+  BoldFont=*,
+  ItalicFont=*,
+  BoldItalicFont=*
+]
+\setmonofont{Menlo}
+\newfontfamily{\symbolfont}{Apple Symbols}
+\newunicodechar{→}{{\symbolfont →}}
+
+\definecolor{Ink}{HTML}{172033}
+\definecolor{DeepBlue}{HTML}{12355B}
+\definecolor{Teal}{HTML}{0E7C7B}
+\definecolor{Coral}{HTML}{E85D4F}
+\definecolor{Gold}{HTML}{F2B84B}
+\definecolor{Mist}{HTML}{F5F7FA}
+\definecolor{Paper}{HTML}{FFFDF8}
+\definecolor{CodeBg}{HTML}{F0F4F8}
+\definecolor{CodeRule}{HTML}{C8D6E5}
+
+\pagecolor{Paper}
+\color{Ink}
+\hypersetup{
+  colorlinks=true,
+  linkcolor=DeepBlue,
+  urlcolor=Teal,
+  citecolor=Coral,
+  pdfauthor={Ramon Guillamon},
+  pdftitle={De preguntar a construir},
+  pdfsubject={Ingeniería con IA},
+  pdfkeywords={inteligencia artificial, LLM, RAG, agentes, ingeniería}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{\sffamily\small\color{DeepBlue}\thepage\quad\leftmark}
+\fancyhead[RO]{\sffamily\small\color{DeepBlue}\rightmark\quad\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{Gold}\leaders\hrule height \headrulewidth\hfill}}
+
+\titleformat{\chapter}[display]
+  {\sffamily\bfseries\color{DeepBlue}}
+  {\tikz[baseline=(n.base)]\node[fill=Gold,text=Ink,rounded corners=2pt,inner xsep=9pt,inner ysep=5pt](n){\Large\chaptername~\thechapter};}
+  {18pt}
+  {\Huge}
+  [\vspace{10pt}{\color{Coral}\titlerule[1.8pt]}\vspace{14pt}]
+\titleformat{\section}{\sffamily\Large\bfseries\color{Teal}}{\thesection}{0.7em}{}
+\titleformat{\subsection}{\sffamily\large\bfseries\color{DeepBlue}}{\thesubsection}{0.7em}{}
+\titlespacing*{\chapter}{0pt}{0pt}{28pt}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+
+\contentsmargin{0pt}
+\titlecontents{chapter}[0pt]
+  {\vspace{7pt}\sffamily\bfseries\color{DeepBlue}}
+  {\contentslabel{2.2em}}
+  {}
+  {\hfill\contentspage}
+\titlecontents{section}[2.2em]
+  {\sffamily\small\color{Ink}}
+  {\contentslabel{2.6em}}
+  {}
+  {\titlerule*[0.5pc]{.}\contentspage}
+\setcounter{tocdepth}{0}
+
+\renewenvironment{quote}
+  {\begin{tcolorbox}[enhanced,breakable,colback=Mist,colframe=Teal,boxrule=0.7pt,arc=1mm,left=10pt,right=10pt,top=8pt,bottom=8pt]}
+  {\end{tcolorbox}}
+
+\lstdefinestyle{bookcode}{
+  backgroundcolor=\color{CodeBg},
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  breakatwhitespace=false,
+  columns=fullflexible,
+  frame=single,
+  rulecolor=\color{CodeRule},
+  framerule=0.5pt,
+  xleftmargin=6pt,
+  xrightmargin=6pt,
+  aboveskip=10pt,
+  belowskip=10pt,
+  keywordstyle=\color{DeepBlue}\bfseries,
+  commentstyle=\color{Teal},
+  stringstyle=\color{Coral}
+}
+\lstset{style=bookcode}
+
+\setlist{itemsep=3pt,topsep=5pt}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\providecommand{\passthrough}[1]{#1}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\renewcommand{\arraystretch}{1.18}
+
+\newcommand{\BookCover}{
+\begin{titlepage}
+\pagecolor{DeepBlue}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[Gold] (current page.north west) rectangle ([xshift=18mm]current page.south west);
+  \fill[Coral] ([yshift=-42mm]current page.north east) rectangle ([yshift=-48mm]current page.north west);
+  \fill[Teal] ([yshift=42mm]current page.south west) rectangle ([yshift=48mm]current page.south east);
+  \node[anchor=north east,text=Gold,font=\sffamily\bfseries\Large] at ([xshift=-20mm,yshift=-18mm]current page.north east) {Creative Commons};
+\end{tikzpicture}
+\vspace*{38mm}
+{\sffamily\bfseries\fontsize{36}{42}\selectfont\color{Paper} De preguntar\\a construir\par}
+\vspace{10mm}
+{\sffamily\fontsize{18}{24}\selectfont\color{Gold} Ingeniería práctica con inteligencia artificial\par}
+\vfill
+{\sffamily\Large\color{Paper} Ramon Guillamon\par}
+\vspace{4mm}
+{\sffamily\color{Paper} learntouseai@gmail.com\par}
+\vspace{12mm}
+{\sffamily\small\color{Paper} Derechos: Creative Commons\par}
+\end{titlepage}
+\nopagecolor
+\pagecolor{Paper}
+}

@@ -1,0 +1,16 @@
+{
+  "modelos": ["06-capitulo-5-como-elegir-un-modelo.md", "07-capitulo-6-modelos-propietarios.md", "08-capitulo-7-modelos-locales.md"],
+  "openai": ["06-capitulo-5-como-elegir-un-modelo.md", "07-capitulo-6-modelos-propietarios.md", "15-capitulo-14-reglas-para-agentes-de-codigo.md"],
+  "anthropic": ["06-capitulo-5-como-elegir-un-modelo.md", "07-capitulo-6-modelos-propietarios.md", "15-capitulo-14-reglas-para-agentes-de-codigo.md"],
+  "claude": ["07-capitulo-6-modelos-propietarios.md", "15-capitulo-14-reglas-para-agentes-de-codigo.md"],
+  "codex": ["13-capitulo-12-prompts-para-crear-software.md", "15-capitulo-14-reglas-para-agentes-de-codigo.md"],
+  "agentes": ["12-capitulo-11-tecnicas-avanzadas.md", "13-capitulo-12-prompts-para-crear-software.md", "15-capitulo-14-reglas-para-agentes-de-codigo.md"],
+  "rag": ["17-capitulo-16-que-problema-resuelve-rag.md", "18-capitulo-17-arquitectura-rag-basica.md", "19-capitulo-18-problemas-reales-en-rag.md", "20-capitulo-19-rag-avanzado.md", "21-capitulo-20-herramientas-rag.md"],
+  "papers": ["12-capitulo-11-tecnicas-avanzadas.md", "20-capitulo-19-rag-avanzado.md"],
+  "hardware": ["09-capitulo-8-hardware-real-para-ia-local.md"],
+  "modelos-locales": ["08-capitulo-7-modelos-locales.md", "09-capitulo-8-hardware-real-para-ia-local.md"],
+  "ollama": ["08-capitulo-7-modelos-locales.md", "21-capitulo-20-herramientas-rag.md"],
+  "herramientas": ["13-capitulo-12-prompts-para-crear-software.md", "21-capitulo-20-herramientas-rag.md"],
+  "produccion": ["04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md", "19-capitulo-18-problemas-reales-en-rag.md"]
+}
+

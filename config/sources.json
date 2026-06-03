@@ -1,0 +1,74 @@
+{
+  "defaults": {
+    "maxAgeDays": 14,
+    "maxItemsPerSource": 25
+  },
+  "rss": [
+    {
+      "id": "openai-news",
+      "name": "OpenAI News",
+      "url": "https://openai.com/news/rss.xml",
+      "tags": ["openai", "modelos", "codex", "agentes"]
+    },
+    {
+      "id": "anthropic-news",
+      "name": "Anthropic News",
+      "url": "https://www.anthropic.com/news/rss.xml",
+      "enabled": false,
+      "tags": ["anthropic", "claude", "modelos", "agentes"]
+    },
+    {
+      "id": "huggingface-blog",
+      "name": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "tags": ["open-source", "modelos", "herramientas"]
+    },
+    {
+      "id": "ollama-blog",
+      "name": "Ollama Blog",
+      "url": "https://ollama.com/blog/rss.xml",
+      "tags": ["ollama", "modelos-locales"]
+    }
+  ],
+  "github": [
+    {
+      "id": "ollama",
+      "repo": "ollama/ollama",
+      "tags": ["ollama", "modelos-locales", "herramientas"]
+    },
+    {
+      "id": "llama-cpp",
+      "repo": "ggml-org/llama.cpp",
+      "tags": ["modelos-locales", "hardware", "inferencia"]
+    },
+    {
+      "id": "vllm",
+      "repo": "vllm-project/vllm",
+      "tags": ["inferencia", "produccion"]
+    },
+    {
+      "id": "langchain",
+      "repo": "langchain-ai/langchain",
+      "tags": ["rag", "agentes", "herramientas"]
+    },
+    {
+      "id": "lancedb",
+      "repo": "lancedb/lancedb",
+      "tags": ["rag", "vector-db"]
+    }
+  ],
+  "arxiv": [
+    {
+      "id": "rag-recent",
+      "query": "retrieval augmented generation",
+      "maxResults": 8,
+      "tags": ["rag", "papers"]
+    },
+    {
+      "id": "llm-agents-recent",
+      "query": "large language model agents software engineering",
+      "maxResults": 8,
+      "tags": ["agentes", "papers", "software"]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "title": "De preguntar a construir",
+  "subtitle": "Ingeniería práctica con inteligencia artificial",
+  "author": "Ramon Guillamon",
+  "email": "learntouseai@gmail.com",
+  "rights": "Creative Commons",
+  "publicCadenceDays": 7,
+  "stableCadenceDays": 30,
+  "ollama": {
+    "enabled": true,
+    "host": "http://127.0.0.1:11434",
+    "model": "qwen3.5:9b",
+    "fallbackModel": "qwen3.6:27b",
+    "embeddingModel": "bge-m3:latest"
+  },
+  "lmStudio": {
+    "enabled": false,
+    "host": "http://127.0.0.1:1234/v1",
+    "model": "local-model"
+  }
+}

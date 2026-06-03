@@ -1,0 +1,544 @@
+{
+  "stamp": "2026-06-03",
+  "proposals": [
+    {
+      "itemId": "2026-06-03-b9486-25a97cff66628015",
+      "title": "b9486",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9486",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9486\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-b9487-1d410c757a668a59",
+      "title": "b9487",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9487",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9487\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-b9488-c8cb4819975f326d",
+      "title": "b9488",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9488",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9488\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-b9489-4e8fdcb7d7aad8ea",
+      "title": "b9489",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9489",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9489\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-b9490-e04f18119c735050",
+      "title": "b9490",
+      "url": "https://github.com/ggml-org/llama.cpp/releases/tag/b9490",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "modelos-locales",
+        "hardware",
+        "inferencia",
+        "modelos"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"b9490\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-beyond-llms-why-scalable-enterprise-ai-adoption-depends-on-agent-logic-474311a2d86a8923",
+      "title": "Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic",
+      "url": "https://huggingface.co/blog/ibm-research/agent-logic-and-scalable-ai-adoption",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "open-source",
+        "modelos",
+        "herramientas",
+        "agentes"
+      ],
+      "targetChapters": [
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic\" en 06-capitulo-5-como-elegir-un-modelo.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-harness-scaffold-and-the-ai-agent-terms-worth-getting-right-39d81862f8593ab6",
+      "title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
+      "url": "https://huggingface.co/blog/agent-glossary",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "open-source",
+        "modelos",
+        "herramientas",
+        "agentes"
+      ],
+      "targetChapters": [
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Harness, Scaffold, and the AI Agent Terms Worth Getting Right\" en 06-capitulo-5-como-elegir-un-modelo.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-holo3-1-fast-local-computer-use-agents-d2e3ba1600ccbcd8",
+      "title": "Holo3.1: Fast & Local Computer Use Agents",
+      "url": "https://huggingface.co/blog/Hcompany/holo31",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "open-source",
+        "modelos",
+        "herramientas",
+        "agentes"
+      ],
+      "targetChapters": [
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Holo3.1: Fast & Local Computer Use Agents\" en 06-capitulo-5-como-elegir-un-modelo.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-how-virgin-atlantic-ships-faster-with-codex-df0eab7ae9102255",
+      "title": "How Virgin Atlantic ships faster with Codex",
+      "url": "https://openai.com/index/virgin-atlantic",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "openai",
+        "modelos",
+        "codex",
+        "agentes",
+        "rag"
+      ],
+      "targetChapters": [
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+        "08-capitulo-7-modelos-locales.md",
+        "13-capitulo-12-prompts-para-crear-software.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"How Virgin Atlantic ships faster with Codex\" en 06-capitulo-5-como-elegir-un-modelo.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-langchain-anthropic-1-4-4-be779684bab74f7d",
+      "title": "langchain-anthropic==1.4.4",
+      "url": "https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.4",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "rag",
+        "agentes",
+        "herramientas",
+        "claude"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"langchain-anthropic==1.4.4\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-node-rust-lancedb-v0-30-0-7bbd61f1c63331af",
+      "title": "Node/Rust LanceDB v0.30.0",
+      "url": "https://github.com/lancedb/lancedb/releases/tag/v0.30.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "rag",
+        "vector-db",
+        "agentes"
+      ],
+      "targetChapters": [
+        "17-capitulo-16-que-problema-resuelve-rag.md",
+        "18-capitulo-17-arquitectura-rag-basica.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "20-capitulo-19-rag-avanzado.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Node/Rust LanceDB v0.30.0\" en 17-capitulo-16-que-problema-resuelve-rag.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-openjarvis-a-local-first-personal-ai-is-now-available-to-run-with-ollama-33b98a760f09153b",
+      "title": "OpenJarvis: a local-first personal AI is now available to run with Ollama",
+      "url": "https://ollama.com/blog/openjarvis",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "modelos",
+        "hardware",
+        "agentes"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"OpenJarvis: a local-first personal AI is now available to run with Ollama\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-prueba-local-nueva-configuracion-de-agentes-de-codigo-21095809626e31df",
+      "title": "Prueba local: nueva configuracion de agentes de codigo",
+      "url": "https://example.com/config-agentes",
+      "relevance": "media",
+      "confidence": "media",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "agentes",
+        "codex"
+      ],
+      "targetChapters": [
+        "12-capitulo-11-tecnicas-avanzadas.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "15-capitulo-14-reglas-para-agentes-de-codigo.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Prueba local: nueva configuracion de agentes de codigo\" en 12-capitulo-11-tecnicas-avanzadas.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-20-0-2649a743735af154",
+      "title": "v0.20.0",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "hardware",
+        "rag",
+        "claude",
+        "openai"
+      ],
+      "targetChapters": [
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.20.0\" en 04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-20-1-093bc4482dd59788",
+      "title": "v0.20.1",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.1",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "hardware",
+        "openai"
+      ],
+      "targetChapters": [
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.20.1\" en 04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-20-2-953fc5c5333a9287",
+      "title": "v0.20.2",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.20.2",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "openai"
+      ],
+      "targetChapters": [
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.20.2\" en 04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-21-0-8a658322a56cf9a6",
+      "title": "v0.21.0",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.21.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "hardware",
+        "rag",
+        "openai"
+      ],
+      "targetChapters": [
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.21.0\" en 04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-22-0-c3467903128f3d6e",
+      "title": "v0.22.0",
+      "url": "https://github.com/vllm-project/vllm/releases/tag/v0.22.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "inferencia",
+        "produccion",
+        "modelos",
+        "hardware",
+        "rag",
+        "agentes",
+        "openai"
+      ],
+      "targetChapters": [
+        "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+        "19-capitulo-18-problemas-reales-en-rag.md",
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.22.0\" en 04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-23-3-0f8755c798c0364a",
+      "title": "v0.23.3",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.23.3",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos",
+        "hardware"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "06-capitulo-5-como-elegir-un-modelo.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.23.3\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-23-4-095865705dd0f320",
+      "title": "v0.23.4",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.23.4",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos",
+        "claude"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "06-capitulo-5-como-elegir-un-modelo.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.23.4\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-24-0-0eb467d318861837",
+      "title": "v0.24.0",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.24.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos",
+        "hardware",
+        "agentes",
+        "codex",
+        "openai"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "06-capitulo-5-como-elegir-un-modelo.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.24.0\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-30-0-57072a42b39dea97",
+      "title": "v0.30.0",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.30.0",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos",
+        "hardware"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "06-capitulo-5-como-elegir-un-modelo.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.30.0\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-v0-30-2-ac5c71c10253753e",
+      "title": "v0.30.2",
+      "url": "https://github.com/ollama/ollama/releases/tag/v0.30.2",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "ollama",
+        "modelos-locales",
+        "herramientas",
+        "modelos",
+        "hardware",
+        "agentes",
+        "codex"
+      ],
+      "targetChapters": [
+        "08-capitulo-7-modelos-locales.md",
+        "21-capitulo-20-herramientas-rag.md",
+        "09-capitulo-8-hardware-real-para-ia-local.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "06-capitulo-5-como-elegir-un-modelo.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"v0.30.2\" en 08-capitulo-7-modelos-locales.md. Revisar la fuente antes de incorporarla a la edición pública."
+    },
+    {
+      "itemId": "2026-06-03-welcome-nvidia-cosmos-3-the-first-open-omni-model-for-physical-ai-reasoning-and-action-dda86c38120838c6",
+      "title": "Welcome NVIDIA Cosmos 3: The First Open Omni-model for Physical AI Reasoning and Action",
+      "url": "https://huggingface.co/blog/nvidia/cosmos-3-for-physical-ai",
+      "relevance": "media",
+      "confidence": "alta",
+      "editorialAction": "guardar_para_contexto",
+      "tags": [
+        "open-source",
+        "modelos",
+        "herramientas",
+        "hardware"
+      ],
+      "targetChapters": [
+        "06-capitulo-5-como-elegir-un-modelo.md",
+        "07-capitulo-6-modelos-propietarios.md",
+        "08-capitulo-7-modelos-locales.md",
+        "13-capitulo-12-prompts-para-crear-software.md",
+        "21-capitulo-20-herramientas-rag.md"
+      ],
+      "suggestion": "Añadir una nota breve sobre \"Welcome NVIDIA Cosmos 3: The First Open Omni-model for Physical AI Reasoning and Action\" en 06-capitulo-5-como-elegir-un-modelo.md. Revisar la fuente antes de incorporarla a la edición pública."
+    }
+  ]
+}
