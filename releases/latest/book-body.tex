@@ -52067,3 +52067,1528 @@ Este capítulo conecta con:
 \item
   Apéndice G --- Tabla viva de frameworks agenticos
 \end{itemize}
+
+\newpage
+
+\chapter{Apéndice A --- Rutas de
+lectura}\label{apuxe9ndice-a-rutas-de-lectura}
+
+Este libro puede leerse de principio a fin, pero no todos los lectores
+llegan con la misma necesidad.
+
+Algunos quieren entender el mapa general de la IA aplicada al software.
+Otros necesitan elegir un modelo. Otros están construyendo un chatbot de
+soporte, un sistema RAG, un agente de código o una arquitectura local
+con Ollama, LM Studio y modelos abiertos.
+
+Este apéndice propone rutas de lectura para que el libro funcione como
+manual de estudio y como herramienta de consulta.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ruta 1 --- Para entender el mapa
+completo}\label{ruta-1-para-entender-el-mapa-completo}
+
+Esta ruta es para quien quiere dejar de ver la IA como una colección de
+herramientas sueltas y empezar a verla como una nueva forma de construir
+software.
+
+Lee en este orden:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Prefacio --- De preguntar a construir
+\item
+  Introducción --- La nueva ingeniería con IA
+\item
+  Capítulo 1 --- El camino real: de ChatGPT a sistemas IA
+\item
+  Capítulo 2 --- Qué se puede crear hoy con IA
+\item
+  Capítulo 3 --- La diferencia entre jugar con IA y construir con IA
+\end{enumerate}
+
+Al terminar esta ruta deberías poder responder:
+
+\begin{itemize}
+\tightlist
+\item
+  qué diferencia hay entre usar IA y construir con IA;
+\item
+  por qué una demo no equivale a un producto;
+\item
+  qué piezas forman un sistema IA moderno;
+\item
+  dónde encajan prompts, modelos, RAG, agentes, tools y contexto.
+\end{itemize}
+
+Esta ruta es la mejor entrada para lectores técnicos que todavía no
+saben dónde poner cada concepto.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ruta 2 --- Para elegir modelos con
+criterio}\label{ruta-2-para-elegir-modelos-con-criterio}
+
+Esta ruta es para quien necesita decidir entre APIs propietarias,
+modelos abiertos, modelos locales, hardware propio o una arquitectura
+híbrida.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 4 --- LLMs para ingenieros ocupados
+\item
+  Capítulo 5 --- Cómo elegir un modelo
+\item
+  Capítulo 6 --- Modelos propietarios
+\item
+  Capítulo 7 --- Modelos locales
+\item
+  Capítulo 8 --- Hardware real para IA local
+\end{enumerate}
+
+Al terminar esta ruta deberías tener una matriz de decisión práctica:
+
+\begin{itemize}
+\tightlist
+\item
+  cuándo usar OpenAI, Anthropic, Google u otro proveedor;
+\item
+  cuándo usar modelos locales;
+\item
+  qué papel tienen latencia, coste, privacidad, contexto y calidad;
+\item
+  cómo pensar en hardware sin caer en entusiasmo inútil;
+\item
+  cuándo una solución híbrida es más razonable que elegir un único
+  camino.
+\end{itemize}
+
+La pregunta central de esta ruta no es ``cuál es el mejor modelo'',
+sino:
+
+\begin{quote}
+¿Qué modelo es suficientemente bueno para este caso, con este coste,
+esta latencia y este nivel de riesgo?
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ruta 3 --- Para dominar prompts como
+ingeniería}\label{ruta-3-para-dominar-prompts-como-ingenieruxeda}
+
+Esta ruta es para desarrolladores que ya usan modelos, pero quieren
+convertir prompts sueltos en piezas mantenibles de un sistema.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 9 --- Prompt engineering que sigue funcionando
+\item
+  Capítulo 10 --- Prompts como herramientas de ingeniería
+\item
+  Capítulo 11 --- Técnicas avanzadas
+\item
+  Capítulo 12 --- Prompts para crear software
+\item
+  Capítulo 13 --- Vibe coding
+\item
+  Capítulo 14 --- Reglas para agentes de código
+\end{enumerate}
+
+Al terminar esta ruta deberías saber:
+
+\begin{itemize}
+\tightlist
+\item
+  cómo estructurar prompts reutilizables;
+\item
+  cómo separar instrucciones, contexto, reglas y formato;
+\item
+  cómo versionar prompts;
+\item
+  cómo evaluar respuestas;
+\item
+  cómo usar agentes de código sin perder control del proyecto.
+\end{itemize}
+
+La idea clave es simple:
+
+\begin{quote}
+Un prompt importante no es una frase. Es una interfaz.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ruta 4 --- Para construir RAG de
+verdad}\label{ruta-4-para-construir-rag-de-verdad}
+
+Esta ruta es para quien quiere construir sistemas que respondan usando
+documentos, conocimiento interno, bases vectoriales y recuperación de
+contexto.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 16 --- Qué problema resuelve RAG
+\item
+  Capítulo 17 --- Arquitectura RAG básica
+\item
+  Capítulo 18 --- Problemas reales en RAG
+\item
+  Capítulo 19 --- RAG avanzado
+\item
+  Capítulo 20 --- Herramientas RAG
+\end{enumerate}
+
+Al terminar esta ruta deberías poder diseñar un sistema RAG que no sea
+solo ``meter PDFs en un vector store''.
+
+Deberías entender:
+
+\begin{itemize}
+\tightlist
+\item
+  ingestión;
+\item
+  chunking;
+\item
+  embeddings;
+\item
+  recuperación;
+\item
+  reranking;
+\item
+  generación;
+\item
+  citas;
+\item
+  evaluación;
+\item
+  permisos;
+\item
+  trazabilidad;
+\item
+  mantenimiento.
+\end{itemize}
+
+La pregunta central de esta ruta es:
+
+\begin{quote}
+¿Cómo hago que el sistema encuentre el contexto correcto antes de
+pedirle al modelo que responda?
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ruta 5 --- Para crear chatbots
+útiles}\label{ruta-5-para-crear-chatbots-uxfatiles}
+
+Esta ruta es para quien quiere construir chatbots que no sean solo una
+caja de texto conectada a un modelo.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 21 --- Chatbots modernos
+\item
+  Capítulo 22 --- Chatbots para soporte
+\item
+  Capítulo 23 --- Diferencia entre chatbot, copiloto y agente
+\item
+  Capítulo 16 --- Qué problema resuelve RAG
+\item
+  Capítulo 18 --- Problemas reales en RAG
+\end{enumerate}
+
+Al terminar esta ruta deberías poder diferenciar:
+
+\begin{itemize}
+\tightlist
+\item
+  chatbot conversacional;
+\item
+  chatbot de soporte;
+\item
+  asistente interno;
+\item
+  copiloto;
+\item
+  agente;
+\item
+  sistema RAG con interfaz conversacional.
+\end{itemize}
+
+También deberías poder diseñar un chatbot con:
+
+\begin{itemize}
+\tightlist
+\item
+  límites claros;
+\item
+  escalado a humano;
+\item
+  memoria controlada;
+\item
+  fuentes citadas;
+\item
+  métricas de calidad;
+\item
+  gestión de errores.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ruta 6 --- Para entender agentes, tools, function calling y
+MCP}\label{ruta-6-para-entender-agentes-tools-function-calling-y-mcp}
+
+Esta ruta es para quien quiere pasar de ``el modelo responde'' a ``el
+sistema actúa''.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 23 --- Diferencia entre chatbot, copiloto y agente
+\item
+  Capítulo 24 --- Qué es un agente de IA
+\item
+  Capítulo 25 --- Function calling
+\item
+  Capítulo 26 --- MCP
+\item
+  Capítulo 14 --- Reglas para agentes de código
+\end{enumerate}
+
+Al terminar esta ruta deberías poder explicar:
+
+\begin{itemize}
+\tightlist
+\item
+  qué convierte a un sistema en agente;
+\item
+  por qué un agente no es solo un prompt largo;
+\item
+  cómo funcionan las tools;
+\item
+  qué aporta function calling;
+\item
+  qué problema intenta resolver MCP;
+\item
+  qué riesgos aparecen cuando un modelo puede ejecutar acciones.
+\end{itemize}
+
+La frase que resume esta ruta:
+
+\begin{quote}
+Un agente no es inteligencia suelta. Es un modelo con contexto,
+herramientas, estado, objetivos, límites y supervisión.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ruta 7 --- Para vender o implantar soluciones IA en
+empresas}\label{ruta-7-para-vender-o-implantar-soluciones-ia-en-empresas}
+
+Esta ruta es para consultores, freelancers, CTOs y equipos que quieren
+convertir conocimiento técnico en soluciones utilizables.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 2 --- Qué se puede crear hoy con IA
+\item
+  Capítulo 3 --- La diferencia entre jugar con IA y construir con IA
+\item
+  Capítulo 15 --- De idea a prototipo
+\item
+  Capítulo 22 --- Chatbots para soporte
+\item
+  Capítulo 18 --- Problemas reales en RAG
+\item
+  Apéndice B --- Proyectos guiados
+\item
+  Apéndice C --- Checklists de producción
+\end{enumerate}
+
+Al terminar esta ruta deberías poder diseñar una propuesta realista:
+
+\begin{itemize}
+\tightlist
+\item
+  problema concreto;
+\item
+  usuario objetivo;
+\item
+  datos necesarios;
+\item
+  arquitectura;
+\item
+  riesgos;
+\item
+  coste;
+\item
+  plan de prototipo;
+\item
+  criterios de aceptación.
+\end{itemize}
+
+La clave comercial no es prometer ``IA'', sino resolver un flujo
+específico con menos fricción, más velocidad o mejor acceso al
+conocimiento.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Cómo estudiar este libro}\label{cuxf3mo-estudiar-este-libro}
+
+No intentes memorizar todos los conceptos.
+
+Trabaja así:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Lee una ruta.
+\item
+  Elige un proyecto pequeño.
+\item
+  Diseña la arquitectura antes de escribir código.
+\item
+  Construye una versión mínima.
+\item
+  Evalúa fallos reales.
+\item
+  Vuelve al capítulo correspondiente.
+\item
+  Actualiza tus criterios.
+\end{enumerate}
+
+Este libro no está pensado solo para ser leído.
+
+Está pensado para ser usado.
+
+\newpage
+
+\chapter{Apéndice B --- Proyectos
+guiados}\label{apuxe9ndice-b-proyectos-guiados}
+
+Un libro sobre construir con IA debe terminar llevando al lector a
+construir.
+
+Este apéndice propone proyectos guiados que conectan los capítulos con
+sistemas reales. No son ejercicios decorativos. Están pensados como
+prototipos que podrían convertirse en productos internos, demos
+comerciales o bases de aprendizaje profundo.
+
+Cada proyecto incluye objetivo, arquitectura mínima, criterios de
+aceptación y ampliaciones.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Proyecto 1 --- Chatbot de soporte con
+RAG}\label{proyecto-1-chatbot-de-soporte-con-rag}
+
+\subsection{Objetivo}\label{objetivo-3}
+
+Construir un chatbot que responda preguntas frecuentes de soporte usando
+una base documental propia.
+
+No debe inventar respuestas. Debe citar fuentes, reconocer límites y
+escalar a humano cuando no tenga suficiente contexto.
+
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Interfaz web sencilla.
+\item
+  Colección de documentos de soporte.
+\item
+  Pipeline de ingestión.
+\item
+  Chunking controlado.
+\item
+  Embeddings.
+\item
+  Vector store.
+\item
+  Recuperación top-k.
+\item
+  Prompt de respuesta con fuentes.
+\item
+  Registro de conversaciones.
+\item
+  Evaluación manual de respuestas.
+\end{itemize}
+
+\subsection{Criterios de aceptación}\label{criterios-de-aceptaciuxf3n}
+
+El sistema es aceptable si:
+
+\begin{itemize}
+\tightlist
+\item
+  responde correctamente al menos el 80\% de preguntas frecuentes
+  conocidas;
+\item
+  cita la fuente usada;
+\item
+  no responde cuando el contexto es insuficiente;
+\item
+  propone escalado a humano en casos ambiguos;
+\item
+  permite revisar conversaciones fallidas;
+\item
+  no expone documentos fuera del alcance previsto.
+\end{itemize}
+
+\subsection{Capítulos relacionados}\label{capuxedtulos-relacionados}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 16 --- Qué problema resuelve RAG
+\item
+  Capítulo 17 --- Arquitectura RAG básica
+\item
+  Capítulo 18 --- Problemas reales en RAG
+\item
+  Capítulo 21 --- Chatbots modernos
+\item
+  Capítulo 22 --- Chatbots para soporte
+\end{itemize}
+
+\subsection{Ampliaciones}\label{ampliaciones}
+
+\begin{itemize}
+\tightlist
+\item
+  Añadir reranking.
+\item
+  Añadir evaluación automática.
+\item
+  Añadir perfiles de usuario.
+\item
+  Añadir permisos por documento.
+\item
+  Añadir analítica de temas frecuentes.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Proyecto 2 --- Copiloto interno para un equipo
+técnico}\label{proyecto-2-copiloto-interno-para-un-equipo-tuxe9cnico}
+
+\subsection{Objetivo}\label{objetivo-4}
+
+Crear un copiloto que ayude a un equipo de desarrollo a consultar
+documentación interna, decisiones técnicas, issues y convenciones del
+proyecto.
+
+El objetivo no es que programe solo, sino que reduzca tiempo de búsqueda
+y mejore consistencia.
+
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Fuente de conocimiento: README, ADRs, documentación, issues,
+  changelogs.
+\item
+  Indexación por repositorio.
+\item
+  Búsqueda semántica y textual.
+\item
+  Interfaz conversacional.
+\item
+  Prompt con reglas del proyecto.
+\item
+  Respuestas con referencias.
+\item
+  Modo ``explica'' y modo ``propón''.
+\end{itemize}
+
+\subsection{Criterios de aceptación}\label{criterios-de-aceptaciuxf3n-1}
+
+El sistema debe:
+
+\begin{itemize}
+\tightlist
+\item
+  responder preguntas sobre arquitectura del proyecto;
+\item
+  localizar documentos relevantes;
+\item
+  explicar convenciones;
+\item
+  no modificar código;
+\item
+  distinguir entre información documentada y sugerencia;
+\item
+  enlazar a las fuentes.
+\end{itemize}
+
+\subsection{Capítulos relacionados}\label{capuxedtulos-relacionados-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 10 --- Prompts como herramientas de ingeniería
+\item
+  Capítulo 12 --- Prompts para crear software
+\item
+  Capítulo 14 --- Reglas para agentes de código
+\item
+  Capítulo 23 --- Diferencia entre chatbot, copiloto y agente
+\end{itemize}
+
+\subsection{Ampliaciones}\label{ampliaciones-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Integración con GitHub.
+\item
+  Lectura de PRs.
+\item
+  Generación de borradores de ADR.
+\item
+  Evaluación de preguntas frecuentes del equipo.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Proyecto 3 --- Agente de investigación
+técnica}\label{proyecto-3-agente-de-investigaciuxf3n-tuxe9cnica}
+
+\subsection{Objetivo}\label{objetivo-5}
+
+Construir un sistema que recopile novedades de IA, repos, papers y
+documentación, las clasifique y proponga actualizaciones editoriales.
+
+Este proyecto es la base del libro vivo.
+
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Fuentes RSS.
+\item
+  GitHub releases.
+\item
+  arXiv o Semantic Scholar.
+\item
+  Bandeja manual.
+\item
+  Clasificación por tags.
+\item
+  Resumen.
+\item
+  Mapeo a capítulos.
+\item
+  Informe diario.
+\item
+  Revisión humana.
+\end{itemize}
+
+\subsection{Criterios de aceptación}\label{criterios-de-aceptaciuxf3n-2}
+
+El sistema funciona si:
+
+\begin{itemize}
+\tightlist
+\item
+  recoge novedades sin romperse cuando una fuente falla;
+\item
+  distingue señales importantes de ruido;
+\item
+  propone capítulos afectados;
+\item
+  conserva enlaces;
+\item
+  genera un informe legible;
+\item
+  no publica cambios automáticamente sin revisión.
+\end{itemize}
+
+\subsection{Capítulos relacionados}\label{capuxedtulos-relacionados-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 5 --- Cómo elegir un modelo
+\item
+  Capítulo 11 --- Técnicas avanzadas
+\item
+  Capítulo 24 --- Qué es un agente de IA
+\item
+  Capítulo 25 --- Function calling
+\item
+  Capítulo 26 --- MCP
+\end{itemize}
+
+\subsection{Ampliaciones}\label{ampliaciones-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Añadir ranking de relevancia.
+\item
+  Añadir embeddings.
+\item
+  Añadir comparación entre fuentes.
+\item
+  Añadir generación de parches sugeridos.
+\item
+  Añadir releases automáticas semanales.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Proyecto 4 --- Banco de pruebas de modelos
+locales}\label{proyecto-4-banco-de-pruebas-de-modelos-locales}
+
+\subsection{Objetivo}\label{objetivo-6}
+
+Evaluar modelos locales en tareas reales para decidir cuáles sirven para
+un caso concreto.
+
+No se trata de repetir benchmarks públicos, sino de construir un
+benchmark propio y útil.
+
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Lista de modelos.
+\item
+  Dataset pequeño de tareas reales.
+\item
+  Prompts fijos.
+\item
+  Métricas manuales y automáticas.
+\item
+  Registro de latencia.
+\item
+  Registro de memoria.
+\item
+  Comparativa de calidad.
+\end{itemize}
+
+\subsection{Criterios de aceptación}\label{criterios-de-aceptaciuxf3n-3}
+
+El benchmark debe permitir responder:
+
+\begin{itemize}
+\tightlist
+\item
+  qué modelo responde mejor;
+\item
+  qué modelo es suficientemente rápido;
+\item
+  qué modelo cabe en el hardware disponible;
+\item
+  qué tareas fallan más;
+\item
+  cuándo conviene usar API externa.
+\end{itemize}
+
+\subsection{Capítulos relacionados}\label{capuxedtulos-relacionados-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 5 --- Cómo elegir un modelo
+\item
+  Capítulo 7 --- Modelos locales
+\item
+  Capítulo 8 --- Hardware real para IA local
+\end{itemize}
+
+\subsection{Ampliaciones}\label{ampliaciones-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Integrar Ollama.
+\item
+  Integrar LM Studio.
+\item
+  Probar cuantizaciones.
+\item
+  Probar modelos especializados.
+\item
+  Generar informe mensual.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Proyecto 5 --- Sistema con tools y function
+calling}\label{proyecto-5-sistema-con-tools-y-function-calling}
+
+\subsection{Objetivo}\label{objetivo-7}
+
+Construir una aplicación donde el modelo no solo responda, sino que
+pueda llamar funciones controladas.
+
+Ejemplos:
+
+\begin{itemize}
+\tightlist
+\item
+  consultar estado de pedido;
+\item
+  crear ticket;
+\item
+  buscar producto;
+\item
+  calcular presupuesto;
+\item
+  consultar disponibilidad;
+\item
+  actualizar un registro con confirmación humana.
+\end{itemize}
+
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-5}
+
+\begin{itemize}
+\tightlist
+\item
+  Modelo con function calling.
+\item
+  Definición estricta de tools.
+\item
+  Validación de argumentos.
+\item
+  Ejecución controlada.
+\item
+  Confirmación antes de acciones sensibles.
+\item
+  Logs.
+\item
+  Respuesta final al usuario.
+\end{itemize}
+
+\subsection{Criterios de aceptación}\label{criterios-de-aceptaciuxf3n-4}
+
+El sistema es aceptable si:
+
+\begin{itemize}
+\tightlist
+\item
+  llama la función correcta;
+\item
+  no inventa argumentos;
+\item
+  valida entradas;
+\item
+  pide confirmación cuando hace falta;
+\item
+  registra acciones;
+\item
+  maneja errores de herramientas.
+\end{itemize}
+
+\subsection{Capítulos relacionados}\label{capuxedtulos-relacionados-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 23 --- Diferencia entre chatbot, copiloto y agente
+\item
+  Capítulo 24 --- Qué es un agente de IA
+\item
+  Capítulo 25 --- Function calling
+\item
+  Capítulo 26 --- MCP
+\end{itemize}
+
+\subsection{Ampliaciones}\label{ampliaciones-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Añadir varias tools.
+\item
+  Añadir permisos por usuario.
+\item
+  Añadir MCP.
+\item
+  Añadir evaluación de tool calls.
+\item
+  Añadir simulación antes de ejecución real.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Cómo elegir proyecto}\label{cuxf3mo-elegir-proyecto}
+
+Elige según tu situación:
+
+\begin{itemize}
+\tightlist
+\item
+  Si trabajas con documentación: empieza por RAG.
+\item
+  Si trabajas en soporte: empieza por chatbot de soporte.
+\item
+  Si trabajas en desarrollo: empieza por copiloto interno.
+\item
+  Si quieres producto: empieza por tools/function calling.
+\item
+  Si investigas mucho: empieza por agente de investigación.
+\item
+  Si tienes hardware local: empieza por benchmark de modelos.
+\end{itemize}
+
+La regla es simple:
+
+\begin{quote}
+El mejor proyecto no es el más impresionante. Es el que te obliga a
+conectar modelo, datos, contexto, evaluación y usuario real.
+\end{quote}
+
+\newpage
+
+\chapter{Apéndice C --- Checklists de
+producción}\label{apuxe9ndice-c-checklists-de-producciuxf3n}
+
+La diferencia entre una demo y un sistema útil suele aparecer en los
+detalles.
+
+Este apéndice reúne checklists prácticos para revisar una aplicación con
+IA antes de ponerla delante de usuarios reales.
+
+No todas las preguntas aplican a todos los proyectos. La idea es
+obligarte a mirar el sistema desde varios ángulos: datos, modelo,
+contexto, coste, seguridad, experiencia de usuario y mantenimiento.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist general de sistema
+IA}\label{checklist-general-de-sistema-ia}
+
+Antes de enseñar el sistema a usuarios reales, revisa:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Qué problema concreto resuelve?
+\item
+  ¿Quién es el usuario principal?
+\item
+  ¿Qué tarea mejora?
+\item
+  ¿Qué parte hace el modelo?
+\item
+  ¿Qué parte hace código determinista?
+\item
+  ¿Qué datos necesita?
+\item
+  ¿Qué datos no debería ver nunca?
+\item
+  ¿Qué ocurre cuando el modelo falla?
+\item
+  ¿Qué ocurre cuando no hay contexto suficiente?
+\item
+  ¿Qué métrica define que el sistema funciona?
+\item
+  ¿Hay logs?
+\item
+  ¿Hay forma de revisar errores?
+\item
+  ¿Hay coste estimado por uso?
+\item
+  ¿Hay límites de uso?
+\item
+  ¿Hay plan de mantenimiento?
+\end{itemize}
+
+Si no puedes responder estas preguntas, todavía no tienes producto.
+Tienes prototipo.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist de prompts}\label{checklist-de-prompts}
+
+Un prompt importante debe revisarse como una pieza de ingeniería.
+
+Comprueba:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Tiene objetivo claro?
+\item
+  ¿Define rol solo cuando aporta algo?
+\item
+  ¿Separa instrucciones de contexto dinámico?
+\item
+  ¿Incluye límites explícitos?
+\item
+  ¿Define formato de salida?
+\item
+  ¿Indica qué hacer si falta información?
+\item
+  ¿Evita pedir razonamiento innecesario al usuario?
+\item
+  ¿Está versionado?
+\item
+  ¿Tiene ejemplos?
+\item
+  ¿Tiene tests o casos de evaluación?
+\item
+  ¿Está guardado en archivo, no escondido en código?
+\end{itemize}
+
+Una señal de alerta:
+
+\begin{quote}
+Si cambiar una frase del prompt puede romper producción y nadie se
+entera, el prompt no está gestionado como parte del sistema.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist de RAG}\label{checklist-de-rag}
+
+Para sistemas con recuperación de documentos:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Las fuentes están identificadas?
+\item
+  ¿Hay pipeline de ingestión?
+\item
+  ¿El chunking está justificado?
+\item
+  ¿Se han probado varios tamaños de chunk?
+\item
+  ¿Se guardan metadatos?
+\item
+  ¿Hay control de permisos?
+\item
+  ¿Se distingue recuperación de generación?
+\item
+  ¿Se citan fuentes?
+\item
+  ¿Se evalúa recall?
+\item
+  ¿Se evalúa precisión?
+\item
+  ¿Hay reranking si hace falta?
+\item
+  ¿Qué ocurre con documentos contradictorios?
+\item
+  ¿Qué ocurre con documentos obsoletos?
+\item
+  ¿Hay reindexación?
+\item
+  ¿Hay trazabilidad de respuesta?
+\end{itemize}
+
+El error típico:
+
+\begin{quote}
+Pensar que RAG es elegir una base vectorial. RAG es todo el circuito de
+conocimiento.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist de chatbots}\label{checklist-de-chatbots}
+
+Para chatbots de soporte o asistentes conversacionales:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Está claro qué puede hacer?
+\item
+  ¿Está claro qué no puede hacer?
+\item
+  ¿Tiene tono consistente?
+\item
+  ¿Pide aclaraciones cuando la pregunta es ambigua?
+\item
+  ¿Escala a humano?
+\item
+  ¿Detecta frustración o bloqueo?
+\item
+  ¿Evita prometer acciones que no ejecuta?
+\item
+  ¿Cita fuentes cuando responde con información documental?
+\item
+  ¿Se registran conversaciones?
+\item
+  ¿Se pueden revisar conversaciones fallidas?
+\item
+  ¿Hay métricas de satisfacción?
+\item
+  ¿Hay métricas de resolución?
+\item
+  ¿Hay protección contra prompt injection?
+\end{itemize}
+
+Un chatbot útil no es el que habla más.
+
+Es el que resuelve mejor, escala antes y confunde menos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist de agentes y
+tools}\label{checklist-de-agentes-y-tools}
+
+Cuando un modelo puede ejecutar acciones, el nivel de riesgo sube.
+
+Comprueba:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Qué tools existen?
+\item
+  ¿Qué permisos tiene cada tool?
+\item
+  ¿Qué argumentos acepta cada tool?
+\item
+  ¿Se validan los argumentos?
+\item
+  ¿Se limita el número de llamadas?
+\item
+  ¿Hay confirmación humana para acciones sensibles?
+\item
+  ¿Hay modo simulación?
+\item
+  ¿Hay logs de tool calls?
+\item
+  ¿Hay rollback?
+\item
+  ¿Qué pasa si una tool falla?
+\item
+  ¿Qué pasa si el modelo llama una tool incorrecta?
+\item
+  ¿Qué pasa si el usuario intenta forzar una acción?
+\end{itemize}
+
+Principio práctico:
+
+\begin{quote}
+Cuanto más poder tiene el agente, menos libertad implícita debe tener.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist de modelos
+locales}\label{checklist-de-modelos-locales}
+
+Para despliegues con Ollama, LM Studio, llama.cpp, MLX u otros entornos
+locales:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿El modelo cabe en memoria?
+\item
+  ¿La latencia es aceptable?
+\item
+  ¿La calidad es suficiente para la tarea?
+\item
+  ¿Se ha probado con datos reales?
+\item
+  ¿Qué cuantización se usa?
+\item
+  ¿Qué pasa con prompts largos?
+\item
+  ¿Hay límites de contexto?
+\item
+  ¿Hay fallback a API externa?
+\item
+  ¿Hay monitorización de recursos?
+\item
+  ¿Hay control de temperatura y parámetros?
+\item
+  ¿El modelo está documentado?
+\item
+  ¿Se puede reproducir la configuración?
+\end{itemize}
+
+No uses local por ideología.
+
+Usa local cuando privacidad, coste, latencia, control o soberanía lo
+justifiquen.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist de seguridad y
+privacidad}\label{checklist-de-seguridad-y-privacidad}
+
+Preguntas mínimas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Qué datos personales entran al sistema?
+\item
+  ¿Qué datos salen hacia proveedores externos?
+\item
+  ¿Qué se guarda en logs?
+\item
+  ¿Durante cuánto tiempo?
+\item
+  ¿Quién puede leer conversaciones?
+\item
+  ¿Quién puede leer documentos indexados?
+\item
+  ¿Hay datos sensibles en prompts?
+\item
+  ¿Hay secretos en variables o contexto?
+\item
+  ¿Hay protección contra inyección de prompt?
+\item
+  ¿Hay separación por usuario o tenant?
+\item
+  ¿Hay auditoría?
+\item
+  ¿Hay política de borrado?
+\end{itemize}
+
+Una regla sana:
+
+\begin{quote}
+No metas en el contexto nada que no puedas justificar ante el usuario,
+el cliente o tu equipo legal.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist de costes}\label{checklist-de-costes}
+
+Antes de escalar:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Cuánto cuesta una interacción media?
+\item
+  ¿Cuánto cuesta una interacción larga?
+\item
+  ¿Cuánto cuesta la indexación?
+\item
+  ¿Cuánto cuesta el almacenamiento?
+\item
+  ¿Cuánto cuesta el reranking?
+\item
+  ¿Cuánto cuesta usar modelos grandes?
+\item
+  ¿Hay caching?
+\item
+  ¿Hay límites por usuario?
+\item
+  ¿Hay alertas de gasto?
+\item
+  ¿Hay degradación a modelos más baratos?
+\item
+  ¿Hay una métrica de valor por coste?
+\end{itemize}
+
+Una aplicación con IA puede fallar técnicamente.
+
+También puede fallar económicamente.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist de evaluación}\label{checklist-de-evaluaciuxf3n}
+
+Sin evaluación, no sabes si mejoras.
+
+Define:
+
+\begin{itemize}
+\tightlist
+\item
+  dataset de preguntas;
+\item
+  respuestas esperadas;
+\item
+  casos fáciles;
+\item
+  casos ambiguos;
+\item
+  casos fuera de alcance;
+\item
+  casos con información insuficiente;
+\item
+  casos adversarios;
+\item
+  métricas automáticas;
+\item
+  revisión humana;
+\item
+  frecuencia de evaluación.
+\end{itemize}
+
+Evalúa cada cambio importante de:
+
+\begin{itemize}
+\tightlist
+\item
+  modelo;
+\item
+  prompt;
+\item
+  chunking;
+\item
+  embeddings;
+\item
+  reranker;
+\item
+  tools;
+\item
+  interfaz.
+\end{itemize}
+
+El objetivo no es tener una puntuación perfecta.
+
+El objetivo es detectar regresiones antes que tus usuarios.
+
+\newpage
+
+\chapter{Apéndice D --- Glosario
+operativo}\label{apuxe9ndice-d-glosario-operativo}
+
+Este glosario no busca definiciones académicas perfectas.
+
+Busca definiciones operativas: qué significa cada concepto cuando estás
+construyendo software real con IA.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Agente}\label{agente-9}
+
+Sistema que usa un modelo para decidir pasos, llamar herramientas,
+observar resultados y avanzar hacia un objetivo dentro de ciertos
+límites.
+
+Un agente no es solo un chatbot. Necesita tools, estado, contexto,
+reglas y supervisión.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Alucinación}\label{alucinaciuxf3n}
+
+Respuesta generada que parece plausible pero no está respaldada por
+información correcta.
+
+En producción no basta con decir ``los modelos alucinan''. Hay que
+diseñar límites, recuperación de contexto, citas, evaluación y rutas de
+escalado.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Chunk}\label{chunk}
+
+Fragmento de documento usado en un sistema RAG.
+
+El tamaño y la forma del chunk afectan directamente a la recuperación.
+Un mal chunking puede hacer que el sistema falle aunque el modelo sea
+bueno.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Copiloto}\label{copiloto-8}
+
+Sistema que ayuda a un usuario a trabajar, pero no sustituye
+completamente su criterio.
+
+Un copiloto suele proponer, explicar, completar o acelerar. El usuario
+mantiene control de la decisión final.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Embedding}\label{embedding}
+
+Representación vectorial de texto, imagen u otro dato.
+
+En RAG, los embeddings permiten buscar fragmentos semánticamente
+parecidos a una pregunta, aunque no compartan exactamente las mismas
+palabras.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Evaluación}\label{evaluaciuxf3n-3}
+
+Proceso para medir si el sistema responde mejor o peor.
+
+Puede incluir tests automáticos, revisión humana, datasets de preguntas,
+métricas de recuperación, análisis de errores y comparación entre
+versiones.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Function calling}\label{function-calling}
+
+Capacidad de un modelo para devolver una llamada estructurada a una
+función definida por el sistema.
+
+No significa que el modelo ejecute código por sí solo. El sistema recibe
+la llamada, valida argumentos, ejecuta si procede y devuelve el
+resultado.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Grounding}\label{grounding}
+
+Conectar la respuesta del modelo con información concreta, como
+documentos, bases de datos, resultados de búsqueda o herramientas.
+
+El grounding reduce respuestas inventadas y mejora trazabilidad, pero no
+elimina todos los riesgos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Guardrail}\label{guardrail}
+
+Mecanismo que limita, filtra, valida o corrige el comportamiento del
+sistema.
+
+Puede ser un prompt, una regla de código, un clasificador, una
+validación de argumentos, una política de permisos o una revisión
+humana.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ingestión}\label{ingestiuxf3n}
+
+Proceso de introducir datos en el sistema: leer documentos, limpiarlos,
+dividirlos, generar embeddings, guardar metadatos e indexarlos.
+
+En RAG, la ingestión suele ser más importante de lo que parece.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Latencia}\label{latencia-5}
+
+Tiempo que tarda el sistema en responder.
+
+En aplicaciones con IA, la latencia no depende solo del modelo. También
+influyen recuperación, reranking, llamadas a tools, red, streaming,
+tamaño de contexto y procesamiento posterior.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{MCP}\label{mcp-1}
+
+Model Context Protocol.
+
+Un protocolo para conectar modelos o agentes con herramientas, recursos
+y contexto de forma más estandarizada.
+
+MCP no elimina la necesidad de permisos, validación, logs y diseño de
+seguridad.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Modelo local}\label{modelo-local}
+
+Modelo ejecutado en hardware propio o controlado directamente por el
+equipo.
+
+Puede aportar privacidad, control y ahorro en ciertos escenarios, pero
+exige gestionar rendimiento, memoria, instalación, actualización y
+calidad.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Prompt}\label{prompt-2}
+
+Instrucción o conjunto de instrucciones que guía al modelo.
+
+En ingeniería real, un prompt importante debe versionarse, evaluarse y
+mantenerse como cualquier otra pieza crítica del sistema.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Prompt injection}\label{prompt-injection-2}
+
+Intento de manipular al modelo mediante instrucciones maliciosas o
+contradictorias incluidas por el usuario, documentos o fuentes externas.
+
+Es especialmente peligroso en sistemas con RAG, tools o agentes.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{RAG}\label{rag-5}
+
+Retrieval-Augmented Generation.
+
+Arquitectura donde el sistema recupera información relevante antes de
+pedir al modelo que genere una respuesta.
+
+RAG no es una base vectorial. Es una cadena completa: fuentes,
+ingestión, recuperación, generación, citas, permisos, evaluación y
+mantenimiento.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Reranking}\label{reranking-3}
+
+Reordenar resultados recuperados para mejorar la calidad del contexto
+que recibe el modelo.
+
+Suele usarse después de una primera búsqueda amplia y antes de generar
+la respuesta.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Tool}\label{tool-2}
+
+Función, API, comando o recurso externo que el sistema puede usar.
+
+Una tool debe tener contrato claro: nombre, descripción, argumentos,
+validaciones, permisos, errores y límites.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Trazabilidad}\label{trazabilidad-1}
+
+Capacidad de reconstruir por qué el sistema respondió o actuó de una
+determinada manera.
+
+Incluye prompts, contexto usado, documentos recuperados, tool calls,
+resultados, modelo, versión y logs.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Vector store}\label{vector-store}
+
+Base o índice usado para guardar vectores y buscar elementos similares.
+
+Es una pieza habitual en RAG, pero no garantiza por sí sola que el
+sistema responda bien.

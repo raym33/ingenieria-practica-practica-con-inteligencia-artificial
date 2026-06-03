@@ -10,6 +10,7 @@ export function SiteHeader() {
         </Link>
         <div className="nav-links">
           <Link href="/biblioteca/">Biblioteca</Link>
+          <Link href="/rutas/">Rutas</Link>
           <Link href="/leer/00-prefacio-de-preguntar-a-construir/">Leer</Link>
           <Link href="/radar/">Radar</Link>
           <Link href="/descargas/">Descargas</Link>
@@ -18,4 +19,3 @@ export function SiteHeader() {
     </header>
   );
 }
-

@@ -37024,3 +37024,905 @@ Este capítulo conecta con:
 - Capítulo 50 — Evaluación
 - Apéndice D — Plantillas de tools y agentes
 - Apéndice G — Tabla viva de frameworks agenticos
+
+\newpage
+
+# Apéndice A — Rutas de lectura
+
+Este libro puede leerse de principio a fin, pero no todos los lectores llegan con la misma necesidad.
+
+Algunos quieren entender el mapa general de la IA aplicada al software. Otros necesitan elegir un modelo. Otros están construyendo un chatbot de soporte, un sistema RAG, un agente de código o una arquitectura local con Ollama, LM Studio y modelos abiertos.
+
+Este apéndice propone rutas de lectura para que el libro funcione como manual de estudio y como herramienta de consulta.
+
+---
+
+## Ruta 1 — Para entender el mapa completo
+
+Esta ruta es para quien quiere dejar de ver la IA como una colección de herramientas sueltas y empezar a verla como una nueva forma de construir software.
+
+Lee en este orden:
+
+1. Prefacio — De preguntar a construir
+2. Introducción — La nueva ingeniería con IA
+3. Capítulo 1 — El camino real: de ChatGPT a sistemas IA
+4. Capítulo 2 — Qué se puede crear hoy con IA
+5. Capítulo 3 — La diferencia entre jugar con IA y construir con IA
+
+Al terminar esta ruta deberías poder responder:
+
+- qué diferencia hay entre usar IA y construir con IA;
+- por qué una demo no equivale a un producto;
+- qué piezas forman un sistema IA moderno;
+- dónde encajan prompts, modelos, RAG, agentes, tools y contexto.
+
+Esta ruta es la mejor entrada para lectores técnicos que todavía no saben dónde poner cada concepto.
+
+---
+
+## Ruta 2 — Para elegir modelos con criterio
+
+Esta ruta es para quien necesita decidir entre APIs propietarias, modelos abiertos, modelos locales, hardware propio o una arquitectura híbrida.
+
+Lee:
+
+1. Capítulo 4 — LLMs para ingenieros ocupados
+2. Capítulo 5 — Cómo elegir un modelo
+3. Capítulo 6 — Modelos propietarios
+4. Capítulo 7 — Modelos locales
+5. Capítulo 8 — Hardware real para IA local
+
+Al terminar esta ruta deberías tener una matriz de decisión práctica:
+
+- cuándo usar OpenAI, Anthropic, Google u otro proveedor;
+- cuándo usar modelos locales;
+- qué papel tienen latencia, coste, privacidad, contexto y calidad;
+- cómo pensar en hardware sin caer en entusiasmo inútil;
+- cuándo una solución híbrida es más razonable que elegir un único camino.
+
+La pregunta central de esta ruta no es "cuál es el mejor modelo", sino:
+
+> ¿Qué modelo es suficientemente bueno para este caso, con este coste, esta latencia y este nivel de riesgo?
+
+---
+
+## Ruta 3 — Para dominar prompts como ingeniería
+
+Esta ruta es para desarrolladores que ya usan modelos, pero quieren convertir prompts sueltos en piezas mantenibles de un sistema.
+
+Lee:
+
+1. Capítulo 9 — Prompt engineering que sigue funcionando
+2. Capítulo 10 — Prompts como herramientas de ingeniería
+3. Capítulo 11 — Técnicas avanzadas
+4. Capítulo 12 — Prompts para crear software
+5. Capítulo 13 — Vibe coding
+6. Capítulo 14 — Reglas para agentes de código
+
+Al terminar esta ruta deberías saber:
+
+- cómo estructurar prompts reutilizables;
+- cómo separar instrucciones, contexto, reglas y formato;
+- cómo versionar prompts;
+- cómo evaluar respuestas;
+- cómo usar agentes de código sin perder control del proyecto.
+
+La idea clave es simple:
+
+> Un prompt importante no es una frase. Es una interfaz.
+
+---
+
+## Ruta 4 — Para construir RAG de verdad
+
+Esta ruta es para quien quiere construir sistemas que respondan usando documentos, conocimiento interno, bases vectoriales y recuperación de contexto.
+
+Lee:
+
+1. Capítulo 16 — Qué problema resuelve RAG
+2. Capítulo 17 — Arquitectura RAG básica
+3. Capítulo 18 — Problemas reales en RAG
+4. Capítulo 19 — RAG avanzado
+5. Capítulo 20 — Herramientas RAG
+
+Al terminar esta ruta deberías poder diseñar un sistema RAG que no sea solo "meter PDFs en un vector store".
+
+Deberías entender:
+
+- ingestión;
+- chunking;
+- embeddings;
+- recuperación;
+- reranking;
+- generación;
+- citas;
+- evaluación;
+- permisos;
+- trazabilidad;
+- mantenimiento.
+
+La pregunta central de esta ruta es:
+
+> ¿Cómo hago que el sistema encuentre el contexto correcto antes de pedirle al modelo que responda?
+
+---
+
+## Ruta 5 — Para crear chatbots útiles
+
+Esta ruta es para quien quiere construir chatbots que no sean solo una caja de texto conectada a un modelo.
+
+Lee:
+
+1. Capítulo 21 — Chatbots modernos
+2. Capítulo 22 — Chatbots para soporte
+3. Capítulo 23 — Diferencia entre chatbot, copiloto y agente
+4. Capítulo 16 — Qué problema resuelve RAG
+5. Capítulo 18 — Problemas reales en RAG
+
+Al terminar esta ruta deberías poder diferenciar:
+
+- chatbot conversacional;
+- chatbot de soporte;
+- asistente interno;
+- copiloto;
+- agente;
+- sistema RAG con interfaz conversacional.
+
+También deberías poder diseñar un chatbot con:
+
+- límites claros;
+- escalado a humano;
+- memoria controlada;
+- fuentes citadas;
+- métricas de calidad;
+- gestión de errores.
+
+---
+
+## Ruta 6 — Para entender agentes, tools, function calling y MCP
+
+Esta ruta es para quien quiere pasar de "el modelo responde" a "el sistema actúa".
+
+Lee:
+
+1. Capítulo 23 — Diferencia entre chatbot, copiloto y agente
+2. Capítulo 24 — Qué es un agente de IA
+3. Capítulo 25 — Function calling
+4. Capítulo 26 — MCP
+5. Capítulo 14 — Reglas para agentes de código
+
+Al terminar esta ruta deberías poder explicar:
+
+- qué convierte a un sistema en agente;
+- por qué un agente no es solo un prompt largo;
+- cómo funcionan las tools;
+- qué aporta function calling;
+- qué problema intenta resolver MCP;
+- qué riesgos aparecen cuando un modelo puede ejecutar acciones.
+
+La frase que resume esta ruta:
+
+> Un agente no es inteligencia suelta. Es un modelo con contexto, herramientas, estado, objetivos, límites y supervisión.
+
+---
+
+## Ruta 7 — Para vender o implantar soluciones IA en empresas
+
+Esta ruta es para consultores, freelancers, CTOs y equipos que quieren convertir conocimiento técnico en soluciones utilizables.
+
+Lee:
+
+1. Capítulo 2 — Qué se puede crear hoy con IA
+2. Capítulo 3 — La diferencia entre jugar con IA y construir con IA
+3. Capítulo 15 — De idea a prototipo
+4. Capítulo 22 — Chatbots para soporte
+5. Capítulo 18 — Problemas reales en RAG
+6. Apéndice B — Proyectos guiados
+7. Apéndice C — Checklists de producción
+
+Al terminar esta ruta deberías poder diseñar una propuesta realista:
+
+- problema concreto;
+- usuario objetivo;
+- datos necesarios;
+- arquitectura;
+- riesgos;
+- coste;
+- plan de prototipo;
+- criterios de aceptación.
+
+La clave comercial no es prometer "IA", sino resolver un flujo específico con menos fricción, más velocidad o mejor acceso al conocimiento.
+
+---
+
+## Cómo estudiar este libro
+
+No intentes memorizar todos los conceptos.
+
+Trabaja así:
+
+1. Lee una ruta.
+2. Elige un proyecto pequeño.
+3. Diseña la arquitectura antes de escribir código.
+4. Construye una versión mínima.
+5. Evalúa fallos reales.
+6. Vuelve al capítulo correspondiente.
+7. Actualiza tus criterios.
+
+Este libro no está pensado solo para ser leído.
+
+Está pensado para ser usado.
+
+\newpage
+
+# Apéndice B — Proyectos guiados
+
+Un libro sobre construir con IA debe terminar llevando al lector a construir.
+
+Este apéndice propone proyectos guiados que conectan los capítulos con sistemas reales. No son ejercicios decorativos. Están pensados como prototipos que podrían convertirse en productos internos, demos comerciales o bases de aprendizaje profundo.
+
+Cada proyecto incluye objetivo, arquitectura mínima, criterios de aceptación y ampliaciones.
+
+---
+
+## Proyecto 1 — Chatbot de soporte con RAG
+
+### Objetivo
+
+Construir un chatbot que responda preguntas frecuentes de soporte usando una base documental propia.
+
+No debe inventar respuestas. Debe citar fuentes, reconocer límites y escalar a humano cuando no tenga suficiente contexto.
+
+### Arquitectura mínima
+
+- Interfaz web sencilla.
+- Colección de documentos de soporte.
+- Pipeline de ingestión.
+- Chunking controlado.
+- Embeddings.
+- Vector store.
+- Recuperación top-k.
+- Prompt de respuesta con fuentes.
+- Registro de conversaciones.
+- Evaluación manual de respuestas.
+
+### Criterios de aceptación
+
+El sistema es aceptable si:
+
+- responde correctamente al menos el 80% de preguntas frecuentes conocidas;
+- cita la fuente usada;
+- no responde cuando el contexto es insuficiente;
+- propone escalado a humano en casos ambiguos;
+- permite revisar conversaciones fallidas;
+- no expone documentos fuera del alcance previsto.
+
+### Capítulos relacionados
+
+- Capítulo 16 — Qué problema resuelve RAG
+- Capítulo 17 — Arquitectura RAG básica
+- Capítulo 18 — Problemas reales en RAG
+- Capítulo 21 — Chatbots modernos
+- Capítulo 22 — Chatbots para soporte
+
+### Ampliaciones
+
+- Añadir reranking.
+- Añadir evaluación automática.
+- Añadir perfiles de usuario.
+- Añadir permisos por documento.
+- Añadir analítica de temas frecuentes.
+
+---
+
+## Proyecto 2 — Copiloto interno para un equipo técnico
+
+### Objetivo
+
+Crear un copiloto que ayude a un equipo de desarrollo a consultar documentación interna, decisiones técnicas, issues y convenciones del proyecto.
+
+El objetivo no es que programe solo, sino que reduzca tiempo de búsqueda y mejore consistencia.
+
+### Arquitectura mínima
+
+- Fuente de conocimiento: README, ADRs, documentación, issues, changelogs.
+- Indexación por repositorio.
+- Búsqueda semántica y textual.
+- Interfaz conversacional.
+- Prompt con reglas del proyecto.
+- Respuestas con referencias.
+- Modo "explica" y modo "propón".
+
+### Criterios de aceptación
+
+El sistema debe:
+
+- responder preguntas sobre arquitectura del proyecto;
+- localizar documentos relevantes;
+- explicar convenciones;
+- no modificar código;
+- distinguir entre información documentada y sugerencia;
+- enlazar a las fuentes.
+
+### Capítulos relacionados
+
+- Capítulo 10 — Prompts como herramientas de ingeniería
+- Capítulo 12 — Prompts para crear software
+- Capítulo 14 — Reglas para agentes de código
+- Capítulo 23 — Diferencia entre chatbot, copiloto y agente
+
+### Ampliaciones
+
+- Integración con GitHub.
+- Lectura de PRs.
+- Generación de borradores de ADR.
+- Evaluación de preguntas frecuentes del equipo.
+
+---
+
+## Proyecto 3 — Agente de investigación técnica
+
+### Objetivo
+
+Construir un sistema que recopile novedades de IA, repos, papers y documentación, las clasifique y proponga actualizaciones editoriales.
+
+Este proyecto es la base del libro vivo.
+
+### Arquitectura mínima
+
+- Fuentes RSS.
+- GitHub releases.
+- arXiv o Semantic Scholar.
+- Bandeja manual.
+- Clasificación por tags.
+- Resumen.
+- Mapeo a capítulos.
+- Informe diario.
+- Revisión humana.
+
+### Criterios de aceptación
+
+El sistema funciona si:
+
+- recoge novedades sin romperse cuando una fuente falla;
+- distingue señales importantes de ruido;
+- propone capítulos afectados;
+- conserva enlaces;
+- genera un informe legible;
+- no publica cambios automáticamente sin revisión.
+
+### Capítulos relacionados
+
+- Capítulo 5 — Cómo elegir un modelo
+- Capítulo 11 — Técnicas avanzadas
+- Capítulo 24 — Qué es un agente de IA
+- Capítulo 25 — Function calling
+- Capítulo 26 — MCP
+
+### Ampliaciones
+
+- Añadir ranking de relevancia.
+- Añadir embeddings.
+- Añadir comparación entre fuentes.
+- Añadir generación de parches sugeridos.
+- Añadir releases automáticas semanales.
+
+---
+
+## Proyecto 4 — Banco de pruebas de modelos locales
+
+### Objetivo
+
+Evaluar modelos locales en tareas reales para decidir cuáles sirven para un caso concreto.
+
+No se trata de repetir benchmarks públicos, sino de construir un benchmark propio y útil.
+
+### Arquitectura mínima
+
+- Lista de modelos.
+- Dataset pequeño de tareas reales.
+- Prompts fijos.
+- Métricas manuales y automáticas.
+- Registro de latencia.
+- Registro de memoria.
+- Comparativa de calidad.
+
+### Criterios de aceptación
+
+El benchmark debe permitir responder:
+
+- qué modelo responde mejor;
+- qué modelo es suficientemente rápido;
+- qué modelo cabe en el hardware disponible;
+- qué tareas fallan más;
+- cuándo conviene usar API externa.
+
+### Capítulos relacionados
+
+- Capítulo 5 — Cómo elegir un modelo
+- Capítulo 7 — Modelos locales
+- Capítulo 8 — Hardware real para IA local
+
+### Ampliaciones
+
+- Integrar Ollama.
+- Integrar LM Studio.
+- Probar cuantizaciones.
+- Probar modelos especializados.
+- Generar informe mensual.
+
+---
+
+## Proyecto 5 — Sistema con tools y function calling
+
+### Objetivo
+
+Construir una aplicación donde el modelo no solo responda, sino que pueda llamar funciones controladas.
+
+Ejemplos:
+
+- consultar estado de pedido;
+- crear ticket;
+- buscar producto;
+- calcular presupuesto;
+- consultar disponibilidad;
+- actualizar un registro con confirmación humana.
+
+### Arquitectura mínima
+
+- Modelo con function calling.
+- Definición estricta de tools.
+- Validación de argumentos.
+- Ejecución controlada.
+- Confirmación antes de acciones sensibles.
+- Logs.
+- Respuesta final al usuario.
+
+### Criterios de aceptación
+
+El sistema es aceptable si:
+
+- llama la función correcta;
+- no inventa argumentos;
+- valida entradas;
+- pide confirmación cuando hace falta;
+- registra acciones;
+- maneja errores de herramientas.
+
+### Capítulos relacionados
+
+- Capítulo 23 — Diferencia entre chatbot, copiloto y agente
+- Capítulo 24 — Qué es un agente de IA
+- Capítulo 25 — Function calling
+- Capítulo 26 — MCP
+
+### Ampliaciones
+
+- Añadir varias tools.
+- Añadir permisos por usuario.
+- Añadir MCP.
+- Añadir evaluación de tool calls.
+- Añadir simulación antes de ejecución real.
+
+---
+
+## Cómo elegir proyecto
+
+Elige según tu situación:
+
+- Si trabajas con documentación: empieza por RAG.
+- Si trabajas en soporte: empieza por chatbot de soporte.
+- Si trabajas en desarrollo: empieza por copiloto interno.
+- Si quieres producto: empieza por tools/function calling.
+- Si investigas mucho: empieza por agente de investigación.
+- Si tienes hardware local: empieza por benchmark de modelos.
+
+La regla es simple:
+
+> El mejor proyecto no es el más impresionante. Es el que te obliga a conectar modelo, datos, contexto, evaluación y usuario real.
+
+\newpage
+
+# Apéndice C — Checklists de producción
+
+La diferencia entre una demo y un sistema útil suele aparecer en los detalles.
+
+Este apéndice reúne checklists prácticos para revisar una aplicación con IA antes de ponerla delante de usuarios reales.
+
+No todas las preguntas aplican a todos los proyectos. La idea es obligarte a mirar el sistema desde varios ángulos: datos, modelo, contexto, coste, seguridad, experiencia de usuario y mantenimiento.
+
+---
+
+## Checklist general de sistema IA
+
+Antes de enseñar el sistema a usuarios reales, revisa:
+
+- ¿Qué problema concreto resuelve?
+- ¿Quién es el usuario principal?
+- ¿Qué tarea mejora?
+- ¿Qué parte hace el modelo?
+- ¿Qué parte hace código determinista?
+- ¿Qué datos necesita?
+- ¿Qué datos no debería ver nunca?
+- ¿Qué ocurre cuando el modelo falla?
+- ¿Qué ocurre cuando no hay contexto suficiente?
+- ¿Qué métrica define que el sistema funciona?
+- ¿Hay logs?
+- ¿Hay forma de revisar errores?
+- ¿Hay coste estimado por uso?
+- ¿Hay límites de uso?
+- ¿Hay plan de mantenimiento?
+
+Si no puedes responder estas preguntas, todavía no tienes producto. Tienes prototipo.
+
+---
+
+## Checklist de prompts
+
+Un prompt importante debe revisarse como una pieza de ingeniería.
+
+Comprueba:
+
+- ¿Tiene objetivo claro?
+- ¿Define rol solo cuando aporta algo?
+- ¿Separa instrucciones de contexto dinámico?
+- ¿Incluye límites explícitos?
+- ¿Define formato de salida?
+- ¿Indica qué hacer si falta información?
+- ¿Evita pedir razonamiento innecesario al usuario?
+- ¿Está versionado?
+- ¿Tiene ejemplos?
+- ¿Tiene tests o casos de evaluación?
+- ¿Está guardado en archivo, no escondido en código?
+
+Una señal de alerta:
+
+> Si cambiar una frase del prompt puede romper producción y nadie se entera, el prompt no está gestionado como parte del sistema.
+
+---
+
+## Checklist de RAG
+
+Para sistemas con recuperación de documentos:
+
+- ¿Las fuentes están identificadas?
+- ¿Hay pipeline de ingestión?
+- ¿El chunking está justificado?
+- ¿Se han probado varios tamaños de chunk?
+- ¿Se guardan metadatos?
+- ¿Hay control de permisos?
+- ¿Se distingue recuperación de generación?
+- ¿Se citan fuentes?
+- ¿Se evalúa recall?
+- ¿Se evalúa precisión?
+- ¿Hay reranking si hace falta?
+- ¿Qué ocurre con documentos contradictorios?
+- ¿Qué ocurre con documentos obsoletos?
+- ¿Hay reindexación?
+- ¿Hay trazabilidad de respuesta?
+
+El error típico:
+
+> Pensar que RAG es elegir una base vectorial. RAG es todo el circuito de conocimiento.
+
+---
+
+## Checklist de chatbots
+
+Para chatbots de soporte o asistentes conversacionales:
+
+- ¿Está claro qué puede hacer?
+- ¿Está claro qué no puede hacer?
+- ¿Tiene tono consistente?
+- ¿Pide aclaraciones cuando la pregunta es ambigua?
+- ¿Escala a humano?
+- ¿Detecta frustración o bloqueo?
+- ¿Evita prometer acciones que no ejecuta?
+- ¿Cita fuentes cuando responde con información documental?
+- ¿Se registran conversaciones?
+- ¿Se pueden revisar conversaciones fallidas?
+- ¿Hay métricas de satisfacción?
+- ¿Hay métricas de resolución?
+- ¿Hay protección contra prompt injection?
+
+Un chatbot útil no es el que habla más.
+
+Es el que resuelve mejor, escala antes y confunde menos.
+
+---
+
+## Checklist de agentes y tools
+
+Cuando un modelo puede ejecutar acciones, el nivel de riesgo sube.
+
+Comprueba:
+
+- ¿Qué tools existen?
+- ¿Qué permisos tiene cada tool?
+- ¿Qué argumentos acepta cada tool?
+- ¿Se validan los argumentos?
+- ¿Se limita el número de llamadas?
+- ¿Hay confirmación humana para acciones sensibles?
+- ¿Hay modo simulación?
+- ¿Hay logs de tool calls?
+- ¿Hay rollback?
+- ¿Qué pasa si una tool falla?
+- ¿Qué pasa si el modelo llama una tool incorrecta?
+- ¿Qué pasa si el usuario intenta forzar una acción?
+
+Principio práctico:
+
+> Cuanto más poder tiene el agente, menos libertad implícita debe tener.
+
+---
+
+## Checklist de modelos locales
+
+Para despliegues con Ollama, LM Studio, llama.cpp, MLX u otros entornos locales:
+
+- ¿El modelo cabe en memoria?
+- ¿La latencia es aceptable?
+- ¿La calidad es suficiente para la tarea?
+- ¿Se ha probado con datos reales?
+- ¿Qué cuantización se usa?
+- ¿Qué pasa con prompts largos?
+- ¿Hay límites de contexto?
+- ¿Hay fallback a API externa?
+- ¿Hay monitorización de recursos?
+- ¿Hay control de temperatura y parámetros?
+- ¿El modelo está documentado?
+- ¿Se puede reproducir la configuración?
+
+No uses local por ideología.
+
+Usa local cuando privacidad, coste, latencia, control o soberanía lo justifiquen.
+
+---
+
+## Checklist de seguridad y privacidad
+
+Preguntas mínimas:
+
+- ¿Qué datos personales entran al sistema?
+- ¿Qué datos salen hacia proveedores externos?
+- ¿Qué se guarda en logs?
+- ¿Durante cuánto tiempo?
+- ¿Quién puede leer conversaciones?
+- ¿Quién puede leer documentos indexados?
+- ¿Hay datos sensibles en prompts?
+- ¿Hay secretos en variables o contexto?
+- ¿Hay protección contra inyección de prompt?
+- ¿Hay separación por usuario o tenant?
+- ¿Hay auditoría?
+- ¿Hay política de borrado?
+
+Una regla sana:
+
+> No metas en el contexto nada que no puedas justificar ante el usuario, el cliente o tu equipo legal.
+
+---
+
+## Checklist de costes
+
+Antes de escalar:
+
+- ¿Cuánto cuesta una interacción media?
+- ¿Cuánto cuesta una interacción larga?
+- ¿Cuánto cuesta la indexación?
+- ¿Cuánto cuesta el almacenamiento?
+- ¿Cuánto cuesta el reranking?
+- ¿Cuánto cuesta usar modelos grandes?
+- ¿Hay caching?
+- ¿Hay límites por usuario?
+- ¿Hay alertas de gasto?
+- ¿Hay degradación a modelos más baratos?
+- ¿Hay una métrica de valor por coste?
+
+Una aplicación con IA puede fallar técnicamente.
+
+También puede fallar económicamente.
+
+---
+
+## Checklist de evaluación
+
+Sin evaluación, no sabes si mejoras.
+
+Define:
+
+- dataset de preguntas;
+- respuestas esperadas;
+- casos fáciles;
+- casos ambiguos;
+- casos fuera de alcance;
+- casos con información insuficiente;
+- casos adversarios;
+- métricas automáticas;
+- revisión humana;
+- frecuencia de evaluación.
+
+Evalúa cada cambio importante de:
+
+- modelo;
+- prompt;
+- chunking;
+- embeddings;
+- reranker;
+- tools;
+- interfaz.
+
+El objetivo no es tener una puntuación perfecta.
+
+El objetivo es detectar regresiones antes que tus usuarios.
+
+\newpage
+
+# Apéndice D — Glosario operativo
+
+Este glosario no busca definiciones académicas perfectas.
+
+Busca definiciones operativas: qué significa cada concepto cuando estás construyendo software real con IA.
+
+---
+
+## Agente
+
+Sistema que usa un modelo para decidir pasos, llamar herramientas, observar resultados y avanzar hacia un objetivo dentro de ciertos límites.
+
+Un agente no es solo un chatbot. Necesita tools, estado, contexto, reglas y supervisión.
+
+---
+
+## Alucinación
+
+Respuesta generada que parece plausible pero no está respaldada por información correcta.
+
+En producción no basta con decir "los modelos alucinan". Hay que diseñar límites, recuperación de contexto, citas, evaluación y rutas de escalado.
+
+---
+
+## Chunk
+
+Fragmento de documento usado en un sistema RAG.
+
+El tamaño y la forma del chunk afectan directamente a la recuperación. Un mal chunking puede hacer que el sistema falle aunque el modelo sea bueno.
+
+---
+
+## Copiloto
+
+Sistema que ayuda a un usuario a trabajar, pero no sustituye completamente su criterio.
+
+Un copiloto suele proponer, explicar, completar o acelerar. El usuario mantiene control de la decisión final.
+
+---
+
+## Embedding
+
+Representación vectorial de texto, imagen u otro dato.
+
+En RAG, los embeddings permiten buscar fragmentos semánticamente parecidos a una pregunta, aunque no compartan exactamente las mismas palabras.
+
+---
+
+## Evaluación
+
+Proceso para medir si el sistema responde mejor o peor.
+
+Puede incluir tests automáticos, revisión humana, datasets de preguntas, métricas de recuperación, análisis de errores y comparación entre versiones.
+
+---
+
+## Function calling
+
+Capacidad de un modelo para devolver una llamada estructurada a una función definida por el sistema.
+
+No significa que el modelo ejecute código por sí solo. El sistema recibe la llamada, valida argumentos, ejecuta si procede y devuelve el resultado.
+
+---
+
+## Grounding
+
+Conectar la respuesta del modelo con información concreta, como documentos, bases de datos, resultados de búsqueda o herramientas.
+
+El grounding reduce respuestas inventadas y mejora trazabilidad, pero no elimina todos los riesgos.
+
+---
+
+## Guardrail
+
+Mecanismo que limita, filtra, valida o corrige el comportamiento del sistema.
+
+Puede ser un prompt, una regla de código, un clasificador, una validación de argumentos, una política de permisos o una revisión humana.
+
+---
+
+## Ingestión
+
+Proceso de introducir datos en el sistema: leer documentos, limpiarlos, dividirlos, generar embeddings, guardar metadatos e indexarlos.
+
+En RAG, la ingestión suele ser más importante de lo que parece.
+
+---
+
+## Latencia
+
+Tiempo que tarda el sistema en responder.
+
+En aplicaciones con IA, la latencia no depende solo del modelo. También influyen recuperación, reranking, llamadas a tools, red, streaming, tamaño de contexto y procesamiento posterior.
+
+---
+
+## MCP
+
+Model Context Protocol.
+
+Un protocolo para conectar modelos o agentes con herramientas, recursos y contexto de forma más estandarizada.
+
+MCP no elimina la necesidad de permisos, validación, logs y diseño de seguridad.
+
+---
+
+## Modelo local
+
+Modelo ejecutado en hardware propio o controlado directamente por el equipo.
+
+Puede aportar privacidad, control y ahorro en ciertos escenarios, pero exige gestionar rendimiento, memoria, instalación, actualización y calidad.
+
+---
+
+## Prompt
+
+Instrucción o conjunto de instrucciones que guía al modelo.
+
+En ingeniería real, un prompt importante debe versionarse, evaluarse y mantenerse como cualquier otra pieza crítica del sistema.
+
+---
+
+## Prompt injection
+
+Intento de manipular al modelo mediante instrucciones maliciosas o contradictorias incluidas por el usuario, documentos o fuentes externas.
+
+Es especialmente peligroso en sistemas con RAG, tools o agentes.
+
+---
+
+## RAG
+
+Retrieval-Augmented Generation.
+
+Arquitectura donde el sistema recupera información relevante antes de pedir al modelo que genere una respuesta.
+
+RAG no es una base vectorial. Es una cadena completa: fuentes, ingestión, recuperación, generación, citas, permisos, evaluación y mantenimiento.
+
+---
+
+## Reranking
+
+Reordenar resultados recuperados para mejorar la calidad del contexto que recibe el modelo.
+
+Suele usarse después de una primera búsqueda amplia y antes de generar la respuesta.
+
+---
+
+## Tool
+
+Función, API, comando o recurso externo que el sistema puede usar.
+
+Una tool debe tener contrato claro: nombre, descripción, argumentos, validaciones, permisos, errores y límites.
+
+---
+
+## Trazabilidad
+
+Capacidad de reconstruir por qué el sistema respondió o actuó de una determinada manera.
+
+Incluye prompts, contexto usado, documentos recuperados, tool calls, resultados, modelo, versión y logs.
+
+---
+
+## Vector store
+
+Base o índice usado para guardar vectores y buscar elementos similares.
+
+Es una pieza habitual en RAG, pero no garantiza por sí sola que el sistema responda bien.

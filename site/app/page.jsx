@@ -19,6 +19,7 @@ export default function HomePage() {
           <div className="actions">
             <Link className="button primary" href="/leer/00-prefacio-de-preguntar-a-construir/">Empezar a leer</Link>
             <Link className="button secondary" href="/biblioteca/">Ver capítulos</Link>
+            <Link className="button secondary" href="/rutas/">Elegir ruta</Link>
           </div>
         </div>
       </section>
@@ -53,4 +54,3 @@ export default function HomePage() {
     </main>
   );
 }
-
