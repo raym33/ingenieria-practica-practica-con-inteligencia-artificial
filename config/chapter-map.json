@@ -275,5 +275,59 @@
     "33-capitulo-32-observabilidad-y-trazas.md",
     "35-capitulo-34-costes-latencia-y-rendimiento.md",
     "37-capitulo-36-despliegue-y-operacion.md"
+  ],
+  "domain-specific-evals": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "evaluacion-dominio": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "llm-as-judge": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "rubricas": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "43-capitulo-42-venta-consultoria-e-implantacion.md"
+  ],
+  "benchmarks": [
+    "06-capitulo-5-como-elegir-un-modelo.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
+  ],
+  "healthcare": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "36-capitulo-35-datos-privacidad-y-gobernanza.md"
+  ],
+  "legal": [
+    "17-capitulo-16-que-problema-resuelve-rag.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "36-capitulo-35-datos-privacidad-y-gobernanza.md"
+  ],
+  "finanzas": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md",
+    "36-capitulo-35-datos-privacidad-y-gobernanza.md"
+  ],
+  "evalsense": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
+  ],
+  "langsmith": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md"
+  ],
+  "phoenix": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md"
+  ],
+  "deepeval": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
+  ],
+  "ragas": [
+    "20-capitulo-19-rag-avanzado.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
   ]
 }

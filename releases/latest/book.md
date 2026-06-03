@@ -41978,6 +41978,277 @@ a:
 
 Eso sí se puede arreglar.
 
+### Evaluación específica por dominio
+
+Los sistemas IA no fallan igual en todos los dominios.
+
+En salud, un fallo puede ser:
+
+- omitir una contraindicación;
+- dar consejo médico demasiado seguro;
+- no recomendar consulta profesional;
+- confundir síntomas parecidos;
+- usar tono frío en una situación sensible.
+
+En legal, un fallo puede ser:
+
+- aplicar mal una jurisdicción;
+- inventar un precedente;
+- romper el método de razonamiento esperado;
+- resumir un contrato ignorando una cláusula crítica;
+- no distinguir opinión de obligación.
+
+En finanzas, un fallo puede ser:
+
+- arrastrar un error aritmético;
+- no explicar una hipótesis;
+- incumplir una política de riesgo;
+- mezclar datos de periodos distintos;
+- responder sin trazabilidad.
+
+En soporte, un fallo puede ser:
+
+- aplicar una política equivocada;
+- no escalar un caso sensible;
+- dar tono incorrecto;
+- cerrar una conversación sin resolver;
+- proponer una acción que el agente humano no puede ejecutar.
+
+Por eso las evaluaciones de producción deben ser domain-specific.
+
+No empiezas preguntando:
+
+> ¿Cuál es la accuracy global?
+
+Empiezas preguntando:
+
+> ¿Qué errores son peligrosos en este dominio?
+
+### Top-down y bottom-up
+
+Hay dos direcciones complementarias.
+
+Top-down:
+
+1. Define el dominio.
+2. Identifica riesgos conocidos.
+3. Habla con expertos.
+4. Crea casos adversariales.
+5. Define criterios de seguridad y cumplimiento.
+
+Bottom-up:
+
+1. Mira trazas reales.
+2. Etiqueta errores observados.
+3. Agrupa failure modes.
+4. Mide frecuencia e impacto.
+5. Crea evaluadores específicos.
+
+El enfoque top-down evita ceguera ante riesgos obvios para expertos.
+
+El enfoque bottom-up evita inventar métricas bonitas que no aparecen en el uso real.
+
+La evaluación madura usa ambos.
+
+### Rúbricas de dominio
+
+Una rúbrica convierte criterio experto en evaluación repetible.
+
+Ejemplo para soporte:
+
+```text
+Criterio: aplicación correcta de política
+
+Pasa:
+- cita la política vigente;
+- distingue casos incluidos y excluidos;
+- no inventa excepciones;
+- indica cuándo escalar.
+
+Falla:
+- usa política antigua;
+- responde sin fuente;
+- convierte una excepción en regla;
+- omite escalado obligatorio.
+```
+
+Ejemplo para legal:
+
+```text
+Criterio: análisis contractual
+
+Pasa:
+- identifica cláusulas relevantes;
+- separa resumen de interpretación;
+- marca incertidumbre;
+- conserva jurisdicción y fecha;
+- no inventa obligaciones.
+
+Falla:
+- mezcla jurisdicciones;
+- omite cláusula material;
+- presenta opinión como hecho;
+- no cita fuente contractual.
+```
+
+Una rúbrica buena no busca estilo.
+
+Busca comportamiento verificable.
+
+### LLM-as-judge con calibración
+
+Los jueces LLM pueden ahorrar tiempo, pero son peligrosos si se usan como autoridad automática.
+
+Un juez genérico puede preferir respuestas largas, seguras y bien escritas aunque estén mal.
+
+Para usar LLM-as-judge en producción:
+
+1. Escribe una rúbrica específica.
+2. Añade ejemplos buenos y malos.
+3. Evalúa un conjunto etiquetado por humanos.
+4. Mide acuerdo entre juez y experto.
+5. Revisa falsos positivos y falsos negativos.
+6. Usa el juez como señal, no como verdad absoluta.
+
+Ejemplo de salida de juez:
+
+```json
+{
+  "case_id": "support_044",
+  "criterion": "policy_application",
+  "score": 2,
+  "max_score": 4,
+  "passed": false,
+  "reason": "La respuesta cita una política correcta, pero omite la condición de embalaje original.",
+  "failure_mode": "missing_policy_condition",
+  "needs_human_review": true
+}
+```
+
+La pregunta importante no es:
+
+> ¿El juez parece razonable?
+
+La pregunta importante es:
+
+> ¿El juez detecta los fallos que un experto humano considera importantes?
+
+### Meta-evaluación
+
+También hay que evaluar al evaluador.
+
+Puedes hacerlo con perturbaciones controladas:
+
+- quitar una cita correcta;
+- introducir una fuente obsoleta;
+- cambiar un importe;
+- eliminar una advertencia legal;
+- añadir una acción no permitida;
+- cambiar el tono en un caso sensible.
+
+Si el evaluador no detecta esas perturbaciones, no está listo.
+
+Ejemplo:
+
+```json
+{
+  "original_case": "finance_012",
+  "perturbation": "changed_total_amount",
+  "expected_judge_result": "fail",
+  "actual_judge_result": "pass",
+  "action": "revisar rúbrica y ejemplos"
+}
+```
+
+La meta-evaluación es especialmente importante cuando usas LLM-as-judge, porque un juez puede sonar convincente y aun así no detectar el fallo que importa.
+
+### Benchmarks públicos
+
+Los benchmarks públicos pueden ser útiles.
+
+Pero no son producción.
+
+Sirven para:
+
+- filtrar modelos claramente insuficientes;
+- entender capacidades generales;
+- comparar tendencias;
+- detectar modelos prometedores;
+- justificar pruebas internas.
+
+No sirven para decidir por sí solos:
+
+- si el modelo cumple tus permisos;
+- si respeta tu política;
+- si responde bien con tus documentos;
+- si tus usuarios confían;
+- si tu workflow funciona;
+- si tu coste es sostenible.
+
+Un benchmark puede decirte:
+
+> Este modelo merece ser probado.
+
+No debería decirte:
+
+> Este modelo ya está listo para mi producto.
+
+Regla práctica:
+
+> Benchmark público como filtro; evaluación domain-specific como decisión.
+
+### Herramientas de evaluación
+
+Las herramientas ayudan, pero no sustituyen el diseño.
+
+Puedes usar herramientas de observabilidad y evals para:
+
+- ejecutar suites;
+- comparar variantes;
+- analizar trazas;
+- crear scorers custom;
+- visualizar clusters de fallos;
+- monitorizar drift;
+- adjuntar evaluaciones a producción.
+
+Ejemplos de categorías:
+
+- plataformas de tracing y evaluación;
+- frameworks de evals tipo unit-test;
+- evaluadores RAG;
+- dashboards de observabilidad;
+- jueces LLM configurables;
+- validadores deterministas.
+
+La pregunta correcta no es "qué herramienta es mejor".
+
+La pregunta correcta es:
+
+> ¿Qué failure mode necesito detectar y qué herramienta me ayuda a medirlo con menos fricción?
+
+### Playbook de evaluación domain-specific
+
+Un playbook útil:
+
+1. Define dominio, usuarios y tareas.
+2. Lista riesgos top-down con expertos.
+3. Recoge 30-100 trazas reales o simuladas.
+4. Etiqueta errores con razonamiento.
+5. Agrupa failure modes.
+6. Prioriza por frecuencia, severidad y coste.
+7. Crea rúbricas por failure mode.
+8. Diseña checks deterministas donde sea posible.
+9. Añade LLM-as-judge solo donde aporte.
+10. Calibra jueces contra expertos.
+11. Integra suite en CI/CD.
+12. Adjunta evaluaciones a trazas de producción.
+13. Revisa nuevas señales de usuario.
+14. Actualiza rúbricas cuando aparezcan fallos nuevos.
+
+La evaluación no se termina.
+
+Se mantiene.
+
 ## 31.5 Métricas
 
 Las métricas no son decoración. Son el sistema nervioso del producto.
@@ -41992,6 +42263,10 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 - **failure mode coverage**
 - **human judge agreement**
 - **regeneration rate por intención**
+- **domain risk coverage**
+- **judge false positive rate**
+- **judge false negative rate**
+- **expert review sampling rate**
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 

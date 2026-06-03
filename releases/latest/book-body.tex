@@ -59153,6 +59153,426 @@ más productos en el pedido.''
 
 Eso sí se puede arreglar.
 
+\subsection{Evaluación específica por
+dominio}\label{evaluaciuxf3n-especuxedfica-por-dominio}
+
+Los sistemas IA no fallan igual en todos los dominios.
+
+En salud, un fallo puede ser:
+
+\begin{itemize}
+\tightlist
+\item
+  omitir una contraindicación;
+\item
+  dar consejo médico demasiado seguro;
+\item
+  no recomendar consulta profesional;
+\item
+  confundir síntomas parecidos;
+\item
+  usar tono frío en una situación sensible.
+\end{itemize}
+
+En legal, un fallo puede ser:
+
+\begin{itemize}
+\tightlist
+\item
+  aplicar mal una jurisdicción;
+\item
+  inventar un precedente;
+\item
+  romper el método de razonamiento esperado;
+\item
+  resumir un contrato ignorando una cláusula crítica;
+\item
+  no distinguir opinión de obligación.
+\end{itemize}
+
+En finanzas, un fallo puede ser:
+
+\begin{itemize}
+\tightlist
+\item
+  arrastrar un error aritmético;
+\item
+  no explicar una hipótesis;
+\item
+  incumplir una política de riesgo;
+\item
+  mezclar datos de periodos distintos;
+\item
+  responder sin trazabilidad.
+\end{itemize}
+
+En soporte, un fallo puede ser:
+
+\begin{itemize}
+\tightlist
+\item
+  aplicar una política equivocada;
+\item
+  no escalar un caso sensible;
+\item
+  dar tono incorrecto;
+\item
+  cerrar una conversación sin resolver;
+\item
+  proponer una acción que el agente humano no puede ejecutar.
+\end{itemize}
+
+Por eso las evaluaciones de producción deben ser domain-specific.
+
+No empiezas preguntando:
+
+\begin{quote}
+¿Cuál es la accuracy global?
+\end{quote}
+
+Empiezas preguntando:
+
+\begin{quote}
+¿Qué errores son peligrosos en este dominio?
+\end{quote}
+
+\subsection{Top-down y bottom-up}\label{top-down-y-bottom-up}
+
+Hay dos direcciones complementarias.
+
+Top-down:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Define el dominio.
+\item
+  Identifica riesgos conocidos.
+\item
+  Habla con expertos.
+\item
+  Crea casos adversariales.
+\item
+  Define criterios de seguridad y cumplimiento.
+\end{enumerate}
+
+Bottom-up:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Mira trazas reales.
+\item
+  Etiqueta errores observados.
+\item
+  Agrupa failure modes.
+\item
+  Mide frecuencia e impacto.
+\item
+  Crea evaluadores específicos.
+\end{enumerate}
+
+El enfoque top-down evita ceguera ante riesgos obvios para expertos.
+
+El enfoque bottom-up evita inventar métricas bonitas que no aparecen en
+el uso real.
+
+La evaluación madura usa ambos.
+
+\subsection{Rúbricas de dominio}\label{ruxfabricas-de-dominio}
+
+Una rúbrica convierte criterio experto en evaluación repetible.
+
+Ejemplo para soporte:
+
+\begin{lstlisting}
+Criterio: aplicación correcta de política
+
+Pasa:
+- cita la política vigente;
+- distingue casos incluidos y excluidos;
+- no inventa excepciones;
+- indica cuándo escalar.
+
+Falla:
+- usa política antigua;
+- responde sin fuente;
+- convierte una excepción en regla;
+- omite escalado obligatorio.
+\end{lstlisting}
+
+Ejemplo para legal:
+
+\begin{lstlisting}
+Criterio: análisis contractual
+
+Pasa:
+- identifica cláusulas relevantes;
+- separa resumen de interpretación;
+- marca incertidumbre;
+- conserva jurisdicción y fecha;
+- no inventa obligaciones.
+
+Falla:
+- mezcla jurisdicciones;
+- omite cláusula material;
+- presenta opinión como hecho;
+- no cita fuente contractual.
+\end{lstlisting}
+
+Una rúbrica buena no busca estilo.
+
+Busca comportamiento verificable.
+
+\subsection{LLM-as-judge con
+calibración}\label{llm-as-judge-con-calibraciuxf3n}
+
+Los jueces LLM pueden ahorrar tiempo, pero son peligrosos si se usan
+como autoridad automática.
+
+Un juez genérico puede preferir respuestas largas, seguras y bien
+escritas aunque estén mal.
+
+Para usar LLM-as-judge en producción:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Escribe una rúbrica específica.
+\item
+  Añade ejemplos buenos y malos.
+\item
+  Evalúa un conjunto etiquetado por humanos.
+\item
+  Mide acuerdo entre juez y experto.
+\item
+  Revisa falsos positivos y falsos negativos.
+\item
+  Usa el juez como señal, no como verdad absoluta.
+\end{enumerate}
+
+Ejemplo de salida de juez:
+
+\begin{lstlisting}
+{
+  "case_id": "support_044",
+  "criterion": "policy_application",
+  "score": 2,
+  "max_score": 4,
+  "passed": false,
+  "reason": "La respuesta cita una política correcta, pero omite la condición de embalaje original.",
+  "failure_mode": "missing_policy_condition",
+  "needs_human_review": true
+}
+\end{lstlisting}
+
+La pregunta importante no es:
+
+\begin{quote}
+¿El juez parece razonable?
+\end{quote}
+
+La pregunta importante es:
+
+\begin{quote}
+¿El juez detecta los fallos que un experto humano considera importantes?
+\end{quote}
+
+\subsection{Meta-evaluación}\label{meta-evaluaciuxf3n}
+
+También hay que evaluar al evaluador.
+
+Puedes hacerlo con perturbaciones controladas:
+
+\begin{itemize}
+\tightlist
+\item
+  quitar una cita correcta;
+\item
+  introducir una fuente obsoleta;
+\item
+  cambiar un importe;
+\item
+  eliminar una advertencia legal;
+\item
+  añadir una acción no permitida;
+\item
+  cambiar el tono en un caso sensible.
+\end{itemize}
+
+Si el evaluador no detecta esas perturbaciones, no está listo.
+
+Ejemplo:
+
+\begin{lstlisting}
+{
+  "original_case": "finance_012",
+  "perturbation": "changed_total_amount",
+  "expected_judge_result": "fail",
+  "actual_judge_result": "pass",
+  "action": "revisar rúbrica y ejemplos"
+}
+\end{lstlisting}
+
+La meta-evaluación es especialmente importante cuando usas LLM-as-judge,
+porque un juez puede sonar convincente y aun así no detectar el fallo
+que importa.
+
+\subsection{Benchmarks públicos}\label{benchmarks-puxfablicos}
+
+Los benchmarks públicos pueden ser útiles.
+
+Pero no son producción.
+
+Sirven para:
+
+\begin{itemize}
+\tightlist
+\item
+  filtrar modelos claramente insuficientes;
+\item
+  entender capacidades generales;
+\item
+  comparar tendencias;
+\item
+  detectar modelos prometedores;
+\item
+  justificar pruebas internas.
+\end{itemize}
+
+No sirven para decidir por sí solos:
+
+\begin{itemize}
+\tightlist
+\item
+  si el modelo cumple tus permisos;
+\item
+  si respeta tu política;
+\item
+  si responde bien con tus documentos;
+\item
+  si tus usuarios confían;
+\item
+  si tu workflow funciona;
+\item
+  si tu coste es sostenible.
+\end{itemize}
+
+Un benchmark puede decirte:
+
+\begin{quote}
+Este modelo merece ser probado.
+\end{quote}
+
+No debería decirte:
+
+\begin{quote}
+Este modelo ya está listo para mi producto.
+\end{quote}
+
+Regla práctica:
+
+\begin{quote}
+Benchmark público como filtro; evaluación domain-specific como decisión.
+\end{quote}
+
+\subsection{Herramientas de
+evaluación}\label{herramientas-de-evaluaciuxf3n}
+
+Las herramientas ayudan, pero no sustituyen el diseño.
+
+Puedes usar herramientas de observabilidad y evals para:
+
+\begin{itemize}
+\tightlist
+\item
+  ejecutar suites;
+\item
+  comparar variantes;
+\item
+  analizar trazas;
+\item
+  crear scorers custom;
+\item
+  visualizar clusters de fallos;
+\item
+  monitorizar drift;
+\item
+  adjuntar evaluaciones a producción.
+\end{itemize}
+
+Ejemplos de categorías:
+
+\begin{itemize}
+\tightlist
+\item
+  plataformas de tracing y evaluación;
+\item
+  frameworks de evals tipo unit-test;
+\item
+  evaluadores RAG;
+\item
+  dashboards de observabilidad;
+\item
+  jueces LLM configurables;
+\item
+  validadores deterministas.
+\end{itemize}
+
+La pregunta correcta no es ``qué herramienta es mejor''.
+
+La pregunta correcta es:
+
+\begin{quote}
+¿Qué failure mode necesito detectar y qué herramienta me ayuda a medirlo
+con menos fricción?
+\end{quote}
+
+\subsection{Playbook de evaluación
+domain-specific}\label{playbook-de-evaluaciuxf3n-domain-specific}
+
+Un playbook útil:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Define dominio, usuarios y tareas.
+\item
+  Lista riesgos top-down con expertos.
+\item
+  Recoge 30-100 trazas reales o simuladas.
+\item
+  Etiqueta errores con razonamiento.
+\item
+  Agrupa failure modes.
+\item
+  Prioriza por frecuencia, severidad y coste.
+\item
+  Crea rúbricas por failure mode.
+\item
+  Diseña checks deterministas donde sea posible.
+\item
+  Añade LLM-as-judge solo donde aporte.
+\item
+  Calibra jueces contra expertos.
+\item
+  Integra suite en CI/CD.
+\item
+  Adjunta evaluaciones a trazas de producción.
+\item
+  Revisa nuevas señales de usuario.
+\item
+  Actualiza rúbricas cuando aparezcan fallos nuevos.
+\end{enumerate}
+
+La evaluación no se termina.
+
+Se mantiene.
+
 \section{31.5 Métricas}\label{muxe9tricas}
 
 Las métricas no son decoración. Son el sistema nervioso del producto.
@@ -59179,6 +59599,14 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
   \textbf{human judge agreement}
 \item
   \textbf{regeneration rate por intención}
+\item
+  \textbf{domain risk coverage}
+\item
+  \textbf{judge false positive rate}
+\item
+  \textbf{judge false negative rate}
+\item
+  \textbf{expert review sampling rate}
 \end{itemize}
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir
