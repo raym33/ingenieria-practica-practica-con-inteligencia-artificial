@@ -267,6 +267,33 @@
   "costes": [
     "06-capitulo-5-como-elegir-un-modelo.md",
     "31-capitulo-30-laboratorio-de-implementacion.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+  ],
+  "ai-finops": [
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md",
+    "37-capitulo-36-despliegue-y-operacion.md"
+  ],
+  "semantic-caching": [
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+  ],
+  "prompt-caching": [
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+  ],
+  "token-budgets": [
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md",
+    "37-capitulo-36-despliegue-y-operacion.md"
+  ],
+  "ai-gateway": [
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md",
+    "39-capitulo-38-integraciones-empresariales.md"
+  ],
+  "call-depth": [
+    "25-capitulo-24-que-es-un-agente-de-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
     "35-capitulo-34-costes-latencia-y-rendimiento.md"
   ],
   "latencia": [

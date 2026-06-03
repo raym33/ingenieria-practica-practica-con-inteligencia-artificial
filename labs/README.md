@@ -21,6 +21,7 @@ Los labs no buscan ser frameworks completos. Buscan aislar una decisión para qu
 | `meta-evaluation/` | Meta-evaluación de jueces LLM | Capítulo 31 | Comprobar si un juez detecta degradaciones controladas. |
 | `rag-retrieval-eval/` | Evaluación de retrieval RAG | Capítulos 18-19 | Medir Recall@K, MRR y fugas de permisos antes de optimizar generación. |
 | `local-model-benchmark/` | Benchmark local con Ollama | Capítulos 7-8 | Medir tokens/s, latencia y salida real de modelos locales en tu hardware. |
+| `llm-cost-profiler/` | Costes IA en producción | Capítulo 34 | Simular call depth, context bloat, retries, caché y routing. |
 
 ## Labs prioritarios que debe añadir el libro
 

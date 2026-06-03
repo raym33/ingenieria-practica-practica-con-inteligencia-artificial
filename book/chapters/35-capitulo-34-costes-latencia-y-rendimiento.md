@@ -163,6 +163,167 @@ Un agente de cinco pasos no cuesta “una llamada”.
 
 Cuesta cinco decisiones, varias tools, contexto acumulado y posiblemente verificación.
 
+### Call depth
+
+El precio por token puede bajar y aun así la factura subir.
+
+La razón suele ser `call_depth`: cuántas llamadas al modelo dispara una petición real de usuario.
+
+Ejemplo:
+
+```text
+usuario pide resolver un ticket
+  -> clasificar intención
+  -> buscar contexto
+  -> reescribir query
+  -> rerank
+  -> generar respuesta
+  -> validar seguridad
+  -> crear borrador
+  -> resumir acción
+```
+
+Una petición visible puede convertirse en ocho llamadas.
+
+Si además hay retries, agentes o verificación, el coste real se multiplica.
+
+Mide:
+
+- llamadas LLM por request;
+- llamadas LLM por tarea completada;
+- llamadas por feature;
+- llamadas por usuario;
+- llamadas por agente;
+- llamadas fallidas;
+- llamadas repetidas por retry.
+
+Regla:
+
+```text
+coste_real = precio_tokens x volumen x call_depth x retries x contexto
+```
+
+### Context bloat
+
+El contexto excesivo es una de las fugas de coste más comunes.
+
+No porque un prompt largo sea siempre malo.
+
+Porque muchos prompts largos no aportan valor.
+
+Señales de context bloat:
+
+- siempre envías el historial completo;
+- metes demasiados chunks RAG;
+- repites instrucciones estáticas en cada llamada;
+- incluyes tools que no aplican;
+- añades ejemplos que el flujo ya no necesita;
+- envías documentos completos cuando bastan fragmentos;
+- no recortas contexto tras cada paso del agente.
+
+Antes de cambiar a un modelo más barato, revisa si puedes bajar:
+
+```text
+14.000 tokens -> 1.000 tokens
+```
+
+sin perder calidad.
+
+Muchas optimizaciones fuertes vienen de poda de contexto, no de cambiar de proveedor.
+
+### Retries amplificados
+
+Los retries son útiles.
+
+Sin límite, son una factura escondida.
+
+Ejemplo:
+
+```text
+tool falla
+  -> retry modelo
+  -> retry tool
+  -> retry generación
+  -> retry validación
+```
+
+Si el error viene de una mala entrada, repetir no arregla nada.
+
+Checklist:
+
+- límite máximo de retries;
+- backoff;
+- causa de retry registrada;
+- coste acumulado por retry;
+- corte cuando el error es determinista;
+- fallback a humano o cola;
+- alerta si el retry rate sube.
+
+### Caching semántico y prompt caching
+
+Hay dos cachés distintas.
+
+**Prompt caching** reutiliza prefijos estables: instrucciones, tool definitions, ejemplos o contexto común.
+
+Funciona mejor cuando el prefijo no cambia.
+
+Puede romperse por detalles tontos:
+
+- timestamp dentro del system prompt;
+- orden cambiante de tools;
+- serialización JSON no determinista;
+- ejemplos reordenados;
+- espacios o campos variables en el prefijo.
+
+**Semantic caching** reutiliza respuestas o resultados cuando preguntas distintas son equivalentes.
+
+Ejemplo:
+
+```text
+"¿Cuál es la política de devolución?"
+"Dime el plazo para devolver un producto"
+```
+
+Riesgos:
+
+- permisos;
+- documentos obsoletos;
+- usuarios distintos;
+- contexto de tenant;
+- respuestas que parecen iguales pero no lo son.
+
+La caché no es solo técnica.
+
+Es una decisión de producto y seguridad.
+
+### Token budgets y AI gateway
+
+Un sistema serio debe poder decir:
+
+```text
+esta feature no puede gastar más de X por usuario al mes
+esta API key no puede superar Y tokens diarios
+este modelo no puede usarse para tareas de bajo riesgo
+este agente se apaga si supera N retries
+```
+
+Eso puede vivir en un AI gateway, middleware propio o capa de proveedor.
+
+Lo importante:
+
+- límites por API key;
+- límites por usuario;
+- límites por tenant;
+- límites por modelo;
+- límites por feature;
+- alertas;
+- bloqueo o degradación;
+- trazabilidad de quién gastó qué.
+
+Sin budgets, el coste se descubre tarde.
+
+Y tarde significa caro.
+
 ### Matriz de optimización
 
 Si la latencia es alta, mira primero:

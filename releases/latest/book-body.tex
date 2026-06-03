@@ -61079,6 +61079,64 @@ Si la tool devolvió error no estructurado, no cambies el RAG.
 
 La observabilidad evita que optimices la pieza equivocada.
 
+\subsection{Campos FinOps}\label{campos-finops}
+
+Si usas IA en producción, la traza debe permitir explicar la factura.
+
+Añade campos como:
+
+\begin{lstlisting}
+{
+  "request_id": "req_2026_06_03_00042",
+  "feature": "support_copilot",
+  "call_depth": 6,
+  "models_used": [
+    "small-router-model",
+    "frontier-model"
+  ],
+  "prompt_tokens_total": 8200,
+  "completion_tokens_total": 930,
+  "retry_count": 2,
+  "cache": {
+    "prompt_cache_hit": true,
+    "semantic_cache_hit": false
+  },
+  "budget": {
+    "feature_budget_usd": 0.05,
+    "request_cost_usd": 0.031,
+    "budget_action": "allow"
+  }
+}
+\end{lstlisting}
+
+Con esos campos puedes detectar:
+
+\begin{itemize}
+\tightlist
+\item
+  features caras;
+\item
+  usuarios caros;
+\item
+  tenants caros;
+\item
+  retries anómalos;
+\item
+  modelos caros usados en tareas rutinarias;
+\item
+  cache hit rate bajo;
+\item
+  prompts que crecen;
+\item
+  jobs olvidados;
+\item
+  presupuesto superado.
+\end{itemize}
+
+Sin estos datos, la factura llega como sorpresa.
+
+Con estos datos, la factura se convierte en señal de arquitectura.
+
 \subsection{Qué redactar}\label{quuxe9-redactar}
 
 No todo debe llegar al log completo.
@@ -62008,6 +62066,231 @@ Un agente de cinco pasos no cuesta ``una llamada''.
 
 Cuesta cinco decisiones, varias tools, contexto acumulado y posiblemente
 verificación.
+
+\subsection{Call depth}\label{call-depth}
+
+El precio por token puede bajar y aun así la factura subir.
+
+La razón suele ser \passthrough{\lstinline!call\_depth!}: cuántas
+llamadas al modelo dispara una petición real de usuario.
+
+Ejemplo:
+
+\begin{lstlisting}
+usuario pide resolver un ticket
+  -> clasificar intención
+  -> buscar contexto
+  -> reescribir query
+  -> rerank
+  -> generar respuesta
+  -> validar seguridad
+  -> crear borrador
+  -> resumir acción
+\end{lstlisting}
+
+Una petición visible puede convertirse en ocho llamadas.
+
+Si además hay retries, agentes o verificación, el coste real se
+multiplica.
+
+Mide:
+
+\begin{itemize}
+\tightlist
+\item
+  llamadas LLM por request;
+\item
+  llamadas LLM por tarea completada;
+\item
+  llamadas por feature;
+\item
+  llamadas por usuario;
+\item
+  llamadas por agente;
+\item
+  llamadas fallidas;
+\item
+  llamadas repetidas por retry.
+\end{itemize}
+
+Regla:
+
+\begin{lstlisting}
+coste_real = precio_tokens x volumen x call_depth x retries x contexto
+\end{lstlisting}
+
+\subsection{Context bloat}\label{context-bloat}
+
+El contexto excesivo es una de las fugas de coste más comunes.
+
+No porque un prompt largo sea siempre malo.
+
+Porque muchos prompts largos no aportan valor.
+
+Señales de context bloat:
+
+\begin{itemize}
+\tightlist
+\item
+  siempre envías el historial completo;
+\item
+  metes demasiados chunks RAG;
+\item
+  repites instrucciones estáticas en cada llamada;
+\item
+  incluyes tools que no aplican;
+\item
+  añades ejemplos que el flujo ya no necesita;
+\item
+  envías documentos completos cuando bastan fragmentos;
+\item
+  no recortas contexto tras cada paso del agente.
+\end{itemize}
+
+Antes de cambiar a un modelo más barato, revisa si puedes bajar:
+
+\begin{lstlisting}
+14.000 tokens -> 1.000 tokens
+\end{lstlisting}
+
+sin perder calidad.
+
+Muchas optimizaciones fuertes vienen de poda de contexto, no de cambiar
+de proveedor.
+
+\subsection{Retries amplificados}\label{retries-amplificados}
+
+Los retries son útiles.
+
+Sin límite, son una factura escondida.
+
+Ejemplo:
+
+\begin{lstlisting}
+tool falla
+  -> retry modelo
+  -> retry tool
+  -> retry generación
+  -> retry validación
+\end{lstlisting}
+
+Si el error viene de una mala entrada, repetir no arregla nada.
+
+Checklist:
+
+\begin{itemize}
+\tightlist
+\item
+  límite máximo de retries;
+\item
+  backoff;
+\item
+  causa de retry registrada;
+\item
+  coste acumulado por retry;
+\item
+  corte cuando el error es determinista;
+\item
+  fallback a humano o cola;
+\item
+  alerta si el retry rate sube.
+\end{itemize}
+
+\subsection{Caching semántico y prompt
+caching}\label{caching-semuxe1ntico-y-prompt-caching}
+
+Hay dos cachés distintas.
+
+\textbf{Prompt caching} reutiliza prefijos estables: instrucciones, tool
+definitions, ejemplos o contexto común.
+
+Funciona mejor cuando el prefijo no cambia.
+
+Puede romperse por detalles tontos:
+
+\begin{itemize}
+\tightlist
+\item
+  timestamp dentro del system prompt;
+\item
+  orden cambiante de tools;
+\item
+  serialización JSON no determinista;
+\item
+  ejemplos reordenados;
+\item
+  espacios o campos variables en el prefijo.
+\end{itemize}
+
+\textbf{Semantic caching} reutiliza respuestas o resultados cuando
+preguntas distintas son equivalentes.
+
+Ejemplo:
+
+\begin{lstlisting}
+"¿Cuál es la política de devolución?"
+"Dime el plazo para devolver un producto"
+\end{lstlisting}
+
+Riesgos:
+
+\begin{itemize}
+\tightlist
+\item
+  permisos;
+\item
+  documentos obsoletos;
+\item
+  usuarios distintos;
+\item
+  contexto de tenant;
+\item
+  respuestas que parecen iguales pero no lo son.
+\end{itemize}
+
+La caché no es solo técnica.
+
+Es una decisión de producto y seguridad.
+
+\subsection{Token budgets y AI
+gateway}\label{token-budgets-y-ai-gateway}
+
+Un sistema serio debe poder decir:
+
+\begin{lstlisting}
+esta feature no puede gastar más de X por usuario al mes
+esta API key no puede superar Y tokens diarios
+este modelo no puede usarse para tareas de bajo riesgo
+este agente se apaga si supera N retries
+\end{lstlisting}
+
+Eso puede vivir en un AI gateway, middleware propio o capa de proveedor.
+
+Lo importante:
+
+\begin{itemize}
+\tightlist
+\item
+  límites por API key;
+\item
+  límites por usuario;
+\item
+  límites por tenant;
+\item
+  límites por modelo;
+\item
+  límites por feature;
+\item
+  alertas;
+\item
+  bloqueo o degradación;
+\item
+  trazabilidad de quién gastó qué.
+\end{itemize}
+
+Sin budgets, el coste se descubre tarde.
+
+Y tarde significa caro.
 
 \subsection{Matriz de optimización}\label{matriz-de-optimizaciuxf3n}
 

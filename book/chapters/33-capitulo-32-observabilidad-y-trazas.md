@@ -152,6 +152,52 @@ Si la tool devolvió error no estructurado, no cambies el RAG.
 
 La observabilidad evita que optimices la pieza equivocada.
 
+### Campos FinOps
+
+Si usas IA en producción, la traza debe permitir explicar la factura.
+
+Añade campos como:
+
+```json
+{
+  "request_id": "req_2026_06_03_00042",
+  "feature": "support_copilot",
+  "call_depth": 6,
+  "models_used": [
+    "small-router-model",
+    "frontier-model"
+  ],
+  "prompt_tokens_total": 8200,
+  "completion_tokens_total": 930,
+  "retry_count": 2,
+  "cache": {
+    "prompt_cache_hit": true,
+    "semantic_cache_hit": false
+  },
+  "budget": {
+    "feature_budget_usd": 0.05,
+    "request_cost_usd": 0.031,
+    "budget_action": "allow"
+  }
+}
+```
+
+Con esos campos puedes detectar:
+
+- features caras;
+- usuarios caros;
+- tenants caros;
+- retries anómalos;
+- modelos caros usados en tareas rutinarias;
+- cache hit rate bajo;
+- prompts que crecen;
+- jobs olvidados;
+- presupuesto superado.
+
+Sin estos datos, la factura llega como sorpresa.
+
+Con estos datos, la factura se convierte en señal de arquitectura.
+
 ### Qué redactar
 
 No todo debe llegar al log completo.
