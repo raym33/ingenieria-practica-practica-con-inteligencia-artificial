@@ -42,6 +42,39 @@ Si no puedes responder estas preguntas, todavía no tienes producto. Tienes prot
 
 ---
 
+## Checklist de sistema IA completo
+
+Una aplicación de IA en producción no es solo:
+
+```text
+usuario -> modelo -> respuesta
+```
+
+Revisa si el sistema tiene las capas necesarias:
+
+- ¿Hay trigger claro: usuario, evento, cron, webhook o cola?
+- ¿Hay normalización de entrada?
+- ¿Hay construcción de contexto?
+- ¿Hay separación entre instrucciones, datos y herramientas?
+- ¿Hay RAG o memoria solo cuando aportan valor?
+- ¿Hay tools con contratos y permisos?
+- ¿Hay orquestación explícita?
+- ¿Hay validación de salida?
+- ¿Hay human-in-the-loop para casos sensibles?
+- ¿Hay trazas por request?
+- ¿Hay evaluación antes de publicar?
+- ¿Hay límites de coste?
+- ¿Hay estrategia de fallback?
+- ¿Hay rollback?
+- ¿Hay feedback loop?
+- ¿Hay propietario del sistema?
+
+Si solo puedes señalar el modelo, todavía no tienes arquitectura.
+
+Tienes una llamada a un modelo.
+
+---
+
 ## Checklist de prompts
 
 Un prompt importante debe revisarse como una pieza de ingeniería.

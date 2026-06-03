@@ -52,6 +52,47 @@ Un diseño razonable puede empezar con este flujo:
 
 No todos los proyectos necesitan todas las piezas desde el primer día. Pero si una pieza falta, debe faltar por decisión, no por despiste.
 
+### Workflow completo de producción
+
+Una forma más realista de estudiar IA aplicada es seguir el flujo operativo completo:
+
+```text
+trigger
+  -> entrada de usuario o evento
+  -> normalización
+  -> construcción de contexto
+  -> decisión del modelo
+  -> tools o RAG
+  -> validación
+  -> revisión humana si hace falta
+  -> respuesta o acción
+  -> traza
+  -> feedback
+  -> mejora
+```
+
+Este flujo evita una trampa común:
+
+```text
+usuario -> LLM -> respuesta
+```
+
+Ese diagrama sirve para explicar una demo.
+
+No sirve para diseñar un producto serio.
+
+Un lector que domine este flujo podrá mirar cualquier sistema IA y preguntar:
+
+- ¿qué dispara el proceso?;
+- ¿qué contexto se construye?;
+- ¿qué parte decide el modelo?;
+- ¿qué parte ejecuta código determinista?;
+- ¿qué tools existen?;
+- ¿qué validación hay?;
+- ¿cuándo entra una persona?;
+- ¿qué se registra?;
+- ¿cómo mejora el sistema?
+
 
 ## 44.4 Implementación práctica
 
@@ -106,6 +147,29 @@ Debe funcionar como un currículo progresivo: cada tramo deja una habilidad visi
 El objetivo del lector no es "haber leído".
 
 El objetivo es terminar con una carpeta de decisiones, pruebas y sistemas pequeños que pueda enseñar, mantener y ampliar.
+
+### Fundamentos bajo el capó
+
+Entender "por debajo del capó" no significa convertir este libro en un tratado matemático.
+
+Significa saber lo suficiente para tomar mejores decisiones.
+
+El lector debería poder explicar:
+
+- qué son tokens;
+- por qué el contexto cambia la respuesta;
+- por qué el modelo puede sonar seguro y estar equivocado;
+- por qué reintentar a veces funciona y a veces solo añade coste;
+- por qué post-training y alineamiento cambian comportamiento;
+- por qué una cuantización puede afectar razonamiento o tools;
+- por qué RAG falla si recupera mal;
+- por qué los agentes necesitan límites.
+
+Estos fundamentos importan porque evitan babysittear una caja negra.
+
+No construyes mejor por saber más jerga.
+
+Construyes mejor porque sabes dónde mirar cuando el sistema falla.
 
 ### Companion GitHub
 

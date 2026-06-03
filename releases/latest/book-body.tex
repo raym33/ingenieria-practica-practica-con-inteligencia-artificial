@@ -515,6 +515,95 @@ Desde la ingeniería.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\section{Qué promete este libro}\label{quuxe9-promete-este-libro}
+
+Este libro no intenta enseñarte a coleccionar herramientas.
+
+Tampoco intenta convencerte de que un prompt brillante sustituye
+arquitectura.
+
+La promesa es más concreta:
+
+\begin{quote}
+Aprender a pasar de usar IA a construir sistemas de IA completos.
+\end{quote}
+
+Eso significa estudiar:
+
+\begin{itemize}
+\tightlist
+\item
+  cómo funciona el modelo lo suficiente para no tratarlo como caja
+  negra;
+\item
+  cómo construir contexto;
+\item
+  cómo diseñar workflows;
+\item
+  cómo conectar tools sin perder control;
+\item
+  cómo evaluar calidad;
+\item
+  cómo observar fallos;
+\item
+  cómo limitar coste;
+\item
+  cómo gestionar permisos;
+\item
+  cómo publicar y revertir;
+\item
+  cómo mejorar con datos reales.
+\end{itemize}
+
+El lector objetivo no es solo quien quiere ``probar IA''.
+
+Es quien quiere construir algo que aguante usuarios, errores, cambios de
+modelo, documentos imperfectos, costes, latencia, seguridad y
+mantenimiento.
+
+\subsection{Lo que este libro no es}\label{lo-que-este-libro-no-es}
+
+No es una lista de prompts mágicos.
+
+No es una recopilación de noticias.
+
+No es un curso de moda sobre la herramienta de la semana.
+
+No es una guía para hacer demos vistosas sin operación.
+
+Cada vez que una técnica aparece en el libro, la pregunta de fondo será:
+
+\begin{lstlisting}
+¿Cómo encaja esto en un sistema real?
+\end{lstlisting}
+
+Y cada vez que una demo parezca suficiente, volveremos a las mismas
+preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué problema resuelve?;
+\item
+  ¿qué contexto usa?;
+\item
+  ¿qué puede hacer?;
+\item
+  ¿qué no debe hacer?;
+\item
+  ¿cómo sabemos que funciona?;
+\item
+  ¿qué cuesta?;
+\item
+  ¿cómo falla?;
+\item
+  ¿quién lo revisa?;
+\item
+  ¿cómo se apaga o revierte?
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \section{1. La IA no sustituye al software: lo
 reconfigura}\label{la-ia-no-sustituye-al-software-lo-reconfigura}
 
@@ -65579,6 +65668,62 @@ Un diseño razonable puede empezar con este flujo:
 No todos los proyectos necesitan todas las piezas desde el primer día.
 Pero si una pieza falta, debe faltar por decisión, no por despiste.
 
+\subsection{Workflow completo de
+producción}\label{workflow-completo-de-producciuxf3n}
+
+Una forma más realista de estudiar IA aplicada es seguir el flujo
+operativo completo:
+
+\begin{lstlisting}
+trigger
+  -> entrada de usuario o evento
+  -> normalización
+  -> construcción de contexto
+  -> decisión del modelo
+  -> tools o RAG
+  -> validación
+  -> revisión humana si hace falta
+  -> respuesta o acción
+  -> traza
+  -> feedback
+  -> mejora
+\end{lstlisting}
+
+Este flujo evita una trampa común:
+
+\begin{lstlisting}
+usuario -> LLM -> respuesta
+\end{lstlisting}
+
+Ese diagrama sirve para explicar una demo.
+
+No sirve para diseñar un producto serio.
+
+Un lector que domine este flujo podrá mirar cualquier sistema IA y
+preguntar:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué dispara el proceso?;
+\item
+  ¿qué contexto se construye?;
+\item
+  ¿qué parte decide el modelo?;
+\item
+  ¿qué parte ejecuta código determinista?;
+\item
+  ¿qué tools existen?;
+\item
+  ¿qué validación hay?;
+\item
+  ¿cuándo entra una persona?;
+\item
+  ¿qué se registra?;
+\item
+  ¿cómo mejora el sistema?
+\end{itemize}
+
 \section{44.4 Implementación
 práctica}\label{implementaciuxf3n-pruxe1ctica-13}
 
@@ -65672,6 +65817,41 @@ El objetivo del lector no es ``haber leído''.
 
 El objetivo es terminar con una carpeta de decisiones, pruebas y
 sistemas pequeños que pueda enseñar, mantener y ampliar.
+
+\subsection{Fundamentos bajo el capó}\label{fundamentos-bajo-el-capuxf3}
+
+Entender ``por debajo del capó'' no significa convertir este libro en un
+tratado matemático.
+
+Significa saber lo suficiente para tomar mejores decisiones.
+
+El lector debería poder explicar:
+
+\begin{itemize}
+\tightlist
+\item
+  qué son tokens;
+\item
+  por qué el contexto cambia la respuesta;
+\item
+  por qué el modelo puede sonar seguro y estar equivocado;
+\item
+  por qué reintentar a veces funciona y a veces solo añade coste;
+\item
+  por qué post-training y alineamiento cambian comportamiento;
+\item
+  por qué una cuantización puede afectar razonamiento o tools;
+\item
+  por qué RAG falla si recupera mal;
+\item
+  por qué los agentes necesitan límites.
+\end{itemize}
+
+Estos fundamentos importan porque evitan babysittear una caja negra.
+
+No construyes mejor por saber más jerga.
+
+Construyes mejor porque sabes dónde mirar cuando el sistema falla.
 
 \subsection{Companion GitHub}\label{companion-github}
 
@@ -66495,6 +66675,60 @@ sistema?
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\section{Ruta 8.5 --- Para dejar de tratar el modelo como caja
+negra}\label{ruta-8.5-para-dejar-de-tratar-el-modelo-como-caja-negra}
+
+Esta ruta es para quien ya usa IA, pero quiere entender por qué los
+modelos se comportan como se comportan.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 4 --- LLMs para ingenieros ocupados
+\item
+  Capítulo 5 --- Cómo elegir un modelo
+\item
+  Capítulo 9 --- Prompt engineering que sigue funcionando
+\item
+  Capítulo 10 --- Prompts como herramientas de ingeniería
+\item
+  Capítulo 31 --- Evaluación de sistemas IA
+\item
+  Capítulo 34 --- Costes, latencia y rendimiento
+\item
+  Capítulo 40 --- Testing y calidad
+\end{enumerate}
+
+Al terminar esta ruta deberías poder explicar:
+
+\begin{itemize}
+\tightlist
+\item
+  qué papel tienen tokens, contexto y ventana efectiva;
+\item
+  por qué el modelo puede inventar;
+\item
+  por qué una respuesta puede mejorar al reintentar;
+\item
+  por qué los prompts largos pueden degradar coste y calidad;
+\item
+  por qué cambiar modelo requiere evaluación;
+\item
+  por qué la salida final no basta para depurar.
+\end{itemize}
+
+La pregunta central de esta ruta es:
+
+\begin{quote}
+¿Qué sabe hacer el modelo, qué parece saber hacer y dónde empieza a
+fallar silenciosamente?
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \section{Ruta 9 --- Para diseñar producto y
 adopción}\label{ruta-9-para-diseuxf1ar-producto-y-adopciuxf3n}
 
@@ -67166,6 +67400,59 @@ Antes de enseñar el sistema a usuarios reales, revisa:
 
 Si no puedes responder estas preguntas, todavía no tienes producto.
 Tienes prototipo.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Checklist de sistema IA
+completo}\label{checklist-de-sistema-ia-completo}
+
+Una aplicación de IA en producción no es solo:
+
+\begin{lstlisting}
+usuario -> modelo -> respuesta
+\end{lstlisting}
+
+Revisa si el sistema tiene las capas necesarias:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Hay trigger claro: usuario, evento, cron, webhook o cola?
+\item
+  ¿Hay normalización de entrada?
+\item
+  ¿Hay construcción de contexto?
+\item
+  ¿Hay separación entre instrucciones, datos y herramientas?
+\item
+  ¿Hay RAG o memoria solo cuando aportan valor?
+\item
+  ¿Hay tools con contratos y permisos?
+\item
+  ¿Hay orquestación explícita?
+\item
+  ¿Hay validación de salida?
+\item
+  ¿Hay human-in-the-loop para casos sensibles?
+\item
+  ¿Hay trazas por request?
+\item
+  ¿Hay evaluación antes de publicar?
+\item
+  ¿Hay límites de coste?
+\item
+  ¿Hay estrategia de fallback?
+\item
+  ¿Hay rollback?
+\item
+  ¿Hay feedback loop?
+\item
+  ¿Hay propietario del sistema?
+\end{itemize}
+
+Si solo puedes señalar el modelo, todavía no tienes arquitectura.
+
+Tienes una llamada a un modelo.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 

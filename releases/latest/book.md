@@ -404,6 +404,63 @@ Desde la ingeniería.
 
 ---
 
+## Qué promete este libro
+
+Este libro no intenta enseñarte a coleccionar herramientas.
+
+Tampoco intenta convencerte de que un prompt brillante sustituye arquitectura.
+
+La promesa es más concreta:
+
+> Aprender a pasar de usar IA a construir sistemas de IA completos.
+
+Eso significa estudiar:
+
+- cómo funciona el modelo lo suficiente para no tratarlo como caja negra;
+- cómo construir contexto;
+- cómo diseñar workflows;
+- cómo conectar tools sin perder control;
+- cómo evaluar calidad;
+- cómo observar fallos;
+- cómo limitar coste;
+- cómo gestionar permisos;
+- cómo publicar y revertir;
+- cómo mejorar con datos reales.
+
+El lector objetivo no es solo quien quiere "probar IA".
+
+Es quien quiere construir algo que aguante usuarios, errores, cambios de modelo, documentos imperfectos, costes, latencia, seguridad y mantenimiento.
+
+### Lo que este libro no es
+
+No es una lista de prompts mágicos.
+
+No es una recopilación de noticias.
+
+No es un curso de moda sobre la herramienta de la semana.
+
+No es una guía para hacer demos vistosas sin operación.
+
+Cada vez que una técnica aparece en el libro, la pregunta de fondo será:
+
+```text
+¿Cómo encaja esto en un sistema real?
+```
+
+Y cada vez que una demo parezca suficiente, volveremos a las mismas preguntas:
+
+- ¿qué problema resuelve?;
+- ¿qué contexto usa?;
+- ¿qué puede hacer?;
+- ¿qué no debe hacer?;
+- ¿cómo sabemos que funciona?;
+- ¿qué cuesta?;
+- ¿cómo falla?;
+- ¿quién lo revisa?;
+- ¿cómo se apaga o revierte?
+
+---
+
 ## 1. La IA no sustituye al software: lo reconfigura
 
 Uno de los errores más frecuentes al hablar de IA generativa es imaginar que los modelos sustituyen al software.
@@ -46282,6 +46339,47 @@ Un diseño razonable puede empezar con este flujo:
 
 No todos los proyectos necesitan todas las piezas desde el primer día. Pero si una pieza falta, debe faltar por decisión, no por despiste.
 
+### Workflow completo de producción
+
+Una forma más realista de estudiar IA aplicada es seguir el flujo operativo completo:
+
+```text
+trigger
+  -> entrada de usuario o evento
+  -> normalización
+  -> construcción de contexto
+  -> decisión del modelo
+  -> tools o RAG
+  -> validación
+  -> revisión humana si hace falta
+  -> respuesta o acción
+  -> traza
+  -> feedback
+  -> mejora
+```
+
+Este flujo evita una trampa común:
+
+```text
+usuario -> LLM -> respuesta
+```
+
+Ese diagrama sirve para explicar una demo.
+
+No sirve para diseñar un producto serio.
+
+Un lector que domine este flujo podrá mirar cualquier sistema IA y preguntar:
+
+- ¿qué dispara el proceso?;
+- ¿qué contexto se construye?;
+- ¿qué parte decide el modelo?;
+- ¿qué parte ejecuta código determinista?;
+- ¿qué tools existen?;
+- ¿qué validación hay?;
+- ¿cuándo entra una persona?;
+- ¿qué se registra?;
+- ¿cómo mejora el sistema?
+
 
 ## 44.4 Implementación práctica
 
@@ -46336,6 +46434,29 @@ Debe funcionar como un currículo progresivo: cada tramo deja una habilidad visi
 El objetivo del lector no es "haber leído".
 
 El objetivo es terminar con una carpeta de decisiones, pruebas y sistemas pequeños que pueda enseñar, mantener y ampliar.
+
+### Fundamentos bajo el capó
+
+Entender "por debajo del capó" no significa convertir este libro en un tratado matemático.
+
+Significa saber lo suficiente para tomar mejores decisiones.
+
+El lector debería poder explicar:
+
+- qué son tokens;
+- por qué el contexto cambia la respuesta;
+- por qué el modelo puede sonar seguro y estar equivocado;
+- por qué reintentar a veces funciona y a veces solo añade coste;
+- por qué post-training y alineamiento cambian comportamiento;
+- por qué una cuantización puede afectar razonamiento o tools;
+- por qué RAG falla si recupera mal;
+- por qué los agentes necesitan límites.
+
+Estos fundamentos importan porque evitan babysittear una caja negra.
+
+No construyes mejor por saber más jerga.
+
+Construyes mejor porque sabes dónde mirar cuando el sistema falla.
 
 ### Companion GitHub
 
@@ -46809,6 +46930,35 @@ La pregunta central de esta ruta es:
 
 ---
 
+## Ruta 8.5 — Para dejar de tratar el modelo como caja negra
+
+Esta ruta es para quien ya usa IA, pero quiere entender por qué los modelos se comportan como se comportan.
+
+Lee:
+
+1. Capítulo 4 — LLMs para ingenieros ocupados
+2. Capítulo 5 — Cómo elegir un modelo
+3. Capítulo 9 — Prompt engineering que sigue funcionando
+4. Capítulo 10 — Prompts como herramientas de ingeniería
+5. Capítulo 31 — Evaluación de sistemas IA
+6. Capítulo 34 — Costes, latencia y rendimiento
+7. Capítulo 40 — Testing y calidad
+
+Al terminar esta ruta deberías poder explicar:
+
+- qué papel tienen tokens, contexto y ventana efectiva;
+- por qué el modelo puede inventar;
+- por qué una respuesta puede mejorar al reintentar;
+- por qué los prompts largos pueden degradar coste y calidad;
+- por qué cambiar modelo requiere evaluación;
+- por qué la salida final no basta para depurar.
+
+La pregunta central de esta ruta es:
+
+> ¿Qué sabe hacer el modelo, qué parece saber hacer y dónde empieza a fallar silenciosamente?
+
+---
+
 ## Ruta 9 — Para diseñar producto y adopción
 
 Esta ruta es para equipos que quieren que la IA no se quede como demo, sino que entre en procesos, usuarios, equipos y clientes.
@@ -47183,6 +47333,39 @@ Antes de enseñar el sistema a usuarios reales, revisa:
 - ¿Hay plan de mantenimiento?
 
 Si no puedes responder estas preguntas, todavía no tienes producto. Tienes prototipo.
+
+---
+
+## Checklist de sistema IA completo
+
+Una aplicación de IA en producción no es solo:
+
+```text
+usuario -> modelo -> respuesta
+```
+
+Revisa si el sistema tiene las capas necesarias:
+
+- ¿Hay trigger claro: usuario, evento, cron, webhook o cola?
+- ¿Hay normalización de entrada?
+- ¿Hay construcción de contexto?
+- ¿Hay separación entre instrucciones, datos y herramientas?
+- ¿Hay RAG o memoria solo cuando aportan valor?
+- ¿Hay tools con contratos y permisos?
+- ¿Hay orquestación explícita?
+- ¿Hay validación de salida?
+- ¿Hay human-in-the-loop para casos sensibles?
+- ¿Hay trazas por request?
+- ¿Hay evaluación antes de publicar?
+- ¿Hay límites de coste?
+- ¿Hay estrategia de fallback?
+- ¿Hay rollback?
+- ¿Hay feedback loop?
+- ¿Hay propietario del sistema?
+
+Si solo puedes señalar el modelo, todavía no tienes arquitectura.
+
+Tienes una llamada a un modelo.
 
 ---
 

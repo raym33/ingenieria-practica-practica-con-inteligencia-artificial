@@ -249,6 +249,35 @@ La pregunta central de esta ruta es:
 
 ---
 
+## Ruta 8.5 — Para dejar de tratar el modelo como caja negra
+
+Esta ruta es para quien ya usa IA, pero quiere entender por qué los modelos se comportan como se comportan.
+
+Lee:
+
+1. Capítulo 4 — LLMs para ingenieros ocupados
+2. Capítulo 5 — Cómo elegir un modelo
+3. Capítulo 9 — Prompt engineering que sigue funcionando
+4. Capítulo 10 — Prompts como herramientas de ingeniería
+5. Capítulo 31 — Evaluación de sistemas IA
+6. Capítulo 34 — Costes, latencia y rendimiento
+7. Capítulo 40 — Testing y calidad
+
+Al terminar esta ruta deberías poder explicar:
+
+- qué papel tienen tokens, contexto y ventana efectiva;
+- por qué el modelo puede inventar;
+- por qué una respuesta puede mejorar al reintentar;
+- por qué los prompts largos pueden degradar coste y calidad;
+- por qué cambiar modelo requiere evaluación;
+- por qué la salida final no basta para depurar.
+
+La pregunta central de esta ruta es:
+
+> ¿Qué sabe hacer el modelo, qué parece saber hacer y dónde empieza a fallar silenciosamente?
+
+---
+
 ## Ruta 9 — Para diseñar producto y adopción
 
 Esta ruta es para equipos que quieren que la IA no se quede como demo, sino que entre en procesos, usuarios, equipos y clientes.

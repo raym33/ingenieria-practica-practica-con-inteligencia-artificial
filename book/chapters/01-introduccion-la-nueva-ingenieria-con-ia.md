@@ -44,6 +44,63 @@ Desde la ingeniería.
 
 ---
 
+## Qué promete este libro
+
+Este libro no intenta enseñarte a coleccionar herramientas.
+
+Tampoco intenta convencerte de que un prompt brillante sustituye arquitectura.
+
+La promesa es más concreta:
+
+> Aprender a pasar de usar IA a construir sistemas de IA completos.
+
+Eso significa estudiar:
+
+- cómo funciona el modelo lo suficiente para no tratarlo como caja negra;
+- cómo construir contexto;
+- cómo diseñar workflows;
+- cómo conectar tools sin perder control;
+- cómo evaluar calidad;
+- cómo observar fallos;
+- cómo limitar coste;
+- cómo gestionar permisos;
+- cómo publicar y revertir;
+- cómo mejorar con datos reales.
+
+El lector objetivo no es solo quien quiere "probar IA".
+
+Es quien quiere construir algo que aguante usuarios, errores, cambios de modelo, documentos imperfectos, costes, latencia, seguridad y mantenimiento.
+
+### Lo que este libro no es
+
+No es una lista de prompts mágicos.
+
+No es una recopilación de noticias.
+
+No es un curso de moda sobre la herramienta de la semana.
+
+No es una guía para hacer demos vistosas sin operación.
+
+Cada vez que una técnica aparece en el libro, la pregunta de fondo será:
+
+```text
+¿Cómo encaja esto en un sistema real?
+```
+
+Y cada vez que una demo parezca suficiente, volveremos a las mismas preguntas:
+
+- ¿qué problema resuelve?;
+- ¿qué contexto usa?;
+- ¿qué puede hacer?;
+- ¿qué no debe hacer?;
+- ¿cómo sabemos que funciona?;
+- ¿qué cuesta?;
+- ¿cómo falla?;
+- ¿quién lo revisa?;
+- ¿cómo se apaga o revierte?
+
+---
+
 ## 1. La IA no sustituye al software: lo reconfigura
 
 Uno de los errores más frecuentes al hablar de IA generativa es imaginar que los modelos sustituyen al software.
