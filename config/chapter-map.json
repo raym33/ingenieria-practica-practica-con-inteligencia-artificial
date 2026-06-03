@@ -39,7 +39,8 @@
     "27-capitulo-26-mcp.md",
     "28-capitulo-27-arquitecturas-agenticas.md",
     "29-capitulo-28-memoria.md",
-    "30-capitulo-29-agentes-de-voz.md"
+    "30-capitulo-29-agentes-de-voz.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ],
   "chatbots": [
     "22-capitulo-21-chatbots-modernos.md",
@@ -53,39 +54,46 @@
   "function-calling": [
     "24-capitulo-23-diferencia-entre-chatbot-copiloto-y-agente.md",
     "25-capitulo-24-que-es-un-agente-de-ia.md",
-    "26-capitulo-25-function-calling.md"
+    "26-capitulo-25-function-calling.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ],
   "tools": [
     "21-capitulo-20-herramientas-rag.md",
     "26-capitulo-25-function-calling.md",
-    "27-capitulo-26-mcp.md"
+    "27-capitulo-26-mcp.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ],
   "mcp": [
     "25-capitulo-24-que-es-un-agente-de-ia.md",
     "26-capitulo-25-function-calling.md",
     "27-capitulo-26-mcp.md",
-    "28-capitulo-27-arquitecturas-agenticas.md"
+    "28-capitulo-27-arquitecturas-agenticas.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ],
   "arquitecturas-agenticas": [
     "25-capitulo-24-que-es-un-agente-de-ia.md",
     "27-capitulo-26-mcp.md",
     "28-capitulo-27-arquitecturas-agenticas.md",
-    "29-capitulo-28-memoria.md"
+    "29-capitulo-28-memoria.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ],
   "memoria": [
     "25-capitulo-24-que-es-un-agente-de-ia.md",
     "28-capitulo-27-arquitecturas-agenticas.md",
-    "29-capitulo-28-memoria.md"
+    "29-capitulo-28-memoria.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ],
   "voz": [
     "22-capitulo-21-chatbots-modernos.md",
     "25-capitulo-24-que-es-un-agente-de-ia.md",
-    "30-capitulo-29-agentes-de-voz.md"
+    "30-capitulo-29-agentes-de-voz.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ],
   "voice": [
     "22-capitulo-21-chatbots-modernos.md",
     "25-capitulo-24-que-es-un-agente-de-ia.md",
-    "30-capitulo-29-agentes-de-voz.md"
+    "30-capitulo-29-agentes-de-voz.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ],
   "rag": [
     "17-capitulo-16-que-problema-resuelve-rag.md",
@@ -93,6 +101,7 @@
     "19-capitulo-18-problemas-reales-en-rag.md",
     "20-capitulo-19-rag-avanzado.md",
     "21-capitulo-20-herramientas-rag.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md",
     "22-capitulo-21-chatbots-modernos.md",
     "23-capitulo-22-chatbots-para-soporte.md"
   ],
@@ -116,11 +125,13 @@
     "21-capitulo-20-herramientas-rag.md",
     "26-capitulo-25-function-calling.md",
     "27-capitulo-26-mcp.md",
-    "28-capitulo-27-arquitecturas-agenticas.md"
+    "28-capitulo-27-arquitecturas-agenticas.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ],
   "produccion": [
     "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
     "19-capitulo-18-problemas-reales-en-rag.md",
-    "23-capitulo-22-chatbots-para-soporte.md"
+    "23-capitulo-22-chatbots-para-soporte.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md"
   ]
 }

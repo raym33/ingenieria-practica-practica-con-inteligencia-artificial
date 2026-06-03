@@ -50,13 +50,15 @@ const routes = [
       ["Capítulo 26", "/leer/27-capitulo-26-mcp/"],
       ["Capítulo 27", "/leer/28-capitulo-27-arquitecturas-agenticas/"],
       ["Capítulo 28", "/leer/29-capitulo-28-memoria/"],
-      ["Capítulo 29", "/leer/30-capitulo-29-agentes-de-voz/"]
+      ["Capítulo 29", "/leer/30-capitulo-29-agentes-de-voz/"],
+      ["Capítulo 30", "/leer/31-capitulo-30-laboratorio-de-implementacion/"]
     ]
   },
   {
     title: "Aplicación práctica",
     description: "Para convertir lectura en proyectos, criterios y checklists de producción.",
     chapters: [
+      ["Capítulo 30", "/leer/31-capitulo-30-laboratorio-de-implementacion/"],
       ["Apéndice A", "/leer/90-apendice-a-rutas-de-lectura/"],
       ["Apéndice B", "/leer/91-apendice-b-proyectos-guiados/"],
       ["Apéndice C", "/leer/92-apendice-c-checklists-de-produccion/"],

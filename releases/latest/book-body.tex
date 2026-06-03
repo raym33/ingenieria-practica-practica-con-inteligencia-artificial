@@ -57444,6 +57444,1302 @@ Este capítulo conecta con:
 
 \newpage
 
+\chapter{Capítulo 30 --- Laboratorio de
+implementación}\label{capuxedtulo-30-laboratorio-de-implementaciuxf3n}
+
+Este capítulo existe por una razón sencilla: entender RAG, function
+calling, MCP, memoria o agentes de voz no basta para construir un
+producto.
+
+La diferencia aparece cuando tienes que decidir:
+
+\begin{itemize}
+\tightlist
+\item
+  qué guardar;
+\item
+  qué no guardar;
+\item
+  qué medir;
+\item
+  qué exponer al modelo;
+\item
+  qué validar fuera del modelo;
+\item
+  qué hacer cuando una herramienta falla;
+\item
+  cuándo pedir confirmación humana;
+\item
+  cómo saber si el sistema mejora o empeora.
+\end{itemize}
+
+La teoría ayuda a pensar.
+
+La implementación obliga a concretar.
+
+Este capítulo no intenta sustituir la documentación de cada framework.
+Intenta darte una arquitectura mínima, portable y suficientemente seria
+para empezar un proyecto real sin quedar atrapado en una demo bonita
+pero frágil.
+
+La idea es construir cinco piezas:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  un RAG mínimo evaluable;
+\item
+  un sistema de tools con validación y permisos;
+\item
+  una memoria explícita y borrable;
+\item
+  un agente pequeño con límites;
+\item
+  una capa de voz que no rompa la seguridad.
+\end{enumerate}
+
+No importa si usas OpenAI, Anthropic, modelos locales, Ollama, LM
+Studio, LlamaIndex, LangChain, Vercel, FastAPI o una pila propia. Las
+decisiones importantes son las mismas.
+
+\section{30.1 Arquitectura base}\label{arquitectura-base}
+
+Una arquitectura práctica para sistemas IA no empieza con el modelo.
+
+Empieza con el contrato.
+
+\begin{lstlisting}
+Usuario
+  |
+  v
+API de aplicación
+  |
+  +--> Política de permisos
+  +--> Recuperación de contexto
+  +--> Memoria
+  +--> Selección de tools
+  +--> Llamada al modelo
+  +--> Validación de salida
+  +--> Ejecución de acciones
+  +--> Logs, métricas y auditoría
+\end{lstlisting}
+
+El modelo es una pieza dentro del sistema.
+
+No es el sistema.
+
+La regla práctica:
+
+\begin{quote}
+Todo lo que sea seguridad, permisos, validación, coste, auditoría o
+confirmación debe vivir fuera del prompt.
+\end{quote}
+
+El prompt puede explicar reglas.
+
+El sistema debe hacerlas cumplir.
+
+\section{30.2 Estructura de proyecto
+mínima}\label{estructura-de-proyecto-muxednima}
+
+Para un proyecto pequeño, una estructura suficiente sería:
+
+\begin{lstlisting}
+ai-product/
+  app/
+    api.py
+    settings.py
+  ai/
+    model.py
+    prompts.py
+    rag.py
+    tools.py
+    memory.py
+    agent.py
+    guardrails.py
+    evals.py
+    tracing.py
+  data/
+    documents/
+    index/
+    evals/
+  tests/
+    test_rag.py
+    test_tools.py
+    test_memory.py
+    test_agent.py
+\end{lstlisting}
+
+Esta estructura separa responsabilidades:
+
+\begin{itemize}
+\tightlist
+\item
+  \passthrough{\lstinline!rag.py!} recupera contexto;
+\item
+  \passthrough{\lstinline!tools.py!} define acciones;
+\item
+  \passthrough{\lstinline!memory.py!} guarda preferencias o hechos
+  persistentes;
+\item
+  \passthrough{\lstinline!agent.py!} decide pasos;
+\item
+  \passthrough{\lstinline!guardrails.py!} valida entradas, salidas y
+  acciones;
+\item
+  \passthrough{\lstinline!evals.py!} mide calidad;
+\item
+  \passthrough{\lstinline!tracing.py!} deja evidencia.
+\end{itemize}
+
+Cuando todo vive en un solo archivo, el prototipo avanza rápido.
+
+Cuando todo vive mezclado en producción, cada cambio da miedo.
+
+\section{30.3 Contrato de respuesta}\label{contrato-de-respuesta}
+
+Antes de escribir el prompt, define cómo debe salir la respuesta.
+
+Ejemplo:
+
+\begin{lstlisting}
+{
+  "answer": "Texto para el usuario",
+  "citations": [
+    {
+      "source_id": "manual-ventas-2026",
+      "chunk_id": "manual-ventas-2026:15",
+      "quote": "Fragmento exacto usado como evidencia"
+    }
+  ],
+  "confidence": "high",
+  "missing_information": [],
+  "actions": []
+}
+\end{lstlisting}
+
+Este contrato permite evaluar.
+
+Sin contrato, evalúas impresiones.
+
+Con contrato, puedes medir:
+
+\begin{itemize}
+\tightlist
+\item
+  si la respuesta cita fuentes;
+\item
+  si las fuentes existen;
+\item
+  si la respuesta declara incertidumbre;
+\item
+  si pidió una acción;
+\item
+  si la acción estaba permitida;
+\item
+  si faltaba información.
+\end{itemize}
+
+\section{30.4 RAG mínimo evaluable}\label{rag-muxednimo-evaluable}
+
+Un RAG vendible no es el que responde bonito.
+
+Es el que puedes auditar.
+
+El flujo mínimo:
+
+\begin{lstlisting}
+pregunta -> filtros de permisos -> retrieval -> contexto -> respuesta -> citas -> log -> evaluación
+\end{lstlisting}
+
+Un esqueleto en Python:
+
+\begin{lstlisting}[language=Python]
+from dataclasses import dataclass
+
+@dataclass
+class Chunk:
+    id: str
+    source_id: str
+    text: str
+    metadata: dict
+
+@dataclass
+class RetrievedChunk:
+    chunk: Chunk
+    score: float
+
+def retrieve(question: str, user: dict, top_k: int = 6) -> list[RetrievedChunk]:
+    allowed_sources = get_allowed_sources(user)
+    candidates = vector_search(question, top_k=top_k * 3)
+    filtered = [
+        item for item in candidates
+        if item.chunk.metadata.get("source_id") in allowed_sources
+    ]
+    return filtered[:top_k]
+
+def build_context(items: list[RetrievedChunk]) -> str:
+    blocks = []
+    for item in items:
+        blocks.append(
+            f"[{item.chunk.id} | score={item.score:.3f}]\n{item.chunk.text}"
+        )
+    return "\n\n---\n\n".join(blocks)
+
+def answer_with_rag(question: str, user: dict) -> dict:
+    retrieved = retrieve(question, user)
+    context = build_context(retrieved)
+    response = call_model(
+        system=RAG_SYSTEM_PROMPT,
+        user=f"Contexto:\n{context}\n\nPregunta:\n{question}"
+    )
+    result = validate_response_contract(response)
+    log_rag_event(question, user, retrieved, result)
+    return result
+\end{lstlisting}
+
+Lo importante no es este código exacto.
+
+Lo importante es la frontera:
+
+\begin{itemize}
+\tightlist
+\item
+  los permisos se aplican antes de construir contexto;
+\item
+  el contexto tiene identificadores;
+\item
+  la respuesta se valida;
+\item
+  el evento queda registrado;
+\item
+  la evaluación puede repetir preguntas.
+\end{itemize}
+
+\section{30.5 Métricas mínimas de
+RAG}\label{muxe9tricas-muxednimas-de-rag}
+
+Para cada pregunta de evaluación, guarda:
+
+\begin{lstlisting}
+{
+  "question": "¿Cuál es la política de devoluciones?",
+  "expected_sources": ["politica-devoluciones-2026"],
+  "forbidden_sources": ["borrador-interno-legal"],
+  "expected_answer_points": [
+    "plazo de devolución",
+    "condiciones del producto",
+    "canal de solicitud"
+  ]
+}
+\end{lstlisting}
+
+Y mide:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{retrieval\_hit\_rate}: si aparece al menos una fuente
+  esperada;
+\item
+  \textbf{source\_precision}: cuántas fuentes recuperadas eran
+  relevantes;
+\item
+  \textbf{citation\_validity}: si las citas existen y pertenecen al
+  contexto;
+\item
+  \textbf{answer\_coverage}: si cubre los puntos esperados;
+\item
+  \textbf{abstention\_rate}: cuántas veces dice ``no tengo información
+  suficiente'';
+\item
+  \textbf{unsafe\_leak\_rate}: si usa fuentes prohibidas.
+\end{itemize}
+
+Un RAG puede parecer mejor porque responde con más seguridad.
+
+Pero si cita peor, filtra permisos peor o inventa con más elegancia, no
+es mejor.
+
+\section{30.6 Chunking práctico}\label{chunking-pruxe1ctico}
+
+El chunking no se decide por moda.
+
+Se decide por tarea.
+
+Para FAQ corta: chunk inicial de 200-400 tokens, overlap de 20-50 y
+pregunta/respuesta juntas.
+
+Para manual técnico: chunk inicial de 500-900 tokens, overlap de 80-150
+y respeto por títulos y subsecciones.
+
+Para legal o contratos: chunk inicial de 300-700 tokens, overlap de
+100-200 y cláusulas completas.
+
+Para código: chunk por función o clase, overlap bajo, path y firma
+incluidos.
+
+Para un libro vivo: chunk por sección, overlap medio, título, capítulo y
+fecha siempre presentes.
+
+Regla práctica:
+
+\begin{quote}
+Si el chunk no puede responder nada por sí mismo, es demasiado pequeño o
+está mal cortado.
+\end{quote}
+
+Otra regla:
+
+\begin{quote}
+Si el chunk contiene tres temas distintos, es demasiado grande.
+\end{quote}
+
+\section{30.7 Tool calling mínimo}\label{tool-calling-muxednimo}
+
+Una tool de producción debe tener:
+
+\begin{itemize}
+\tightlist
+\item
+  nombre específico;
+\item
+  descripción corta;
+\item
+  esquema estricto;
+\item
+  validación fuera del modelo;
+\item
+  permisos;
+\item
+  modo dry-run cuando sea posible;
+\item
+  errores estructurados;
+\item
+  logs.
+\end{itemize}
+
+Ejemplo:
+
+\begin{lstlisting}[language=Python]
+from pydantic import BaseModel, Field
+
+class CreateTicketInput(BaseModel):
+    customer_id: str = Field(min_length=3)
+    title: str = Field(min_length=5, max_length=120)
+    priority: str = Field(pattern="^(low|medium|high)$")
+    summary: str = Field(min_length=10, max_length=2000)
+
+def create_support_ticket(raw_args: dict, user: dict) -> dict:
+    args = CreateTicketInput.model_validate(raw_args)
+
+    if "ticket:create" not in user["permissions"]:
+        return {
+            "ok": False,
+            "error": "permission_denied",
+            "message": "El usuario no puede crear tickets."
+        }
+
+    ticket = insert_ticket(
+        customer_id=args.customer_id,
+        title=args.title,
+        priority=args.priority,
+        summary=args.summary,
+        created_by=user["id"]
+    )
+
+    return {
+        "ok": True,
+        "ticket_id": ticket.id,
+        "status": ticket.status
+    }
+\end{lstlisting}
+
+La parte crítica:
+
+\begin{lstlisting}[language=Python]
+args = CreateTicketInput.model_validate(raw_args)
+\end{lstlisting}
+
+El modelo propone.
+
+El sistema valida.
+
+\section{30.8 Confirmación antes de acciones
+sensibles}\label{confirmaciuxf3n-antes-de-acciones-sensibles}
+
+No todas las tools deben ejecutarse igual.
+
+Tools de lectura, como buscar un documento, normalmente no requieren
+confirmación.
+
+Tools de cálculo, como estimar un coste, normalmente no requieren
+confirmación.
+
+Tools de borrador, como redactar un email, normalmente no requieren
+confirmación.
+
+Tools de escritura reversible, como crear un ticket, pueden requerir
+confirmación según el contexto.
+
+Tools de escritura externa, como enviar un email, deben requerir
+confirmación.
+
+Tools económicas, como emitir una factura, deben requerir confirmación.
+
+Tools destructivas, como borrar un usuario, deben requerir confirmación
+y doble control.
+
+Patrón práctico:
+
+\begin{lstlisting}[language=Python]
+def requires_confirmation(tool_name: str, args: dict) -> bool:
+    sensitive_tools = {
+        "send_email",
+        "create_invoice",
+        "delete_record",
+        "change_permissions"
+    }
+    return tool_name in sensitive_tools
+\end{lstlisting}
+
+Y en el agente:
+
+\begin{lstlisting}[language=Python]
+if requires_confirmation(tool_name, args):
+    return {
+        "type": "confirmation_required",
+        "tool": tool_name,
+        "args": redact_sensitive_args(args),
+        "message": "Voy a ejecutar esta acción. ¿Confirmas?"
+    }
+\end{lstlisting}
+
+La confirmación no debe ser solo una frase en el prompt.
+
+Debe estar en el flujo de aplicación.
+
+\section{30.9 Memoria mínima}\label{memoria-muxednima}
+
+La memoria no debe ser un cajón.
+
+Debe ser una tabla con política.
+
+Ejemplo:
+
+\begin{lstlisting}[language=SQL]
+CREATE TABLE ai_memory (
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  project_id TEXT,
+  memory_type TEXT NOT NULL,
+  content TEXT NOT NULL,
+  source TEXT NOT NULL,
+  confidence REAL NOT NULL,
+  created_at TIMESTAMP NOT NULL,
+  expires_at TIMESTAMP,
+  deleted_at TIMESTAMP
+);
+\end{lstlisting}
+
+Tipos de memoria útiles:
+
+\begin{itemize}
+\tightlist
+\item
+  \passthrough{\lstinline!preference!}: ``prefiere respuestas cortas'';
+\item
+  \passthrough{\lstinline!project\_fact!}: ``el proyecto usa Next.js'';
+\item
+  \passthrough{\lstinline!constraint!}: ``no usar servicios cloud para
+  datos médicos'';
+\item
+  \passthrough{\lstinline!decision!}: ``se eligió pgvector por
+  integración con Postgres'';
+\item
+  \passthrough{\lstinline!open\_issue!}: ``pendiente medir latencia de
+  reranker''.
+\end{itemize}
+
+Memoria peligrosa:
+
+\begin{itemize}
+\tightlist
+\item
+  datos médicos sin necesidad;
+\item
+  credenciales;
+\item
+  opiniones inferidas;
+\item
+  información de terceros;
+\item
+  instrucciones persistentes no verificadas;
+\item
+  contenido que pueda ser prompt injection.
+\end{itemize}
+
+\section{30.10 Guardar memoria con
+confirmación}\label{guardar-memoria-con-confirmaciuxf3n}
+
+Un patrón sano:
+
+\begin{lstlisting}[language=Python]
+def propose_memory(message: str) -> dict | None:
+    candidate = extract_memory_candidate(message)
+    if not candidate:
+        return None
+
+    if candidate["type"] in {"credential", "sensitive_personal_data"}:
+        return None
+
+    return {
+        "type": "memory_proposal",
+        "memory": candidate,
+        "message": "Puedo recordar esto para futuras sesiones. ¿Quieres que lo guarde?"
+    }
+\end{lstlisting}
+
+Y solo guardas tras confirmación:
+
+\begin{lstlisting}[language=Python]
+def save_confirmed_memory(candidate: dict, user: dict) -> dict:
+    if not user_can_store_memory(user):
+        return {"ok": False, "error": "memory_not_allowed"}
+
+    return insert_memory(
+        user_id=user["id"],
+        memory_type=candidate["type"],
+        content=candidate["content"],
+        source="user_confirmed",
+        confidence=1.0
+    )
+\end{lstlisting}
+
+La memoria buena se siente como continuidad.
+
+La memoria mala se siente como vigilancia.
+
+\section{30.11 Agente mínimo con
+límites}\label{agente-muxednimo-con-luxedmites}
+
+Un agente práctico no necesita veinte agentes.
+
+Necesita:
+
+\begin{itemize}
+\tightlist
+\item
+  objetivo claro;
+\item
+  tools limitadas;
+\item
+  presupuesto de pasos;
+\item
+  presupuesto de coste;
+\item
+  verificación;
+\item
+  salida trazable.
+\end{itemize}
+
+Ejemplo:
+
+\begin{lstlisting}[language=Python]
+MAX_STEPS = 5
+
+def run_agent(task: str, user: dict) -> dict:
+    state = {
+        "task": task,
+        "steps": [],
+        "cost": 0.0,
+        "done": False
+    }
+
+    for step_number in range(1, MAX_STEPS + 1):
+        plan = call_model(
+            system=AGENT_SYSTEM_PROMPT,
+            user=render_agent_state(state)
+        )
+
+        decision = validate_agent_decision(plan)
+
+        if decision["type"] == "final":
+            state["done"] = True
+            state["final"] = decision["answer"]
+            break
+
+        if decision["type"] == "tool_call":
+            result = execute_tool_safely(
+                decision["tool"],
+                decision["args"],
+                user
+            )
+            state["steps"].append({
+                "tool": decision["tool"],
+                "args": redact_sensitive_args(decision["args"]),
+                "result": result
+            })
+
+    if not state["done"]:
+        state["final"] = "No he podido completar la tarea con los límites actuales."
+
+    log_agent_trace(state, user)
+    return state
+\end{lstlisting}
+
+Este agente es aburrido.
+
+Eso es bueno.
+
+En producción, aburrido suele significar observable, limitado y
+explicable.
+
+\section{30.12 Estado de agente}\label{estado-de-agente}
+
+El estado mínimo:
+
+\begin{lstlisting}
+{
+  "task": "Preparar propuesta para cliente",
+  "step_count": 3,
+  "max_steps": 5,
+  "tools_used": ["search_docs", "draft_email"],
+  "open_questions": [],
+  "blocked_reason": null,
+  "requires_human_confirmation": false
+}
+\end{lstlisting}
+
+No necesitas guardar todo el razonamiento interno del modelo.
+
+Necesitas guardar la traza operativa:
+
+\begin{itemize}
+\tightlist
+\item
+  qué pidió el usuario;
+\item
+  qué herramientas se llamaron;
+\item
+  con qué argumentos;
+\item
+  qué devolvieron;
+\item
+  qué decisión visible tomó el sistema;
+\item
+  cuánto costó;
+\item
+  cuánto tardó;
+\item
+  qué errores aparecieron.
+\end{itemize}
+
+\section{30.13 Observabilidad mínima}\label{observabilidad-muxednima}
+
+Cada interacción debería producir un evento:
+
+\begin{lstlisting}
+{
+  "event": "ai_interaction",
+  "request_id": "req_2026_06_03_001",
+  "user_id": "usr_123",
+  "feature": "support_copilot",
+  "model": "provider/model",
+  "input_tokens": 1240,
+  "output_tokens": 330,
+  "latency_ms": 1840,
+  "retrieved_chunks": 6,
+  "tools_called": ["create_support_ticket"],
+  "error": null,
+  "user_feedback": null
+}
+\end{lstlisting}
+
+Métricas mínimas:
+
+\begin{itemize}
+\tightlist
+\item
+  latencia p50, p95 y p99;
+\item
+  coste por conversación;
+\item
+  porcentaje de respuestas sin fuente;
+\item
+  porcentaje de ``no encontrado'';
+\item
+  tasa de tool calls fallidas;
+\item
+  tasa de confirmaciones rechazadas;
+\item
+  satisfacción del usuario;
+\item
+  bugs reportados por cada 100 conversaciones.
+\end{itemize}
+
+Sin estas métricas, el sistema solo ``parece'' funcionar.
+
+\section{30.14 Evaluación antes de
+producción}\label{evaluaciuxf3n-antes-de-producciuxf3n}
+
+Antes de poner un sistema IA delante de usuarios reales, crea una suite
+pequeña.
+
+No hace falta empezar con mil casos.
+
+Empieza con treinta:
+
+\begin{itemize}
+\tightlist
+\item
+  10 preguntas normales;
+\item
+  5 preguntas ambiguas;
+\item
+  5 preguntas fuera de alcance;
+\item
+  5 preguntas con permisos;
+\item
+  5 intentos de prompt injection o abuso.
+\end{itemize}
+
+Ejemplo:
+
+\begin{lstlisting}
+{
+  "id": "rag_perm_003",
+  "input": "Resume el contrato del cliente ACME",
+  "user": {
+    "id": "usr_sales_01",
+    "permissions": ["contracts:read:own_region"]
+  },
+  "expected": {
+    "allowed_sources": ["acme-contract-eu"],
+    "forbidden_sources": ["acme-contract-us"],
+    "must_not_include": ["datos bancarios", "credenciales"]
+  }
+}
+\end{lstlisting}
+
+La evaluación no busca perfección.
+
+Busca regresiones.
+
+Cuando cambias modelo, prompt, chunking, embeddings o tool descriptions,
+corres la suite.
+
+Si baja la calidad, no publicas.
+
+\section{30.15 Voz: arquitectura segura}\label{voz-arquitectura-segura}
+
+Un agente de voz añade presión.
+
+Todo ocurre más rápido.
+
+Arquitectura mínima:
+
+\begin{lstlisting}
+audio
+  -> STT
+  -> normalización de turno
+  -> clasificador de intención
+  -> RAG/tools/memoria
+  -> respuesta corta
+  -> TTS
+  -> log sin audio sensible
+\end{lstlisting}
+
+Reglas prácticas:
+
+\begin{itemize}
+\tightlist
+\item
+  no ejecutes acciones críticas solo porque el STT transcribió algo;
+\item
+  confirma nombres, importes, fechas y destinatarios;
+\item
+  permite interrupción;
+\item
+  permite fallback a texto o humano;
+\item
+  no guardes audio si no aporta valor claro;
+\item
+  registra transcripción, decisión y acción, no necesariamente el audio
+  completo.
+\end{itemize}
+
+Ejemplo de confirmación:
+
+\begin{lstlisting}
+Usuario: Cambia la cita de Marta al viernes.
+Agente: He encontrado una cita de Marta López el jueves a las 10:00. 
+        ¿Quieres moverla al viernes 5 de junio a las 10:00?
+Usuario: Sí.
+Agente: Confirmado. La he cambiado al viernes 5 de junio a las 10:00.
+\end{lstlisting}
+
+En voz, una confirmación bien diseñada vale más que un modelo más
+grande.
+
+\section{30.16 Coste por arquitectura}\label{coste-por-arquitectura}
+
+Una forma simple de estimar coste:
+
+\begin{lstlisting}
+coste_total =
+  coste_stt
+  + coste_embeddings
+  + coste_retrieval
+  + coste_reranking
+  + coste_modelo
+  + coste_tts
+  + coste_infra
+  + coste_humano_de_revisión
+\end{lstlisting}
+
+No todos aplican siempre.
+
+Para un chatbot RAG de texto:
+
+\begin{lstlisting}
+coste_total =
+  embeddings_de_ingesta
+  + vector_db
+  + tokens_de_entrada
+  + tokens_de_salida
+  + observabilidad
+\end{lstlisting}
+
+Para un agente de voz:
+
+\begin{lstlisting}
+coste_total =
+  STT
+  + tokens
+  + tools
+  + TTS
+  + telefonía
+  + fallback humano
+\end{lstlisting}
+
+El coste que mata proyectos no suele ser una respuesta individual.
+
+Suele ser:
+
+\begin{itemize}
+\tightlist
+\item
+  reintentos;
+\item
+  prompts demasiado largos;
+\item
+  retrieval excesivo;
+\item
+  modelos grandes para tareas pequeñas;
+\item
+  logs inexistentes;
+\item
+  automatizaciones que fallan en silencio;
+\item
+  revisión humana improvisada.
+\end{itemize}
+
+\section{30.17 Guardrails que sí
+importan}\label{guardrails-que-suxed-importan}
+
+Los guardrails útiles no son una lista infinita de prohibiciones.
+
+Son controles conectados a riesgos reales.
+
+Para fuga de datos: permisos antes de retrieval.
+
+Para acción incorrecta: confirmación y dry-run.
+
+Para prompt injection: separar datos de instrucciones.
+
+Para tool peligrosa: allowlist por usuario y contexto.
+
+Para respuesta inventada: citas obligatorias y abstención.
+
+Para coste descontrolado: límites por request y por usuario.
+
+Para bucle de agente: máximo de pasos.
+
+Para memoria tóxica: confirmación, caducidad y borrado.
+
+Un buen sistema IA no intenta eliminar todo riesgo.
+
+Lo hace visible, medible y gobernable.
+
+\section{30.18 Checklist de salida a
+producción}\label{checklist-de-salida-a-producciuxf3n}
+
+Antes de publicar:
+
+\begin{itemize}
+\tightlist
+\item
+  El sistema tiene contrato de entrada y salida.
+\item
+  Las tools validan argumentos fuera del modelo.
+\item
+  Las tools sensibles requieren confirmación.
+\item
+  Los permisos se aplican antes de recuperar contexto.
+\item
+  Las respuestas RAG pueden citar fuentes.
+\item
+  Existe comportamiento definido para ``no encontrado''.
+\item
+  Hay logs por interacción.
+\item
+  Hay métricas de latencia, coste y error.
+\item
+  Hay suite mínima de evaluación.
+\item
+  Hay rollback de prompt o modelo.
+\item
+  Hay límite de pasos para agentes.
+\item
+  Hay política de memoria.
+\item
+  Hay borrado de memoria.
+\item
+  Hay revisión de datos sensibles.
+\item
+  Hay fallback humano o manual para casos críticos.
+\end{itemize}
+
+Si faltan tres o más puntos, probablemente no estás ante producción.
+
+Estás ante una demo avanzada.
+
+\section{30.19 Mini proyecto guiado: copiloto de
+soporte}\label{mini-proyecto-guiado-copiloto-de-soporte}
+
+Objetivo: construir un copiloto interno para soporte.
+
+Alcance inicial:
+
+\begin{itemize}
+\tightlist
+\item
+  responde preguntas sobre documentación interna;
+\item
+  crea borradores de ticket;
+\item
+  no envía emails;
+\item
+  no modifica clientes;
+\item
+  cita fuentes;
+\item
+  registra feedback.
+\end{itemize}
+
+Stack mínimo:
+
+\begin{itemize}
+\tightlist
+\item
+  backend: FastAPI o API route;
+\item
+  almacenamiento: Postgres;
+\item
+  vector: pgvector o Qdrant;
+\item
+  observabilidad: tabla de eventos al principio;
+\item
+  evaluación: JSON con casos;
+\item
+  frontend: panel simple con pregunta, respuesta, fuentes y feedback.
+\end{itemize}
+
+Fases:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Ingestar 20 documentos reales.
+\item
+  Crear 30 preguntas de evaluación.
+\item
+  Implementar retrieval con permisos.
+\item
+  Exigir citas.
+\item
+  Añadir tool \passthrough{\lstinline!create\_ticket\_draft!}.
+\item
+  Añadir logs.
+\item
+  Medir coste y latencia.
+\item
+  Probar con usuarios internos.
+\item
+  Revisar errores semanales.
+\item
+  Solo después, añadir más tools.
+\end{enumerate}
+
+La tentación será empezar por el agente.
+
+Empieza por el copiloto.
+
+\section{30.20 Mini proyecto guiado: memoria de
+proyecto}\label{mini-proyecto-guiado-memoria-de-proyecto}
+
+Objetivo: que un asistente técnico recuerde decisiones de un proyecto.
+
+Memorias permitidas:
+
+\begin{itemize}
+\tightlist
+\item
+  stack técnico;
+\item
+  decisiones aprobadas;
+\item
+  restricciones;
+\item
+  tareas abiertas;
+\item
+  preferencias de formato.
+\end{itemize}
+
+Memorias prohibidas:
+
+\begin{itemize}
+\tightlist
+\item
+  claves;
+\item
+  tokens;
+\item
+  datos personales innecesarios;
+\item
+  instrucciones de seguridad;
+\item
+  contenido no confirmado.
+\end{itemize}
+
+Flujo:
+
+\begin{lstlisting}
+mensaje -> extracción de posible memoria -> clasificación -> propuesta al usuario -> confirmación -> guardado -> recuperación contextual
+\end{lstlisting}
+
+La memoria no debe entrar siempre completa en el prompt.
+
+Debe recuperarse según tarea.
+
+Ejemplo:
+
+\begin{lstlisting}[language=Python]
+def get_relevant_memory(task: str, user: dict, project_id: str) -> list[dict]:
+    memories = search_memory(
+        query=task,
+        user_id=user["id"],
+        project_id=project_id,
+        limit=5
+    )
+    return [
+        memory for memory in memories
+        if memory["deleted_at"] is None and not is_expired(memory)
+    ]
+\end{lstlisting}
+
+La memoria útil reduce repetición.
+
+La memoria peligrosa aumenta superficie de ataque.
+
+\section{30.21 Mini proyecto guiado: agente de
+investigación}\label{mini-proyecto-guiado-agente-de-investigaciuxf3n}
+
+Objetivo: vigilar novedades y proponer cambios al libro vivo.
+
+Tools:
+
+\begin{itemize}
+\tightlist
+\item
+  \passthrough{\lstinline!search\_news!};
+\item
+  \passthrough{\lstinline!fetch\_paper!};
+\item
+  \passthrough{\lstinline!fetch\_repo\_release!};
+\item
+  \passthrough{\lstinline!summarize\_source!};
+\item
+  \passthrough{\lstinline!propose\_book\_change!}.
+\end{itemize}
+
+Límites:
+
+\begin{itemize}
+\tightlist
+\item
+  no modifica capítulos directamente;
+\item
+  no publica releases;
+\item
+  no usa fuentes sin URL;
+\item
+  no acepta posts virales sin corroboración;
+\item
+  máximo 8 fuentes por informe diario;
+\item
+  separa hechos de inferencias.
+\end{itemize}
+
+Salida:
+
+\begin{lstlisting}
+{
+  "date": "2026-06-03",
+  "items": [
+    {
+      "title": "Nueva versión de una herramienta RAG",
+      "source_url": "https://example.com",
+      "confidence": "medium",
+      "affected_chapters": ["20", "21"],
+      "proposed_change": "Actualizar tabla de herramientas",
+      "requires_human_review": true
+    }
+  ]
+}
+\end{lstlisting}
+
+Este agente no escribe el libro.
+
+Prepara buen material para que el autor decida.
+
+Esa diferencia protege la calidad editorial.
+
+\section{30.22 Qué debe mejorar en próximas
+ediciones}\label{quuxe9-debe-mejorar-en-pruxf3ximas-ediciones}
+
+Este laboratorio es un punto de partida.
+
+Las próximas versiones deberían añadir:
+
+\begin{itemize}
+\tightlist
+\item
+  repositorios de ejemplo completos;
+\item
+  comparativas reales de latencia;
+\item
+  evaluación con datasets pequeños incluidos;
+\item
+  integración con modelos locales;
+\item
+  ejemplos MCP ejecutables;
+\item
+  plantillas de observabilidad;
+\item
+  despliegues en Vercel, Docker y servidores locales;
+\item
+  casos de voz con medición de turnos;
+\item
+  análisis económico por tipo de producto.
+\end{itemize}
+
+Un libro vivo no debe fingir que ya está terminado.
+
+Debe mostrar una ruta clara de mejora.
+
+\section{30.23 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-29}
+
+\begin{itemize}
+\tightlist
+\item
+  El modelo es una pieza, no el sistema.
+\item
+  La implementación empieza por contratos, permisos y trazas.
+\item
+  RAG debe evaluarse por recuperación, citas, permisos y abstención.
+\item
+  Function calling necesita validación externa al modelo.
+\item
+  Las tools sensibles requieren confirmación en la aplicación.
+\item
+  La memoria debe ser explícita, editable y borrable.
+\item
+  Un agente útil tiene límites de pasos, coste y herramientas.
+\item
+  Voz exige confirmaciones más cuidadosas que texto.
+\item
+  Observabilidad y evaluación separan demo de producto.
+\item
+  La mejora del libro debe avanzar hacia laboratorios ejecutables.
+\end{itemize}
+
+\section{30.24 Checklist práctica}\label{checklist-pruxe1ctica-29}
+
+\begin{itemize}
+\tightlist
+\item
+  ¿Existe contrato JSON de respuesta?
+\item
+  ¿Se validan las salidas del modelo?
+\item
+  ¿Se aplican permisos antes del retrieval?
+\item
+  ¿Hay identificadores de fuente y chunk?
+\item
+  ¿Las tools tienen esquemas estrictos?
+\item
+  ¿Las acciones sensibles requieren confirmación?
+\item
+  ¿La memoria se puede listar, editar y borrar?
+\item
+  ¿Hay límite de pasos para agentes?
+\item
+  ¿Hay logs por interacción?
+\item
+  ¿Se mide coste?
+\item
+  ¿Se mide latencia?
+\item
+  ¿Hay evaluación con casos normales, ambiguos y maliciosos?
+\item
+  ¿Hay rollback de modelo, prompt o índice?
+\item
+  ¿Hay fallback humano?
+\item
+  ¿El sistema puede decir ``no sé'' sin romper la experiencia?
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-29}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 16 --- Qué problema resuelve RAG.
+\item
+  Capítulo 17 --- Arquitectura RAG básica.
+\item
+  Capítulo 19 --- RAG avanzado.
+\item
+  Capítulo 20 --- Herramientas RAG.
+\item
+  Capítulo 25 --- Function calling.
+\item
+  Capítulo 26 --- MCP.
+\item
+  Capítulo 27 --- Arquitecturas agenticas.
+\item
+  Capítulo 28 --- Memoria.
+\item
+  Capítulo 29 --- Agentes de voz.
+\end{itemize}
+
+\newpage
+
 \chapter{Apéndice A --- Rutas de
 lectura}\label{apuxe9ndice-a-rutas-de-lectura}
 
