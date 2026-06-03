@@ -12,7 +12,7 @@
     "publish": "node scripts/publish.js",
     "dashboard": "node scripts/dashboard.js",
     "site:generate": "cd site && node scripts/generate-content.mjs",
-    "site:build": "cd site && npm ci && npm run build",
+    "site:build": "npm run --prefix site build",
     "site:dev": "cd site && npm install && npm run dev",
     "daily": "node scripts/daily.js",
     "add": "node scripts/add-manual-item.js"
