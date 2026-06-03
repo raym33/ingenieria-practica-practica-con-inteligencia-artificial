@@ -40,24 +40,27 @@ const routes = [
   },
   {
     title: "Chatbots, copilotos y agentes",
-    description: "Para distinguir interfaces conversacionales, copilotos, agentes, tools, function calling y MCP.",
+    description: "Para distinguir interfaces conversacionales, copilotos, agentes, memoria, voz, tools, function calling y MCP.",
     chapters: [
       ["Capítulo 21", "/leer/22-capitulo-21-chatbots-modernos/"],
       ["Capítulo 22", "/leer/23-capitulo-22-chatbots-para-soporte/"],
       ["Capítulo 23", "/leer/24-capitulo-23-diferencia-entre-chatbot-copiloto-y-agente/"],
       ["Capítulo 24", "/leer/25-capitulo-24-que-es-un-agente-de-ia/"],
       ["Capítulo 25", "/leer/26-capitulo-25-function-calling/"],
-      ["Capítulo 26", "/leer/27-capitulo-26-mcp/"]
+      ["Capítulo 26", "/leer/27-capitulo-26-mcp/"],
+      ["Capítulo 27", "/leer/28-capitulo-27-arquitecturas-agenticas/"],
+      ["Capítulo 28", "/leer/29-capitulo-28-memoria/"],
+      ["Capítulo 29", "/leer/30-capitulo-29-agentes-de-voz/"]
     ]
   },
   {
     title: "Aplicación práctica",
     description: "Para convertir lectura en proyectos, criterios y checklists de producción.",
     chapters: [
-      ["Apéndice A", "/leer/28-apendice-a-rutas-de-lectura/"],
-      ["Apéndice B", "/leer/29-apendice-b-proyectos-guiados/"],
-      ["Apéndice C", "/leer/30-apendice-c-checklists-de-produccion/"],
-      ["Apéndice D", "/leer/31-apendice-d-glosario-operativo/"]
+      ["Apéndice A", "/leer/90-apendice-a-rutas-de-lectura/"],
+      ["Apéndice B", "/leer/91-apendice-b-proyectos-guiados/"],
+      ["Apéndice C", "/leer/92-apendice-c-checklists-de-produccion/"],
+      ["Apéndice D", "/leer/93-apendice-d-glosario-operativo/"]
     ]
   }
 ];
@@ -85,4 +88,3 @@ export default function RutasPage() {
     </main>
   );
 }
-
