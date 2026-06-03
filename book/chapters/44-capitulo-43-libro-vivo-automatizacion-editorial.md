@@ -72,6 +72,134 @@ Criterio para apagar o revertir:
 
 Cuando no puedes completar esta ficha, el proyecto todavía está demasiado borroso.
 
+### Radar con X, GitHub, papers y noticias
+
+Un libro vivo necesita fuentes con funciones distintas.
+
+X sirve para detectar señales tempranas:
+
+- modelos que la comunidad empieza a probar;
+- repos que se vuelven populares;
+- configuraciones que usuarios reales dicen que funcionan;
+- problemas de adopción;
+- benchmarks informales;
+- cambios de opinión entre builders.
+
+Pero X no debe decidir cambios por sí solo.
+
+GitHub sirve para confirmar actividad real:
+
+- releases;
+- commits;
+- issues;
+- adopción;
+- documentación;
+- licencias;
+- ejemplos.
+
+Papers y blogs técnicos sirven para entender la base:
+
+- técnica nueva;
+- limitaciones;
+- evaluación;
+- comparación con enfoques anteriores.
+
+Noticias y anuncios oficiales sirven para fechas, disponibilidad, precios, APIs, hardware y cambios de producto.
+
+El radar editorial debe combinar las cuatro capas.
+
+### Formato de ficha editorial
+
+Cada señal debería convertirse en una ficha antes de tocar capítulos:
+
+```json
+{
+  "title": "Nueva práctica emergente en agentes de código",
+  "source_type": "x_thread",
+  "source_url": "https://x.com/...",
+  "observed_at": "2026-06-03",
+  "summary": "Varios desarrolladores reportan mejoras usando planes verificables antes de editar código.",
+  "evidence": [
+    "hilo con ejemplos",
+    "repo con plantilla",
+    "discusión técnica independiente"
+  ],
+  "confidence": "medium",
+  "affected_chapters": [
+    "15-capitulo-14-reglas-para-agentes-de-codigo.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md"
+  ],
+  "change_type": "ampliar práctica",
+  "recommended_action": "añadir sección breve, no reescribir capítulo",
+  "human_review_required": true
+}
+```
+
+La ficha protege al libro de dos peligros:
+
+- reaccionar a ruido;
+- ignorar señales tempranas útiles.
+
+### Cómo usar Grok con acceso a X
+
+Grok puede ser un buen explorador si le pides señales estructuradas y verificables.
+
+No le pidas “qué está pasando en IA”.
+
+Pídele algo como:
+
+```text
+Actúa como analista editorial para un libro práctico en español sobre ingeniería con IA.
+
+Busca en X señales recientes, no hype genérico, sobre:
+- modelos nuevos o cambios de modelos;
+- agentes de código como Codex, Claude Code, Cursor o similares;
+- RAG, MCP, function calling y herramientas;
+- modelos locales, Ollama, LM Studio y hardware;
+- prácticas de producción: evaluación, observabilidad, seguridad, costes;
+- workflows reales en empresas.
+
+Devuélveme solo 10 señales de alta calidad.
+
+Para cada señal incluye:
+1. título breve;
+2. enlace directo;
+3. autor/cuenta;
+4. fecha;
+5. qué se afirma;
+6. evidencia observable;
+7. si es hecho, opinión o experimento;
+8. capítulos del libro que podría afectar;
+9. cambio editorial recomendado;
+10. confianza: baja, media o alta.
+
+No incluyas anuncios sin enlace.
+No incluyas posts virales sin evidencia.
+No inventes URLs.
+Separa claramente hechos de inferencias.
+```
+
+Esa respuesta no se copia al libro.
+
+Se convierte en propuestas.
+
+Después el autor decide.
+
+### Cadencia recomendada
+
+Para un libro como este, actualizar todos los días el contenido principal puede ser demasiado agresivo.
+
+Mejor cadencia:
+
+- radar diario;
+- informe semanal;
+- actualización menor cuando haya cambios claros;
+- release mayor cuando cambie una parte del mapa;
+- revisión profunda mensual de capítulos técnicos;
+- conservación de todas las versiones en GitHub Releases.
+
+Así el libro está vivo, pero no nervioso.
+
 
 ## 43.5 Métricas
 
@@ -102,23 +230,33 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 
 ### actualizar por cada noticia
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Una noticia puede ser importante, irrelevante o simplemente ruidosa.
+
+El libro no debe moverse con cada anuncio. Debe esperar a entender si la novedad cambia decisiones de arquitectura, herramientas, costes, riesgos o prácticas.
 
 ### reescribir sin preservar versiones
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Un libro vivo sin versiones se convierte en un documento amnésico.
+
+Cada edición debe quedar disponible con tag, PDF y fuente. Así el lector puede citar, comparar y recuperar lo anterior.
 
 ### mezclar opinión con fuente
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Una opinión de un builder puede ser valiosa.
+
+Pero debe etiquetarse como opinión. Si el libro presenta una opinión como hecho, pierde confianza.
 
 ### publicar sin build
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Si no se genera web y PDF después del cambio, la edición no existe de verdad.
+
+El pipeline editorial debe terminar en artefactos verificables.
 
 ### perder el tono del autor
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+La automatización puede sugerir estructura, ejemplos y señales.
+
+La voz final debe seguir siendo del autor. Eso es parte del valor del libro.
 
 
 ## 43.8 Proyecto guiado

@@ -71,6 +71,98 @@ Criterio para apagar o revertir:
 
 Cuando no puedes completar esta ficha, el proyecto todavía está demasiado borroso.
 
+### Dataset mínimo de evaluación
+
+Un caso de evaluación debería ser lo bastante explícito como para que otro miembro del equipo pueda entender por qué pasa o falla.
+
+Ejemplo:
+
+```json
+{
+  "id": "support_rag_014",
+  "feature": "support_copilot",
+  "input": "¿Puedo devolver un producto abierto?",
+  "user": {
+    "role": "support_agent",
+    "permissions": ["docs:support:read"]
+  },
+  "expected": {
+    "must_include": [
+      "depende del tipo de producto",
+      "plazo de devolución",
+      "condiciones de embalaje"
+    ],
+    "expected_sources": ["politica-devoluciones-2026"],
+    "must_not_include": ["inventar excepciones no documentadas"],
+    "should_abstain": false
+  },
+  "risk": "medium"
+}
+```
+
+Este formato permite comparar modelos, prompts y configuraciones de retrieval sin discutir cada vez desde cero.
+
+### Runner simple de evaluación
+
+El runner no tiene que ser sofisticado al principio.
+
+Tiene que ser repetible.
+
+```python
+def run_eval_case(case, system):
+    result = system.answer(
+        question=case["input"],
+        user=case["user"]
+    )
+
+    checks = {
+        "has_required_points": contains_all(
+            result["answer"],
+            case["expected"]["must_include"]
+        ),
+        "uses_expected_sources": has_sources(
+            result["citations"],
+            case["expected"]["expected_sources"]
+        ),
+        "avoids_forbidden_content": contains_none(
+            result["answer"],
+            case["expected"]["must_not_include"]
+        ),
+        "abstention_ok": result.get("abstained", False) == case["expected"]["should_abstain"]
+    }
+
+    return {
+        "case_id": case["id"],
+        "passed": all(checks.values()),
+        "checks": checks,
+        "latency_ms": result["latency_ms"],
+        "cost": result["cost"]
+    }
+```
+
+El código exacto cambiará según tu stack.
+
+La idea no cambia: entrada controlada, ejecución repetible, checks separados e informe comparable.
+
+### Umbrales para publicar
+
+Una suite de evaluación solo sirve si bloquea decisiones.
+
+Ejemplo de umbrales razonables para un copiloto interno:
+
+- 90% de casos normales pasan;
+- 80% de casos difíciles pasan;
+- 100% de casos de permisos pasan;
+- 100% de casos de datos sensibles pasan;
+- coste por caso dentro del presupuesto;
+- latencia p95 por debajo del objetivo;
+- ninguna regresión crítica respecto a la versión anterior.
+
+Si el sistema mejora en estilo pero empeora en permisos, no se publica.
+
+Si mejora en calidad pero duplica coste sin justificarlo, no se publica.
+
+Si mejora en benchmarks generales pero empeora en tus casos reales, no se publica.
 
 ## 31.5 Métricas
 
@@ -102,23 +194,33 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 
 ### evaluar solo con ejemplos felices
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Es el error más común. El sistema parece bueno porque solo se le pregunta lo que el equipo espera que funcione.
+
+Una buena evaluación incluye preguntas confusas, usuarios sin permisos, fuentes contradictorias, documentos incompletos, lenguaje coloquial y peticiones fuera de alcance. Ahí aparece la verdad del producto.
 
 ### cambiar prompt sin suite de regresión
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Cambiar un prompt puede arreglar un caso y romper veinte.
+
+Cada prompt publicado debería tener versión y pasar la misma suite que el anterior. Si no puedes comparar, no sabes si has mejorado o solo has movido el fallo de sitio.
 
 ### usar al propio modelo como único juez
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Los jueces LLM son útiles para escalar revisión, pero no deben ser la única fuente de verdad.
+
+Úsalos para detectar posibles problemas, clasificar errores o comparar variantes. Reserva decisiones críticas para criterios deterministas, fuentes verificables o revisión humana.
 
 ### medir solo satisfacción subjetiva
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+La satisfacción del usuario importa, pero puede engañar.
+
+Una respuesta segura, rápida y bien escrita puede gustar aunque sea incorrecta. Por eso necesitas medir también fuentes, cobertura, permisos, abstención y coste.
 
 ### olvidar casos de permisos
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Los fallos de permisos no son fallos de calidad.
+
+Son fallos de confianza. Un solo caso donde el sistema usa una fuente que el usuario no podía ver puede invalidar el producto ante un cliente serio.
 
 
 ## 31.8 Proyecto guiado
