@@ -263,6 +263,40 @@ def choose_model(task):
 
 El router no debe decidir solo por coste.
 
+### Métricas locales: prefill y decode
+
+En modelos locales, "tokens por segundo" puede ocultar dos fases distintas:
+
+- **prefill**: procesar prompt y contexto de entrada.
+- **decode**: generar tokens de salida.
+
+Un equipo puede reportar prefill muy rápido y decode modesto.
+
+Para producto, importa cómo se siente el flujo:
+
+- en RAG con contexto largo, el prefill pesa mucho;
+- en chat largo, el decode se nota en cada respuesta;
+- en agentes, muchas llamadas pequeñas acumulan overhead;
+- en batch, puede importar más throughput que latencia interactiva.
+
+Cuando compares hardware local, registra:
+
+```text
+modelo:
+cuantización:
+runtime:
+contexto:
+prompt tokens:
+output tokens:
+prefill tok/s:
+decode tok/s:
+time to first token:
+RAM/VRAM:
+temperatura/ruido si importa:
+```
+
+Sin esta ficha, dos benchmarks con el mismo modelo pueden no ser comparables.
+
 Debe decidir por riesgo, dificultad, latencia esperada y valor del resultado.
 
 ### Costes inducidos por código generado

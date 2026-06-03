@@ -575,6 +575,47 @@ Un GGUF moderno puede no funcionar en una versión antigua del runtime.
 
 Actualizar herramientas es parte del mantenimiento local.
 
+### GGUF, MLX y la decisión práctica
+
+En Mac y hardware de consumo, el formato puede importar tanto como el modelo.
+
+Dos modelos "4-bit" no siempre consumen la misma memoria si usan formatos o runtimes distintos.
+
+Patrones prácticos:
+
+- **GGUF + llama.cpp/Ollama/LM Studio** suele ser muy flexible y eficiente en memoria.
+- **MLX** puede ser excelente en Apple Silicon, especialmente cuando el modelo y la conversión están bien optimizados.
+- **Ollama** simplifica instalación, catálogo y API local, pero oculta algunos detalles.
+- **LM Studio** es muy bueno para explorar y enseñar, aunque menos ideal para automatización seria.
+- **llama.cpp** da más control técnico y suele moverse rápido con cuantizaciones, offload y formatos nuevos.
+
+La pregunta no es:
+
+```text
+¿Qué runtime es mejor?
+```
+
+La pregunta útil:
+
+```text
+¿Qué runtime ejecuta este modelo, con esta cuantización, en este hardware, para este caso de uso, con latencia aceptable?
+```
+
+Por eso conviene registrar siempre:
+
+- modelo exacto;
+- formato;
+- cuantización;
+- runtime;
+- versión del runtime;
+- contexto usado;
+- tokens/s;
+- time to first token;
+- RAM/VRAM consumida;
+- calidad observada en la tarea.
+
+El companion incluye `labs/local-model-benchmark/` para empezar esa ficha con Ollama.
+
 ---
 
 ## 7.13 MLX

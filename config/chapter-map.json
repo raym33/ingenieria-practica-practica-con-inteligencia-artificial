@@ -168,7 +168,8 @@
     "20-capitulo-19-rag-avanzado.md"
   ],
   "hardware": [
-    "09-capitulo-8-hardware-real-para-ia-local.md"
+    "09-capitulo-8-hardware-real-para-ia-local.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
   ],
   "modelos-locales": [
     "08-capitulo-7-modelos-locales.md",
@@ -176,7 +177,46 @@
   ],
   "ollama": [
     "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md",
     "21-capitulo-20-herramientas-rag.md"
+  ],
+  "lm-studio": [
+    "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md"
+  ],
+  "mlx": [
+    "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md"
+  ],
+  "llama-cpp": [
+    "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md"
+  ],
+  "gguf": [
+    "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md"
+  ],
+  "cuantizacion": [
+    "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md"
+  ],
+  "apple-silicon": [
+    "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md"
+  ],
+  "vram": [
+    "09-capitulo-8-hardware-real-para-ia-local.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+  ],
+  "benchmark-local": [
+    "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+  ],
+  "moe-offload": [
+    "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
   ],
   "herramientas": [
     "13-capitulo-12-prompts-para-crear-software.md",

@@ -13110,6 +13110,78 @@ Un GGUF moderno puede no funcionar en una versión antigua del runtime.
 
 Actualizar herramientas es parte del mantenimiento local.
 
+\subsection{GGUF, MLX y la decisión
+práctica}\label{gguf-mlx-y-la-decisiuxf3n-pruxe1ctica}
+
+En Mac y hardware de consumo, el formato puede importar tanto como el
+modelo.
+
+Dos modelos ``4-bit'' no siempre consumen la misma memoria si usan
+formatos o runtimes distintos.
+
+Patrones prácticos:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{GGUF + llama.cpp/Ollama/LM Studio} suele ser muy flexible y
+  eficiente en memoria.
+\item
+  \textbf{MLX} puede ser excelente en Apple Silicon, especialmente
+  cuando el modelo y la conversión están bien optimizados.
+\item
+  \textbf{Ollama} simplifica instalación, catálogo y API local, pero
+  oculta algunos detalles.
+\item
+  \textbf{LM Studio} es muy bueno para explorar y enseñar, aunque menos
+  ideal para automatización seria.
+\item
+  \textbf{llama.cpp} da más control técnico y suele moverse rápido con
+  cuantizaciones, offload y formatos nuevos.
+\end{itemize}
+
+La pregunta no es:
+
+\begin{lstlisting}
+¿Qué runtime es mejor?
+\end{lstlisting}
+
+La pregunta útil:
+
+\begin{lstlisting}
+¿Qué runtime ejecuta este modelo, con esta cuantización, en este hardware, para este caso de uso, con latencia aceptable?
+\end{lstlisting}
+
+Por eso conviene registrar siempre:
+
+\begin{itemize}
+\tightlist
+\item
+  modelo exacto;
+\item
+  formato;
+\item
+  cuantización;
+\item
+  runtime;
+\item
+  versión del runtime;
+\item
+  contexto usado;
+\item
+  tokens/s;
+\item
+  time to first token;
+\item
+  RAM/VRAM consumida;
+\item
+  calidad observada en la tarea.
+\end{itemize}
+
+El companion incluye
+\passthrough{\lstinline!labs/local-model-benchmark/!} para empezar esa
+ficha con Ollama.
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \section{7.13 MLX}\label{mlx}
@@ -15560,6 +15632,60 @@ No elijas solo por velocidad.
 
 Prueba.
 
+\subsection{Señales de campo sobre
+cuantización}\label{seuxf1ales-de-campo-sobre-cuantizaciuxf3n}
+
+En señales recientes de comunidades técnicas aparecen varios patrones:
+
+\begin{itemize}
+\tightlist
+\item
+  Q4 suele ser el punto de entrada práctico para modelos grandes en
+  hardware limitado.
+\item
+  Q5 puede ser mejor cuando la calidad importa y la memoria lo permite.
+\item
+  Q8 se acerca más a precisión alta, pero sube mucho memoria.
+\item
+  Formatos como GGUF son muy prácticos para llama.cpp, Ollama y LM
+  Studio.
+\item
+  MLX puede rendir muy bien en Apple Silicon, pero no siempre consume
+  menos memoria que GGUF.
+\item
+  En modelos MoE, el tamaño total puede ser enorme, pero los parámetros
+  activos por token son menores.
+\item
+  Offload a RAM permite ejecutar modelos que no caben completos en VRAM,
+  pero penaliza decode.
+\end{itemize}
+
+Regla:
+
+\begin{lstlisting}
+La cuantización que "cabe" no siempre es la cuantización que conviene.
+\end{lstlisting}
+
+Evalúa calidad en tu tarea.
+
+Especialmente en:
+
+\begin{itemize}
+\tightlist
+\item
+  español;
+\item
+  código;
+\item
+  tool calling;
+\item
+  RAG con citas;
+\item
+  instrucciones largas;
+\item
+  contexto grande.
+\end{itemize}
+
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \section{8.4 Contexto y KV cache}\label{contexto-y-kv-cache}
@@ -17112,6 +17238,272 @@ hardware}\label{matriz-de-decisiuxf3n-de-hardware}
 \end{lstlisting}
 
 Esta tabla debe actualizarse cada trimestre.
+
+\subsection{Configuraciones orientativas de
+2026}\label{configuraciones-orientativas-de-2026}
+
+Estas configuraciones no son promesas. Son rangos prácticos para pensar
+compras, pruebas y expectativas.
+
+\subsubsection{MacBook o Mac mini con 24
+GB}\label{macbook-o-mac-mini-con-24-gb}
+
+Uso razonable:
+
+\begin{itemize}
+\tightlist
+\item
+  modelos 7B-14B cuantizados;
+\item
+  algunos modelos 20B-30B muy ajustados según formato y contexto;
+\item
+  Ollama, LM Studio, llama.cpp y MLX para pruebas;
+\item
+  RAG pequeño;
+\item
+  chat privado;
+\item
+  clasificación;
+\item
+  resúmenes;
+\item
+  copilotos locales modestos.
+\end{itemize}
+
+Limitaciones:
+
+\begin{itemize}
+\tightlist
+\item
+  modelos grandes pueden entrar solo con cuantización agresiva;
+\item
+  contexto largo puede romper la memoria disponible;
+\item
+  MLX 4-bit no siempre cabe cuando GGUF equivalente sí;
+\item
+  agentes con muchas llamadas pueden sentirse lentos;
+\item
+  no es buena máquina para servir muchos usuarios.
+\end{itemize}
+
+Recomendación:
+
+\begin{lstlisting}
+Mac 24 GB = excelente laboratorio local, no servidor de modelos grandes.
+\end{lstlisting}
+
+\subsubsection{Mac con 32-64 GB}\label{mac-con-32-64-gb}
+
+Uso razonable:
+
+\begin{itemize}
+\tightlist
+\item
+  modelos medianos cuantizados;
+\item
+  RAG local más cómodo;
+\item
+  sesiones largas sin tanta presión de memoria;
+\item
+  coding local con modelos de tamaño medio;
+\item
+  pruebas de MLX y GGUF.
+\end{itemize}
+
+Limitaciones:
+
+\begin{itemize}
+\tightlist
+\item
+  70B cuantizado puede ser posible en algunos casos, pero no siempre
+  cómodo;
+\item
+  la velocidad puede no ser suficiente para UX interactiva exigente;
+\item
+  si el sistema usa Docker, navegador, IDE y RAG, la memoria real
+  disponible baja.
+\end{itemize}
+
+\subsubsection{Mac Studio o Mac con 96-128
+GB+}\label{mac-studio-o-mac-con-96-128-gb}
+
+Uso razonable:
+
+\begin{itemize}
+\tightlist
+\item
+  modelos grandes cuantizados;
+\item
+  VLM locales;
+\item
+  RAG privado avanzado;
+\item
+  laboratorio de evaluación;
+\item
+  varios modelos pequeños;
+\item
+  servidor local silencioso.
+\end{itemize}
+
+Limitaciones:
+
+\begin{itemize}
+\tightlist
+\item
+  precio alto;
+\item
+  GPU integrada no sustituye siempre a CUDA para imagen o ciertos
+  frameworks;
+\item
+  decode puede ser menor que en GPU NVIDIA potente;
+\item
+  conviene medir antes de venderlo como solución 24/7.
+\end{itemize}
+
+\subsubsection{PC con GPU de 12 GB VRAM}\label{pc-con-gpu-de-12-gb-vram}
+
+Uso razonable:
+
+\begin{itemize}
+\tightlist
+\item
+  modelos 7B-13B;
+\item
+  coding y chat local pequeños;
+\item
+  embeddings y reranking ligeros;
+\item
+  imagen local básica según GPU.
+\end{itemize}
+
+Limitaciones:
+
+\begin{itemize}
+\tightlist
+\item
+  30B+ suele requerir compromisos fuertes u offload;
+\item
+  VRAM manda más que marketing de GPU;
+\item
+  drivers y CUDA/Vulkan pueden complicar instalación.
+\end{itemize}
+
+\subsubsection{PC con GPU de 24 GB VRAM}\label{pc-con-gpu-de-24-gb-vram}
+
+Uso razonable:
+
+\begin{itemize}
+\tightlist
+\item
+  modelos 30B cómodos en cuantización;
+\item
+  algunos 70B con compromisos/offload;
+\item
+  RAG local serio;
+\item
+  agentes locales con modelos medianos;
+\item
+  mejor ecosistema para imagen y vídeo.
+\end{itemize}
+
+Limitaciones:
+
+\begin{itemize}
+\tightlist
+\item
+  70B rápido y cómodo sigue siendo exigente;
+\item
+  consumo, ruido y calor importan;
+\item
+  modelos MoE grandes pueden necesitar RAM adicional.
+\end{itemize}
+
+\subsubsection{Workstation 48-80 GB
+VRAM}\label{workstation-48-80-gb-vram}
+
+Uso razonable:
+
+\begin{itemize}
+\tightlist
+\item
+  70B mucho más razonable;
+\item
+  serving local serio;
+\item
+  batching;
+\item
+  varios servicios;
+\item
+  cargas de empresa o laboratorio avanzado.
+\end{itemize}
+
+Limitaciones:
+
+\begin{itemize}
+\tightlist
+\item
+  coste alto;
+\item
+  mantenimiento;
+\item
+  electricidad;
+\item
+  refrigeración;
+\item
+  no sustituye evaluación ni diseño de producto.
+\end{itemize}
+
+\subsection{MoE y offload}\label{moe-y-offload}
+
+Los modelos MoE pueden tener muchos parámetros totales, pero activar
+solo una parte por token.
+
+Esto permite configuraciones interesantes:
+
+\begin{lstlisting}
+modelo grande MoE
+  -> expertos en RAM
+  -> parte activa en GPU
+  -> decode limitado por ancho de banda de memoria
+\end{lstlisting}
+
+Ventaja:
+
+\begin{itemize}
+\tightlist
+\item
+  ejecutar modelos grandes en hardware que no tendría VRAM suficiente.
+\end{itemize}
+
+Coste:
+
+\begin{itemize}
+\tightlist
+\item
+  generación más lenta;
+\item
+  más dependencia de RAM;
+\item
+  configuración más delicada;
+\item
+  benchmarks menos comparables.
+\end{itemize}
+
+No confundas:
+
+\begin{lstlisting}
+prefill rápido
+\end{lstlisting}
+
+con:
+
+\begin{lstlisting}
+decode rápido
+\end{lstlisting}
+
+Para chat y agentes, el decode suele sentirse más importante.
+
+Para procesar documentos largos, el prefill también pesa mucho.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -61786,6 +62178,55 @@ def choose_model(task):
 \end{lstlisting}
 
 El router no debe decidir solo por coste.
+
+\subsection{Métricas locales: prefill y
+decode}\label{muxe9tricas-locales-prefill-y-decode}
+
+En modelos locales, ``tokens por segundo'' puede ocultar dos fases
+distintas:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{prefill}: procesar prompt y contexto de entrada.
+\item
+  \textbf{decode}: generar tokens de salida.
+\end{itemize}
+
+Un equipo puede reportar prefill muy rápido y decode modesto.
+
+Para producto, importa cómo se siente el flujo:
+
+\begin{itemize}
+\tightlist
+\item
+  en RAG con contexto largo, el prefill pesa mucho;
+\item
+  en chat largo, el decode se nota en cada respuesta;
+\item
+  en agentes, muchas llamadas pequeñas acumulan overhead;
+\item
+  en batch, puede importar más throughput que latencia interactiva.
+\end{itemize}
+
+Cuando compares hardware local, registra:
+
+\begin{lstlisting}
+modelo:
+cuantización:
+runtime:
+contexto:
+prompt tokens:
+output tokens:
+prefill tok/s:
+decode tok/s:
+time to first token:
+RAM/VRAM:
+temperatura/ruido si importa:
+\end{lstlisting}
+
+Sin esta ficha, dos benchmarks con el mismo modelo pueden no ser
+comparables.
 
 Debe decidir por riesgo, dificultad, latencia esperada y valor del
 resultado.
