@@ -888,6 +888,40 @@ a {
   font-size: 14px;
 }
 
+.trend-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.trend-card {
+  min-height: 190px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--coral);
+}
+
+.trend-card span {
+  color: var(--teal);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.trend-card h3 {
+  margin: 10px 0;
+  color: var(--blue);
+  font-size: 20px;
+  line-height: 1.13;
+}
+
+.trend-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
 .check-row {
   padding: 13px 0;
   border-bottom: 1px solid var(--line);
@@ -1221,6 +1255,7 @@ a {
   .model-grid.two-col,
   .runtime-grid,
   .metric-strip,
+  .trend-grid,
   .magazine-shelf,
   .cover-teasers,
   .magazine-columns {

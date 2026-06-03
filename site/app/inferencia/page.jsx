@@ -74,6 +74,19 @@ const editorialLeads = [
   }
 ];
 
+const trends = [
+  ["Gemma 4 12B multimodal", "Noticia + guía", "Calidad real de visión/audio, estabilidad GGUF/MLX y TTFT en contexto largo."],
+  ["AMD Strix Halo", "Radar + guía", "Soporte mainline, NPU utilizable y particionado de memoria."],
+  ["MLX + mlx-vlm", "Guía + comparativa", "Paridad de calidad frente a GGUF y escalabilidad de contexto."],
+  ["vLLM / SGLang", "Guía de despliegue", "Ganancias reales con el hardware objetivo y compatibilidad con quants recientes."],
+  ["MTP y speculative decoding", "Guía de flags", "Impacto en calidad, contexto largo y backends no CUDA."],
+  ["KV cache quant/compress", "Guía práctica", "Pérdida de calidad, estabilidad y efecto en TTFT."],
+  ["llama-server", "Comparativa", "Versiones recientes, diferencias por backend y facilidad de integración."],
+  ["AMD RX 7000", "Comparativa", "ROCm frente a Vulkan, drivers y rendimiento sostenido."],
+  ["Apple vs AMD vs NVIDIA", "Especial hardware", "Benchmarks con mismo modelo, formato, contexto y tarea."],
+  ["TurboQuant", "Radar", "Madurez fuera de QVAC e impacto en calidad/velocidad."]
+];
+
 export default function InferenciaPage() {
   const radar = getRadarItems();
   const models = getModelItems();
@@ -160,6 +173,24 @@ export default function InferenciaPage() {
               <span>{use}</span>
               <span>{limit}</span>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Tendencias con tracción</div>
+            <h2>Lo que conviene seguir antes de comprar, migrar o publicar una guía</h2>
+          </div>
+        </div>
+        <div className="trend-grid">
+          {trends.map(([title, action, verify]) => (
+            <article className="trend-card" key={title}>
+              <span>{action}</span>
+              <h3>{title}</h3>
+              <p>{verify}</p>
+            </article>
           ))}
         </div>
       </section>
