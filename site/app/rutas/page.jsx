@@ -59,10 +59,40 @@ const routes = [
     description: "Para convertir lectura en proyectos, criterios y checklists de producción.",
     chapters: [
       ["Capítulo 30", "/leer/31-capitulo-30-laboratorio-de-implementacion/"],
+      ["Capítulo 31", "/leer/32-capitulo-31-evaluacion-de-sistemas-ia/"],
+      ["Capítulo 32", "/leer/33-capitulo-32-observabilidad-y-trazas/"],
+      ["Capítulo 33", "/leer/34-capitulo-33-seguridad-prompt-injection-y-abuso/"],
+      ["Capítulo 34", "/leer/35-capitulo-34-costes-latencia-y-rendimiento/"],
+      ["Capítulo 35", "/leer/36-capitulo-35-datos-privacidad-y-gobernanza/"],
+      ["Capítulo 36", "/leer/37-capitulo-36-despliegue-y-operacion/"],
       ["Apéndice A", "/leer/90-apendice-a-rutas-de-lectura/"],
       ["Apéndice B", "/leer/91-apendice-b-proyectos-guiados/"],
       ["Apéndice C", "/leer/92-apendice-c-checklists-de-produccion/"],
       ["Apéndice D", "/leer/93-apendice-d-glosario-operativo/"]
+    ]
+  },
+  {
+    title: "Producto, empresa y adopción",
+    description: "Para llevar sistemas IA a procesos reales, equipos, clientes y usuarios.",
+    chapters: [
+      ["Capítulo 37", "/leer/38-capitulo-37-automatizaciones-y-workflows/"],
+      ["Capítulo 38", "/leer/39-capitulo-38-integraciones-empresariales/"],
+      ["Capítulo 39", "/leer/40-capitulo-39-ui-ux-para-productos-con-ia/"],
+      ["Capítulo 40", "/leer/41-capitulo-40-testing-y-calidad/"],
+      ["Capítulo 41", "/leer/42-capitulo-41-equipos-roles-y-proceso/"],
+      ["Capítulo 42", "/leer/43-capitulo-42-venta-consultoria-e-implantacion/"]
+    ]
+  },
+  {
+    title: "Libro vivo y cierre",
+    description: "Para mantener el libro actualizado, estudiar con ruta y cerrar el paso de usuario a constructor.",
+    chapters: [
+      ["Capítulo 43", "/leer/44-capitulo-43-libro-vivo-automatizacion-editorial/"],
+      ["Capítulo 44", "/leer/45-capitulo-44-roadmap-de-aprendizaje/"],
+      ["Capítulo 45", "/leer/46-capitulo-45-conclusion-de-usuario-a-constructor/"],
+      ["Apéndice A", "/leer/90-apendice-a-rutas-de-lectura/"],
+      ["Apéndice B", "/leer/91-apendice-b-proyectos-guiados/"],
+      ["Apéndice C", "/leer/92-apendice-c-checklists-de-produccion/"]
     ]
   }
 ];

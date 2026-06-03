@@ -216,6 +216,94 @@ La clave comercial no es prometer "IA", sino resolver un flujo específico con m
 
 ---
 
+## Ruta 8 — Para llevar IA a producción
+
+Esta ruta es para quien ya tiene un prototipo y necesita convertirlo en un sistema operable, medible y gobernable.
+
+Lee:
+
+1. Capítulo 30 — Laboratorio de implementación
+2. Capítulo 31 — Evaluación de sistemas IA
+3. Capítulo 32 — Observabilidad y trazas
+4. Capítulo 33 — Seguridad, prompt injection y abuso
+5. Capítulo 34 — Costes, latencia y rendimiento
+6. Capítulo 35 — Datos, privacidad y gobernanza
+7. Capítulo 36 — Despliegue y operación
+8. Capítulo 40 — Testing y calidad
+9. Apéndice C — Checklists de producción
+
+Al terminar esta ruta deberías tener criterios claros para publicar:
+
+- suite de evaluación;
+- trazas;
+- métricas;
+- permisos;
+- política de datos;
+- rollback;
+- límites de coste;
+- checklist de seguridad.
+
+La pregunta central de esta ruta es:
+
+> ¿Qué tendría que fallar para que apagáramos o revirtiéramos este sistema?
+
+---
+
+## Ruta 9 — Para diseñar producto y adopción
+
+Esta ruta es para equipos que quieren que la IA no se quede como demo, sino que entre en procesos, usuarios, equipos y clientes.
+
+Lee:
+
+1. Capítulo 37 — Automatizaciones y workflows
+2. Capítulo 38 — Integraciones empresariales
+3. Capítulo 39 — UI y UX para productos con IA
+4. Capítulo 41 — Equipos, roles y proceso
+5. Capítulo 42 — Venta, consultoría e implantación
+6. Apéndice B — Proyectos guiados
+
+Al terminar esta ruta deberías poder explicar:
+
+- qué proceso cambia;
+- qué sistemas se conectan;
+- qué usuario gana tiempo;
+- qué acción queda bajo confirmación;
+- qué rol mantiene el sistema;
+- qué métrica justifica seguir invirtiendo.
+
+La IA práctica se adopta cuando encaja en el trabajo real, no cuando impresiona en una demo aislada.
+
+---
+
+## Ruta 10 — Para mantener un libro vivo
+
+Esta ruta es para quien quiere entender cómo este libro puede actualizarse sin perder versiones, criterio ni voz editorial.
+
+Lee:
+
+1. Capítulo 16 — Qué problema resuelve RAG
+2. Capítulo 28 — Memoria
+3. Capítulo 30 — Laboratorio de implementación
+4. Capítulo 43 — Libro vivo y automatización editorial
+5. Capítulo 44 — Roadmap de aprendizaje
+6. Capítulo 45 — Conclusión: de usuario a constructor
+
+Al terminar esta ruta deberías poder diseñar un sistema editorial vivo:
+
+- radar de fuentes;
+- clasificación de novedades;
+- propuestas de cambio;
+- revisión humana;
+- generación de web y PDF;
+- tags y releases;
+- memoria editorial.
+
+La actualización diaria no debe sustituir al criterio editorial.
+
+Debe servirle.
+
+---
+
 ## Cómo estudiar este libro
 
 No intentes memorizar todos los conceptos.
@@ -233,4 +321,3 @@ Trabaja así:
 Este libro no está pensado solo para ser leído.
 
 Está pensado para ser usado.
-

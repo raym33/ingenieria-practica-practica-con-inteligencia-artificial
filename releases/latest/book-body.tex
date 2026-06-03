@@ -58740,6 +58740,3231 @@ capítulo}\label{ideas-clave-del-capuxedtulo-29}
 
 \newpage
 
+\chapter{Capítulo 31 --- Evaluación de sistemas
+IA}\label{capuxedtulo-31-evaluaciuxf3n-de-sistemas-ia}
+
+La evaluación es la diferencia entre creer que un sistema funciona y
+saber dónde falla.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{31.1 El problema}\label{el-problema}
+
+Los equipos suelen evaluar sistemas IA leyendo diez respuestas a mano.
+Eso sirve para una demo, pero no sirve para decidir cambios de modelo,
+prompts, retrieval, tools o memoria. Sin evaluación, cada mejora es una
+apuesta.
+
+\section{31.2 Principios prácticos}\label{principios-pruxe1cticos}
+
+\begin{itemize}
+\tightlist
+\item
+  Define una suite pequeña de casos reales antes de optimizar.
+\item
+  Separa evaluación de retrieval, respuesta, tools, seguridad y
+  experiencia.
+\item
+  Mide regresiones cada vez que cambie modelo, prompt, índice o esquema.
+\item
+  Combina evaluación automática con revisión humana en casos de alto
+  riesgo.
+\item
+  No uses una única métrica para decidir calidad.
+\end{itemize}
+
+\section{31.3 Arquitectura mínima}\label{arquitectura-muxednima-1}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. dataset de casos versionado
+2. runner de evaluación
+3. modelo o sistema candidato
+4. evaluadores automáticos
+5. muestreo humano
+6. informe de regresión
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{31.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica}
+
+Empieza con cincuenta casos. Diez normales, diez difíciles, diez
+ambiguos, diez fuera de alcance y diez adversariales. Cada caso debe
+tener entrada, usuario, permisos, salida esperada, fuentes esperadas y
+criterios de fallo.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{31.5 Métricas}\label{muxe9tricas}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{exactitud por tarea}
+\item
+  \textbf{cobertura de respuesta}
+\item
+  \textbf{validez de citas}
+\item
+  \textbf{tasa de abstención correcta}
+\item
+  \textbf{tool call accuracy}
+\item
+  \textbf{unsafe action rate}
+\item
+  \textbf{coste por caso}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{31.6 Checklist}\label{checklist}
+
+\begin{itemize}
+\tightlist
+\item
+  Existe dataset versionado.
+\item
+  Cada caso tiene criterio de aceptación.
+\item
+  Las pruebas cubren permisos y datos sensibles.
+\item
+  Se mide coste y latencia durante la evaluación.
+\item
+  Hay umbrales mínimos para publicar.
+\item
+  Las regresiones bloquean despliegue.
+\item
+  Los cambios de modelo se comparan contra baseline.
+\end{itemize}
+
+\section{31.7 Antipatrones}\label{antipatrones-19}
+
+\subsection{evaluar solo con ejemplos
+felices}\label{evaluar-solo-con-ejemplos-felices}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{cambiar prompt sin suite de
+regresión}\label{cambiar-prompt-sin-suite-de-regresiuxf3n}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{usar al propio modelo como único
+juez}\label{usar-al-propio-modelo-como-uxfanico-juez}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{medir solo satisfacción
+subjetiva}\label{medir-solo-satisfacciuxf3n-subjetiva}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{olvidar casos de permisos}\label{olvidar-casos-de-permisos}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{31.8 Proyecto guiado}\label{proyecto-guiado}
+
+Crea un archivo \passthrough{\lstinline!evals/support-rag.jsonl!} con
+cincuenta preguntas reales de soporte. Ejecuta la misma suite con dos
+modelos, dos prompts y dos configuraciones de retrieval. Publica una
+tabla con calidad, coste y latencia.
+
+\section{31.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-29}
+
+La evaluación se moverá hacia suites continuas, trazas reales
+anonimizadas, jueces especializados y benchmarks internos por dominio.
+Pero la base seguirá siendo la misma: casos claros, criterios claros y
+comparación contra baseline.
+
+\section{31.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-30}
+
+\begin{itemize}
+\tightlist
+\item
+  La evaluación es la diferencia entre creer que un sistema funciona y
+  saber dónde falla.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-30}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 32 --- Observabilidad y
+trazas}\label{capuxedtulo-32-observabilidad-y-trazas}
+
+Un sistema IA sin trazas no se puede depurar, auditar ni mejorar con
+seriedad.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{32.1 El problema}\label{el-problema-1}
+
+Cuando un usuario dice que la IA respondió mal, necesitas reconstruir
+qué pasó: prompt, modelo, contexto, tools, memoria, permisos, latencia y
+coste. Si solo guardas la respuesta final, llegas tarde.
+
+\section{32.2 Principios prácticos}\label{principios-pruxe1cticos-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Registra eventos de principio a fin, no solo errores.
+\item
+  Separa trazas técnicas de datos sensibles.
+\item
+  Guarda identificadores de fuentes, tools y memoria usada.
+\item
+  Convierte logs en métricas de producto.
+\item
+  Diseña observabilidad desde el MVP.
+\end{itemize}
+
+\section{32.3 Arquitectura mínima}\label{arquitectura-muxednima-2}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. request id
+2. span de entrada
+3. span de retrieval
+4. span de modelo
+5. span de tools
+6. span de validación
+7. evento final de usuario
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{32.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-1}
+
+Define un evento \passthrough{\lstinline!ai\_trace!} con
+\passthrough{\lstinline!request\_id!},
+\passthrough{\lstinline!user\_id!}, \passthrough{\lstinline!feature!},
+\passthrough{\lstinline!model!},
+\passthrough{\lstinline!prompt\_version!},
+\passthrough{\lstinline!retrieved\_chunks!},
+\passthrough{\lstinline!tools\_called!},
+\passthrough{\lstinline!latency\_ms!},
+\passthrough{\lstinline!cost\_usd!}, \passthrough{\lstinline!error!} y
+\passthrough{\lstinline!feedback!}. Ese evento ya permite operar un
+primer producto.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{32.5 Métricas}\label{muxe9tricas-1}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{latencia p50/p95/p99}
+\item
+  \textbf{tokens por request}
+\item
+  \textbf{coste por feature}
+\item
+  \textbf{errores por tool}
+\item
+  \textbf{respuestas sin fuente}
+\item
+  \textbf{feedback negativo}
+\item
+  \textbf{interacciones escaladas a humano}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{32.6 Checklist}\label{checklist-1}
+
+\begin{itemize}
+\tightlist
+\item
+  Cada request tiene identificador.
+\item
+  Cada prompt tiene versión.
+\item
+  Cada tool call queda registrada.
+\item
+  Cada fuente recuperada queda identificada.
+\item
+  Los datos sensibles se redactan.
+\item
+  Los errores son estructurados.
+\item
+  Hay panel semanal de calidad, coste y latencia.
+\end{itemize}
+
+\section{32.7 Antipatrones}\label{antipatrones-20}
+
+\subsection{guardar prompts completos con datos
+sensibles}\label{guardar-prompts-completos-con-datos-sensibles}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no versionar prompts}\label{no-versionar-prompts}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no saber qué modelo
+respondió}\label{no-saber-quuxe9-modelo-respondiuxf3}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{registrar solo errores}\label{registrar-solo-errores}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no conectar feedback con
+trazas}\label{no-conectar-feedback-con-trazas}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{32.8 Proyecto guiado}\label{proyecto-guiado-1}
+
+Construye un panel simple con tres tablas: interacciones recientes,
+tools fallidas y preguntas sin respuesta. No necesitas una plataforma
+compleja al principio; una tabla Postgres bien diseñada ya cambia el
+proyecto.
+
+\section{32.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-30}
+
+La observabilidad IA tenderá a integrarse con trazas estándar,
+OpenTelemetry, evaluaciones online y alertas de deriva. Lo importante
+será mantener una cadena auditable entre usuario, contexto, modelo y
+acción.
+
+\section{32.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-31}
+
+\begin{itemize}
+\tightlist
+\item
+  Un sistema IA sin trazas no se puede depurar, auditar ni mejorar con
+  seriedad.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-31}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 33 --- Seguridad, prompt injection y
+abuso}\label{capuxedtulo-33-seguridad-prompt-injection-y-abuso}
+
+La seguridad en IA no consiste en escribir mejores instrucciones, sino
+en limitar lo que el sistema puede hacer aunque el modelo se equivoque.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{33.1 El problema}\label{el-problema-2}
+
+Los modelos mezclan instrucciones, datos y contexto. Un documento
+malicioso, un usuario creativo o una tool demasiado poderosa pueden
+convertir una conversación en una fuga de datos o una acción no deseada.
+
+\section{33.2 Principios prácticos}\label{principios-pruxe1cticos-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Trata todo contenido externo como datos, nunca como instrucciones.
+\item
+  Aplica permisos fuera del modelo.
+\item
+  Reduce tools disponibles por usuario, tarea y entorno.
+\item
+  Usa confirmaciones para acciones sensibles.
+\item
+  Registra intentos de abuso y respuestas bloqueadas.
+\end{itemize}
+
+\section{33.3 Arquitectura mínima}\label{arquitectura-muxednima-3}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. clasificador de riesgo
+2. política de permisos
+3. allowlist de tools
+4. separación de datos e instrucciones
+5. validador de salida
+6. auditoría
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{33.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-2}
+
+Crea una política por capas: entrada, retrieval, tool selection, tool
+execution y salida. Si una capa falla, otra debe limitar el daño. No
+confíes en un único prompt de seguridad.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{33.5 Métricas}\label{muxe9tricas-2}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{blocked\_injection\_attempts}
+\item
+  \textbf{unsafe\_tool\_requests}
+\item
+  \textbf{permission\_denied\_rate}
+\item
+  \textbf{sensitive\_data\_exposure\_rate}
+\item
+  \textbf{manual\_review\_rate}
+\item
+  \textbf{policy\_false\_positive\_rate}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{33.6 Checklist}\label{checklist-2}
+
+\begin{itemize}
+\tightlist
+\item
+  Los documentos externos no pueden cambiar instrucciones del sistema.
+\item
+  Las tools críticas no están siempre disponibles.
+\item
+  Los permisos se verifican antes de retrieval y antes de ejecución.
+\item
+  Las salidas se validan antes de mostrarse.
+\item
+  Hay redacción de secretos en logs.
+\item
+  Hay entorno separado para pruebas.
+\item
+  Las acciones destructivas requieren doble confirmación.
+\end{itemize}
+
+\section{33.7 Antipatrones}\label{antipatrones-21}
+
+\subsection{confiar en `ignora instrucciones
+maliciosas'}\label{confiar-en-ignora-instrucciones-maliciosas}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{exponer filesystem
+completo}\label{exponer-filesystem-completo}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{dar credenciales al
+modelo}\label{dar-credenciales-al-modelo}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{permitir tools genéricas}\label{permitir-tools-genuxe9ricas}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no probar ataques
+conocidos}\label{no-probar-ataques-conocidos}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{33.8 Proyecto guiado}\label{proyecto-guiado-2}
+
+Prepara una suite de diez ataques: exfiltración de prompt, documento con
+instrucciones maliciosas, petición de credenciales, salto de permisos,
+tool injection y acción destructiva. El sistema debe bloquear o degradar
+todos.
+
+\section{33.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-31}
+
+Los ataques evolucionarán con modelos multimodales, agentes persistentes
+y memoria. La defensa seguirá girando alrededor de aislamiento,
+permisos, validación, auditoría y reducción de superficie.
+
+\section{33.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-32}
+
+\begin{itemize}
+\tightlist
+\item
+  La seguridad en IA no consiste en escribir mejores instrucciones, sino
+  en limitar lo que el sistema puede hacer aunque el modelo se
+  equivoque.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-32}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 34 --- Costes, latencia y
+rendimiento}\label{capuxedtulo-34-costes-latencia-y-rendimiento}
+
+Un sistema IA puede ser correcto y aun así inviable si cuesta demasiado
+o responde demasiado tarde.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{34.1 El problema}\label{el-problema-3}
+
+La mayoría de prototipos no calculan coste real. Ignoran retries,
+prompts largos, contexto excesivo, rerankers, STT, TTS, llamadas a
+tools, infraestructura y revisión humana.
+
+\section{34.2 Principios prácticos}\label{principios-pruxe1cticos-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Presupuesta por caso de uso, no solo por token.
+\item
+  Mide latencia por etapa.
+\item
+  Usa modelos pequeños donde baste.
+\item
+  Reduce contexto antes de cambiar a un modelo más grande.
+\item
+  Cachea con permisos y caducidad.
+\end{itemize}
+
+\section{34.3 Arquitectura mínima}\label{arquitectura-muxednima-4}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. presupuesto por feature
+2. router de modelos
+3. medidor de tokens
+4. caché segura
+5. colas para tareas lentas
+6. alertas de coste
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{34.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-3}
+
+Divide cada request en etapas: entrada, retrieval, reranking, modelo,
+tools, salida y postprocesado. Si no puedes asignar coste a una etapa,
+no puedes optimizarla.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{34.5 Métricas}\label{muxe9tricas-3}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{coste por conversación}
+\item
+  \textbf{coste por usuario activo}
+\item
+  \textbf{latencia p95}
+\item
+  \textbf{tokens por respuesta}
+\item
+  \textbf{cache hit rate}
+\item
+  \textbf{retry rate}
+\item
+  \textbf{coste de revisión humana}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{34.6 Checklist}\label{checklist-3}
+
+\begin{itemize}
+\tightlist
+\item
+  Hay presupuesto por feature.
+\item
+  Se mide coste real por request.
+\item
+  Se mide latencia por etapa.
+\item
+  Hay límites por usuario y organización.
+\item
+  Hay modelos alternativos para tareas simples.
+\item
+  La caché respeta permisos.
+\item
+  Las tareas lentas van a cola.
+\end{itemize}
+
+\section{34.7 Antipatrones}\label{antipatrones-22}
+
+\subsection{usar siempre el modelo más
+grande}\label{usar-siempre-el-modelo-muxe1s-grande}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{meter demasiado contexto}\label{meter-demasiado-contexto-1}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{hacer reranking sin medir}\label{hacer-reranking-sin-medir}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no contar retries}\label{no-contar-retries}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{ignorar coste de humano en el
+loop}\label{ignorar-coste-de-humano-en-el-loop}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{34.8 Proyecto guiado}\label{proyecto-guiado-3}
+
+Toma un flujo RAG y genera una tabla con coste y latencia por etapa.
+Luego optimiza solo una cosa: reducción de contexto, cambio de modelo o
+caché. Mide antes y después.
+
+\section{34.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-32}
+
+Los modelos serán más baratos, pero las expectativas subirán. El coste
+relevante será coste por resultado útil, no coste por token aislado.
+
+\section{34.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-33}
+
+\begin{itemize}
+\tightlist
+\item
+  Un sistema IA puede ser correcto y aun así inviable si cuesta
+  demasiado o responde demasiado tarde.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-33}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 35 --- Datos, privacidad y
+gobernanza}\label{capuxedtulo-35-datos-privacidad-y-gobernanza}
+
+Los productos IA no fallan solo por malos modelos; fallan por datos mal
+clasificados, permisos ambiguos y memoria sin gobierno.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{35.1 El problema}\label{el-problema-4}
+
+Cuando conectas IA a documentos, CRM, tickets, emails, voz o bases
+internas, el problema deja de ser solo técnico. Aparecen sensibilidad,
+acceso, retención, borrado, auditoría y responsabilidad.
+
+\section{35.2 Principios prácticos}\label{principios-pruxe1cticos-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Clasifica datos antes de indexarlos.
+\item
+  Define qué puede salir del sistema.
+\item
+  Separa datos de usuario, organización, proyecto y memoria.
+\item
+  Versiona fuentes y políticas.
+\item
+  Diseña borrado desde el inicio.
+\end{itemize}
+
+\section{35.3 Arquitectura mínima}\label{arquitectura-muxednima-5}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. catálogo de fuentes
+2. clasificación de sensibilidad
+3. política de retención
+4. control de acceso
+5. registro de uso
+6. proceso de borrado
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{35.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-4}
+
+Antes de ingestar, cada fuente debe tener propietario, tipo de dato,
+sensibilidad, permisos, frecuencia de actualización y política de
+retención. Si no sabes quién responde por una fuente, no la metas en
+producción.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{35.5 Métricas}\label{muxe9tricas-4}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{fuentes clasificadas}
+\item
+  \textbf{documentos sin propietario}
+\item
+  \textbf{memorias caducadas}
+\item
+  \textbf{solicitudes de borrado}
+\item
+  \textbf{accesos denegados}
+\item
+  \textbf{incidentes de datos}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{35.6 Checklist}\label{checklist-4}
+
+\begin{itemize}
+\tightlist
+\item
+  Cada fuente tiene propietario.
+\item
+  Cada fuente tiene sensibilidad definida.
+\item
+  Hay permisos por usuario o grupo.
+\item
+  Hay política de retención.
+\item
+  Hay proceso de borrado.
+\item
+  Hay auditoría de accesos.
+\item
+  La memoria no guarda datos sensibles por defecto.
+\end{itemize}
+
+\section{35.7 Antipatrones}\label{antipatrones-23}
+
+\subsection{indexar todo porque es
+fácil}\label{indexar-todo-porque-es-fuxe1cil}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{mezclar datos de clientes}\label{mezclar-datos-de-clientes}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no separar entornos}\label{no-separar-entornos}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{guardar conversaciones para
+siempre}\label{guardar-conversaciones-para-siempre}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no saber qué fuentes usa una
+respuesta}\label{no-saber-quuxe9-fuentes-usa-una-respuesta}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{35.8 Proyecto guiado}\label{proyecto-guiado-4}
+
+Crea una ficha de gobernanza para diez fuentes de datos: propósito,
+propietario, sensibilidad, permisos, actualización, retención, riesgos y
+decisión de ingesta.
+
+\section{35.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-33}
+
+La gobernanza se volverá más importante con agentes que actúan, modelos
+multimodales y memoria persistente. Las empresas comprarán sistemas que
+puedan explicar qué datos usaron y por qué.
+
+\section{35.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-34}
+
+\begin{itemize}
+\tightlist
+\item
+  Los productos IA no fallan solo por malos modelos; fallan por datos
+  mal clasificados, permisos ambiguos y memoria sin gobierno.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-34}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 36 --- Despliegue y
+operación}\label{capuxedtulo-36-despliegue-y-operaciuxf3n}
+
+Desplegar IA no es subir una API; es operar modelos, datos, prompts,
+índices, tools y usuarios cambiantes.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{36.1 El problema}\label{el-problema-5}
+
+Muchos equipos despliegan un prototipo sin rollback de prompt, sin
+versión de índice, sin límites de coste y sin forma de saber si el
+modelo nuevo empeoró el producto.
+
+\section{36.2 Principios prácticos}\label{principios-pruxe1cticos-5}
+
+\begin{itemize}
+\tightlist
+\item
+  Versiona prompts, modelos, índices y tools.
+\item
+  Separa entorno local, staging y producción.
+\item
+  Publica cambios con evaluación previa.
+\item
+  Ten rollback para modelo, prompt e índice.
+\item
+  Monitorea coste, latencia y calidad después del despliegue.
+\end{itemize}
+
+\section{36.3 Arquitectura mínima}\label{arquitectura-muxednima-6}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. repositorio
+2. CI con evaluación
+3. staging con datos controlados
+4. producción con límites
+5. observabilidad
+6. rollback
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{36.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-5}
+
+Cada release debería registrar versión de prompt, modelo, embeddings,
+índice, tools y política. Si un usuario reporta un fallo, debes poder
+reconstruir la versión exacta.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{36.5 Métricas}\label{muxe9tricas-5}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{deploy frequency}
+\item
+  \textbf{regression rate}
+\item
+  \textbf{rollback rate}
+\item
+  \textbf{errores por versión}
+\item
+  \textbf{coste por deploy}
+\item
+  \textbf{tiempo hasta detectar fallo}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{36.6 Checklist}\label{checklist-5}
+
+\begin{itemize}
+\tightlist
+\item
+  Hay staging.
+\item
+  La evaluación corre antes de publicar.
+\item
+  Los prompts tienen versión.
+\item
+  Los índices tienen versión.
+\item
+  Las tools tienen versión.
+\item
+  Hay rollback.
+\item
+  Hay alertas postdeploy.
+\end{itemize}
+
+\section{36.7 Antipatrones}\label{antipatrones-24}
+
+\subsection{cambiar prompts directamente en
+producción}\label{cambiar-prompts-directamente-en-producciuxf3n}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{reindexar sin registrar
+versión}\label{reindexar-sin-registrar-versiuxf3n}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no guardar configuración de
+modelo}\label{no-guardar-configuraciuxf3n-de-modelo}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{desplegar sin límites de
+coste}\label{desplegar-sin-luxedmites-de-coste}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no tener staging}\label{no-tener-staging}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{36.8 Proyecto guiado}\label{proyecto-guiado-5}
+
+Añade a un proyecto IA un archivo \passthrough{\lstinline!release.json!}
+que registre modelo, prompt, embeddings, índice, tools, evaluación y
+fecha. Genera uno por cada publicación.
+
+\section{36.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-34}
+
+La operación IA se parecerá cada vez más a MLOps ligero combinado con
+DevOps y producto. La clave será versionar todo lo que cambia
+comportamiento.
+
+\section{36.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-35}
+
+\begin{itemize}
+\tightlist
+\item
+  Desplegar IA no es subir una API; es operar modelos, datos, prompts,
+  índices, tools y usuarios cambiantes.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-35}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 37 --- Automatizaciones y
+workflows}\label{capuxedtulo-37-automatizaciones-y-workflows}
+
+Muchas soluciones IA no necesitan agentes autónomos; necesitan workflows
+claros con IA en los puntos correctos.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{37.1 El problema}\label{el-problema-6}
+
+El hype empuja a crear agentes para todo. Pero la mayoría de procesos
+empresariales tienen pasos conocidos, permisos claros y puntos donde el
+modelo debe ayudar, no improvisar.
+
+\section{37.2 Principios prácticos}\label{principios-pruxe1cticos-6}
+
+\begin{itemize}
+\tightlist
+\item
+  Modela el proceso antes de meter IA.
+\item
+  Usa IA para clasificar, resumir, redactar, extraer o decidir bajo
+  límites.
+\item
+  Mantén pasos críticos como workflow explícito.
+\item
+  Escala a agente solo cuando haya incertidumbre real.
+\item
+  Diseña revisión humana donde el coste del error sea alto.
+\end{itemize}
+
+\section{37.3 Arquitectura mínima}\label{arquitectura-muxednima-7}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. trigger
+2. normalización
+3. paso IA
+4. validación
+5. acción
+6. notificación
+7. auditoría
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{37.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-6}
+
+Empieza con workflows de bajo riesgo: clasificar tickets, resumir
+reuniones, preparar borradores, extraer datos o generar informes. Luego
+conecta tools de escritura con confirmación.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{37.5 Métricas}\label{muxe9tricas-6}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{tiempo ahorrado}
+\item
+  \textbf{errores reducidos}
+\item
+  \textbf{tasa de revisión humana}
+\item
+  \textbf{automatizaciones completadas}
+\item
+  \textbf{fallos por integración}
+\item
+  \textbf{satisfacción interna}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{37.6 Checklist}\label{checklist-6}
+
+\begin{itemize}
+\tightlist
+\item
+  El proceso está dibujado.
+\item
+  Los pasos IA están acotados.
+\item
+  Hay validación de salida.
+\item
+  Las acciones externas requieren confirmación.
+\item
+  Hay logs por ejecución.
+\item
+  Hay retry o fallback.
+\item
+  Hay responsable del workflow.
+\end{itemize}
+
+\section{37.7 Antipatrones}\label{antipatrones-25}
+
+\subsection{agente autónomo para proceso
+lineal}\label{agente-autuxf3nomo-para-proceso-lineal}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{automatizar sin
+propietario}\label{automatizar-sin-propietario}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no definir fallback}\label{no-definir-fallback}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no medir ahorro real}\label{no-medir-ahorro-real}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no distinguir borrador de
+acción}\label{no-distinguir-borrador-de-acciuxf3n}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{37.8 Proyecto guiado}\label{proyecto-guiado-6}
+
+Automatiza el resumen semanal de tickets: recoge tickets cerrados,
+agrupa temas, genera informe, pide revisión humana y publica en un canal
+interno.
+
+\section{37.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-35}
+
+Las plataformas no-code y low-code se mezclarán con agents y MCP. El
+valor estará en diseñar procesos robustos, no en encadenar herramientas
+por moda.
+
+\section{37.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-36}
+
+\begin{itemize}
+\tightlist
+\item
+  Muchas soluciones IA no necesitan agentes autónomos; necesitan
+  workflows claros con IA en los puntos correctos.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-36}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 38 --- Integraciones
+empresariales}\label{capuxedtulo-38-integraciones-empresariales}
+
+El valor empresarial de la IA aparece cuando se conecta con los sistemas
+donde vive el trabajo real.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{38.1 El problema}\label{el-problema-7}
+
+Un chatbot aislado impresiona poco. Un copiloto conectado a CRM, ERP,
+tickets, documentación, calendario, email y permisos puede cambiar un
+proceso completo. Pero cada integración aumenta riesgo.
+
+\section{38.2 Principios prácticos}\label{principios-pruxe1cticos-7}
+
+\begin{itemize}
+\tightlist
+\item
+  Empieza por integraciones de lectura.
+\item
+  Mapea permisos antes de conectar.
+\item
+  No expongas APIs genéricas al modelo.
+\item
+  Crea tools pequeñas y auditables.
+\item
+  Diseña degradación si una integración falla.
+\end{itemize}
+
+\section{38.3 Arquitectura mínima}\label{arquitectura-muxednima-8}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. conector
+2. normalizador
+3. capa de permisos
+4. tool específica
+5. auditoría
+6. fallback
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{38.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-7}
+
+Define para cada integración una ficha: sistema, datos accesibles,
+acciones permitidas, permisos, credenciales, límites, logs, dueño
+técnico y dueño de negocio.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{38.5 Métricas}\label{muxe9tricas-7}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{integraciones activas}
+\item
+  \textbf{fallos por conector}
+\item
+  \textbf{latencia por integración}
+\item
+  \textbf{acciones ejecutadas}
+\item
+  \textbf{acciones rechazadas}
+\item
+  \textbf{tiempo ahorrado por proceso}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{38.6 Checklist}\label{checklist-7}
+
+\begin{itemize}
+\tightlist
+\item
+  La integración tiene propietario.
+\item
+  Los permisos están mapeados.
+\item
+  Las credenciales no llegan al modelo.
+\item
+  Las tools son específicas.
+\item
+  Hay logs por acción.
+\item
+  Hay fallback si falla.
+\item
+  Hay entorno de pruebas.
+\end{itemize}
+
+\section{38.7 Antipatrones}\label{antipatrones-26}
+
+\subsection{conectar producción en la primera
+demo}\label{conectar-producciuxf3n-en-la-primera-demo}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{exponer API completa}\label{exponer-api-completa}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no revisar permisos
+heredados}\label{no-revisar-permisos-heredados}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no registrar acciones}\label{no-registrar-acciones}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{mezclar clientes o
+tenants}\label{mezclar-clientes-o-tenants}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{38.8 Proyecto guiado}\label{proyecto-guiado-7}
+
+Crea una integración de solo lectura con un sistema de tickets. La IA
+puede buscar, resumir y proponer respuesta, pero no cerrar ni modificar
+tickets.
+
+\section{38.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-36}
+
+MCP y conectores estándar harán más fácil integrar sistemas, pero no
+eliminarán la necesidad de permisos, auditoría y diseño de tools.
+
+\section{38.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-37}
+
+\begin{itemize}
+\tightlist
+\item
+  El valor empresarial de la IA aparece cuando se conecta con los
+  sistemas donde vive el trabajo real.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-37}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 39 --- UI y UX para productos con
+IA}\label{capuxedtulo-39-ui-y-ux-para-productos-con-ia}
+
+La interfaz de un producto IA debe hacer visible la incertidumbre, el
+control y la acción.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{39.1 El problema}\label{el-problema-8}
+
+Muchos productos IA son una caja de texto. Eso obliga al usuario a saber
+qué pedir, cómo pedirlo, cuándo confiar y qué hacer con la respuesta.
+Una buena UX reduce esa carga.
+
+\section{39.2 Principios prácticos}\label{principios-pruxe1cticos-8}
+
+\begin{itemize}
+\tightlist
+\item
+  Muestra fuentes, estado y acciones.
+\item
+  Distingue respuesta, borrador y acción ejecutada.
+\item
+  Permite editar, confirmar, rechazar y dar feedback.
+\item
+  Diseña estados de carga y error honestos.
+\item
+  No ocultes incertidumbre.
+\end{itemize}
+
+\section{39.3 Arquitectura mínima}\label{arquitectura-muxednima-9}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. entrada guiada
+2. respuesta estructurada
+3. panel de fuentes
+4. acciones sugeridas
+5. confirmaciones
+6. feedback
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{39.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-8}
+
+Para cada respuesta, decide si el usuario necesita leer, comparar,
+editar, confirmar o actuar. La interfaz debe reflejar esa intención, no
+limitarse a mostrar texto.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{39.5 Métricas}\label{muxe9tricas-8}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{tasa de aceptación}
+\item
+  \textbf{tasa de edición}
+\item
+  \textbf{feedback positivo}
+\item
+  \textbf{acciones confirmadas}
+\item
+  \textbf{acciones canceladas}
+\item
+  \textbf{tiempo hasta completar tarea}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{39.6 Checklist}\label{checklist-8}
+
+\begin{itemize}
+\tightlist
+\item
+  Las fuentes son visibles.
+\item
+  Las acciones están separadas de la respuesta.
+\item
+  Hay confirmación para acciones sensibles.
+\item
+  El usuario puede corregir.
+\item
+  El feedback es fácil.
+\item
+  Los errores son comprensibles.
+\item
+  La interfaz no promete certeza falsa.
+\end{itemize}
+
+\section{39.7 Antipatrones}\label{antipatrones-27}
+
+\subsection{caja de texto para todo}\label{caja-de-texto-para-todo}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{ocultar fuentes}\label{ocultar-fuentes}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{botones de acción demasiado
+agresivos}\label{botones-de-acciuxf3n-demasiado-agresivos}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no mostrar límites}\label{no-mostrar-luxedmites}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{hacer leer respuestas largas en flujos
+rápidos}\label{hacer-leer-respuestas-largas-en-flujos-ruxe1pidos}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{39.8 Proyecto guiado}\label{proyecto-guiado-8}
+
+Rediseña un chatbot RAG como copiloto: añade fuentes laterales, botones
+de copiar, feedback, botón de crear ticket como borrador y confirmación
+antes de guardar.
+
+\section{39.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-37}
+
+Los productos IA se moverán de chat genérico a interfaces híbridas:
+formularios, comandos, paneles, timelines, voz, canvas y
+automatizaciones visibles.
+
+\section{39.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-38}
+
+\begin{itemize}
+\tightlist
+\item
+  La interfaz de un producto IA debe hacer visible la incertidumbre, el
+  control y la acción.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-38}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 40 --- Testing y
+calidad}\label{capuxedtulo-40-testing-y-calidad}
+
+Testear sistemas IA exige probar código determinista y comportamiento
+probabilístico sin confundirlos.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{40.1 El problema}\label{el-problema-9}
+
+Los equipos intentan probar IA como si todo fuera determinista o se
+rinden porque el modelo varía. Ambas posturas son malas. Hay que testear
+capas.
+
+\section{40.2 Principios prácticos}\label{principios-pruxe1cticos-9}
+
+\begin{itemize}
+\tightlist
+\item
+  Prueba funciones deterministas con tests normales.
+\item
+  Prueba prompts y modelos con evaluación por casos.
+\item
+  Prueba tools con entradas válidas, inválidas y maliciosas.
+\item
+  Prueba retrieval con fuentes esperadas.
+\item
+  Prueba producto con usuarios reales.
+\end{itemize}
+
+\section{40.3 Arquitectura mínima}\label{arquitectura-muxednima-10}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. unit tests
+2. contract tests
+3. eval tests
+4. security tests
+5. integration tests
+6. user acceptance tests
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{40.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-9}
+
+No intentes verificar palabra por palabra. Verifica contrato, fuentes,
+puntos obligatorios, ausencia de datos prohibidos, tool correcta y
+comportamiento ante incertidumbre.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{40.5 Métricas}\label{muxe9tricas-9}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{test pass rate}
+\item
+  \textbf{eval pass rate}
+\item
+  \textbf{regresiones por release}
+\item
+  \textbf{bugs por feature}
+\item
+  \textbf{fallos de tool}
+\item
+  \textbf{errores detectados antes de producción}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{40.6 Checklist}\label{checklist-9}
+
+\begin{itemize}
+\tightlist
+\item
+  Hay tests unitarios para validadores.
+\item
+  Hay tests de contrato JSON.
+\item
+  Hay evals para respuestas.
+\item
+  Hay tests de permisos.
+\item
+  Hay tests de prompt injection.
+\item
+  Hay tests de tools.
+\item
+  Hay pruebas manuales de UX.
+\end{itemize}
+
+\section{40.7 Antipatrones}\label{antipatrones-28}
+
+\subsection{snapshot exacto de respuesta
+completa}\label{snapshot-exacto-de-respuesta-completa}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no probar errores}\label{no-probar-errores}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no probar permisos}\label{no-probar-permisos}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{solo evaluar en
+producción}\label{solo-evaluar-en-producciuxf3n}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no separar código de comportamiento
+IA}\label{no-separar-cuxf3digo-de-comportamiento-ia}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{40.8 Proyecto guiado}\label{proyecto-guiado-9}
+
+Construye una suite mixta: diez unit tests para tools, veinte eval cases
+para RAG y cinco ataques de seguridad. Haz que corra antes de cada
+release.
+
+\section{40.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-38}
+
+El testing IA incorporará más simuladores, jueces especializados y
+trazas reales. Pero los contratos y casos seguirán siendo la base.
+
+\section{40.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-39}
+
+\begin{itemize}
+\tightlist
+\item
+  Testear sistemas IA exige probar código determinista y comportamiento
+  probabilístico sin confundirlos.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-39}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 41 --- Equipos, roles y
+proceso}\label{capuxedtulo-41-equipos-roles-y-proceso}
+
+Construir con IA no elimina roles; cambia cómo colaboran producto,
+ingeniería, datos, negocio y operaciones.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{41.1 El problema}\label{el-problema-10}
+
+Muchos proyectos IA fallan porque los trata una sola persona como
+experimento aislado. En producción hacen falta decisiones de producto,
+datos, seguridad, soporte, coste y adopción.
+
+\section{41.2 Principios prácticos}\label{principios-pruxe1cticos-10}
+
+\begin{itemize}
+\tightlist
+\item
+  Define propietario de producto.
+\item
+  Define propietario técnico.
+\item
+  Incluye experto de dominio.
+\item
+  Incluye responsable de datos y permisos.
+\item
+  Crea rituales de revisión de calidad.
+\end{itemize}
+
+\section{41.3 Arquitectura mínima}\label{arquitectura-muxednima-11}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. product owner
+2. engineer
+3. domain expert
+4. data owner
+5. security reviewer
+6. support owner
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{41.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-10}
+
+Para un equipo pequeño, bastan tres sombreros: quien entiende el
+problema, quien construye el sistema y quien valida el riesgo. Lo
+peligroso es que nadie tenga explícitamente esos sombreros.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{41.5 Métricas}\label{muxe9tricas-10}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{tiempo hasta MVP}
+\item
+  \textbf{adopción por usuarios}
+\item
+  \textbf{errores reportados}
+\item
+  \textbf{calidad semanal}
+\item
+  \textbf{coste mensual}
+\item
+  \textbf{mejoras publicadas}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{41.6 Checklist}\label{checklist-10}
+
+\begin{itemize}
+\tightlist
+\item
+  Hay dueño del caso de uso.
+\item
+  Hay dueño técnico.
+\item
+  Hay experto de dominio.
+\item
+  Hay responsable de datos.
+\item
+  Hay cadencia de revisión.
+\item
+  Hay canal de feedback.
+\item
+  Hay criterio para apagar o cambiar el sistema.
+\end{itemize}
+
+\section{41.7 Antipatrones}\label{antipatrones-29}
+
+\subsection{proyecto IA sin usuario
+real}\label{proyecto-ia-sin-usuario-real}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{ingeniería sin experto de
+dominio}\label{ingenieruxeda-sin-experto-de-dominio}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{negocio sin revisión
+técnica}\label{negocio-sin-revisiuxf3n-tuxe9cnica}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{nadie mira costes}\label{nadie-mira-costes}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{nadie decide riesgos}\label{nadie-decide-riesgos}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{41.8 Proyecto guiado}\label{proyecto-guiado-10}
+
+Define un RACI simple para un copiloto interno: responsable, aprobador,
+consultados e informados para datos, prompts, tools, despliegue, soporte
+y evaluación.
+
+\section{41.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-39}
+
+Los equipos adoptarán roles híbridos: AI product engineer, responsable
+de evaluación, diseñador de workflows y especialista en integración de
+modelos.
+
+\section{41.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-40}
+
+\begin{itemize}
+\tightlist
+\item
+  Construir con IA no elimina roles; cambia cómo colaboran producto,
+  ingeniería, datos, negocio y operaciones.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-40}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 42 --- Venta, consultoría e
+implantación}\label{capuxedtulo-42-venta-consultoruxeda-e-implantaciuxf3n}
+
+Vender IA práctica no consiste en prometer magia; consiste en reducir un
+problema caro con una solución medible.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{42.1 El problema}\label{el-problema-11}
+
+Muchas ofertas IA fracasan porque venden tecnología en abstracto. Las
+empresas compran reducción de tiempos, menos errores, mejor atención,
+mejor documentación o más capacidad operativa.
+
+\section{42.2 Principios prácticos}\label{principios-pruxe1cticos-11}
+
+\begin{itemize}
+\tightlist
+\item
+  Empieza por proceso y dolor, no por modelo.
+\item
+  Define métrica de éxito antes de demo.
+\item
+  Vende piloto acotado.
+\item
+  Incluye datos, integración y adopción en el alcance.
+\item
+  No prometas autonomía total al principio.
+\end{itemize}
+
+\section{42.3 Arquitectura mínima}\label{arquitectura-muxednima-12}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. descubrimiento
+2. diagnóstico
+3. piloto
+4. evaluación
+5. implantación
+6. operación
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{42.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-11}
+
+Una propuesta seria debe incluir objetivo, alcance, fuentes de datos,
+integraciones, riesgos, criterios de aceptación, calendario, precio,
+mantenimiento y responsabilidades del cliente.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{42.5 Métricas}\label{muxe9tricas-11}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{horas ahorradas}
+\item
+  \textbf{tiempo de respuesta}
+\item
+  \textbf{errores reducidos}
+\item
+  \textbf{tickets desviados}
+\item
+  \textbf{coste operativo}
+\item
+  \textbf{adopción}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{42.6 Checklist}\label{checklist-11}
+
+\begin{itemize}
+\tightlist
+\item
+  El problema tiene dueño.
+\item
+  La métrica de éxito es concreta.
+\item
+  El piloto está limitado.
+\item
+  Los datos están disponibles.
+\item
+  Las integraciones están identificadas.
+\item
+  Hay plan de adopción.
+\item
+  Hay mantenimiento posterior.
+\end{itemize}
+
+\section{42.7 Antipatrones}\label{antipatrones-30}
+
+\subsection{vender chatbot genérico}\label{vender-chatbot-genuxe9rico}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{prometer ahorro sin medir
+proceso}\label{prometer-ahorro-sin-medir-proceso}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{ignorar datos del cliente}\label{ignorar-datos-del-cliente}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no incluir soporte}\label{no-incluir-soporte}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{hacer demo que no se puede
+operar}\label{hacer-demo-que-no-se-puede-operar}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{42.8 Proyecto guiado}\label{proyecto-guiado-11}
+
+Prepara una oferta de piloto de cuatro semanas para un chatbot de
+soporte con RAG: alcance, entregables, exclusiones, métricas, precio y
+plan de paso a producción.
+
+\section{42.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-40}
+
+El mercado castigará soluciones genéricas y premiará implantaciones con
+conocimiento de dominio, integración real, evaluación y mantenimiento.
+
+\section{42.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-41}
+
+\begin{itemize}
+\tightlist
+\item
+  Vender IA práctica no consiste en prometer magia; consiste en reducir
+  un problema caro con una solución medible.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-41}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 43 --- Libro vivo y automatización
+editorial}\label{capuxedtulo-43-libro-vivo-y-automatizaciuxf3n-editorial}
+
+Un libro vivo no se actualiza solo porque haya noticias; se actualiza
+porque tiene un proceso editorial que separa señal, ruido y criterio.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{43.1 El problema}\label{el-problema-12}
+
+La IA cambia a diario. Nuevos modelos, papers, repos, hardware y
+prácticas aparecen sin parar. Si el libro intenta reaccionar a todo,
+pierde coherencia. Si no reacciona a nada, envejece.
+
+\section{43.2 Principios prácticos}\label{principios-pruxe1cticos-12}
+
+\begin{itemize}
+\tightlist
+\item
+  Distingue radar, propuesta, revisión y publicación.
+\item
+  Clasifica cada novedad por impacto editorial.
+\item
+  No dejes que un agente reescriba capítulos sin revisión.
+\item
+  Versiona cada edición.
+\item
+  Mantén una memoria editorial del libro.
+\end{itemize}
+
+\section{43.3 Arquitectura mínima}\label{arquitectura-muxednima-13}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. ingesta de fuentes
+2. clasificación
+3. resumen con evidencia
+4. propuesta de cambio
+5. revisión humana
+6. build
+7. release
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{43.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-12}
+
+El agente editorial debe proponer, no publicar. Su salida ideal es una
+ficha con fuente, fecha, resumen, capítulo afectado, tipo de cambio,
+nivel de confianza y texto sugerido.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{43.5 Métricas}\label{muxe9tricas-12}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{fuentes revisadas}
+\item
+  \textbf{propuestas aceptadas}
+\item
+  \textbf{capítulos actualizados}
+\item
+  \textbf{tiempo desde novedad hasta edición}
+\item
+  \textbf{releases publicadas}
+\item
+  \textbf{errores editoriales detectados}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{43.6 Checklist}\label{checklist-12}
+
+\begin{itemize}
+\tightlist
+\item
+  Las fuentes están definidas.
+\item
+  Cada novedad conserva URL.
+\item
+  Cada propuesta separa hecho e inferencia.
+\item
+  Cada cambio tiene capítulo destino.
+\item
+  Cada release tiene tag.
+\item
+  El PDF y la web se generan juntos.
+\item
+  Las ediciones antiguas quedan disponibles.
+\end{itemize}
+
+\section{43.7 Antipatrones}\label{antipatrones-31}
+
+\subsection{actualizar por cada
+noticia}\label{actualizar-por-cada-noticia}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{reescribir sin preservar
+versiones}\label{reescribir-sin-preservar-versiones}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{mezclar opinión con
+fuente}\label{mezclar-opiniuxf3n-con-fuente}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{publicar sin build}\label{publicar-sin-build}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{perder el tono del autor}\label{perder-el-tono-del-autor}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{43.8 Proyecto guiado}\label{proyecto-guiado-12}
+
+Implementa un informe diario que lea noticias, releases de GitHub y
+papers; genere propuestas por capítulo; y requiera aprobación humana
+antes de modificar el manuscrito.
+
+\section{43.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-41}
+
+Los libros técnicos tenderán a ser productos versionados: texto, web,
+código, datasets, releases, radar y comunidad. La ventaja no será
+actualizar mucho, sino actualizar bien.
+
+\section{43.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-42}
+
+\begin{itemize}
+\tightlist
+\item
+  Un libro vivo no se actualiza solo porque haya noticias; se actualiza
+  porque tiene un proceso editorial que separa señal, ruido y criterio.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-42}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 44 --- Roadmap de
+aprendizaje}\label{capuxedtulo-44-roadmap-de-aprendizaje}
+
+Aprender IA práctica requiere una ruta: fundamentos, construcción,
+producción y criterio.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{44.1 El problema}\label{el-problema-13}
+
+El campo es demasiado amplio para aprenderlo por acumulación de enlaces.
+Sin ruta, saltas de modelos a agentes, de agentes a RAG, de RAG a
+hardware, sin construir nada suficientemente real.
+
+\section{44.2 Principios prácticos}\label{principios-pruxe1cticos-13}
+
+\begin{itemize}
+\tightlist
+\item
+  Aprende construyendo sistemas pequeños.
+\item
+  Domina prompts antes de agentes.
+\item
+  Domina RAG antes de memoria compleja.
+\item
+  Domina tools antes de autonomía.
+\item
+  Domina evaluación antes de escalar.
+\end{itemize}
+
+\section{44.3 Arquitectura mínima}\label{arquitectura-muxednima-14}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. fundamentos
+2. prototipo
+3. RAG
+4. tools
+5. agentes
+6. producción
+7. negocio
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{44.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-13}
+
+Un buen roadmap de seis meses combina lectura, prototipos y revisión.
+Cada mes debe producir algo ejecutable, no solo apuntes.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{44.5 Métricas}\label{muxe9tricas-13}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{proyectos terminados}
+\item
+  \textbf{tests escritos}
+\item
+  \textbf{evals creadas}
+\item
+  \textbf{sistemas desplegados}
+\item
+  \textbf{errores documentados}
+\item
+  \textbf{usuarios reales}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{44.6 Checklist}\label{checklist-13}
+
+\begin{itemize}
+\tightlist
+\item
+  Has construido un chatbot simple.
+\item
+  Has construido un RAG con citas.
+\item
+  Has creado una tool validada.
+\item
+  Has añadido evaluación.
+\item
+  Has desplegado un MVP.
+\item
+  Has medido coste.
+\item
+  Has visto usuarios reales usarlo.
+\end{itemize}
+
+\section{44.7 Antipatrones}\label{antipatrones-32}
+
+\subsection{leer sin construir}\label{leer-sin-construir}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{probar todas las
+herramientas}\label{probar-todas-las-herramientas}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{saltar a agentes sin
+tools}\label{saltar-a-agentes-sin-tools}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{ignorar fundamentos de
+software}\label{ignorar-fundamentos-de-software}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no medir nada}\label{no-medir-nada}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{44.8 Proyecto guiado}\label{proyecto-guiado-13}
+
+Planifica doce semanas: dos de fundamentos, dos de RAG, dos de tools,
+dos de agentes, dos de producción y dos de producto. Cada bloque termina
+con demo y evaluación.
+
+\section{44.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-42}
+
+La ruta cambiará en herramientas, pero no en criterio: problema, datos,
+modelo, contexto, acción, evaluación, operación y usuario.
+
+\section{44.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-43}
+
+\begin{itemize}
+\tightlist
+\item
+  Aprender IA práctica requiere una ruta: fundamentos, construcción,
+  producción y criterio.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-43}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
+\chapter{Capítulo 45 --- Conclusión: de usuario a
+constructor}\label{capuxedtulo-45-conclusiuxf3n-de-usuario-a-constructor}
+
+El salto importante no es aprender a hablar con la IA; es aprender a
+construir sistemas donde la IA sea una pieza útil, limitada y
+mantenible.
+
+Este capítulo cierra una pieza que faltaba en el libro: pasar de
+entender una técnica a saber operarla en un producto real.
+
+La idea no es añadir complejidad por añadir complejidad. La idea es que
+cada sistema con IA tenga una forma clara de responder a tres preguntas:
+
+\begin{itemize}
+\tightlist
+\item
+  ¿qué debe hacer?;
+\item
+  ¿cómo sabemos que lo está haciendo bien?;
+\item
+  ¿qué ocurre cuando se equivoca?
+\end{itemize}
+
+\section{45.1 El problema}\label{el-problema-14}
+
+La IA invita a confundir fluidez con capacidad. Una respuesta brillante
+puede ocultar falta de datos, permisos, evaluación, seguridad o
+producto. Construir exige más paciencia.
+
+\section{45.2 Principios prácticos}\label{principios-pruxe1cticos-14}
+
+\begin{itemize}
+\tightlist
+\item
+  El usuario pregunta.
+\item
+  El constructor diseña contexto.
+\item
+  El usuario espera respuesta.
+\item
+  El constructor define límites.
+\item
+  El usuario se impresiona.
+\item
+  El constructor mide.
+\end{itemize}
+
+\section{45.3 Arquitectura mínima}\label{arquitectura-muxednima-15}
+
+Un diseño razonable puede empezar con este flujo:
+
+\begin{lstlisting}
+1. problema
+2. usuario
+3. datos
+4. modelo
+5. herramientas
+6. evaluación
+7. operación
+\end{lstlisting}
+
+No todos los proyectos necesitan todas las piezas desde el primer día.
+Pero si una pieza falta, debe faltar por decisión, no por despiste.
+
+\section{45.4 Implementación
+práctica}\label{implementaciuxf3n-pruxe1ctica-14}
+
+El cierre práctico del libro es elegir un proyecto pequeño y llevarlo
+hasta producción interna: con usuarios, datos, evaluación, logs, coste y
+versión.
+
+Una forma útil de trabajar es escribir primero la ficha técnica del
+sistema. Esa ficha debe ser corta, revisable y concreta:
+
+\begin{lstlisting}
+Objetivo:
+Usuario:
+Datos usados:
+Acciones permitidas:
+Riesgos principales:
+Métricas:
+Criterio para publicar:
+Criterio para apagar o revertir:
+\end{lstlisting}
+
+Cuando no puedes completar esta ficha, el proyecto todavía está
+demasiado borroso.
+
+\section{45.5 Métricas}\label{muxe9tricas-14}
+
+Las métricas no son decoración. Son el sistema nervioso del producto.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{valor real entregado}
+\item
+  \textbf{errores conocidos}
+\item
+  \textbf{coste sostenible}
+\item
+  \textbf{usuarios activos}
+\item
+  \textbf{confianza ganada}
+\item
+  \textbf{mejoras acumuladas}
+\end{itemize}
+
+No hace falta medir cien cosas desde el principio. Sí hace falta medir
+las pocas que te dirán si el sistema mejora, empeora o se vuelve
+demasiado caro.
+
+\section{45.6 Checklist}\label{checklist-14}
+
+\begin{itemize}
+\tightlist
+\item
+  Tienes un problema real.
+\item
+  Tienes usuario real.
+\item
+  Tienes datos controlados.
+\item
+  Tienes una arquitectura mínima.
+\item
+  Tienes evaluación.
+\item
+  Tienes observabilidad.
+\item
+  Tienes una siguiente versión.
+\end{itemize}
+
+\section{45.7 Antipatrones}\label{antipatrones-33}
+
+\subsection{quedarse en prompts
+sueltos}\label{quedarse-en-prompts-sueltos}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{perseguir novedades sin
+criterio}\label{perseguir-novedades-sin-criterio}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{confundir demo con
+producto}\label{confundir-demo-con-producto-1}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{olvidar al usuario}\label{olvidar-al-usuario}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\subsection{no versionar el
+aprendizaje}\label{no-versionar-el-aprendizaje}
+
+Este patrón suele aparecer cuando el equipo optimiza por velocidad de
+demo y no por operación. Puede funcionar una tarde, pero se vuelve caro
+cuando entran usuarios reales, datos reales y responsabilidad real.
+
+\section{45.8 Proyecto guiado}\label{proyecto-guiado-14}
+
+Elige uno de los proyectos guiados del apéndice y conviértelo en
+release: README, datos de ejemplo, evaluación mínima, capturas, PDF del
+diseño y decisión de qué mejorar después.
+
+\section{45.9 Qué puede cambiar en el
+futuro}\label{quuxe9-puede-cambiar-en-el-futuro-43}
+
+Este libro debe seguir cambiando. Pero su idea central no debería
+cambiar: la IA más útil no es la que parece mágica, sino la que ayuda a
+personas reales dentro de sistemas bien diseñados.
+
+\section{45.10 Ideas clave del
+capítulo}\label{ideas-clave-del-capuxedtulo-44}
+
+\begin{itemize}
+\tightlist
+\item
+  El salto importante no es aprender a hablar con la IA; es aprender a
+  construir sistemas donde la IA sea una pieza útil, limitada y
+  mantenible.
+\item
+  El sistema debe tener límites visibles.
+\item
+  La calidad debe medirse antes y después de cada cambio.
+\item
+  La operación importa tanto como la primera demo.
+\item
+  Los errores deben ser trazables.
+\item
+  La versión siguiente debe ser una mejora deliberada, no una reacción
+  al ruido.
+\end{itemize}
+
+\section{Recursos relacionados}\label{recursos-relacionados-44}
+
+\begin{itemize}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación.
+\item
+  Apéndice B --- Proyectos guiados.
+\item
+  Apéndice C --- Checklists de producción.
+\item
+  Apéndice D --- Glosario operativo.
+\end{itemize}
+
+\newpage
+
 \chapter{Apéndice A --- Rutas de
 lectura}\label{apuxe9ndice-a-rutas-de-lectura}
 
@@ -59129,6 +62354,167 @@ conocimiento.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\section{Ruta 8 --- Para llevar IA a
+producción}\label{ruta-8-para-llevar-ia-a-producciuxf3n}
+
+Esta ruta es para quien ya tiene un prototipo y necesita convertirlo en
+un sistema operable, medible y gobernable.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 30 --- Laboratorio de implementación
+\item
+  Capítulo 31 --- Evaluación de sistemas IA
+\item
+  Capítulo 32 --- Observabilidad y trazas
+\item
+  Capítulo 33 --- Seguridad, prompt injection y abuso
+\item
+  Capítulo 34 --- Costes, latencia y rendimiento
+\item
+  Capítulo 35 --- Datos, privacidad y gobernanza
+\item
+  Capítulo 36 --- Despliegue y operación
+\item
+  Capítulo 40 --- Testing y calidad
+\item
+  Apéndice C --- Checklists de producción
+\end{enumerate}
+
+Al terminar esta ruta deberías tener criterios claros para publicar:
+
+\begin{itemize}
+\tightlist
+\item
+  suite de evaluación;
+\item
+  trazas;
+\item
+  métricas;
+\item
+  permisos;
+\item
+  política de datos;
+\item
+  rollback;
+\item
+  límites de coste;
+\item
+  checklist de seguridad.
+\end{itemize}
+
+La pregunta central de esta ruta es:
+
+\begin{quote}
+¿Qué tendría que fallar para que apagáramos o revirtiéramos este
+sistema?
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ruta 9 --- Para diseñar producto y
+adopción}\label{ruta-9-para-diseuxf1ar-producto-y-adopciuxf3n}
+
+Esta ruta es para equipos que quieren que la IA no se quede como demo,
+sino que entre en procesos, usuarios, equipos y clientes.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 37 --- Automatizaciones y workflows
+\item
+  Capítulo 38 --- Integraciones empresariales
+\item
+  Capítulo 39 --- UI y UX para productos con IA
+\item
+  Capítulo 41 --- Equipos, roles y proceso
+\item
+  Capítulo 42 --- Venta, consultoría e implantación
+\item
+  Apéndice B --- Proyectos guiados
+\end{enumerate}
+
+Al terminar esta ruta deberías poder explicar:
+
+\begin{itemize}
+\tightlist
+\item
+  qué proceso cambia;
+\item
+  qué sistemas se conectan;
+\item
+  qué usuario gana tiempo;
+\item
+  qué acción queda bajo confirmación;
+\item
+  qué rol mantiene el sistema;
+\item
+  qué métrica justifica seguir invirtiendo.
+\end{itemize}
+
+La IA práctica se adopta cuando encaja en el trabajo real, no cuando
+impresiona en una demo aislada.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Ruta 10 --- Para mantener un libro
+vivo}\label{ruta-10-para-mantener-un-libro-vivo}
+
+Esta ruta es para quien quiere entender cómo este libro puede
+actualizarse sin perder versiones, criterio ni voz editorial.
+
+Lee:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Capítulo 16 --- Qué problema resuelve RAG
+\item
+  Capítulo 28 --- Memoria
+\item
+  Capítulo 30 --- Laboratorio de implementación
+\item
+  Capítulo 43 --- Libro vivo y automatización editorial
+\item
+  Capítulo 44 --- Roadmap de aprendizaje
+\item
+  Capítulo 45 --- Conclusión: de usuario a constructor
+\end{enumerate}
+
+Al terminar esta ruta deberías poder diseñar un sistema editorial vivo:
+
+\begin{itemize}
+\tightlist
+\item
+  radar de fuentes;
+\item
+  clasificación de novedades;
+\item
+  propuestas de cambio;
+\item
+  revisión humana;
+\item
+  generación de web y PDF;
+\item
+  tags y releases;
+\item
+  memoria editorial.
+\end{itemize}
+
+La actualización diaria no debe sustituir al criterio editorial.
+
+Debe servirle.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \section{Cómo estudiar este libro}\label{cuxf3mo-estudiar-este-libro}
 
 No intentes memorizar todos los conceptos.
@@ -59187,7 +62573,7 @@ una base documental propia.
 No debe inventar respuestas. Debe citar fuentes, reconocer límites y
 escalar a humano cuando no tenga suficiente contexto.
 
-\subsection{Arquitectura mínima}\label{arquitectura-muxednima-1}
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-16}
 
 \begin{itemize}
 \tightlist
@@ -59280,7 +62666,7 @@ proyecto.
 El objetivo no es que programe solo, sino que reduzca tiempo de búsqueda
 y mejore consistencia.
 
-\subsection{Arquitectura mínima}\label{arquitectura-muxednima-2}
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-17}
 
 \begin{itemize}
 \tightlist
@@ -59361,7 +62747,7 @@ documentación, las clasifique y proponga actualizaciones editoriales.
 
 Este proyecto es la base del libro vivo.
 
-\subsection{Arquitectura mínima}\label{arquitectura-muxednima-3}
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-18}
 
 \begin{itemize}
 \tightlist
@@ -59450,7 +62836,7 @@ un caso concreto.
 No se trata de repetir benchmarks públicos, sino de construir un
 benchmark propio y útil.
 
-\subsection{Arquitectura mínima}\label{arquitectura-muxednima-4}
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-19}
 
 \begin{itemize}
 \tightlist
@@ -59544,7 +62930,7 @@ Ejemplos:
   actualizar un registro con confirmación humana.
 \end{itemize}
 
-\subsection{Arquitectura mínima}\label{arquitectura-muxednima-5}
+\subsection{Arquitectura mínima}\label{arquitectura-muxednima-20}
 
 \begin{itemize}
 \tightlist

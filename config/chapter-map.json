@@ -40,7 +40,11 @@
     "28-capitulo-27-arquitecturas-agenticas.md",
     "29-capitulo-28-memoria.md",
     "30-capitulo-29-agentes-de-voz.md",
-    "31-capitulo-30-laboratorio-de-implementacion.md"
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "34-capitulo-33-seguridad-prompt-injection-y-abuso.md",
+    "38-capitulo-37-automatizaciones-y-workflows.md"
   ],
   "chatbots": [
     "22-capitulo-21-chatbots-modernos.md",
@@ -103,7 +107,10 @@
     "21-capitulo-20-herramientas-rag.md",
     "31-capitulo-30-laboratorio-de-implementacion.md",
     "22-capitulo-21-chatbots-modernos.md",
-    "23-capitulo-22-chatbots-para-soporte.md"
+    "23-capitulo-22-chatbots-para-soporte.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "34-capitulo-33-seguridad-prompt-injection-y-abuso.md"
   ],
   "papers": [
     "12-capitulo-11-tecnicas-avanzadas.md",
@@ -126,12 +133,116 @@
     "26-capitulo-25-function-calling.md",
     "27-capitulo-26-mcp.md",
     "28-capitulo-27-arquitecturas-agenticas.md",
-    "31-capitulo-30-laboratorio-de-implementacion.md"
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "38-capitulo-37-automatizaciones-y-workflows.md",
+    "39-capitulo-38-integraciones-empresariales.md"
   ],
   "produccion": [
     "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
     "19-capitulo-18-problemas-reales-en-rag.md",
     "23-capitulo-22-chatbots-para-soporte.md",
-    "31-capitulo-30-laboratorio-de-implementacion.md"
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "34-capitulo-33-seguridad-prompt-injection-y-abuso.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md",
+    "36-capitulo-35-datos-privacidad-y-gobernanza.md",
+    "37-capitulo-36-despliegue-y-operacion.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "evaluacion": [
+    "18-capitulo-17-arquitectura-rag-basica.md",
+    "20-capitulo-19-rag-avanzado.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "observabilidad": [
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "33-capitulo-32-observabilidad-y-trazas.md",
+    "37-capitulo-36-despliegue-y-operacion.md"
+  ],
+  "seguridad": [
+    "26-capitulo-25-function-calling.md",
+    "27-capitulo-26-mcp.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "34-capitulo-33-seguridad-prompt-injection-y-abuso.md",
+    "36-capitulo-35-datos-privacidad-y-gobernanza.md"
+  ],
+  "costes": [
+    "06-capitulo-5-como-elegir-un-modelo.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+  ],
+  "latencia": [
+    "06-capitulo-5-como-elegir-un-modelo.md",
+    "30-capitulo-29-agentes-de-voz.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md"
+  ],
+  "privacidad": [
+    "29-capitulo-28-memoria.md",
+    "34-capitulo-33-seguridad-prompt-injection-y-abuso.md",
+    "36-capitulo-35-datos-privacidad-y-gobernanza.md"
+  ],
+  "gobernanza": [
+    "36-capitulo-35-datos-privacidad-y-gobernanza.md",
+    "44-capitulo-43-libro-vivo-automatizacion-editorial.md"
+  ],
+  "despliegue": [
+    "16-capitulo-15-de-idea-a-prototipo.md",
+    "37-capitulo-36-despliegue-y-operacion.md"
+  ],
+  "workflows": [
+    "25-capitulo-24-que-es-un-agente-de-ia.md",
+    "38-capitulo-37-automatizaciones-y-workflows.md"
+  ],
+  "automatizacion": [
+    "25-capitulo-24-que-es-un-agente-de-ia.md",
+    "38-capitulo-37-automatizaciones-y-workflows.md",
+    "44-capitulo-43-libro-vivo-automatizacion-editorial.md"
+  ],
+  "integraciones": [
+    "26-capitulo-25-function-calling.md",
+    "27-capitulo-26-mcp.md",
+    "39-capitulo-38-integraciones-empresariales.md"
+  ],
+  "ux": [
+    "22-capitulo-21-chatbots-modernos.md",
+    "30-capitulo-29-agentes-de-voz.md",
+    "40-capitulo-39-ui-ux-para-productos-con-ia.md"
+  ],
+  "testing": [
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "41-capitulo-40-testing-y-calidad.md"
+  ],
+  "equipos": [
+    "42-capitulo-41-equipos-roles-y-proceso.md",
+    "43-capitulo-42-venta-consultoria-e-implantacion.md"
+  ],
+  "consultoria": [
+    "16-capitulo-15-de-idea-a-prototipo.md",
+    "23-capitulo-22-chatbots-para-soporte.md",
+    "43-capitulo-42-venta-consultoria-e-implantacion.md"
+  ],
+  "venta": [
+    "03-capitulo-2-que-se-puede-crear-hoy-con-ia.md",
+    "43-capitulo-42-venta-consultoria-e-implantacion.md"
+  ],
+  "libro-vivo": [
+    "17-capitulo-16-que-problema-resuelve-rag.md",
+    "29-capitulo-28-memoria.md",
+    "44-capitulo-43-libro-vivo-automatizacion-editorial.md",
+    "45-capitulo-44-roadmap-de-aprendizaje.md"
+  ],
+  "roadmap": [
+    "45-capitulo-44-roadmap-de-aprendizaje.md",
+    "46-capitulo-45-conclusion-de-usuario-a-constructor.md"
+  ],
+  "producto": [
+    "38-capitulo-37-automatizaciones-y-workflows.md",
+    "39-capitulo-38-integraciones-empresariales.md",
+    "40-capitulo-39-ui-ux-para-productos-con-ia.md",
+    "42-capitulo-41-equipos-roles-y-proceso.md",
+    "43-capitulo-42-venta-consultoria-e-implantacion.md"
   ]
 }
