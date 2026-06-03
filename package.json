@@ -12,9 +12,18 @@
     "publish": "node scripts/publish.js",
     "dashboard": "node scripts/dashboard.js",
     "site:generate": "cd site && node scripts/generate-content.mjs",
-    "site:build": "cd site && npm install && npm run build",
+    "site:build": "cd site && npm ci && npm run build",
     "site:dev": "cd site && npm install && npm run dev",
     "daily": "node scripts/daily.js",
     "add": "node scripts/add-manual-item.js"
+  },
+  "dependencies": {
+    "marked": "17.0.1",
+    "next": "^16.2.7",
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
+  },
+  "overrides": {
+    "postcss": "8.5.10"
   }
 }

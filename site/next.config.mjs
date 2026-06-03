@@ -1,5 +1,8 @@
 const nextConfig = {
   output: "export",
+  turbopack: {
+    root: import.meta.dirname
+  },
   trailingSlash: true,
   images: {
     unoptimized: true
@@ -7,4 +10,3 @@ const nextConfig = {
 };
 
 export default nextConfig;
-
