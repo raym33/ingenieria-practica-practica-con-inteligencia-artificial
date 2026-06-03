@@ -12888,6 +12888,82 @@ La herramienta adecuada depende del objetivo.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
+\section{7.8.1 Cómo elegir software de
+inferencia}\label{cuxf3mo-elegir-software-de-inferencia}
+
+No elijas el runtime por popularidad. Elige por el tipo de trabajo que
+quieres hacer.
+
+Una decisión práctica:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Probar modelos sin fricción:} LM Studio u Ollama. Descarga,
+  chat y API local rápida.
+\item
+  \textbf{Integrar un prototipo local:} Ollama. API sencilla y buen
+  ecosistema.
+\item
+  \textbf{Medir con control fino:} llama.cpp. Permite tocar formato,
+  batch, contexto, offload y cuantización.
+\item
+  \textbf{Exprimir Apple Silicon:} MLX o llama.cpp. Aprovechan memoria
+  unificada y aceleración local.
+\item
+  \textbf{Servir usuarios concurrentes:} vLLM, TGI o SGLang. Añaden
+  scheduler, batching, KV cache y serving pensado para producción.
+\item
+  \textbf{Construir RAG local:} Ollama o llama.cpp con embeddings y base
+  vectorial. El modelo es solo una parte del sistema.
+\item
+  \textbf{Comparar hardware:} llama.cpp, MLX y fichas reproducibles.
+  Necesitas repetir prompts y parámetros.
+\end{itemize}
+
+La confusión habitual es usar una herramienta de exploración como si
+fuera una plataforma de serving.
+
+Ollama y LM Studio son excelentes para aprender, probar y construir
+prototipos. Para servir muchos usuarios necesitas pensar en cola,
+concurrencia, aislamiento, métricas y actualización de modelos. Ahí
+aparecen runtimes y servidores más especializados.
+
+Una ficha mínima de prueba debería guardar:
+
+\begin{itemize}
+\tightlist
+\item
+  modelo exacto;
+\item
+  formato;
+\item
+  cuantización;
+\item
+  runtime y versión;
+\item
+  hardware;
+\item
+  memoria usada;
+\item
+  tamaño de contexto;
+\item
+  tiempo hasta primer token;
+\item
+  tokens por segundo de prefill;
+\item
+  tokens por segundo de generación;
+\item
+  latencia p95 si hay concurrencia;
+\item
+  calidad sobre tareas reales.
+\end{itemize}
+
+Sin esa ficha, una recomendación de modelo local suele ser solo una
+anécdota.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
 \section{7.9 Ollama}\label{ollama}
 
 Ollama es una de las formas más sencillas de empezar con modelos
@@ -16301,6 +16377,82 @@ Configuraciones orientativas:
 \end{lstlisting}
 
 La cifra exacta depende del modelo y cuantización.
+
+\subsection{8.11.1 La pila real de
+inferencia}\label{la-pila-real-de-inferencia}
+
+Cuando alguien pregunta ``qué hardware necesito para IA local'',
+normalmente falta media pregunta.
+
+El rendimiento no lo decide solo la máquina. Lo decide la pila completa:
+
+\begin{lstlisting}
+modelo
++ formato
++ cuantización
++ runtime
++ kernels
++ memoria disponible
++ tamaño de contexto
++ KV cache
++ batch/concurrencia
++ API/gateway
++ observabilidad
+= experiencia real de inferencia
+\end{lstlisting}
+
+Un Mac de 24 GB puede ser una gran máquina para aprender, prototipar y
+ejecutar modelos medianos cuantizados, pero no se comportará como un
+servidor multiusuario. Una GPU de 24 GB puede generar muy rápido en un
+modelo concreto, pero quedarse corta si el contexto o la concurrencia
+disparan la KV cache. Un servidor con varias GPUs puede ser potente y
+aun así caro si no hay batching, métricas y límites.
+
+Mapa práctico:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Portátil personal:} Ollama, LM Studio o llama.cpp. Vigila RAM,
+  temperatura, contexto y disco.
+\item
+  \textbf{Mac Apple Silicon:} MLX, llama.cpp u Ollama. Vigila memoria
+  unificada, formato y conversión.
+\item
+  \textbf{PC con NVIDIA:} llama.cpp, Ollama o vLLM. Vigila VRAM,
+  drivers, CUDA y batch.
+\item
+  \textbf{Servidor de inferencia:} vLLM, TGI, SGLang y gateway. Vigila
+  p95/p99, KV cache, colas y aislamiento.
+\item
+  \textbf{Edge o mini PC:} llama.cpp, ONNX y modelos pequeños. Vigila
+  CPU, consumo y latencia aceptable.
+\item
+  \textbf{RAG privado:} embeddings, base vectorial y LLM local. Vigila
+  permisos, indexado, memoria y disco.
+\end{itemize}
+
+La compra inteligente empieza con una prueba pequeña:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Elige tres tareas reales.
+\item
+  Elige dos modelos candidatos.
+\item
+  Ejecuta cada modelo con el mismo prompt y mismo contexto.
+\item
+  Mide tiempo hasta primer token, tokens por segundo, RAM/VRAM y
+  calidad.
+\item
+  Decide si el cuello de botella es modelo, memoria, runtime, contexto o
+  producto.
+\end{enumerate}
+
+No compres hardware para ``IA'' en abstracto. Compra hardware para una
+carga de inferencia concreta.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -62765,6 +62917,63 @@ Luego decide:
 \end{itemize}
 
 La latencia se optimiza con trazas, no con intuición.
+
+\subsection{Métricas específicas de
+inferencia}\label{muxe9tricas-especuxedficas-de-inferencia}
+
+En modelos generativos no basta con medir ``la llamada tardó X
+segundos''.
+
+Hay varias fases:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{TTFT:} tiempo hasta el primer token. Define la sensación de
+  respuesta inmediata.
+\item
+  \textbf{Prefill tokens/s:} velocidad procesando prompt y contexto.
+  Penaliza prompts largos, RAG grande y contexto acumulado.
+\item
+  \textbf{Decode tokens/s:} velocidad generando nuevos tokens. Afecta
+  respuestas largas, agentes y streaming.
+\item
+  \textbf{Queue time:} tiempo esperando turno. Revela saturación y mala
+  concurrencia.
+\item
+  \textbf{KV cache usage:} memoria usada por contexto y sesiones. Limita
+  contexto largo y usuarios simultáneos.
+\item
+  \textbf{p95/p99:} latencia de los peores casos habituales. Evita
+  optimizar para la media bonita.
+\item
+  \textbf{Coste por request útil:} coste de entregar una respuesta
+  válida. Incluye retries, tools, logs y revisión humana.
+\end{itemize}
+
+Una prueba local mínima debería separar prompt corto, prompt largo y
+concurrencia. Muchos stacks parecen rápidos con una pregunta corta y un
+usuario; cambian mucho con RAG, diez usuarios o contexto largo.
+
+Regla práctica:
+
+\begin{itemize}
+\tightlist
+\item
+  si TTFT es alto, mira cola, cold start, prefill y routing;
+\item
+  si prefill es lento, mira contexto, retrieval y tamaño de prompt;
+\item
+  si decode es lento, mira modelo, cuantización, runtime y memoria;
+\item
+  si p95 sube mucho, mira concurrencia, KV cache y saturación;
+\item
+  si coste/request sube, mira retries, modelo equivocado y exceso de
+  contexto.
+\end{itemize}
+
+La inferencia seria se decide con perfiles, no con una captura de
+tokens/s.
 
 \section{34.5 Métricas}\label{muxe9tricas-3}
 

@@ -760,6 +760,10 @@ a {
   margin-top: 16px;
 }
 
+.model-grid.two-col {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .model-card {
   min-height: 245px;
   display: flex;
@@ -783,6 +787,119 @@ a {
   margin: 0 0 12px;
   color: var(--muted);
   font-size: 13px;
+}
+
+.runtime-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.runtime-card {
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-top: 5px solid var(--teal);
+  background: var(--surface);
+}
+
+.runtime-card span {
+  color: var(--coral);
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.runtime-card h2 {
+  margin: 14px 0 10px;
+  color: var(--blue);
+  font-size: 23px;
+  line-height: 1.1;
+  overflow-wrap: anywhere;
+}
+
+.runtime-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.decision-table {
+  display: grid;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.decision-table > div {
+  display: grid;
+  grid-template-columns: .75fr .85fr 1.4fr;
+  gap: 14px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+
+.decision-table > div:first-child {
+  background: #111827;
+  color: #fff;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.decision-table > div:last-child {
+  border-bottom: 0;
+}
+
+.decision-table span {
+  color: var(--muted);
+}
+
+.decision-table span:first-child {
+  color: var(--blue);
+  font-weight: 850;
+}
+
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.metric-strip article {
+  min-height: 150px;
+  padding: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--gold);
+}
+
+.metric-strip strong {
+  display: block;
+  color: var(--blue);
+  font-size: 22px;
+}
+
+.metric-strip p,
+.check-row {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.check-row {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.check-row:last-child {
+  border-bottom: 0;
+}
+
+.split-list {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0 22px;
 }
 
 .chapter-grid,
@@ -1101,9 +1218,16 @@ a {
   .topic-grid,
   .lab-grid,
   .model-grid,
+  .model-grid.two-col,
+  .runtime-grid,
+  .metric-strip,
   .magazine-shelf,
   .cover-teasers,
   .magazine-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .decision-table > div {
     grid-template-columns: 1fr;
   }
 

@@ -390,6 +390,43 @@ La herramienta adecuada depende del objetivo.
 
 ---
 
+## 7.8.1 Cómo elegir software de inferencia
+
+No elijas el runtime por popularidad. Elige por el tipo de trabajo que quieres hacer.
+
+Una decisión práctica:
+
+- **Probar modelos sin fricción:** LM Studio u Ollama. Descarga, chat y API local rápida.
+- **Integrar un prototipo local:** Ollama. API sencilla y buen ecosistema.
+- **Medir con control fino:** llama.cpp. Permite tocar formato, batch, contexto, offload y cuantización.
+- **Exprimir Apple Silicon:** MLX o llama.cpp. Aprovechan memoria unificada y aceleración local.
+- **Servir usuarios concurrentes:** vLLM, TGI o SGLang. Añaden scheduler, batching, KV cache y serving pensado para producción.
+- **Construir RAG local:** Ollama o llama.cpp con embeddings y base vectorial. El modelo es solo una parte del sistema.
+- **Comparar hardware:** llama.cpp, MLX y fichas reproducibles. Necesitas repetir prompts y parámetros.
+
+La confusión habitual es usar una herramienta de exploración como si fuera una plataforma de serving.
+
+Ollama y LM Studio son excelentes para aprender, probar y construir prototipos. Para servir muchos usuarios necesitas pensar en cola, concurrencia, aislamiento, métricas y actualización de modelos. Ahí aparecen runtimes y servidores más especializados.
+
+Una ficha mínima de prueba debería guardar:
+
+- modelo exacto;
+- formato;
+- cuantización;
+- runtime y versión;
+- hardware;
+- memoria usada;
+- tamaño de contexto;
+- tiempo hasta primer token;
+- tokens por segundo de prefill;
+- tokens por segundo de generación;
+- latencia p95 si hay concurrencia;
+- calidad sobre tareas reales.
+
+Sin esa ficha, una recomendación de modelo local suele ser solo una anécdota.
+
+---
+
 ## 7.9 Ollama
 
 Ollama es una de las formas más sencillas de empezar con modelos locales.

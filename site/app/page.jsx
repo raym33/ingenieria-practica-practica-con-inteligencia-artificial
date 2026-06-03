@@ -15,6 +15,7 @@ export default function HomePage() {
   const latestRadar = radarItems.slice(0, 5);
   const issueDate = new Intl.DateTimeFormat("es-ES", { dateStyle: "long" }).format(new Date());
   const topicRows = [
+    { label: "Inferencia local", href: "/inferencia/", kicker: "hardware, runtimes, tokens/s" },
     { label: "Modelos locales", href: "/leer/08-capitulo-7-modelos-locales/", kicker: "Ollama, LM Studio, MLX, GGUF" },
     { label: "RAG real", href: "/leer/20-capitulo-19-rag-avanzado/", kicker: "retrieval, reranking, permisos" },
     { label: "Agentes", href: "/leer/28-capitulo-27-arquitecturas-agenticas/", kicker: "tools, memoria, límites" },
@@ -69,6 +70,7 @@ export default function HomePage() {
           <span>costes y latencia</span>
           <span>agentes de código</span>
           <span>hardware Apple Silicon y GPU</span>
+          <span>vLLM, llama.cpp y MLX</span>
         </div>
       </section>
 
@@ -84,10 +86,10 @@ export default function HomePage() {
             <strong>Labs ejecutables</strong>
             <p>Costes, retrieval, jueces LLM y benchmarks locales.</p>
           </Link>
-          <Link className="shelf-card accent-gold" href={`/leer/${leadChapter.slug}/`}>
-            <span>Guía central</span>
-            <strong>Roadmap de aprendizaje</strong>
-            <p>Qué estudiar, qué construir y cómo medir progreso.</p>
+          <Link className="shelf-card accent-gold" href="/inferencia/">
+            <span>Inferencia</span>
+            <strong>Hardware y software real</strong>
+            <p>Mac, GPU, GGUF, MLX, vLLM, latencia y límites prácticos.</p>
           </Link>
         </div>
       </section>
@@ -123,14 +125,14 @@ export default function HomePage() {
             <p>El criterio no es el benchmark aislado: es latencia, memoria, calidad suficiente y caso de uso.</p>
           </article>
           <article>
+            <span>Stack</span>
+            <h3>Ollama, MLX, llama.cpp o vLLM</h3>
+            <p>La herramienta correcta depende de si estás explorando, midiendo o sirviendo usuarios concurrentes.</p>
+          </article>
+          <article>
             <span>Comparativa</span>
             <h3>RAG, agentes o workflow</h3>
             <p>La mayoría de productos necesita menos autonomía y más arquitectura explícita.</p>
-          </article>
-          <article>
-            <span>Operación</span>
-            <h3>Coste, trazas y rollback</h3>
-            <p>Una demo convence; una operación medible sobrevive.</p>
           </article>
         </div>
       </section>

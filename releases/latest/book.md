@@ -8626,6 +8626,43 @@ La herramienta adecuada depende del objetivo.
 
 ---
 
+## 7.8.1 Cómo elegir software de inferencia
+
+No elijas el runtime por popularidad. Elige por el tipo de trabajo que quieres hacer.
+
+Una decisión práctica:
+
+- **Probar modelos sin fricción:** LM Studio u Ollama. Descarga, chat y API local rápida.
+- **Integrar un prototipo local:** Ollama. API sencilla y buen ecosistema.
+- **Medir con control fino:** llama.cpp. Permite tocar formato, batch, contexto, offload y cuantización.
+- **Exprimir Apple Silicon:** MLX o llama.cpp. Aprovechan memoria unificada y aceleración local.
+- **Servir usuarios concurrentes:** vLLM, TGI o SGLang. Añaden scheduler, batching, KV cache y serving pensado para producción.
+- **Construir RAG local:** Ollama o llama.cpp con embeddings y base vectorial. El modelo es solo una parte del sistema.
+- **Comparar hardware:** llama.cpp, MLX y fichas reproducibles. Necesitas repetir prompts y parámetros.
+
+La confusión habitual es usar una herramienta de exploración como si fuera una plataforma de serving.
+
+Ollama y LM Studio son excelentes para aprender, probar y construir prototipos. Para servir muchos usuarios necesitas pensar en cola, concurrencia, aislamiento, métricas y actualización de modelos. Ahí aparecen runtimes y servidores más especializados.
+
+Una ficha mínima de prueba debería guardar:
+
+- modelo exacto;
+- formato;
+- cuantización;
+- runtime y versión;
+- hardware;
+- memoria usada;
+- tamaño de contexto;
+- tiempo hasta primer token;
+- tokens por segundo de prefill;
+- tokens por segundo de generación;
+- latencia p95 si hay concurrencia;
+- calidad sobre tareas reales.
+
+Sin esa ficha, una recomendación de modelo local suele ser solo una anécdota.
+
+---
+
 ## 7.9 Ollama
 
 Ollama es una de las formas más sencillas de empezar con modelos locales.
@@ -10794,6 +10831,48 @@ Configuraciones orientativas:
 ```
 
 La cifra exacta depende del modelo y cuantización.
+
+### 8.11.1 La pila real de inferencia
+
+Cuando alguien pregunta "qué hardware necesito para IA local", normalmente falta media pregunta.
+
+El rendimiento no lo decide solo la máquina. Lo decide la pila completa:
+
+```text
+modelo
++ formato
++ cuantización
++ runtime
++ kernels
++ memoria disponible
++ tamaño de contexto
++ KV cache
++ batch/concurrencia
++ API/gateway
++ observabilidad
+= experiencia real de inferencia
+```
+
+Un Mac de 24 GB puede ser una gran máquina para aprender, prototipar y ejecutar modelos medianos cuantizados, pero no se comportará como un servidor multiusuario. Una GPU de 24 GB puede generar muy rápido en un modelo concreto, pero quedarse corta si el contexto o la concurrencia disparan la KV cache. Un servidor con varias GPUs puede ser potente y aun así caro si no hay batching, métricas y límites.
+
+Mapa práctico:
+
+- **Portátil personal:** Ollama, LM Studio o llama.cpp. Vigila RAM, temperatura, contexto y disco.
+- **Mac Apple Silicon:** MLX, llama.cpp u Ollama. Vigila memoria unificada, formato y conversión.
+- **PC con NVIDIA:** llama.cpp, Ollama o vLLM. Vigila VRAM, drivers, CUDA y batch.
+- **Servidor de inferencia:** vLLM, TGI, SGLang y gateway. Vigila p95/p99, KV cache, colas y aislamiento.
+- **Edge o mini PC:** llama.cpp, ONNX y modelos pequeños. Vigila CPU, consumo y latencia aceptable.
+- **RAG privado:** embeddings, base vectorial y LLM local. Vigila permisos, indexado, memoria y disco.
+
+La compra inteligente empieza con una prueba pequeña:
+
+1. Elige tres tareas reales.
+2. Elige dos modelos candidatos.
+3. Ejecuta cada modelo con el mismo prompt y mismo contexto.
+4. Mide tiempo hasta primer token, tokens por segundo, RAM/VRAM y calidad.
+5. Decide si el cuello de botella es modelo, memoria, runtime, contexto o producto.
+
+No compres hardware para "IA" en abstracto. Compra hardware para una carga de inferencia concreta.
 
 ---
 
@@ -44402,6 +44481,32 @@ Luego decide:
 - separar flujos interactivos y no interactivos.
 
 La latencia se optimiza con trazas, no con intuición.
+
+### Métricas específicas de inferencia
+
+En modelos generativos no basta con medir "la llamada tardó X segundos".
+
+Hay varias fases:
+
+- **TTFT:** tiempo hasta el primer token. Define la sensación de respuesta inmediata.
+- **Prefill tokens/s:** velocidad procesando prompt y contexto. Penaliza prompts largos, RAG grande y contexto acumulado.
+- **Decode tokens/s:** velocidad generando nuevos tokens. Afecta respuestas largas, agentes y streaming.
+- **Queue time:** tiempo esperando turno. Revela saturación y mala concurrencia.
+- **KV cache usage:** memoria usada por contexto y sesiones. Limita contexto largo y usuarios simultáneos.
+- **p95/p99:** latencia de los peores casos habituales. Evita optimizar para la media bonita.
+- **Coste por request útil:** coste de entregar una respuesta válida. Incluye retries, tools, logs y revisión humana.
+
+Una prueba local mínima debería separar prompt corto, prompt largo y concurrencia. Muchos stacks parecen rápidos con una pregunta corta y un usuario; cambian mucho con RAG, diez usuarios o contexto largo.
+
+Regla práctica:
+
+- si TTFT es alto, mira cola, cold start, prefill y routing;
+- si prefill es lento, mira contexto, retrieval y tamaño de prompt;
+- si decode es lento, mira modelo, cuantización, runtime y memoria;
+- si p95 sube mucho, mira concurrencia, KV cache y saturación;
+- si coste/request sube, mira retries, modelo equivocado y exceso de contexto.
+
+La inferencia seria se decide con perfiles, no con una captura de tokens/s.
 
 
 ## 34.5 Métricas

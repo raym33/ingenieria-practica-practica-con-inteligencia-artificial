@@ -560,6 +560,32 @@ Luego decide:
 
 La latencia se optimiza con trazas, no con intuición.
 
+### Métricas específicas de inferencia
+
+En modelos generativos no basta con medir "la llamada tardó X segundos".
+
+Hay varias fases:
+
+- **TTFT:** tiempo hasta el primer token. Define la sensación de respuesta inmediata.
+- **Prefill tokens/s:** velocidad procesando prompt y contexto. Penaliza prompts largos, RAG grande y contexto acumulado.
+- **Decode tokens/s:** velocidad generando nuevos tokens. Afecta respuestas largas, agentes y streaming.
+- **Queue time:** tiempo esperando turno. Revela saturación y mala concurrencia.
+- **KV cache usage:** memoria usada por contexto y sesiones. Limita contexto largo y usuarios simultáneos.
+- **p95/p99:** latencia de los peores casos habituales. Evita optimizar para la media bonita.
+- **Coste por request útil:** coste de entregar una respuesta válida. Incluye retries, tools, logs y revisión humana.
+
+Una prueba local mínima debería separar prompt corto, prompt largo y concurrencia. Muchos stacks parecen rápidos con una pregunta corta y un usuario; cambian mucho con RAG, diez usuarios o contexto largo.
+
+Regla práctica:
+
+- si TTFT es alto, mira cola, cold start, prefill y routing;
+- si prefill es lento, mira contexto, retrieval y tamaño de prompt;
+- si decode es lento, mira modelo, cuantización, runtime y memoria;
+- si p95 sube mucho, mira concurrencia, KV cache y saturación;
+- si coste/request sube, mira retries, modelo equivocado y exceso de contexto.
+
+La inferencia seria se decide con perfiles, no con una captura de tokens/s.
+
 
 ## 34.5 Métricas
 

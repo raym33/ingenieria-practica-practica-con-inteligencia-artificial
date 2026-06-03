@@ -171,6 +171,13 @@
     "09-capitulo-8-hardware-real-para-ia-local.md",
     "35-capitulo-34-costes-latencia-y-rendimiento.md"
   ],
+  "inferencia": [
+    "08-capitulo-7-modelos-locales.md",
+    "09-capitulo-8-hardware-real-para-ia-local.md",
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "35-capitulo-34-costes-latencia-y-rendimiento.md",
+    "37-capitulo-36-despliegue-y-operacion.md"
+  ],
   "modelos-locales": [
     "08-capitulo-7-modelos-locales.md",
     "09-capitulo-8-hardware-real-para-ia-local.md"

@@ -523,6 +523,48 @@ Configuraciones orientativas:
 
 La cifra exacta depende del modelo y cuantización.
 
+### 8.11.1 La pila real de inferencia
+
+Cuando alguien pregunta "qué hardware necesito para IA local", normalmente falta media pregunta.
+
+El rendimiento no lo decide solo la máquina. Lo decide la pila completa:
+
+```text
+modelo
++ formato
++ cuantización
++ runtime
++ kernels
++ memoria disponible
++ tamaño de contexto
++ KV cache
++ batch/concurrencia
++ API/gateway
++ observabilidad
+= experiencia real de inferencia
+```
+
+Un Mac de 24 GB puede ser una gran máquina para aprender, prototipar y ejecutar modelos medianos cuantizados, pero no se comportará como un servidor multiusuario. Una GPU de 24 GB puede generar muy rápido en un modelo concreto, pero quedarse corta si el contexto o la concurrencia disparan la KV cache. Un servidor con varias GPUs puede ser potente y aun así caro si no hay batching, métricas y límites.
+
+Mapa práctico:
+
+- **Portátil personal:** Ollama, LM Studio o llama.cpp. Vigila RAM, temperatura, contexto y disco.
+- **Mac Apple Silicon:** MLX, llama.cpp u Ollama. Vigila memoria unificada, formato y conversión.
+- **PC con NVIDIA:** llama.cpp, Ollama o vLLM. Vigila VRAM, drivers, CUDA y batch.
+- **Servidor de inferencia:** vLLM, TGI, SGLang y gateway. Vigila p95/p99, KV cache, colas y aislamiento.
+- **Edge o mini PC:** llama.cpp, ONNX y modelos pequeños. Vigila CPU, consumo y latencia aceptable.
+- **RAG privado:** embeddings, base vectorial y LLM local. Vigila permisos, indexado, memoria y disco.
+
+La compra inteligente empieza con una prueba pequeña:
+
+1. Elige tres tareas reales.
+2. Elige dos modelos candidatos.
+3. Ejecuta cada modelo con el mismo prompt y mismo contexto.
+4. Mide tiempo hasta primer token, tokens por segundo, RAM/VRAM y calidad.
+5. Decide si el cuello de botella es modelo, memoria, runtime, contexto o producto.
+
+No compres hardware para "IA" en abstracto. Compra hardware para una carga de inferencia concreta.
+
 ---
 
 ## 8.12 Mac Studio
