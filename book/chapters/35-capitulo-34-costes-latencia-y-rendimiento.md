@@ -13,13 +13,25 @@ estimated_reading_time: "44 minutos"
 
 Un sistema IA puede ser correcto y aun así inviable si cuesta demasiado o responde demasiado tarde.
 
-Este capítulo cierra una pieza que faltaba en el libro: pasar de entender una técnica a saber operarla en un producto real.
+La calidad técnica no compensa una mala economía.
 
-La idea no es añadir complejidad por añadir complejidad. La idea es que cada sistema con IA tenga una forma clara de responder a tres preguntas:
+Tampoco compensa una mala experiencia.
 
-- ¿qué debe hacer?;
-- ¿cómo sabemos que lo está haciendo bien?;
-- ¿qué ocurre cuando se equivoca?
+Un copiloto que responde en quince segundos puede ser brillante y no usarse.
+
+Un agente que cuesta más que el trabajo que automatiza puede ser elegante y no tener sentido.
+
+Por eso coste, latencia y rendimiento no son temas financieros al final del proyecto.
+
+Son decisiones de arquitectura desde el principio.
+
+La pregunta no es solo:
+
+> ¿Qué modelo funciona mejor?
+
+La pregunta completa es:
+
+> ¿Qué combinación de modelo, contexto, herramientas y flujo entrega suficiente calidad al coste y velocidad que el caso de uso tolera?
 
 
 ## 34.1 El problema
@@ -71,6 +83,144 @@ Criterio para apagar o revertir:
 
 Cuando no puedes completar esta ficha, el proyecto todavía está demasiado borroso.
 
+### Desglose por etapa
+
+Un request RAG puede medirse así:
+
+```json
+{
+  "request_id": "req_042",
+  "feature": "support_copilot",
+  "stages": {
+    "input_validation_ms": 12,
+    "retrieval_ms": 95,
+    "reranking_ms": 180,
+    "model_ms": 1450,
+    "tool_ms": 0,
+    "output_validation_ms": 20
+  },
+  "tokens": {
+    "input": 2200,
+    "output": 420
+  },
+  "cost": {
+    "model_usd": 0.018,
+    "reranker_usd": 0.002,
+    "infra_usd_estimated": 0.001,
+    "total_usd": 0.021
+  }
+}
+```
+
+Este desglose permite responder preguntas útiles:
+
+- ¿el cuello de botella está en el modelo o en retrieval?;
+- ¿el reranker mejora lo suficiente para justificar su latencia?;
+- ¿el prompt está creciendo sin control?;
+- ¿el coste viene de respuestas largas o de contexto excesivo?;
+- ¿hay retries ocultos?;
+- ¿hay usuarios o tenants especialmente caros?
+
+### Fórmula simple de coste
+
+Para texto:
+
+```text
+coste_request =
+  coste_input_tokens
+  + coste_output_tokens
+  + coste_retrieval
+  + coste_reranking
+  + coste_tools
+  + coste_infra
+```
+
+Para voz:
+
+```text
+coste_request =
+  coste_stt
+  + coste_modelo
+  + coste_tools
+  + coste_tts
+  + coste_telefonia
+  + coste_fallback_humano
+```
+
+Para agentes:
+
+```text
+coste_tarea =
+  suma(costes_de_pasos)
+  + retries
+  + verificaciones
+  + revisión humana
+```
+
+Los agentes son especialmente peligrosos para el coste porque multiplican pasos.
+
+Un agente de cinco pasos no cuesta “una llamada”.
+
+Cuesta cinco decisiones, varias tools, contexto acumulado y posiblemente verificación.
+
+### Matriz de optimización
+
+Si la latencia es alta, mira primero:
+
+- tamaño del contexto;
+- modelo usado;
+- llamadas secuenciales;
+- reranking;
+- tools externas;
+- streaming;
+- colas para tareas no interactivas.
+
+Si el coste es alto, mira primero:
+
+- tokens de entrada;
+- tokens de salida;
+- número de pasos;
+- retries;
+- modelo sobredimensionado;
+- contexto repetido;
+- usuarios que disparan flujos caros.
+
+Si la calidad es baja, no optimices coste todavía.
+
+Primero encuentra la causa:
+
+- retrieval malo;
+- prompt ambiguo;
+- modelo insuficiente;
+- fuentes malas;
+- tool mal diseñada;
+- evaluación incompleta.
+
+Optimizar un sistema que aún no funciona solo produce un sistema barato que falla.
+
+### Router de modelos
+
+No todo necesita el mismo modelo.
+
+Un router simple puede decidir por tipo de tarea:
+
+```python
+def choose_model(task):
+    if task["type"] == "classification":
+        return "small-fast-model"
+    if task["type"] == "rewrite" and task["risk"] == "low":
+        return "medium-model"
+    if task["type"] == "legal_answer" or task["risk"] == "high":
+        return "strong-model"
+    if task["type"] == "batch_summary":
+        return "cheap-batch-model"
+    return "default-model"
+```
+
+El router no debe decidir solo por coste.
+
+Debe decidir por riesgo, dificultad, latencia esperada y valor del resultado.
+
 
 ## 34.5 Métricas
 
@@ -102,23 +252,33 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 
 ### usar siempre el modelo más grande
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+El modelo más grande suele ser una buena forma de ocultar problemas de diseño.
+
+Puede compensar un prompt flojo, retrieval mediocre o tools mal descritas. Pero esa compensación se paga en coste y latencia. Empieza midiendo qué tareas realmente necesitan el modelo fuerte y cuáles pueden resolverse con modelos pequeños, reglas o búsqueda clásica.
 
 ### meter demasiado contexto
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Más contexto no siempre significa más verdad.
+
+Puede significar más ruido, más coste, más latencia y más oportunidad para que el modelo se distraiga. El contexto debe ser seleccionado, ordenado y recortado. Si diez chunks funcionan igual que treinta, treinta es deuda.
 
 ### hacer reranking sin medir
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+El reranking puede mejorar mucho un RAG.
+
+También puede añadir latencia y coste sin aportar nada en tu caso concreto. Antes de adoptarlo, compara retrieval con y sin reranker sobre una suite real: fuentes esperadas, respuesta final, latencia y coste.
 
 ### no contar retries
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Los retries son coste invisible.
+
+Una llamada fallida que se repite tres veces no aparece en la demo, pero sí en la factura y en la experiencia de usuario. Registra retries por proveedor, modelo, tool y tipo de error.
 
 ### ignorar coste de humano en el loop
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+El humano en el loop no es gratis.
+
+Puede ser necesario, pero debe presupuestarse. Si cada respuesta ahorra treinta segundos pero exige dos minutos de revisión, no has automatizado: has movido trabajo. Mide tiempo humano antes y después.
 
 
 ## 34.8 Proyecto guiado

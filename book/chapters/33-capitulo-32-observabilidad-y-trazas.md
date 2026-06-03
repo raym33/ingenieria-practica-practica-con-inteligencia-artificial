@@ -13,13 +13,22 @@ estimated_reading_time: "42 minutos"
 
 Un sistema IA sin trazas no se puede depurar, auditar ni mejorar con seriedad.
 
-Este capítulo cierra una pieza que faltaba en el libro: pasar de entender una técnica a saber operarla en un producto real.
+En software tradicional ya es difícil entender un error sin logs.
 
-La idea no es añadir complejidad por añadir complejidad. La idea es que cada sistema con IA tenga una forma clara de responder a tres preguntas:
+En sistemas con IA es peor, porque el fallo puede venir de muchas capas a la vez:
 
-- ¿qué debe hacer?;
-- ¿cómo sabemos que lo está haciendo bien?;
-- ¿qué ocurre cuando se equivoca?
+- el usuario pidió algo ambiguo;
+- el retrieval trajo mal contexto;
+- una fuente estaba obsoleta;
+- el prompt cambió;
+- el modelo eligió una tool incorrecta;
+- la tool devolvió un error;
+- la memoria introdujo una preferencia equivocada;
+- la respuesta final sonó convincente aunque faltaba evidencia.
+
+Si no registras esa cadena, no estás operando un producto.
+
+Estás interpretando síntomas.
 
 
 ## 32.1 El problema
@@ -72,6 +81,109 @@ Criterio para apagar o revertir:
 
 Cuando no puedes completar esta ficha, el proyecto todavía está demasiado borroso.
 
+### Evento mínimo
+
+Un evento útil no necesita guardar todo.
+
+Necesita guardar lo suficiente para reconstruir una decisión.
+
+```json
+{
+  "request_id": "req_2026_06_03_00042",
+  "timestamp": "2026-06-03T16:40:00Z",
+  "feature": "support_copilot",
+  "user_id_hash": "usr_hash_91ab",
+  "tenant_id": "tenant_demo",
+  "model": "provider/model-name",
+  "prompt_version": "support-rag-v7",
+  "retrieval": {
+    "query": "politica devoluciones producto abierto",
+    "top_k": 6,
+    "chunk_ids": [
+      "politica-devoluciones-2026:04",
+      "faq-soporte:18"
+    ]
+  },
+  "tools": [
+    {
+      "name": "create_ticket_draft",
+      "status": "success",
+      "latency_ms": 180
+    }
+  ],
+  "tokens": {
+    "input": 1840,
+    "output": 310
+  },
+  "latency_ms": 2150,
+  "cost_usd": 0.014,
+  "outcome": "answered_with_sources",
+  "feedback": null
+}
+```
+
+No guardes datos sensibles por comodidad.
+
+Guarda identificadores, versiones y decisiones.
+
+### Trazas por capas
+
+Una buena traza separa etapas:
+
+```text
+request
+  -> input_normalization
+  -> permission_check
+  -> retrieval
+  -> context_building
+  -> model_call
+  -> tool_call
+  -> output_validation
+  -> user_response
+```
+
+Cuando el sistema falla, quieres saber en qué etapa ocurrió.
+
+Si el retrieval trajo basura, no arregles el prompt.
+
+Si el prompt pidió una acción ambigua, no culpes al modelo.
+
+Si la tool devolvió error no estructurado, no cambies el RAG.
+
+La observabilidad evita que optimices la pieza equivocada.
+
+### Qué redactar
+
+No todo debe llegar al log completo.
+
+Redacta:
+
+- emails;
+- teléfonos;
+- nombres de terceros si no son necesarios;
+- direcciones;
+- claves;
+- tokens;
+- fragmentos largos de documentos sensibles;
+- audio completo salvo necesidad justificada.
+
+Conserva:
+
+- hashes de usuario;
+- ids de fuente;
+- ids de chunk;
+- versión de prompt;
+- versión de modelo;
+- nombre de tool;
+- error estructurado;
+- coste;
+- latencia;
+- feedback.
+
+La trazabilidad no exige vigilancia total.
+
+Exige evidencia suficiente y respeto por los datos.
+
 
 ## 32.5 Métricas
 
@@ -103,23 +215,35 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 
 ### guardar prompts completos con datos sensibles
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Parece cómodo porque permite depurar rápido.
+
+También puede convertir tu sistema de logs en el sitio más sensible de toda la arquitectura.
+
+Guarda versión de prompt, plantilla, variables redactadas e identificadores. Si necesitas capturar una muestra completa, hazlo con retención corta, consentimiento y acceso restringido.
 
 ### no versionar prompts
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Si no sabes qué prompt respondió, no puedes reproducir el fallo.
+
+El prompt es código de comportamiento. Debe tener versión, fecha, responsable y motivo de cambio. Un cambio de dos frases puede alterar retrieval, tool choice, tono, abstención y coste.
 
 ### no saber qué modelo respondió
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Muchos equipos prueban varios modelos y luego olvidan registrar cuál produjo cada respuesta.
+
+Cuando aparece un fallo, no saben si viene del modelo, del prompt, del contexto o del proveedor. Registra proveedor, modelo, fecha, configuración y temperatura si aplica.
 
 ### registrar solo errores
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Los errores explícitos son la parte fácil.
+
+Los problemas más caros son respuestas aceptadas pero pobres: citas irrelevantes, acciones innecesarias, costes altos, latencia lenta o usuarios que dejan de usar el sistema. Para ver eso necesitas eventos normales, no solo excepciones.
 
 ### no conectar feedback con trazas
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Un pulgar abajo sin traza no enseña casi nada.
+
+Un pulgar abajo conectado a pregunta, fuentes, prompt, modelo, tools y latencia se convierte en material de mejora. El feedback debe apuntar al evento que lo produjo.
 
 
 ## 32.8 Proyecto guiado

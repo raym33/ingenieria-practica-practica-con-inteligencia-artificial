@@ -41928,13 +41928,22 @@ La evaluación se moverá hacia suites continuas, trazas reales anonimizadas, ju
 
 Un sistema IA sin trazas no se puede depurar, auditar ni mejorar con seriedad.
 
-Este capítulo cierra una pieza que faltaba en el libro: pasar de entender una técnica a saber operarla en un producto real.
+En software tradicional ya es difícil entender un error sin logs.
 
-La idea no es añadir complejidad por añadir complejidad. La idea es que cada sistema con IA tenga una forma clara de responder a tres preguntas:
+En sistemas con IA es peor, porque el fallo puede venir de muchas capas a la vez:
 
-- ¿qué debe hacer?;
-- ¿cómo sabemos que lo está haciendo bien?;
-- ¿qué ocurre cuando se equivoca?
+- el usuario pidió algo ambiguo;
+- el retrieval trajo mal contexto;
+- una fuente estaba obsoleta;
+- el prompt cambió;
+- el modelo eligió una tool incorrecta;
+- la tool devolvió un error;
+- la memoria introdujo una preferencia equivocada;
+- la respuesta final sonó convincente aunque faltaba evidencia.
+
+Si no registras esa cadena, no estás operando un producto.
+
+Estás interpretando síntomas.
 
 
 ## 32.1 El problema
@@ -41987,6 +41996,109 @@ Criterio para apagar o revertir:
 
 Cuando no puedes completar esta ficha, el proyecto todavía está demasiado borroso.
 
+### Evento mínimo
+
+Un evento útil no necesita guardar todo.
+
+Necesita guardar lo suficiente para reconstruir una decisión.
+
+```json
+{
+  "request_id": "req_2026_06_03_00042",
+  "timestamp": "2026-06-03T16:40:00Z",
+  "feature": "support_copilot",
+  "user_id_hash": "usr_hash_91ab",
+  "tenant_id": "tenant_demo",
+  "model": "provider/model-name",
+  "prompt_version": "support-rag-v7",
+  "retrieval": {
+    "query": "politica devoluciones producto abierto",
+    "top_k": 6,
+    "chunk_ids": [
+      "politica-devoluciones-2026:04",
+      "faq-soporte:18"
+    ]
+  },
+  "tools": [
+    {
+      "name": "create_ticket_draft",
+      "status": "success",
+      "latency_ms": 180
+    }
+  ],
+  "tokens": {
+    "input": 1840,
+    "output": 310
+  },
+  "latency_ms": 2150,
+  "cost_usd": 0.014,
+  "outcome": "answered_with_sources",
+  "feedback": null
+}
+```
+
+No guardes datos sensibles por comodidad.
+
+Guarda identificadores, versiones y decisiones.
+
+### Trazas por capas
+
+Una buena traza separa etapas:
+
+```text
+request
+  -> input_normalization
+  -> permission_check
+  -> retrieval
+  -> context_building
+  -> model_call
+  -> tool_call
+  -> output_validation
+  -> user_response
+```
+
+Cuando el sistema falla, quieres saber en qué etapa ocurrió.
+
+Si el retrieval trajo basura, no arregles el prompt.
+
+Si el prompt pidió una acción ambigua, no culpes al modelo.
+
+Si la tool devolvió error no estructurado, no cambies el RAG.
+
+La observabilidad evita que optimices la pieza equivocada.
+
+### Qué redactar
+
+No todo debe llegar al log completo.
+
+Redacta:
+
+- emails;
+- teléfonos;
+- nombres de terceros si no son necesarios;
+- direcciones;
+- claves;
+- tokens;
+- fragmentos largos de documentos sensibles;
+- audio completo salvo necesidad justificada.
+
+Conserva:
+
+- hashes de usuario;
+- ids de fuente;
+- ids de chunk;
+- versión de prompt;
+- versión de modelo;
+- nombre de tool;
+- error estructurado;
+- coste;
+- latencia;
+- feedback.
+
+La trazabilidad no exige vigilancia total.
+
+Exige evidencia suficiente y respeto por los datos.
+
 
 ## 32.5 Métricas
 
@@ -42018,23 +42130,35 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 
 ### guardar prompts completos con datos sensibles
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Parece cómodo porque permite depurar rápido.
+
+También puede convertir tu sistema de logs en el sitio más sensible de toda la arquitectura.
+
+Guarda versión de prompt, plantilla, variables redactadas e identificadores. Si necesitas capturar una muestra completa, hazlo con retención corta, consentimiento y acceso restringido.
 
 ### no versionar prompts
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Si no sabes qué prompt respondió, no puedes reproducir el fallo.
+
+El prompt es código de comportamiento. Debe tener versión, fecha, responsable y motivo de cambio. Un cambio de dos frases puede alterar retrieval, tool choice, tono, abstención y coste.
 
 ### no saber qué modelo respondió
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Muchos equipos prueban varios modelos y luego olvidan registrar cuál produjo cada respuesta.
+
+Cuando aparece un fallo, no saben si viene del modelo, del prompt, del contexto o del proveedor. Registra proveedor, modelo, fecha, configuración y temperatura si aplica.
 
 ### registrar solo errores
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Los errores explícitos son la parte fácil.
+
+Los problemas más caros son respuestas aceptadas pero pobres: citas irrelevantes, acciones innecesarias, costes altos, latencia lenta o usuarios que dejan de usar el sistema. Para ver eso necesitas eventos normales, no solo excepciones.
 
 ### no conectar feedback con trazas
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Un pulgar abajo sin traza no enseña casi nada.
+
+Un pulgar abajo conectado a pregunta, fuentes, prompt, modelo, tools y latencia se convierte en material de mejora. El feedback debe apuntar al evento que lo produjo.
 
 
 ## 32.8 Proyecto guiado
@@ -42307,13 +42431,25 @@ Los ataques evolucionarán con modelos multimodales, agentes persistentes y memo
 
 Un sistema IA puede ser correcto y aun así inviable si cuesta demasiado o responde demasiado tarde.
 
-Este capítulo cierra una pieza que faltaba en el libro: pasar de entender una técnica a saber operarla en un producto real.
+La calidad técnica no compensa una mala economía.
 
-La idea no es añadir complejidad por añadir complejidad. La idea es que cada sistema con IA tenga una forma clara de responder a tres preguntas:
+Tampoco compensa una mala experiencia.
 
-- ¿qué debe hacer?;
-- ¿cómo sabemos que lo está haciendo bien?;
-- ¿qué ocurre cuando se equivoca?
+Un copiloto que responde en quince segundos puede ser brillante y no usarse.
+
+Un agente que cuesta más que el trabajo que automatiza puede ser elegante y no tener sentido.
+
+Por eso coste, latencia y rendimiento no son temas financieros al final del proyecto.
+
+Son decisiones de arquitectura desde el principio.
+
+La pregunta no es solo:
+
+> ¿Qué modelo funciona mejor?
+
+La pregunta completa es:
+
+> ¿Qué combinación de modelo, contexto, herramientas y flujo entrega suficiente calidad al coste y velocidad que el caso de uso tolera?
 
 
 ## 34.1 El problema
@@ -42365,6 +42501,144 @@ Criterio para apagar o revertir:
 
 Cuando no puedes completar esta ficha, el proyecto todavía está demasiado borroso.
 
+### Desglose por etapa
+
+Un request RAG puede medirse así:
+
+```json
+{
+  "request_id": "req_042",
+  "feature": "support_copilot",
+  "stages": {
+    "input_validation_ms": 12,
+    "retrieval_ms": 95,
+    "reranking_ms": 180,
+    "model_ms": 1450,
+    "tool_ms": 0,
+    "output_validation_ms": 20
+  },
+  "tokens": {
+    "input": 2200,
+    "output": 420
+  },
+  "cost": {
+    "model_usd": 0.018,
+    "reranker_usd": 0.002,
+    "infra_usd_estimated": 0.001,
+    "total_usd": 0.021
+  }
+}
+```
+
+Este desglose permite responder preguntas útiles:
+
+- ¿el cuello de botella está en el modelo o en retrieval?;
+- ¿el reranker mejora lo suficiente para justificar su latencia?;
+- ¿el prompt está creciendo sin control?;
+- ¿el coste viene de respuestas largas o de contexto excesivo?;
+- ¿hay retries ocultos?;
+- ¿hay usuarios o tenants especialmente caros?
+
+### Fórmula simple de coste
+
+Para texto:
+
+```text
+coste_request =
+  coste_input_tokens
+  + coste_output_tokens
+  + coste_retrieval
+  + coste_reranking
+  + coste_tools
+  + coste_infra
+```
+
+Para voz:
+
+```text
+coste_request =
+  coste_stt
+  + coste_modelo
+  + coste_tools
+  + coste_tts
+  + coste_telefonia
+  + coste_fallback_humano
+```
+
+Para agentes:
+
+```text
+coste_tarea =
+  suma(costes_de_pasos)
+  + retries
+  + verificaciones
+  + revisión humana
+```
+
+Los agentes son especialmente peligrosos para el coste porque multiplican pasos.
+
+Un agente de cinco pasos no cuesta “una llamada”.
+
+Cuesta cinco decisiones, varias tools, contexto acumulado y posiblemente verificación.
+
+### Matriz de optimización
+
+Si la latencia es alta, mira primero:
+
+- tamaño del contexto;
+- modelo usado;
+- llamadas secuenciales;
+- reranking;
+- tools externas;
+- streaming;
+- colas para tareas no interactivas.
+
+Si el coste es alto, mira primero:
+
+- tokens de entrada;
+- tokens de salida;
+- número de pasos;
+- retries;
+- modelo sobredimensionado;
+- contexto repetido;
+- usuarios que disparan flujos caros.
+
+Si la calidad es baja, no optimices coste todavía.
+
+Primero encuentra la causa:
+
+- retrieval malo;
+- prompt ambiguo;
+- modelo insuficiente;
+- fuentes malas;
+- tool mal diseñada;
+- evaluación incompleta.
+
+Optimizar un sistema que aún no funciona solo produce un sistema barato que falla.
+
+### Router de modelos
+
+No todo necesita el mismo modelo.
+
+Un router simple puede decidir por tipo de tarea:
+
+```python
+def choose_model(task):
+    if task["type"] == "classification":
+        return "small-fast-model"
+    if task["type"] == "rewrite" and task["risk"] == "low":
+        return "medium-model"
+    if task["type"] == "legal_answer" or task["risk"] == "high":
+        return "strong-model"
+    if task["type"] == "batch_summary":
+        return "cheap-batch-model"
+    return "default-model"
+```
+
+El router no debe decidir solo por coste.
+
+Debe decidir por riesgo, dificultad, latencia esperada y valor del resultado.
+
 
 ## 34.5 Métricas
 
@@ -42396,23 +42670,33 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 
 ### usar siempre el modelo más grande
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+El modelo más grande suele ser una buena forma de ocultar problemas de diseño.
+
+Puede compensar un prompt flojo, retrieval mediocre o tools mal descritas. Pero esa compensación se paga en coste y latencia. Empieza midiendo qué tareas realmente necesitan el modelo fuerte y cuáles pueden resolverse con modelos pequeños, reglas o búsqueda clásica.
 
 ### meter demasiado contexto
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Más contexto no siempre significa más verdad.
+
+Puede significar más ruido, más coste, más latencia y más oportunidad para que el modelo se distraiga. El contexto debe ser seleccionado, ordenado y recortado. Si diez chunks funcionan igual que treinta, treinta es deuda.
 
 ### hacer reranking sin medir
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+El reranking puede mejorar mucho un RAG.
+
+También puede añadir latencia y coste sin aportar nada en tu caso concreto. Antes de adoptarlo, compara retrieval con y sin reranker sobre una suite real: fuentes esperadas, respuesta final, latencia y coste.
 
 ### no contar retries
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+Los retries son coste invisible.
+
+Una llamada fallida que se repite tres veces no aparece en la demo, pero sí en la factura y en la experiencia de usuario. Registra retries por proveedor, modelo, tool y tipo de error.
 
 ### ignorar coste de humano en el loop
 
-Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
+El humano en el loop no es gratis.
+
+Puede ser necesario, pero debe presupuestarse. Si cada respuesta ahorra treinta segundos pero exige dos minutos de revisión, no has automatizado: has movido trabajo. Mide tiempo humano antes y después.
 
 
 ## 34.8 Proyecto guiado
@@ -43731,6 +44015,157 @@ Esa respuesta no se copia al libro.
 Se convierte en propuestas.
 
 Después el autor decide.
+
+### Prompts especializados para Grok
+
+Para obtener mejor señal, conviene hacer preguntas estrechas.
+
+No preguntes todo todos los días.
+
+Rota preguntas según el bloque editorial.
+
+#### Radar de modelos
+
+```text
+Busca en X señales recientes sobre modelos de IA usados por desarrolladores y equipos de producto.
+
+Quiero señales con evidencia, no opiniones sueltas.
+
+Incluye:
+- modelos nuevos;
+- cambios de precio o disponibilidad;
+- mejoras o retrocesos percibidos;
+- comparativas prácticas;
+- quejas repetidas;
+- casos donde un modelo pequeño sustituye a uno grande.
+
+Devuelve máximo 8 señales.
+Para cada una: URL, fecha, cuenta, afirmación, evidencia, posible impacto en capítulos 5, 6, 7, 31 o 34, y confianza.
+```
+
+#### Radar de agentes de código
+
+```text
+Busca en X prácticas recientes sobre agentes de código: Codex, Claude Code, Cursor, Aider, Devin, Windsurf u otros.
+
+No quiero anuncios genéricos.
+Quiero prácticas concretas que usuarios técnicos digan que les funcionan o les fallan.
+
+Clasifica cada señal en:
+- configuración;
+- workflow;
+- regla de seguridad;
+- evaluación;
+- coste/latencia;
+- error común.
+
+Devuelve máximo 10 señales con URL, autor, fecha, resumen, evidencia y capítulos afectados.
+```
+
+#### Radar de RAG y búsqueda
+
+```text
+Busca en X señales recientes sobre RAG, búsqueda híbrida, reranking, GraphRAG, embeddings, bases vectoriales y evaluación de retrieval.
+
+Prioriza posts con:
+- ejemplos reproducibles;
+- repos;
+- benchmarks;
+- discusiones técnicas;
+- aprendizajes de producción.
+
+Descarta hype sin evidencia.
+
+Devuelve máximo 10 señales con fuente, afirmación, evidencia, riesgo de sesgo, capítulos afectados y cambio editorial recomendado.
+```
+
+#### Radar de MCP y tools
+
+```text
+Busca en X señales recientes sobre MCP, function calling, tools para agentes y conectores empresariales.
+
+Quiero saber:
+- qué servidores MCP se están usando realmente;
+- qué problemas de seguridad aparecen;
+- qué patrones de tool design recomiendan builders;
+- qué integraciones empresariales se repiten;
+- qué errores comunes se ven.
+
+Devuelve señales accionables para capítulos 25, 26, 27, 33, 38 y 39.
+```
+
+#### Radar de modelos locales y hardware
+
+```text
+Busca en X experiencias recientes con modelos locales, Ollama, LM Studio, llama.cpp, MLX, Mac, GPUs consumer y mini PCs.
+
+Prioriza configuraciones concretas:
+- hardware;
+- RAM/VRAM;
+- modelo;
+- cuantización;
+- velocidad aproximada;
+- caso de uso;
+- limitaciones.
+
+Devuelve máximo 12 señales con URL, configuración, resultado, fiabilidad y capítulos afectados.
+```
+
+#### Radar de producción
+
+```text
+Busca en X problemas reales que equipos estén encontrando al llevar IA a producción.
+
+Me interesan:
+- evaluación;
+- observabilidad;
+- prompt injection;
+- permisos;
+- costes;
+- latencia;
+- despliegue;
+- cambios de modelo;
+- fallos con usuarios reales.
+
+Devuelve máximo 10 señales con URL, síntoma, causa probable, lección práctica y capítulo afectado.
+```
+
+Estas preguntas convierten X en radar.
+
+No en autoridad.
+
+La autoridad del libro debe venir de contraste, experiencia, pruebas y criterio editorial.
+
+### Cómo convertir la respuesta de Grok en cambios
+
+Cuando Grok devuelva señales, no pegues el resultado directamente.
+
+Procesa cada señal con esta matriz:
+
+```text
+¿Tiene URL directa?
+¿La cuenta parece fuente primaria o experiencia real?
+¿Hay evidencia observable?
+¿Hay corroboración externa?
+¿Es aplicable a lectores del libro?
+¿Cambia una recomendación existente?
+¿Merece capítulo, nota breve o solo radar?
+¿Debe esperar confirmación?
+```
+
+Tipos de cambio:
+
+- **nota radar**: señal interesante, todavía inmadura;
+- **actualización menor**: dato, herramienta o recomendación puntual;
+- **sección nueva**: práctica repetida con evidencia;
+- **reescritura parcial**: cambio que altera una decisión técnica;
+- **release mayor**: cambio que modifica el mapa del libro.
+
+La mayoría de señales deberían quedarse en nota radar.
+
+Eso no es desperdicio.
+
+Es higiene editorial.
 
 ### Cadencia recomendada
 

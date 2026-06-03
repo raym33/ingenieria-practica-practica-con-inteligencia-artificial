@@ -185,6 +185,157 @@ Se convierte en propuestas.
 
 Después el autor decide.
 
+### Prompts especializados para Grok
+
+Para obtener mejor señal, conviene hacer preguntas estrechas.
+
+No preguntes todo todos los días.
+
+Rota preguntas según el bloque editorial.
+
+#### Radar de modelos
+
+```text
+Busca en X señales recientes sobre modelos de IA usados por desarrolladores y equipos de producto.
+
+Quiero señales con evidencia, no opiniones sueltas.
+
+Incluye:
+- modelos nuevos;
+- cambios de precio o disponibilidad;
+- mejoras o retrocesos percibidos;
+- comparativas prácticas;
+- quejas repetidas;
+- casos donde un modelo pequeño sustituye a uno grande.
+
+Devuelve máximo 8 señales.
+Para cada una: URL, fecha, cuenta, afirmación, evidencia, posible impacto en capítulos 5, 6, 7, 31 o 34, y confianza.
+```
+
+#### Radar de agentes de código
+
+```text
+Busca en X prácticas recientes sobre agentes de código: Codex, Claude Code, Cursor, Aider, Devin, Windsurf u otros.
+
+No quiero anuncios genéricos.
+Quiero prácticas concretas que usuarios técnicos digan que les funcionan o les fallan.
+
+Clasifica cada señal en:
+- configuración;
+- workflow;
+- regla de seguridad;
+- evaluación;
+- coste/latencia;
+- error común.
+
+Devuelve máximo 10 señales con URL, autor, fecha, resumen, evidencia y capítulos afectados.
+```
+
+#### Radar de RAG y búsqueda
+
+```text
+Busca en X señales recientes sobre RAG, búsqueda híbrida, reranking, GraphRAG, embeddings, bases vectoriales y evaluación de retrieval.
+
+Prioriza posts con:
+- ejemplos reproducibles;
+- repos;
+- benchmarks;
+- discusiones técnicas;
+- aprendizajes de producción.
+
+Descarta hype sin evidencia.
+
+Devuelve máximo 10 señales con fuente, afirmación, evidencia, riesgo de sesgo, capítulos afectados y cambio editorial recomendado.
+```
+
+#### Radar de MCP y tools
+
+```text
+Busca en X señales recientes sobre MCP, function calling, tools para agentes y conectores empresariales.
+
+Quiero saber:
+- qué servidores MCP se están usando realmente;
+- qué problemas de seguridad aparecen;
+- qué patrones de tool design recomiendan builders;
+- qué integraciones empresariales se repiten;
+- qué errores comunes se ven.
+
+Devuelve señales accionables para capítulos 25, 26, 27, 33, 38 y 39.
+```
+
+#### Radar de modelos locales y hardware
+
+```text
+Busca en X experiencias recientes con modelos locales, Ollama, LM Studio, llama.cpp, MLX, Mac, GPUs consumer y mini PCs.
+
+Prioriza configuraciones concretas:
+- hardware;
+- RAM/VRAM;
+- modelo;
+- cuantización;
+- velocidad aproximada;
+- caso de uso;
+- limitaciones.
+
+Devuelve máximo 12 señales con URL, configuración, resultado, fiabilidad y capítulos afectados.
+```
+
+#### Radar de producción
+
+```text
+Busca en X problemas reales que equipos estén encontrando al llevar IA a producción.
+
+Me interesan:
+- evaluación;
+- observabilidad;
+- prompt injection;
+- permisos;
+- costes;
+- latencia;
+- despliegue;
+- cambios de modelo;
+- fallos con usuarios reales.
+
+Devuelve máximo 10 señales con URL, síntoma, causa probable, lección práctica y capítulo afectado.
+```
+
+Estas preguntas convierten X en radar.
+
+No en autoridad.
+
+La autoridad del libro debe venir de contraste, experiencia, pruebas y criterio editorial.
+
+### Cómo convertir la respuesta de Grok en cambios
+
+Cuando Grok devuelva señales, no pegues el resultado directamente.
+
+Procesa cada señal con esta matriz:
+
+```text
+¿Tiene URL directa?
+¿La cuenta parece fuente primaria o experiencia real?
+¿Hay evidencia observable?
+¿Hay corroboración externa?
+¿Es aplicable a lectores del libro?
+¿Cambia una recomendación existente?
+¿Merece capítulo, nota breve o solo radar?
+¿Debe esperar confirmación?
+```
+
+Tipos de cambio:
+
+- **nota radar**: señal interesante, todavía inmadura;
+- **actualización menor**: dato, herramienta o recomendación puntual;
+- **sección nueva**: práctica repetida con evidencia;
+- **reescritura parcial**: cambio que altera una decisión técnica;
+- **release mayor**: cambio que modifica el mapa del libro.
+
+La mayoría de señales deberían quedarse en nota radar.
+
+Eso no es desperdicio.
+
+Es higiene editorial.
+
 ### Cadencia recomendada
 
 Para un libro como este, actualizar todos los días el contenido principal puede ser demasiado agresivo.
