@@ -1,0 +1,23 @@
+{
+  "rawId": "2d51c6aed308df5f",
+  "title": "Gemma 4 12B MTP drafter GGUF on M4 Max: parallel streams give ~50.6 tok/s (coding/general 2K in/out)",
+  "url": "https://x.com/JakeKAllDay/status/2062258850569326871",
+  "publishedAt": "2026-06-03",
+  "summary": "Apple M4 Max (64 GB). gemma4-12b-mtp-assistant (Q4_K_XL target + Q8 drafter). Runtime: llama.cpp GGUF. Métricas: Base ~47.1-48.4 tok/s → 50.6 tok/s with 3 parallel streams (MTP); single-stream no gain. Uso: coding and general tasks on Apple Silicon with MTP speedup. Límite: MTP speedup only appears with multiple parallel streams; single-stream neutral. Por qué importa: Concrete before/after numbers + exact HF repo (sjakek/gemma4-12b-mtp-assistant) for builders wanting speculative decoding / MTP gains on M4 Max without custom code.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "benchmark-local",
+    "inferencia",
+    "hardware",
+    "modelos-locales",
+    "gguf",
+    "llama-cpp",
+    "cuantizacion",
+    "apple-silicon"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

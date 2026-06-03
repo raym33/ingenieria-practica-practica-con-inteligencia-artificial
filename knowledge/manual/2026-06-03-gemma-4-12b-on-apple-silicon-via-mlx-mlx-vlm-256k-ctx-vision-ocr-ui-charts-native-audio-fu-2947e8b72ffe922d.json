@@ -1,0 +1,21 @@
+{
+  "rawId": "9413c5f267dc588e",
+  "title": "Gemma 4 12B on Apple Silicon via MLX (mlx-vlm): 256K ctx, vision (OCR/UI/charts), native audio, function calling, local",
+  "url": "https://x.com/Prince_Canuma/status/2062224761841672509",
+  "publishedAt": "2026-06-03",
+  "summary": "Apple Silicon M-series. Gemma 4 12B (dense, unified multimodal). Runtime: MLX (mlx-vlm). Métricas: 256K context; dynamic resolution vision; native audio ASR + speech translation. Uso: local multimodal agents, vision, voice, function calling on Mac. Límite: Requires uv pip install -U mlx-vlm; optimized specifically for Apple Silicon. Por qué importa: Official partnership optimization for the new encoder-free Gemma 4 12B. One-command install gives full multimodal (text/image/audio interleaved) + thinking mode + agents locally on M-series without heavy encoders.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "inferencia",
+    "modelos-locales",
+    "herramientas",
+    "mlx",
+    "apple-silicon",
+    "multimodal"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "guardar_para_contexto"
+}

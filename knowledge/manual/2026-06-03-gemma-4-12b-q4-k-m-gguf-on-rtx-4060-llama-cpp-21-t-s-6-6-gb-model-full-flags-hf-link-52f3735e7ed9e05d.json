@@ -1,0 +1,26 @@
+{
+  "rawId": "d9c708310cdddba6",
+  "title": "Gemma 4 12B Q4_K_M GGUF on RTX 4060 llama.cpp: 21 t/s, 6.6 GB model, full flags + HF link",
+  "url": "https://x.com/analogalok/status/2062237722820128987",
+  "publishedAt": "2026-06-03",
+  "summary": "NVIDIA RTX 4060. gemma-4-12b-it-Q4_K_M.gguf (Unsloth). Runtime: llama.cpp (CUDA 13.2), also supports LM Studio / vLLM / SGLang. Métricas: 21 tokens/s; 6.6 GB Q4_K_M; 256K native context (practical lower per replies). Uso: local multimodal inference (text + vision + audio) on consumer GPU; OpenAI-compatible server. Límite: Vision encoder-free path still being patched in llama.cpp (related posts); TTFT can be high on long contexts in similar setups. Por qué importa: Encoder-free design (single matmul vision embedder, no audio encoder) cuts VRAM/latency dramatically vs prior multimodal models. Exact reproducible flags (-m ... -ngl 99 -c 8000 -v --port 8080) and HF weights for cheap local deployment.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "benchmark-local",
+    "inferencia",
+    "hardware",
+    "modelos-locales",
+    "gguf",
+    "lm-studio",
+    "llama-cpp",
+    "vllm",
+    "sglang",
+    "cuantizacion",
+    "nvidia"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

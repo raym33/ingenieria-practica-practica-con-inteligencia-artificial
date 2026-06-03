@@ -1,0 +1,23 @@
+{
+  "rawId": "edb612f4dcc5b4ad",
+  "title": "131K context fully loaded on AMD RX 7700 (16 GB) llama.cpp GGUF: ~300 t/s prompt, 20 t/s gen, spare memory remaining",
+  "url": "https://x.com/SheepDoge01/status/2062260768628695489",
+  "publishedAt": "2026-06-03",
+  "summary": "AMD RX 7700 (16 GB). Unsloth Q4_K_M.gguf (context reported 131072). Runtime: llama.cpp (GGUF). Métricas: prompt speed ~300 t/s; gen speed 20 t/s at fully loaded 131K context; spare VRAM remaining. Uso: long-context local inference on mid-range AMD GPU. Límite: First results; exact model and full config not detailed beyond Q4_K_M and 131K context. Por qué importa: Demonstrates practical long-context (131K) feasibility on consumer AMD GPU with headroom left. Useful signal for RAG or agent workloads needing large context windows without running out of VRAM.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "benchmark-local",
+    "inferencia",
+    "hardware",
+    "modelos-locales",
+    "gguf",
+    "llama-cpp",
+    "cuantizacion",
+    "amd"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "nota_breve"
+}

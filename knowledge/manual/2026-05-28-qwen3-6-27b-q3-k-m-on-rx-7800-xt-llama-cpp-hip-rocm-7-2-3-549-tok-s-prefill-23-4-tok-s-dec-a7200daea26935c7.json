@@ -1,0 +1,22 @@
+{
+  "rawId": "65f4cdc07857c996",
+  "title": "Qwen3.6-27B Q3_K_M on RX 7800 XT (llama.cpp HIP/ROCm 7.2.3): 549 tok/s prefill, 23.4 tok/s decode",
+  "url": "https://x.com/NeoAIForecast/status/2059847270808629531",
+  "publishedAt": "2026-05-28",
+  "summary": "AMD RX 7800 XT (gfx1101, RDNA3). Qwen3.6-27B Q3_K_M. Runtime: llama.cpp (HIP backend, ROCm 7.2.3). Métricas: Prompt processing (pp512): 549.09 tok/s; Text generation (tg128): 23.39 tok/s. Uso: local inference on mid-range AMD discrete GPU; long-context capable. Límite: ROCm setup on Linux; author notes next steps include ROCm vs Vulkan comparison. Por qué importa: Full reproducible stack (Ubuntu 24.04.4 + Kernel 6.17 + ROCm 7.2.3 + HIP build) with exact llama.cpp benchmark numbers on affordable older AMD card. Shows strong prefill performance.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "benchmark-local",
+    "inferencia",
+    "hardware",
+    "modelos-locales",
+    "llama-cpp",
+    "cuantizacion",
+    "amd"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

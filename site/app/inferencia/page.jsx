@@ -56,6 +56,24 @@ const metrics = [
   ["Coste/request", "Hardware, energía, proveedor, retries y tiempo humano de operación."]
 ];
 
+const editorialLeads = [
+  {
+    label: "Prueba local",
+    title: "Gemma 4 12B aterriza como modelo de laboratorio multimodal",
+    text: "Las señales de X apuntan a ejecuciones reproducibles en RTX 4060, Mac con Metal y M4 Max. La noticia no es solo el modelo: es que los builders ya publican comandos, memoria, tokens/s y límites de contexto."
+  },
+  {
+    label: "AMD",
+    title: "Vulkan y ROCm vuelven a ser una decisión práctica",
+    text: "Los posts recientes muestran RX 7800 XT, RX 7900 XTX y RX 7700 con números distintos según backend. En AMD, el runtime puede cambiar más la experiencia que la ficha técnica."
+  },
+  {
+    label: "Serving",
+    title: "TTFT y goodput entran en portada",
+    text: "Señales alrededor de SGLang, vLLM y allocators como mooncake recuerdan que producción no va de tokens/s aislados: va de colas, KV cache, p95 y throughput útil."
+  }
+];
+
 export default function InferenciaPage() {
   const radar = getRadarItems();
   const models = getModelItems();
@@ -103,6 +121,25 @@ export default function InferenciaPage() {
               <h2>{runtime.name}</h2>
               <p>{runtime.watch}</p>
             </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Briefing editorial</div>
+            <h2>Qué merece noticia ahora mismo</h2>
+          </div>
+          <Link className="text-link" href="/radar/">Ver todas las señales</Link>
+        </div>
+        <div className="cover-teasers">
+          {editorialLeads.map((lead) => (
+            <article key={lead.title}>
+              <span>{lead.label}</span>
+              <h3>{lead.title}</h3>
+              <p>{lead.text}</p>
+            </article>
           ))}
         </div>
       </section>

@@ -1,0 +1,21 @@
+{
+  "rawId": "3636aa581b4c50d6",
+  "title": "Qwen 3.6 27B dense on RX 7900 XTX (llama.cpp Vulkan): >60 tok/s (beats ROCm's 40 tok/s)",
+  "url": "https://x.com/benjaminhoudu/status/2062098595688395243",
+  "publishedAt": "2026-06-03",
+  "summary": "AMD RX 7900 XTX. Qwen 3.6 27B dense. Runtime: llama.cpp (Vulkan backend). Métricas: >60 tokens/s generation (previously 40 t/s with ROCm on same hardware). Uso: local inference / server on high-end AMD GPU. Límite: Vulkan currently outperforms ROCm for this llama.cpp workload on RDNA3. Por qué importa: Direct head-to-head: Vulkan backend delivers 50%+ higher tokens/s than ROCm on same 7900 XTX card. Practical signal for AMD GPU users choosing backend.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "benchmark-local",
+    "inferencia",
+    "hardware",
+    "modelos-locales",
+    "llama-cpp",
+    "amd"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

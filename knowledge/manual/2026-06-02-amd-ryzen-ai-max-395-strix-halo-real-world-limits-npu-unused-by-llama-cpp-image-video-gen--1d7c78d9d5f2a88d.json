@@ -1,0 +1,20 @@
+{
+  "rawId": "4b988214f13ebf0c",
+  "title": "AMD Ryzen AI Max+ 395 (Strix Halo) real-world limits: NPU unused by llama.cpp, image/video gen 5x slower than DGX Spark, memory partitioning caps GPU at ~96 GB of 128 GB LPDDR5X",
+  "url": "https://x.com/KuittinenPetri/status/2061693416224817281",
+  "publishedAt": "2026-06-02",
+  "summary": "AMD Ryzen AI Max+ 395 (Strix Halo APU, 50 TOPS NPU). common LLMs + image/video gen models. Runtime: llama.cpp (NPU not utilized). Métricas: N/A (qualitative + comparative: 5x slower gen vs NVIDIA DGX Spark). Uso: local inference on integrated AMD APU / Strix Halo laptops or mini-PCs. Límite: llama.cpp ignores built-in NPU; image/video generation painfully slow; GPU cannot access full 128 GB unified memory (max ~96 GB after partitioning/reboot). Por qué importa: Ground-truth user report on current software ecosystem gaps for AMD's new high-TOPS consumer APU. Builders targeting Strix Halo hardware should expect CPU/GPU fallback only and test memory configs; NVIDIA DGX Spark significantly faster for gen workloads.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "hardware",
+    "inferencia",
+    "modelos-locales",
+    "llama-cpp",
+    "amd"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "guardar_para_contexto"
+}

@@ -1,0 +1,21 @@
+{
+  "rawId": "172e6848da9b1d0b",
+  "title": "mooncake v0.3.1 lock-free arena allocator: +30% TTFT, +50% goodput on mid-sized models with SGLang (also vLLM)",
+  "url": "https://x.com/venkat_systems/status/2062137738074169799",
+  "publishedAt": "2026-06-03",
+  "summary": "mid-sized models (exact GPU not specified). mid-sized models. Runtime: SGLang (tested), compatible with vLLM. Métricas: up to 30% TTFT improvement; up to 50% goodput improvement. Uso: production LLM serving / high-throughput inference. Límite: Prefill bugs still reported with certain NVFP4 + MTP + hybrid setups in vLLM (related posts). Por qué importa: Concrete production-grade perf gain from merged PR in mooncake allocator. Builders running SGLang or vLLM in prod should test v0.3.1 for lower latency and higher effective throughput.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "benchmark-local",
+    "inferencia",
+    "hardware",
+    "modelos-locales",
+    "vllm",
+    "sglang"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

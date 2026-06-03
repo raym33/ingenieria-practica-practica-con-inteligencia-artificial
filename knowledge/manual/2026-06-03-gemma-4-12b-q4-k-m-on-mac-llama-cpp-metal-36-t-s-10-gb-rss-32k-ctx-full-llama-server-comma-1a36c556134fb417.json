@@ -1,0 +1,23 @@
+{
+  "rawId": "9f3881fea0b3ff0b",
+  "title": "Gemma 4 12B Q4_K_M on Mac (llama.cpp Metal): 36 t/s, ~10 GB RSS, 32K ctx, full llama-server command + brew steps + GitHub skill",
+  "url": "https://x.com/mylifcc/status/2062234047359947199",
+  "publishedAt": "2026-06-03",
+  "summary": "Apple Silicon Mac (16 GB+ RAM). gemma-4-12b-it-GGUF:Q4_K_M (ggml-org). Runtime: llama.cpp (Metal backend). Métricas: ~36 tok/s; ~10 GB resident RSS; 32K context. Uso: local OpenAI-compatible API server on Mac for coding/agent workflows. Límite: Requires recent llama.cpp (v9430+); older versions fail to load Gemma 4 architecture. Por qué importa: Complete reproducible setup: brew install/upgrade llama.cpp, exact llama-server command with -hf + --no-mmproj + --ctx-size 32768 + --gpu-layers 99, plus GitHub skill for one-command deploy. Low 10 GB footprint on modest Mac hardware.",
+  "notes": "Destino sugerido: inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "benchmark-local",
+    "inferencia",
+    "hardware",
+    "modelos-locales",
+    "gguf",
+    "llama-cpp",
+    "cuantizacion",
+    "apple-silicon"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

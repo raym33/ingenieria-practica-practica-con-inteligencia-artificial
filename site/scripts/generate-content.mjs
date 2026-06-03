@@ -87,6 +87,34 @@ const chapters = files.map((file, index) => {
 fs.writeFileSync(path.join(dataDir, "chapters.json"), JSON.stringify(chapters, null, 2));
 
 const itemDir = path.join(projectRoot, "knowledge/items");
+const manualDir = path.join(projectRoot, "knowledge/manual");
+const manualRadar = fs.existsSync(manualDir)
+  ? fs.readdirSync(manualDir)
+    .filter((file) => file.endsWith(".json"))
+    .map((file) => {
+      const item = JSON.parse(fs.readFileSync(path.join(manualDir, file), "utf8"));
+      const publishedAt = item.publishedAt || "";
+      return {
+        id: item.rawId || file.replace(/\.json$/, ""),
+        createdAt: item.createdAt || (publishedAt.length === 10 ? `${publishedAt}T23:59:59.000Z` : publishedAt),
+        sourceId: "manual",
+        sourceName: "Radar editorial",
+        sourceType: "manual",
+        title: item.title,
+        url: item.url || "",
+        publishedAt,
+        type: item.type || "x_post",
+        relevance: item.relevance || "media",
+        confidence: item.confidence || "media",
+        volatility: item.volatility || "alta",
+        tags: item.tags || [],
+        editorialAction: item.editorialAction || "guardar_para_contexto",
+        summary: item.summary || item.notes || "",
+        rawSummary: item.summary || item.notes || "",
+        status: item.status || "pendiente_revision"
+      };
+    })
+  : [];
 let radar = fs.existsSync(itemDir)
   ? fs.readdirSync(itemDir)
     .filter((file) => file.endsWith(".json"))
@@ -95,6 +123,13 @@ let radar = fs.existsSync(itemDir)
     .sort((a, b) => String(b.createdAt || b.publishedAt).localeCompare(String(a.createdAt || a.publishedAt)))
     .slice(0, 60)
   : [];
+
+if (manualRadar.length) {
+  const seen = new Set(radar.map((item) => item.url || item.id || item.title));
+  radar = [...manualRadar.filter((item) => !seen.has(item.url || item.id || item.title)), ...radar]
+    .sort((a, b) => String(b.createdAt || b.publishedAt).localeCompare(String(a.createdAt || a.publishedAt)))
+    .slice(0, 60);
+}
 
 if (radar.length === 0) {
   const proposalDir = path.join(projectRoot, "editorial/change-proposals");
