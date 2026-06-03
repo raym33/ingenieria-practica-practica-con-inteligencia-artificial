@@ -240,3 +240,78 @@ El objetivo no es tener una puntuación perfecta.
 
 El objetivo es detectar regresiones antes que tus usuarios.
 
+---
+
+## Checklist demo a producción
+
+Usa esta lista cuando el prototipo ya impresiona y aparece la tentación de publicarlo.
+
+### Artefactos mínimos
+
+- ¿Existe una ficha técnica del sistema?
+- ¿Existe un repositorio con el código o configuración relevante?
+- ¿Hay prompt versionado?
+- ¿Hay configuración de modelo versionada?
+- ¿Hay manifiesto de release?
+- ¿Hay dataset mínimo de evaluación?
+- ¿Hay trazas de prueba?
+- ¿Hay criterio de rollback?
+
+### Calidad
+
+- ¿Qué casos reales resuelve?
+- ¿Qué casos reales no resuelve?
+- ¿Cuál es el baseline?
+- ¿Qué métrica debe mejorar?
+- ¿Qué métrica no puede empeorar?
+- ¿Se han probado casos ambiguos?
+- ¿Se han probado casos fuera de alcance?
+- ¿Se han probado entradas maliciosas o raras?
+
+### Operación
+
+- ¿Quién mantiene el sistema?
+- ¿Quién revisa errores?
+- ¿Quién puede apagarlo?
+- ¿Qué alertas existen?
+- ¿Qué coste máximo se acepta?
+- ¿Qué latencia p95 se acepta?
+- ¿Qué ocurre si cambia el modelo?
+- ¿Qué ocurre si falla una tool?
+- ¿Qué ocurre si la fuente documental queda obsoleta?
+
+### Aprendizaje
+
+- ¿Qué se revisará cada semana?
+- ¿Qué trazas se muestrearán?
+- ¿Qué feedback de usuario se recogerá?
+- ¿Qué decisión se tomará si el sistema no mejora?
+
+La señal de madurez no es que el sistema parezca inteligente.
+
+La señal de madurez es que el equipo pueda operarlo sin depender de intuición, heroísmo o suerte.
+
+---
+
+## Checklist por capítulo práctico
+
+Cada capítulo técnico del libro debería intentar dejar al menos tres de estos elementos:
+
+- decisión de ingeniería;
+- diagrama;
+- ejemplo ejecutable;
+- checklist;
+- caso de fallo;
+- métrica;
+- coste aproximado;
+- traza mínima;
+- criterio de evaluación;
+- criterio de publicación;
+- criterio de rollback;
+- ejercicio de laboratorio;
+- enlaces a fuentes o repos relevantes;
+- pregunta para adaptar el patrón a un caso real.
+
+Un capítulo conceptual puede ser excelente.
+
+Pero un capítulo práctico debe dejar al lector más cerca de construir.

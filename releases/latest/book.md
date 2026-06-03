@@ -43847,6 +43847,47 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 
+### Matriz de demo a producción
+
+Una demo suele optimizar una cosa: que se vea posible.
+
+Producción optimiza otra: que siga funcionando cuando cambian usuarios, datos, modelos, costes y expectativas.
+
+Antes de publicar, revisa esta matriz:
+
+- **Prompt**: en demo suele ser texto pegado en el código; en producción debe estar versionado, probado y ser reversible.
+- **Modelo**: en demo se elige el que mejor impresiona; en producción se elige por calidad, coste, latencia y riesgo.
+- **Datos**: en demo se usan ejemplos preparados; en producción hay datos vivos, permisos, caducidad y fuentes contradictorias.
+- **RAG**: en demo basta con una búsqueda que parece responder; en producción necesitas recall medido, citas, reranking si hace falta y reindexación controlada.
+- **Tools**: en demo una función funciona una vez; en producción hay contratos, validación, permisos, errores y auditoría.
+- **Evaluación**: en demo manda la prueba manual; en producción hay suite con casos, regresiones y umbral de publicación.
+- **Observabilidad**: en demo hay logs básicos; en producción hay trazas por request, coste, latencia, feedback y fallo por intención.
+- **Seguridad**: en demo se confía en el usuario; en producción hay límites explícitos, aislamiento, revisión y bloqueo de abuso.
+- **Coste**: en demo parece irrelevante; en producción hay coste por feature, alertas, límites y degradación.
+- **Rollback**: en demo vuelves a tocar el prompt; en producción restauras modelo, prompt, índice, tools y configuración.
+
+La pregunta no es si el sistema puede responder bien una vez.
+
+La pregunta es si puedes explicar, medir y revertir su comportamiento cuando responde mal.
+
+### Production angle
+
+Cada cambio importante debe tener una nota corta de operación:
+
+```text
+Qué cambia:
+Por qué cambia:
+Qué métrica debería mejorar:
+Qué métrica podría empeorar:
+Qué casos de evaluación cubren el cambio:
+Qué trazas miraremos después:
+Cómo revertimos:
+```
+
+Esta nota obliga a pensar como constructor, no como usuario de una herramienta.
+
+Si no sabes qué puede empeorar, todavía no entiendes el cambio.
+
 
 ## 36.6 Checklist
 
@@ -43857,6 +43898,11 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 - Las tools tienen versión.
 - Hay rollback.
 - Hay alertas postdeploy.
+- Hay una matriz demo a producción revisada.
+- Cada release tiene nota de operación.
+- El coste por feature se estima antes de abrir el acceso.
+- La latencia p95 se mide con casos representativos.
+- Las trazas se revisan durante las primeras horas o días tras publicar.
 
 
 ## 36.7 Antipatrones
@@ -45323,8 +45369,50 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 
+## 44.6 Currículo práctico del libro
 
-## 44.6 Checklist
+Este libro no debería leerse como una enciclopedia lineal.
+
+Debe funcionar como un currículo progresivo: cada tramo deja una habilidad visible y un artefacto en el repositorio.
+
+- **Fundamentos**: distinguir chat, workflow, copiloto y agente. Artefacto mínimo: ficha técnica de sistema.
+- **Prompts**: convertir instrucciones en herramientas de ingeniería. Artefacto mínimo: prompts versionados con casos de prueba.
+- **RAG**: responder con conocimiento propio y citas. Artefacto mínimo: índice reproducible con evaluación de recuperación.
+- **Tools**: ejecutar acciones controladas. Artefacto mínimo: tool con contrato, validación y logs.
+- **Agentes**: coordinar pasos con límites. Artefacto mínimo: flujo con plan, permisos, trazas y parada.
+- **Evaluación**: detectar regresiones antes del usuario. Artefacto mínimo: suite de evals y baseline.
+- **Observabilidad**: depurar fallos reales. Artefacto mínimo: traza mínima por request.
+- **Coste y latencia**: elegir modelos con criterio. Artefacto mínimo: comparativa por tarea.
+- **Despliegue**: publicar sin perder control. Artefacto mínimo: manifiesto de release y rollback.
+- **Producto**: aprender de uso real. Artefacto mínimo: informe semanal de señales y mejoras.
+
+El objetivo del lector no es "haber leído".
+
+El objetivo es terminar con una carpeta de decisiones, pruebas y sistemas pequeños que pueda enseñar, mantener y ampliar.
+
+### Companion GitHub
+
+El repositorio del libro debe ser tan importante como el PDF.
+
+Para que el proyecto se convierta en referencia, el companion debe incluir:
+
+- resúmenes por capítulo;
+- labs ejecutables;
+- prompts versionados;
+- checklists de producción;
+- diagramas de arquitectura;
+- casos de estudio;
+- informes de radar;
+- ejemplos de trazas;
+- scripts de build y publicación;
+- releases versionadas del libro.
+
+La comunidad no solo necesita una explicación clara.
+
+Necesita material que pueda abrir, ejecutar, modificar y usar como punto de partida.
+
+
+## 44.7 Checklist
 
 - Has construido un chatbot simple.
 - Has construido un RAG con citas.
@@ -45333,9 +45421,13 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 - Has desplegado un MVP.
 - Has medido coste.
 - Has visto usuarios reales usarlo.
+- Has ejecutado al menos tres labs del companion.
+- Has escrito una nota de operación para una release.
+- Has comparado dos modelos en una tarea real.
+- Has documentado un fallo y su mitigación.
 
 
-## 44.7 Antipatrones
+## 44.8 Antipatrones
 
 ### leer sin construir
 
@@ -45358,17 +45450,17 @@ Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no
 Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
 
 
-## 44.8 Proyecto guiado
+## 44.9 Proyecto guiado
 
 Planifica doce semanas: dos de fundamentos, dos de RAG, dos de tools, dos de agentes, dos de producción y dos de producto. Cada bloque termina con demo y evaluación.
 
 
-## 44.9 Qué puede cambiar en el futuro
+## 44.10 Qué puede cambiar en el futuro
 
 La ruta cambiará en herramientas, pero no en criterio: problema, datos, modelo, contexto, acción, evaluación, operación y usuario.
 
 
-## 44.10 Ideas clave del capítulo
+## 44.11 Ideas clave del capítulo
 
 - Aprender IA práctica requiere una ruta: fundamentos, construcción, producción y criterio.
 - El sistema debe tener límites visibles.
@@ -45376,6 +45468,8 @@ La ruta cambiará en herramientas, pero no en criterio: problema, datos, modelo,
 - La operación importa tanto como la primera demo.
 - Los errores deben ser trazables.
 - La versión siguiente debe ser una mejora deliberada, no una reacción al ruido.
+- El libro gana valor cuando cada capítulo deja un artefacto práctico.
+- El repositorio companion es parte del producto editorial, no un extra.
 
 ## Recursos relacionados
 
@@ -46342,6 +46436,82 @@ Evalúa cada cambio importante de:
 El objetivo no es tener una puntuación perfecta.
 
 El objetivo es detectar regresiones antes que tus usuarios.
+
+---
+
+## Checklist demo a producción
+
+Usa esta lista cuando el prototipo ya impresiona y aparece la tentación de publicarlo.
+
+### Artefactos mínimos
+
+- ¿Existe una ficha técnica del sistema?
+- ¿Existe un repositorio con el código o configuración relevante?
+- ¿Hay prompt versionado?
+- ¿Hay configuración de modelo versionada?
+- ¿Hay manifiesto de release?
+- ¿Hay dataset mínimo de evaluación?
+- ¿Hay trazas de prueba?
+- ¿Hay criterio de rollback?
+
+### Calidad
+
+- ¿Qué casos reales resuelve?
+- ¿Qué casos reales no resuelve?
+- ¿Cuál es el baseline?
+- ¿Qué métrica debe mejorar?
+- ¿Qué métrica no puede empeorar?
+- ¿Se han probado casos ambiguos?
+- ¿Se han probado casos fuera de alcance?
+- ¿Se han probado entradas maliciosas o raras?
+
+### Operación
+
+- ¿Quién mantiene el sistema?
+- ¿Quién revisa errores?
+- ¿Quién puede apagarlo?
+- ¿Qué alertas existen?
+- ¿Qué coste máximo se acepta?
+- ¿Qué latencia p95 se acepta?
+- ¿Qué ocurre si cambia el modelo?
+- ¿Qué ocurre si falla una tool?
+- ¿Qué ocurre si la fuente documental queda obsoleta?
+
+### Aprendizaje
+
+- ¿Qué se revisará cada semana?
+- ¿Qué trazas se muestrearán?
+- ¿Qué feedback de usuario se recogerá?
+- ¿Qué decisión se tomará si el sistema no mejora?
+
+La señal de madurez no es que el sistema parezca inteligente.
+
+La señal de madurez es que el equipo pueda operarlo sin depender de intuición, heroísmo o suerte.
+
+---
+
+## Checklist por capítulo práctico
+
+Cada capítulo técnico del libro debería intentar dejar al menos tres de estos elementos:
+
+- decisión de ingeniería;
+- diagrama;
+- ejemplo ejecutable;
+- checklist;
+- caso de fallo;
+- métrica;
+- coste aproximado;
+- traza mínima;
+- criterio de evaluación;
+- criterio de publicación;
+- criterio de rollback;
+- ejercicio de laboratorio;
+- enlaces a fuentes o repos relevantes;
+- pregunta para adaptar el patrón a un caso real.
+
+Un capítulo conceptual puede ser excelente.
+
+Pero un capítulo práctico debe dejar al lector más cerca de construir.
 
 \newpage
 

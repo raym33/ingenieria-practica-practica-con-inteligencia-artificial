@@ -166,6 +166,47 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 
+### Matriz de demo a producción
+
+Una demo suele optimizar una cosa: que se vea posible.
+
+Producción optimiza otra: que siga funcionando cuando cambian usuarios, datos, modelos, costes y expectativas.
+
+Antes de publicar, revisa esta matriz:
+
+- **Prompt**: en demo suele ser texto pegado en el código; en producción debe estar versionado, probado y ser reversible.
+- **Modelo**: en demo se elige el que mejor impresiona; en producción se elige por calidad, coste, latencia y riesgo.
+- **Datos**: en demo se usan ejemplos preparados; en producción hay datos vivos, permisos, caducidad y fuentes contradictorias.
+- **RAG**: en demo basta con una búsqueda que parece responder; en producción necesitas recall medido, citas, reranking si hace falta y reindexación controlada.
+- **Tools**: en demo una función funciona una vez; en producción hay contratos, validación, permisos, errores y auditoría.
+- **Evaluación**: en demo manda la prueba manual; en producción hay suite con casos, regresiones y umbral de publicación.
+- **Observabilidad**: en demo hay logs básicos; en producción hay trazas por request, coste, latencia, feedback y fallo por intención.
+- **Seguridad**: en demo se confía en el usuario; en producción hay límites explícitos, aislamiento, revisión y bloqueo de abuso.
+- **Coste**: en demo parece irrelevante; en producción hay coste por feature, alertas, límites y degradación.
+- **Rollback**: en demo vuelves a tocar el prompt; en producción restauras modelo, prompt, índice, tools y configuración.
+
+La pregunta no es si el sistema puede responder bien una vez.
+
+La pregunta es si puedes explicar, medir y revertir su comportamiento cuando responde mal.
+
+### Production angle
+
+Cada cambio importante debe tener una nota corta de operación:
+
+```text
+Qué cambia:
+Por qué cambia:
+Qué métrica debería mejorar:
+Qué métrica podría empeorar:
+Qué casos de evaluación cubren el cambio:
+Qué trazas miraremos después:
+Cómo revertimos:
+```
+
+Esta nota obliga a pensar como constructor, no como usuario de una herramienta.
+
+Si no sabes qué puede empeorar, todavía no entiendes el cambio.
+
 
 ## 36.6 Checklist
 
@@ -176,6 +217,11 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 - Las tools tienen versión.
 - Hay rollback.
 - Hay alertas postdeploy.
+- Hay una matriz demo a producción revisada.
+- Cada release tiene nota de operación.
+- El coste por feature se estima antes de abrir el acceso.
+- La latencia p95 se mide con casos representativos.
+- Las trazas se revisan durante las primeras horas o días tras publicar.
 
 
 ## 36.7 Antipatrones

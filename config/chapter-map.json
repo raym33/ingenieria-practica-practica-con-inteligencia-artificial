@@ -148,7 +148,9 @@
     "35-capitulo-34-costes-latencia-y-rendimiento.md",
     "36-capitulo-35-datos-privacidad-y-gobernanza.md",
     "37-capitulo-36-despliegue-y-operacion.md",
-    "41-capitulo-40-testing-y-calidad.md"
+    "41-capitulo-40-testing-y-calidad.md",
+    "45-capitulo-44-roadmap-de-aprendizaje.md",
+    "92-apendice-c-checklists-de-produccion.md"
   ],
   "evaluacion": [
     "18-capitulo-17-arquitectura-rag-basica.md",
@@ -192,7 +194,8 @@
   ],
   "despliegue": [
     "16-capitulo-15-de-idea-a-prototipo.md",
-    "37-capitulo-36-despliegue-y-operacion.md"
+    "37-capitulo-36-despliegue-y-operacion.md",
+    "92-apendice-c-checklists-de-produccion.md"
   ],
   "workflows": [
     "25-capitulo-24-que-es-un-agente-de-ia.md",
@@ -239,6 +242,30 @@
   "roadmap": [
     "45-capitulo-44-roadmap-de-aprendizaje.md",
     "46-capitulo-45-conclusion-de-usuario-a-constructor.md"
+  ],
+  "companion": [
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "44-capitulo-43-libro-vivo-automatizacion-editorial.md",
+    "45-capitulo-44-roadmap-de-aprendizaje.md",
+    "91-apendice-b-proyectos-guiados.md"
+  ],
+  "labs": [
+    "31-capitulo-30-laboratorio-de-implementacion.md",
+    "32-capitulo-31-evaluacion-de-sistemas-ia.md",
+    "44-capitulo-43-libro-vivo-automatizacion-editorial.md",
+    "45-capitulo-44-roadmap-de-aprendizaje.md",
+    "91-apendice-b-proyectos-guiados.md"
+  ],
+  "curriculo": [
+    "45-capitulo-44-roadmap-de-aprendizaje.md",
+    "90-apendice-a-rutas-de-lectura.md",
+    "91-apendice-b-proyectos-guiados.md"
+  ],
+  "demo-a-produccion": [
+    "04-capitulo-3-la-diferencia-entre-jugar-con-ia-y-construir-con-ia.md",
+    "37-capitulo-36-despliegue-y-operacion.md",
+    "45-capitulo-44-roadmap-de-aprendizaje.md",
+    "92-apendice-c-checklists-de-produccion.md"
   ],
   "producto": [
     "38-capitulo-37-automatizaciones-y-workflows.md",

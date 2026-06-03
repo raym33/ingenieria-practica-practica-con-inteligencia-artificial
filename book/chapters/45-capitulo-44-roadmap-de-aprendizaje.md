@@ -86,8 +86,50 @@ Las métricas no son decoración. Son el sistema nervioso del producto.
 
 No hace falta medir cien cosas desde el principio. Sí hace falta medir las pocas que te dirán si el sistema mejora, empeora o se vuelve demasiado caro.
 
+## 44.6 Currículo práctico del libro
 
-## 44.6 Checklist
+Este libro no debería leerse como una enciclopedia lineal.
+
+Debe funcionar como un currículo progresivo: cada tramo deja una habilidad visible y un artefacto en el repositorio.
+
+- **Fundamentos**: distinguir chat, workflow, copiloto y agente. Artefacto mínimo: ficha técnica de sistema.
+- **Prompts**: convertir instrucciones en herramientas de ingeniería. Artefacto mínimo: prompts versionados con casos de prueba.
+- **RAG**: responder con conocimiento propio y citas. Artefacto mínimo: índice reproducible con evaluación de recuperación.
+- **Tools**: ejecutar acciones controladas. Artefacto mínimo: tool con contrato, validación y logs.
+- **Agentes**: coordinar pasos con límites. Artefacto mínimo: flujo con plan, permisos, trazas y parada.
+- **Evaluación**: detectar regresiones antes del usuario. Artefacto mínimo: suite de evals y baseline.
+- **Observabilidad**: depurar fallos reales. Artefacto mínimo: traza mínima por request.
+- **Coste y latencia**: elegir modelos con criterio. Artefacto mínimo: comparativa por tarea.
+- **Despliegue**: publicar sin perder control. Artefacto mínimo: manifiesto de release y rollback.
+- **Producto**: aprender de uso real. Artefacto mínimo: informe semanal de señales y mejoras.
+
+El objetivo del lector no es "haber leído".
+
+El objetivo es terminar con una carpeta de decisiones, pruebas y sistemas pequeños que pueda enseñar, mantener y ampliar.
+
+### Companion GitHub
+
+El repositorio del libro debe ser tan importante como el PDF.
+
+Para que el proyecto se convierta en referencia, el companion debe incluir:
+
+- resúmenes por capítulo;
+- labs ejecutables;
+- prompts versionados;
+- checklists de producción;
+- diagramas de arquitectura;
+- casos de estudio;
+- informes de radar;
+- ejemplos de trazas;
+- scripts de build y publicación;
+- releases versionadas del libro.
+
+La comunidad no solo necesita una explicación clara.
+
+Necesita material que pueda abrir, ejecutar, modificar y usar como punto de partida.
+
+
+## 44.7 Checklist
 
 - Has construido un chatbot simple.
 - Has construido un RAG con citas.
@@ -96,9 +138,13 @@ No hace falta medir cien cosas desde el principio. Sí hace falta medir las poca
 - Has desplegado un MVP.
 - Has medido coste.
 - Has visto usuarios reales usarlo.
+- Has ejecutado al menos tres labs del companion.
+- Has escrito una nota de operación para una release.
+- Has comparado dos modelos en una tarea real.
+- Has documentado un fallo y su mitigación.
 
 
-## 44.7 Antipatrones
+## 44.8 Antipatrones
 
 ### leer sin construir
 
@@ -121,17 +167,17 @@ Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no
 Este patrón suele aparecer cuando el equipo optimiza por velocidad de demo y no por operación. Puede funcionar una tarde, pero se vuelve caro cuando entran usuarios reales, datos reales y responsabilidad real.
 
 
-## 44.8 Proyecto guiado
+## 44.9 Proyecto guiado
 
 Planifica doce semanas: dos de fundamentos, dos de RAG, dos de tools, dos de agentes, dos de producción y dos de producto. Cada bloque termina con demo y evaluación.
 
 
-## 44.9 Qué puede cambiar en el futuro
+## 44.10 Qué puede cambiar en el futuro
 
 La ruta cambiará en herramientas, pero no en criterio: problema, datos, modelo, contexto, acción, evaluación, operación y usuario.
 
 
-## 44.10 Ideas clave del capítulo
+## 44.11 Ideas clave del capítulo
 
 - Aprender IA práctica requiere una ruta: fundamentos, construcción, producción y criterio.
 - El sistema debe tener límites visibles.
@@ -139,6 +185,8 @@ La ruta cambiará en herramientas, pero no en criterio: problema, datos, modelo,
 - La operación importa tanto como la primera demo.
 - Los errores deben ser trazables.
 - La versión siguiente debe ser una mejora deliberada, no una reacción al ruido.
+- El libro gana valor cuando cada capítulo deja un artefacto práctico.
+- El repositorio companion es parte del producto editorial, no un extra.
 
 ## Recursos relacionados
 
