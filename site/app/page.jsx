@@ -1,9 +1,10 @@
 import Link from "next/link";
-import { getChapters, getRadarItems } from "../lib/content";
+import { getChapters, getModelItems, getRadarItems } from "../lib/content";
 
 export default function HomePage() {
   const chapters = getChapters();
   const radarItems = getRadarItems();
+  const modelItems = getModelItems();
   const leadChapter = chapters.find((chapter) => chapter.file === "45-capitulo-44-roadmap-de-aprendizaje.md") || chapters[0];
   const productionChapter = chapters.find((chapter) => chapter.file === "37-capitulo-36-despliegue-y-operacion.md");
   const hardwareChapter = chapters.find((chapter) => chapter.file === "09-capitulo-8-hardware-real-para-ia-local.md");
@@ -12,6 +13,7 @@ export default function HomePage() {
   const labChapter = chapters.find((chapter) => chapter.file === "31-capitulo-30-laboratorio-de-implementacion.md");
   const featured = [productionChapter, hardwareChapter, evalChapter, costChapter, labChapter].filter(Boolean);
   const latestRadar = radarItems.slice(0, 5);
+  const issueDate = new Intl.DateTimeFormat("es-ES", { dateStyle: "long" }).format(new Date());
   const topicRows = [
     { label: "Modelos locales", href: "/leer/08-capitulo-7-modelos-locales/", kicker: "Ollama, LM Studio, MLX, GGUF" },
     { label: "RAG real", href: "/leer/20-capitulo-19-rag-avanzado/", kicker: "retrieval, reranking, permisos" },
@@ -21,16 +23,25 @@ export default function HomePage() {
 
   return (
     <main>
+      <section className="issue-bar shell">
+        <div>
+          <strong>Número actual</strong>
+          <span>{issueDate}</span>
+        </div>
+        <p>Radar, pruebas y guías para decidir qué merece entrar en tu stack de IA.</p>
+        <Link href="/revista/">Abrir edición</Link>
+      </section>
+
       <section className="news-hero shell">
         <article className="lead-story">
-          <div className="story-label">Especial actualizado</div>
-          <h1>La guía práctica para construir sistemas de IA que aguanten producción</h1>
+          <div className="story-label">Tema de portada</div>
+          <h1>La revista para builders que quieren estar al día sin tragarse el hype</h1>
           <p>
-            Capítulos, radar técnico, pruebas locales y checklists para programadores que necesitan estar al día en IA,
-            software, modelos, agentes, RAG y hardware real.
+            Modelos, agentes, RAG, hardware local, repos, pruebas y costes reales. Una portada viva para programadores
+            que necesitan criterio técnico, no titulares vacíos.
           </p>
           <div className="actions">
-            <Link className="button primary" href={`/leer/${leadChapter.slug}/`}>Leer la guía principal</Link>
+            <Link className="button primary" href="/revista/">Leer el número</Link>
             <Link className="button secondary dark" href="/radar/">Ver radar diario</Link>
           </div>
         </article>
@@ -62,6 +73,26 @@ export default function HomePage() {
       </section>
 
       <section className="section shell compact-section">
+        <div className="magazine-shelf">
+          <Link className="shelf-card accent-red" href="/modelos/">
+            <span>Radar de modelos</span>
+            <strong>{modelItems.length} señales para vigilar</strong>
+            <p>Hugging Face, GGUF, embeddings, MLX y modelos locales.</p>
+          </Link>
+          <Link className="shelf-card accent-teal" href="/labs/">
+            <span>Banco de pruebas</span>
+            <strong>Labs ejecutables</strong>
+            <p>Costes, retrieval, jueces LLM y benchmarks locales.</p>
+          </Link>
+          <Link className="shelf-card accent-gold" href={`/leer/${leadChapter.slug}/`}>
+            <span>Guía central</span>
+            <strong>Roadmap de aprendizaje</strong>
+            <p>Qué estudiar, qué construir y cómo medir progreso.</p>
+          </Link>
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
         <div className="section-header">
           <div>
             <div className="eyebrow">Centro de estudio</div>
@@ -74,6 +105,33 @@ export default function HomePage() {
           <div className="stat"><strong>{radarItems.length}</strong><span>señales recientes</span></div>
           <div className="stat"><strong>Labs</strong><span>código ejecutable</span></div>
           <div className="stat"><strong>PDF</strong><span>versión descargable</span></div>
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Selección editorial</div>
+            <h2>Portada, pruebas y criterio</h2>
+          </div>
+          <Link className="text-link" href="/revista/">Ver sumario</Link>
+        </div>
+        <div className="cover-teasers">
+          <article>
+            <span>Prueba</span>
+            <h3>Qué modelo local merece tu RAM</h3>
+            <p>El criterio no es el benchmark aislado: es latencia, memoria, calidad suficiente y caso de uso.</p>
+          </article>
+          <article>
+            <span>Comparativa</span>
+            <h3>RAG, agentes o workflow</h3>
+            <p>La mayoría de productos necesita menos autonomía y más arquitectura explícita.</p>
+          </article>
+          <article>
+            <span>Operación</span>
+            <h3>Coste, trazas y rollback</h3>
+            <p>Una demo convence; una operación medible sobrevive.</p>
+          </article>
         </div>
       </section>
 

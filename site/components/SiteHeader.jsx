@@ -5,7 +5,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="top-strip">
         <div className="shell top-strip-inner">
-          <span>IA aplicada, software, hardware local y sistemas en producción</span>
+          <span>Revista viva de IA aplicada, software y hardware para builders</span>
           <Link href="/descargas/">PDF actualizado</Link>
         </div>
       </div>
@@ -20,6 +20,7 @@ export function SiteHeader() {
       </div>
       <nav className="section-nav" aria-label="Principal">
         <div className="shell nav-links">
+          <Link href="/revista/">Revista</Link>
           <Link href="/radar/">Últimas señales</Link>
           <Link href="/modelos/">Modelos</Link>
           <Link href="/biblioteca/">IA aplicada</Link>
