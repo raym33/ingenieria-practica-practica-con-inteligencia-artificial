@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { FichaProducto } from "../../components/FichaProducto";
 import { articles } from "../../lib/articles";
+import { fichas } from "../../lib/fichas";
 
 export const metadata = {
   title: "Productos IA | De preguntar a construir"
@@ -139,6 +141,19 @@ export default function ProductosPage() {
               <span>{limit}</span>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Fichas de producto</div>
+            <h2>Productos evaluados por memoria, runtime y límite real</h2>
+          </div>
+          <Link className="text-link" href="/fichas/">Ver todas</Link>
+        </div>
+        <div className="ficha-grid ficha-grid-preview">
+          {fichas.slice(0, 4).map((ficha) => <FichaProducto ficha={ficha} key={ficha.slug} />)}
         </div>
       </section>
 

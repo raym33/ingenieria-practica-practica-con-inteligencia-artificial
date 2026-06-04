@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { CommandPalette } from "./CommandPalette";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function SiteHeader() {
   return (
@@ -6,7 +8,10 @@ export function SiteHeader() {
       <div className="top-strip">
         <div className="shell top-strip-inner">
           <span>Revista viva de IA aplicada, software y hardware para builders</span>
-          <Link href="/descargas/">PDF actualizado</Link>
+          <div className="top-strip-actions">
+            <Link href="/descargas/">PDF actualizado</Link>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
       <div className="shell masthead">
@@ -28,15 +33,19 @@ export function SiteHeader() {
           <Link href="/ediciones/">Ediciones</Link>
           <Link href="/radar/">Radar</Link>
           <Link href="/productos/">Productos IA</Link>
+          <Link href="/fichas/">Fichas</Link>
+          <Link href="/comparar/">Comparar</Link>
           <Link href="/benchmarks/">Benchmarks</Link>
           <Link href="/ideas/">Construir</Link>
           <Link href="/guias-compra/">Guías</Link>
           <Link href="/buscar/">Buscar</Link>
+          <Link href="/tags/">Temas</Link>
           <Link href="/labs/">Labs</Link>
           <Link href="/newsletter/">Newsletter</Link>
           <Link href="/sobre/">Sobre</Link>
         </div>
       </nav>
+      <CommandPalette />
     </header>
   );
 }
