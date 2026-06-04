@@ -1,6 +1,10 @@
 import "./globals.css";
+import { Inter, IBM_Plex_Mono } from "next/font/google";
 import { SiteHeader } from "../components/SiteHeader";
 import { SITE_AUTHOR, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "../lib/site-config";
+
+const sans = Inter({ subsets: ["latin"], display: "swap", variable: "--font-sans" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500", "600"], display: "swap", variable: "--font-mono" });
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -28,7 +32,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" suppressHydrationWarning>
+    <html lang="es" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: "(function(){try{var t=localStorage.getItem('revista-theme');if(!t){t='dark';}document.documentElement.dataset.theme=t;}catch(e){}})();" }} />
         <SiteHeader />
