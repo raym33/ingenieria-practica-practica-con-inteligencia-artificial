@@ -8,6 +8,22 @@ export const metadata = {
 
 const issueBlueprints = [
   {
+    number: "004",
+    date: "Semana del 4 jun 2026",
+    title: "Europa quiere su IA — y los benchmarks bajan al ring",
+    deck: "Mistral, JUPITER y las gigafactorías marcan la apuesta soberana europea. Mientras, los builders exprimen multi-3090, llega Gemma 4 con GGUF el día 1 y un CVE recuerda que un agente en CI es superficie de ataque.",
+    theme: "Europa, inferencia local y seguridad",
+    articleSlugs: [
+      "mistral-ia-soberana-europa-builders",
+      "jupiter-gigafactorias-ia-europa",
+      "tinybird-datos-tiempo-real-ia-espana",
+      "claude-code-github-action-inyeccion-prompt-vuln",
+      "multi-rtx-3090-tensor-parallel-benchmarks-x",
+      "gemma-4-12b-modelo-local-gguf-dia-1"
+    ],
+    sections: ["Europa", "Seguridad", "Benchmarks", "Modelos"]
+  },
+  {
     number: "003",
     date: "4 junio 2026",
     title: "El PC de IA local entra en fase seria",

@@ -24,6 +24,15 @@ export default function ActualidadPage() {
         </div>
       </section>
 
+      <section className="issue-bar shell">
+        <div>
+          <strong>Número actual</strong>
+          <span>Edición 004 · Europa, inferencia local y seguridad</span>
+        </div>
+        <p>Cada edición deja una foto editorial: portada, dossier, señales y fuentes.</p>
+        <Link href="/ediciones/">Ver ediciones</Link>
+      </section>
+
       <section className="section shell compact-section">
         <div className="front-grid">
           <div>

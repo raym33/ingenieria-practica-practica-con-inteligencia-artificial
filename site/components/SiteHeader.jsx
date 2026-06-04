@@ -26,6 +26,7 @@ export function SiteHeader() {
           <span>Radar diario</span>
           <strong>Inferencia · RAG · Agentes · Hardware</strong>
           <div className="masthead-meta-links">
+            <Link href="/ediciones/">Ediciones</Link>
             <Link href="/newsletter/">Newsletter</Link>
             <Link href="/sobre/">Sobre</Link>
           </div>
