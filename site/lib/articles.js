@@ -1,6 +1,7 @@
 export const articles = [
   {
     slug: "copilot-pc-no-es-workstation-llm",
+    publishedAt: "2026-04-20",
     section: "Guía de compra",
     title: "Copilot+ PC no es lo mismo que una workstation para LLMs",
     deck: "La NPU cambia la experiencia local de Windows, pero no convierte cualquier portátil en una máquina para servir modelos grandes.",
@@ -30,6 +31,7 @@ export const articles = [
   },
   {
     slug: "apple-silicon-vs-nvidia-inferencia-local",
+    publishedAt: "2026-04-23",
     section: "Comparativa",
     title: "Apple Silicon vs NVIDIA para inferencia local",
     deck: "Mac gana como laboratorio silencioso de memoria. NVIDIA gana cuando necesitas ecosistema CUDA, serving y compatibilidad de producción.",
@@ -60,6 +62,7 @@ export const articles = [
   },
   {
     slug: "ollama-seguridad-servidor-local",
+    publishedAt: "2026-04-26",
     section: "Seguridad",
     title: "Ollama local también necesita seguridad de servidor",
     deck: "La inferencia local suele empezar como experimento, pero en cuanto toca documentos, red o agentes, se convierte en infraestructura sensible.",
@@ -90,6 +93,7 @@ export const articles = [
   },
   {
     slug: "rag-local-reddit-lecciones",
+    publishedAt: "2026-04-29",
     section: "Reddit Lab",
     title: "Qué enseñan los setups reales de RAG local en Reddit",
     deck: "Las discusiones de self-hosting muestran una lección clara: RAG útil no empieza por el modelo, empieza por datos, retrieval y límites.",
@@ -120,6 +124,7 @@ export const articles = [
   },
   {
     slug: "rtx-pro-blackwell-workstation-ia",
+    publishedAt: "2026-05-02",
     section: "Productos IA",
     title: "RTX PRO Blackwell: cuándo una workstation IA tiene sentido",
     deck: "Las nuevas RTX PRO no son solo GPUs caras: son una señal de que la inferencia profesional se mueve hacia memoria, estabilidad y despliegue edge-to-cloud.",
@@ -151,6 +156,7 @@ export const articles = [
   },
   {
     slug: "benchmarks-llm-que-medir",
+    publishedAt: "2026-05-05",
     section: "Benchmarks",
     title: "Benchmarks LLM: qué medir para no engañarte",
     deck: "Tokens por segundo es una métrica cómoda, pero puede ocultar TTFT malo, prefill lento, saturación de KV cache o mala calidad.",
@@ -180,6 +186,7 @@ export const articles = [
   },
   {
     slug: "de-idea-a-saas-ia-con-agentes",
+    publishedAt: "2026-05-09",
     section: "SaaS IA",
     title: "De idea a SaaS con IA: cómo no construir otro wrapper",
     deck: "Un SaaS IA vendible no empieza por elegir modelo. Empieza por un problema repetido, datos útiles, workflow claro y medición.",
@@ -210,6 +217,7 @@ export const articles = [
   },
   {
     slug: "codex-claude-code-openrouter-lovable",
+    publishedAt: "2026-05-12",
     section: "Herramientas IA",
     title: "Codex, Claude Code, OpenRouter y Lovable: qué usar en cada fase",
     deck: "No todas las herramientas IA compiten entre sí. Algunas sirven para construir, otras para elegir modelos, otras para prototipar interfaces.",
@@ -241,6 +249,7 @@ export const articles = [
   },
   {
     slug: "ollama-mlx-apple-silicon-cambio-real",
+    publishedAt: "2026-05-15",
     section: "Inferencia local",
     title: "Ollama con MLX en Apple Silicon: por qué importa para builders",
     deck: "La IA local en Mac deja de ser solo comodidad: MLX, memoria unificada y servidores compatibles con OpenAI están convirtiendo Apple Silicon en un laboratorio serio.",
@@ -272,6 +281,7 @@ export const articles = [
   },
   {
     slug: "docker-vllm-macos-laboratorio-serving",
+    publishedAt: "2026-05-18",
     section: "Software IA",
     title: "Docker Model Runner con vLLM en macOS: el laboratorio se parece más a producción",
     deck: "Cuando el entorno local empieza a hablar OpenAI-compatible, usar contenedores y medir serving, el salto de demo a producto se vuelve menos artesanal.",
@@ -302,6 +312,7 @@ export const articles = [
   },
   {
     slug: "amd-rocm-vulkan-llamacpp-inferencia",
+    publishedAt: "2026-05-21",
     section: "Hardware IA",
     title: "AMD, ROCm, Vulkan y llama.cpp: mucho potencial, pero exige pruebas reales",
     deck: "Las GPUs AMD pueden ser atractivas para IA local, pero el backend, los drivers y el soporte de cada modelo cambian mucho la experiencia.",
@@ -333,6 +344,7 @@ export const articles = [
   },
   {
     slug: "rtx-spark-pc-agentico-que-significa",
+    publishedAt: "2026-05-24",
     section: "Productos IA",
     title: "RTX Spark y el PC agentico: qué significa para comprar hardware",
     deck: "La nueva narrativa de PCs con superchips IA mezcla Windows, agentes, memoria unificada y GPU Blackwell. La parte útil es separar plataforma prometedora de compra necesaria.",
@@ -363,6 +375,7 @@ export const articles = [
   },
   {
     slug: "foundry-local-windows-ia-pc-builder",
+    publishedAt: "2026-05-28",
     section: "Software IA",
     title: "Microsoft Foundry Local: Windows quiere ser plataforma de IA local",
     deck: "Foundry Local cambia la conversación del AI PC: no se trata solo de Copilot, sino de ejecutar modelos locales en apps reales con aceleración de hardware.",
@@ -394,6 +407,7 @@ export const articles = [
   },
   {
     slug: "ryzen-ai-halo-strix-halo-compra-llm-local",
+    publishedAt: "2026-05-31",
     section: "Hardware IA",
     title: "Ryzen AI Halo y Strix Halo: el x86 con memoria unificada entra en la pelea",
     deck: "AMD quiere ocupar el hueco entre portátil, mini workstation y laboratorio local con mucha memoria. La oportunidad es enorme, pero la recomendación depende del runtime.",
@@ -425,6 +439,7 @@ export const articles = [
   },
   {
     slug: "snapdragon-x2-ai-pc-npu-no-es-llm-server",
+    publishedAt: "2026-06-03",
     section: "Guía de compra",
     title: "Snapdragon X2 y los AI PC baratos: NPU no significa servidor LLM",
     deck: "Qualcomm está llevando NPUs potentes a más formatos y precios. Eso mejora apps locales, pero no convierte automáticamente un portátil ligero en workstation de inferencia.",

@@ -18,6 +18,11 @@ export const metadata = {
     card: "summary_large_image",
     title: SITE_NAME,
     description: SITE_DESCRIPTION
+  },
+  alternates: {
+    types: {
+      "application/rss+xml": "/feed.xml"
+    }
   }
 };
 
@@ -40,7 +45,7 @@ export default function RootLayout({ children }) {
             </div>
             <div>
               <span>Contacto</span>
-              <p>learntouseai@gmail.com</p>
+              <p>learntouseai@gmail.com · <a href="/feed.xml">RSS</a></p>
             </div>
           </div>
         </footer>

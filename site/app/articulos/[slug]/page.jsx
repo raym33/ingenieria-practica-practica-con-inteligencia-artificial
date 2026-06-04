@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { Byline } from "../../../components/Byline";
 import { articles, getArticle } from "../../../lib/articles";
+import { formatDate } from "../../../lib/format";
 import { SITE_AUTHOR, SITE_NAME } from "../../../lib/site-config";
 
 export function generateStaticParams() {
@@ -15,7 +17,8 @@ export async function generateMetadata({ params }) {
     openGraph: article ? {
       type: "article",
       title: article.title,
-      description: article.deck
+      description: article.deck,
+      publishedTime: article.publishedAt
     } : undefined,
     twitter: article ? {
       card: "summary_large_image",
@@ -33,10 +36,12 @@ export default async function ArticlePage({ params }) {
   return (
     <main>
       <article className="article-page shell">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.deck, author: { "@type": "Person", name: SITE_AUTHOR }, publisher: { "@type": "Organization", name: SITE_NAME } }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.deck, datePublished: article.publishedAt, dateModified: article.publishedAt, author: { "@type": "Person", name: SITE_AUTHOR }, publisher: { "@type": "Organization", name: SITE_NAME } }) }} />
         <div className="article-kicker">{article.section}</div>
         <h1>{article.title}</h1>
         <p className="article-deck">{article.deck}</p>
+        <time className="article-date" dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
+        <Byline date={article.publishedAt} />
         <div className="article-verdict">{article.verdict}</div>
         <div className="article-body">
           {article.body.map((section) => (

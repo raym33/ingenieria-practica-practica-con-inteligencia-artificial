@@ -2693,3 +2693,149 @@ body::before {
     grid-template-columns: 1fr;
   }
 }
+
+/* Subseccion: fechas, autor, newsletter y command palette */
+.story-card time,
+.editorial-card time,
+.article-date {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.story-card time {
+  margin-top: -6px;
+}
+
+.editorial-card time {
+  margin-top: -4px;
+}
+
+.article-date {
+  margin: -4px 0 18px;
+}
+
+.byline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 24px;
+  color: var(--muted);
+}
+
+.byline-mark {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  background: var(--ink);
+  color: #fff;
+  border: 1px solid var(--line);
+  box-shadow: 5px 5px 0 var(--coral);
+  font-size: 13px;
+  font-weight: 950;
+}
+
+[data-theme="dark"] .byline-mark {
+  background: #0a0d12;
+}
+
+.byline a {
+  display: block;
+  color: var(--blue);
+  font-weight: 900;
+}
+
+.byline span {
+  font-size: 13px;
+}
+
+.author-bio {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.newsletter-form .newsletter-note {
+  grid-column: 1 / -1;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.cmdk-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: start center;
+  padding: 12vh 18px 18px;
+  background: rgba(10,13,18,.58);
+}
+
+.cmdk-panel {
+  width: min(720px, 100%);
+  max-height: min(680px, 78vh);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.cmdk-input {
+  width: 100%;
+  padding: 18px 20px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 18px;
+  font-weight: 800;
+  outline: 0;
+}
+
+.cmdk-results {
+  display: grid;
+  max-height: 560px;
+  overflow: auto;
+}
+
+.cmdk-results button {
+  display: grid;
+  gap: 5px;
+  padding: 15px 20px;
+  background: transparent;
+  color: var(--ink);
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  cursor: pointer;
+}
+
+.cmdk-results button:hover {
+  background: var(--mist);
+}
+
+.cmdk-results span {
+  color: var(--coral);
+  font-size: 11px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.cmdk-results strong {
+  color: var(--blue);
+  font-size: 16px;
+}
+
+.cmdk-results small,
+.cmdk-results p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.cmdk-results p {
+  padding: 18px 20px;
+}

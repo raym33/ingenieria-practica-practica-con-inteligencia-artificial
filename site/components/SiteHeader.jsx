@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CommandPalette } from "./CommandPalette";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function SiteHeader() {
@@ -43,6 +44,7 @@ export function SiteHeader() {
           <Link href="/sobre/">Sobre</Link>
         </div>
       </nav>
+      <CommandPalette />
     </header>
   );
 }

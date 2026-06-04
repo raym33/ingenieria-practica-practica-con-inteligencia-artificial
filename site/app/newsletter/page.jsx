@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NewsletterForm } from "../../components/NewsletterForm";
 
 export const metadata = {
   title: "Newsletter | De preguntar a construir"
@@ -23,11 +24,7 @@ export default function NewsletterPage() {
               Un resumen editorial para comprar mejor hardware, probar modelos con criterio, seguir herramientas útiles
               y encontrar ideas construibles antes de que se conviertan en ruido.
             </p>
-            <form className="newsletter-form">
-              <input type="email" placeholder="tu@email.com" aria-label="Email" />
-              <button type="button">Apuntarme</button>
-            </form>
-            <small>Formulario preparado para conectar con Buttondown, Beehiiv, ConvertKit, Resend o una lista propia.</small>
+            <NewsletterForm />
           </div>
           <aside>
             <strong>Recibe cada semana</strong>

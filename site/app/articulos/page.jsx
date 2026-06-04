@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { articles } from "../../lib/articles";
+import { formatDate } from "../../lib/format";
 
 export const metadata = {
   title: "Artículos | De preguntar a construir"
@@ -24,6 +25,7 @@ export default function ArticulosPage() {
           {articles.map((article) => (
             <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
               <span>{article.section}</span>
+              <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
               <h2>{article.title}</h2>
               <p>{article.deck}</p>
               <strong>{article.verdict}</strong>

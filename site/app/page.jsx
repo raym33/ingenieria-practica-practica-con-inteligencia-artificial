@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { NewsletterForm } from "../components/NewsletterForm";
 import { articles } from "../lib/articles";
 import { getChapters, getModelItems, getRadarItems } from "../lib/content";
+import { formatDate } from "../lib/format";
 
 export default function HomePage() {
   const chapters = getChapters();
@@ -137,6 +139,7 @@ export default function HomePage() {
               {dossierArticles.map((article) => (
                 <Link className="story-card" href={`/articulos/${article.slug}/`} key={article.slug}>
                   <span>{article.section}</span>
+                  <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
                   <h3>{article.title}</h3>
                   <p>{article.verdict}</p>
                 </Link>
@@ -220,7 +223,7 @@ export default function HomePage() {
             <h2>5 señales, 3 decisiones, 1 benchmark y 1 idea construible</h2>
             <p>Un resumen semanal para builders que quieren estar al día de IA, software y hardware sin vivir dentro del feed.</p>
           </div>
-          <Link className="button primary" href="/newsletter/">Apuntarme</Link>
+          <NewsletterForm />
         </div>
       </section>
 
