@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { articles } from "../../lib/articles";
 
 export const metadata = {
   title: "Construir | De preguntar a construir",
@@ -14,6 +15,10 @@ const buildLinks = [
 ];
 
 export default function ConstruirPage() {
+  const starterArticles = articles
+    .filter((article) => (article.tags || []).some((tag) => ["Agentes", "SaaS"].includes(tag)))
+    .slice(0, 3);
+
   return (
     <main>
       <section className="section shell compact-section">
@@ -23,6 +28,24 @@ export default function ConstruirPage() {
             <h1>De la idea al producto</h1>
             <p className="section-lead">Herramientas, ideas y laboratorios para pasar de una demo de IA a sistemas que se pueden probar, operar y vender.</p>
           </div>
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Para empezar</div>
+            <h2>Lecturas para construir</h2>
+          </div>
+        </div>
+        <div className="article-grid">
+          {starterArticles.map((article) => (
+            <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
+              <span>{article.section}</span>
+              <h3>{article.title}</h3>
+              <p>{article.deck}</p>
+            </Link>
+          ))}
         </div>
       </section>
 

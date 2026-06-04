@@ -13,7 +13,9 @@ const learningLinks = [
 ];
 
 export default function AprenderPage() {
-  const chapters = getChapters().slice(0, 6);
+  const allChapters = getChapters();
+  const recommendedChapter = allChapters.find((chapter) => chapter.file === "45-capitulo-44-roadmap-de-aprendizaje.md") || allChapters[0];
+  const chapters = allChapters.slice(0, 6);
 
   return (
     <main>
@@ -26,6 +28,22 @@ export default function AprenderPage() {
           </div>
         </div>
       </section>
+
+      {recommendedChapter ? (
+        <section className="section shell compact-section">
+          <article className="hub-feature">
+            <div>
+              <div className="eyebrow">Empieza por aquí</div>
+              <h2>
+                <Link href={`/leer/${recommendedChapter.slug}/`}>{recommendedChapter.title}</Link>
+              </h2>
+              <p>{recommendedChapter.excerpt}</p>
+              <div className="meta-row"><span>{recommendedChapter.readingTime} min</span><span>Capítulo recomendado</span></div>
+              <Link className="button primary" href={`/leer/${recommendedChapter.slug}/`}>Leer capítulo</Link>
+            </div>
+          </article>
+        </section>
+      ) : null}
 
       <section className="section shell compact-section">
         <div className="chapter-grid">

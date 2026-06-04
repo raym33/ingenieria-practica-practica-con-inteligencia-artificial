@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArticleCover } from "../../components/ArticleCover";
 import { articles } from "../../lib/articles";
 import { getRadarItems } from "../../lib/content";
 import { formatDate } from "../../lib/format";
@@ -10,6 +11,8 @@ export const metadata = {
 
 export default function ActualidadPage() {
   const sortedArticles = [...articles].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  const featuredArticle = sortedArticles[0];
+  const analysisArticles = sortedArticles.filter((article) => article.slug !== featuredArticle?.slug);
   const radarItems = getRadarItems().slice(0, 6);
 
   return (
@@ -23,6 +26,31 @@ export default function ActualidadPage() {
           </div>
         </div>
       </section>
+
+      {featuredArticle ? (
+        <section className="section shell compact-section">
+          <article className="hub-feature">
+            <ArticleCover
+              slug={featuredArticle.slug}
+              section={featuredArticle.section}
+              tags={featuredArticle.tags}
+              image={featuredArticle.image}
+              imageAlt={featuredArticle.imageAlt}
+              variant="hero"
+            />
+            <div>
+              <div className="eyebrow">Destacado</div>
+              <span>{featuredArticle.section}</span>
+              <h2>
+                <Link href={`/articulos/${featuredArticle.slug}/`}>{featuredArticle.title}</Link>
+              </h2>
+              <p>{featuredArticle.deck}</p>
+              <p><strong>{featuredArticle.verdict}</strong></p>
+              <Link className="button primary" href={`/articulos/${featuredArticle.slug}/`}>Leer</Link>
+            </div>
+          </article>
+        </section>
+      ) : null}
 
       <section className="issue-bar shell">
         <div>
@@ -44,7 +72,7 @@ export default function ActualidadPage() {
               <Link className="text-link" href="/articulos/">Archivo completo</Link>
             </div>
             <div className="article-grid">
-              {sortedArticles.map((article) => (
+              {analysisArticles.map((article) => (
                 <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
                   <span>{article.section}</span>
                   <h3>{article.title}</h3>
