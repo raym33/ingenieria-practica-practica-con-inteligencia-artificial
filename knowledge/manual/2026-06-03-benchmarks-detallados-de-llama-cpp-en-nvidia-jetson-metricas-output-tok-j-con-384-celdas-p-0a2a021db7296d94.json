@@ -1,0 +1,19 @@
+{
+  "rawId": "bf413e3f479859e1",
+  "title": "Benchmarks detallados de llama.cpp en NVIDIA Jetson: métricas output tok/J con 384 celdas por modelo",
+  "url": "https://x.com/YuvrajS9886/status/2062129348677976369",
+  "publishedAt": "2026-06-03",
+  "summary": "Stack: JetPack R36.4.7 (Ubuntu 22.04), CUDA 12.6, llama.cpp CUDA backend (-ngl 99). Metodología: prompt {128-2048} × gen {64-256} × 4 power modes = 384 celdas por modelo (8 modelos). Métrica clave: output tok/J (tokens generados por joule). Medición power vía tegrastats. Datos literales: hardware NVIDIA Jetson, llama.cpp. Fuente primaria no enlazada en post pero metodología reproducible.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "NVIDIA RTX",
+    "llama.cpp",
+    "Benchmarks",
+    "Hardware"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

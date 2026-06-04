@@ -1,0 +1,19 @@
+{
+  "rawId": "2ac3ceb48aa4344b",
+  "title": "RTX 5050 8GB + LM Studio/llama.cpp usado para comparar mejores LLMs locales en 32K contexto",
+  "url": "https://x.com/dogukangltkin/status/2062481286510559390",
+  "publishedAt": "2026-06-04",
+  "summary": "Comparativa de mejores LLMs locales en 8GB VRAM: hardware RTX 5050 8GB, LM Studio + llama.cpp, contexto 32K, temperature 0.2. Pruebas con prompts complejos de arquitectura. Datos literales: RTX 5050 8GB VRAM, contexto 32K. No hay números de velocidad ni fuente primaria enlazada.",
+  "notes": "Destino sugerido: /productos",
+  "tags": [
+    "x",
+    "grok",
+    "NVIDIA RTX",
+    "llama.cpp",
+    "Modelos locales",
+    "Hardware"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "guardar_para_contexto"
+}

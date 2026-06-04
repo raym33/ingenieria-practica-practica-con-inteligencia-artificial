@@ -1,0 +1,19 @@
+{
+  "rawId": "27997f99347f2604",
+  "title": "Qwen3.6-27B en 2x RTX 3090 con vLLM (TP=2, MTP=2) logra 95 TPS single y hasta 268 TPS en concurrencia 4",
+  "url": "https://x.com/geldeki/status/2060696839859413412",
+  "publishedAt": "2026-05-30",
+  "summary": "Configuración: vLLM, Tensor P=2, MTP=2, max_num_seqs=4, contexto 16K, modelo cyankiwi/Qwen3.6-27B-AWQ-BF16-INT4. Resultados en prompt HTML chess: ~95 TPS single request, ~175 TPS @ concurrency 2, ~268 TPS @ concurrency 4+. PCIe Gen4 x8 activo. Datos literales: 2x RTX 3090, 95-268 TPS. No hay fuente primaria enlazada más allá del modelo en HF.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "NVIDIA RTX",
+    "vLLM",
+    "Inferencia local",
+    "Benchmarks"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}
