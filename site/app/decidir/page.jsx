@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { FichaProducto } from "../../components/FichaProducto";
 import { comparativas } from "../../lib/comparativas";
+import { fichas } from "../../lib/fichas";
 
 export const metadata = {
   title: "Decidir | De preguntar a construir",
@@ -16,6 +18,7 @@ const decisionLinks = [
 ];
 
 export default function DecidirPage() {
+  const featuredComparativa = comparativas.find((item) => item.slug === "codex-claude-code-vs-cursor-vs-lovable") || comparativas[3] || comparativas[0];
   const preview = comparativas.slice(0, 3);
 
   return (
@@ -27,6 +30,36 @@ export default function DecidirPage() {
             <h1>Comparar y comprar sin humo</h1>
             <p className="section-lead">Una entrada para elegir herramientas, equipos y modelos con veredictos claros, límites visibles y pruebas que importan.</p>
           </div>
+        </div>
+      </section>
+
+      {featuredComparativa ? (
+        <section className="section shell compact-section">
+          <article className="hub-feature">
+            <div>
+              <div className="eyebrow">Comparativa destacada</div>
+              <span>{featuredComparativa.categoria}</span>
+              <h2>{featuredComparativa.title}</h2>
+              <p>{featuredComparativa.deck}</p>
+              {featuredComparativa.veredicto ? <p><strong>{featuredComparativa.veredicto}</strong></p> : null}
+              <Link className="button primary" href={`/comparar/#${featuredComparativa.slug}`}>Abrir comparador</Link>
+            </div>
+          </article>
+        </section>
+      ) : null}
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Fichas</div>
+            <h2>Equipos con veredicto</h2>
+          </div>
+          <Link className="text-link" href="/fichas/">Ver fichas</Link>
+        </div>
+        <div className="ficha-grid">
+          {fichas.slice(0, 3).map((ficha) => (
+            <FichaProducto ficha={ficha} key={ficha.slug} />
+          ))}
         </div>
       </section>
 

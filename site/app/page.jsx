@@ -205,7 +205,7 @@ export default function HomePage() {
               <h3>{pillar.title}</h3>
               <div className="pillar-sublinks">
                 {pillar.links.map(([label, href], index) => (
-                  <span key={href}>
+                  <span key={label}>
                     {index > 0 ? <em aria-hidden="true">·</em> : null}
                     <Link className="text-link" href={href}>{label}</Link>
                   </span>
