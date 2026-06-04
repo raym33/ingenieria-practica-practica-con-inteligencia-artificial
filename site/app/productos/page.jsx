@@ -1,10 +1,11 @@
 import Link from "next/link";
+import { articles } from "../../lib/articles";
 
 export const metadata = {
   title: "Productos IA | De preguntar a construir"
 };
 
-const articles = [
+const editorialBriefs = [
   {
     label: "Guía de compra",
     title: "Qué portátiles sirven realmente para IA local en 2026",
@@ -91,6 +92,7 @@ const sources = [
 ];
 
 export default function ProductosPage() {
+  const productArticles = articles.filter((article) => ["Productos IA", "Guía de compra", "Comparativa", "Seguridad"].includes(article.section));
   return (
     <main>
       <section className="section shell compact-section">
@@ -108,7 +110,7 @@ export default function ProductosPage() {
 
       <section className="section shell compact-section">
         <div className="article-grid">
-          {articles.map((article) => (
+          {editorialBriefs.map((article) => (
             <article className="editorial-card" key={article.title}>
               <span>{article.label}</span>
               <h2>{article.title}</h2>
@@ -163,6 +165,26 @@ export default function ProductosPage() {
         <div className="source-box">
           <h2>Fuentes consultadas</h2>
           {sources.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Análisis largos</div>
+            <h2>Artículos relacionados</h2>
+          </div>
+          <Link className="text-link" href="/articulos/">Todos</Link>
+        </div>
+        <div className="article-grid">
+          {productArticles.map((article) => (
+            <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
+              <span>{article.section}</span>
+              <h2>{article.title}</h2>
+              <p>{article.deck}</p>
+              <strong>{article.verdict}</strong>
+            </Link>
+          ))}
         </div>
       </section>
     </main>

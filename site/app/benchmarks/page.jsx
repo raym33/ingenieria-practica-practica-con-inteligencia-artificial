@@ -1,4 +1,6 @@
 import { getRadarItems } from "../../lib/content";
+import Link from "next/link";
+import { articles } from "../../lib/articles";
 
 export const metadata = {
   title: "Benchmarks IA | De preguntar a construir"
@@ -25,6 +27,7 @@ const benchmarkRules = [
 ];
 
 export default function BenchmarksPage() {
+  const benchmarkArticles = articles.filter((article) => article.section === "Benchmarks");
   const items = getRadarItems()
     .filter((item) => (item.tags || []).some((tag) => ["benchmark-local", "benchmark", "ttft", "hardware", "kv-cache", "inferencia"].includes(tag)))
     .slice(0, 12);
@@ -53,6 +56,27 @@ export default function BenchmarksPage() {
           ))}
         </div>
       </section>
+
+      {benchmarkArticles.length ? (
+        <section className="section shell compact-section">
+          <div className="section-header">
+            <div>
+              <div className="eyebrow">Análisis</div>
+              <h2>Cómo leer benchmarks sin autoengañarte</h2>
+            </div>
+          </div>
+          <div className="article-grid">
+            {benchmarkArticles.map((article) => (
+              <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
+                <span>{article.section}</span>
+                <h2>{article.title}</h2>
+                <p>{article.deck}</p>
+                <strong>{article.verdict}</strong>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <section className="section shell compact-section">
         <div className="front-grid">

@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { articles } from "../../lib/articles";
+
 export const metadata = {
   title: "SaaS con IA | De preguntar a construir"
 };
@@ -50,6 +53,7 @@ const sources = [
 ];
 
 export default function SaasIaPage() {
+  const saasArticles = articles.filter((article) => ["SaaS IA", "Herramientas IA"].includes(article.section));
   return (
     <main>
       <section className="section shell compact-section">
@@ -75,6 +79,25 @@ export default function SaasIaPage() {
               <p><strong>Riesgo:</strong> {pattern.risk}</p>
               <pre>{`Diseña un MVP para "${pattern.title}". Define usuario, problema, flujo, datos, pantallas, eventos de medición, criterios de aceptación y un primer plan de implementación en 5 pasos.`}</pre>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Análisis largos</div>
+            <h2>Construir productos con criterio</h2>
+          </div>
+        </div>
+        <div className="article-grid">
+          {saasArticles.map((article) => (
+            <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
+              <span>{article.section}</span>
+              <h2>{article.title}</h2>
+              <p>{article.deck}</p>
+              <strong>{article.verdict}</strong>
+            </Link>
           ))}
         </div>
       </section>
