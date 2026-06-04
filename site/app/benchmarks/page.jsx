@@ -27,7 +27,7 @@ const benchmarkRules = [
 ];
 
 export default function BenchmarksPage() {
-  const benchmarkArticles = articles.filter((article) => article.section === "Benchmarks");
+  const benchmarkArticles = articles.filter((article) => article.section === "Benchmark");
   const items = getRadarItems()
     .filter((item) => (item.tags || []).some((tag) => ["benchmark-local", "benchmark", "ttft", "hardware", "kv-cache", "inferencia"].includes(tag)))
     .slice(0, 12);

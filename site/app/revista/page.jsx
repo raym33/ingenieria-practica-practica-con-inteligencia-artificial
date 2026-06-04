@@ -19,26 +19,29 @@ export default function RevistaPage() {
     chapters.find((chapter) => chapter.file === "37-capitulo-36-despliegue-y-operacion.md")
   ].filter(Boolean);
   const lab = chapters.find((chapter) => chapter.file === "31-capitulo-30-laboratorio-de-implementacion.md");
-  const magazineArticles = articles
-    .filter((article) => ["Inferencia local", "Software IA", "Hardware IA", "Productos IA", "Benchmarks", "SaaS IA"].includes(article.section))
-    .slice(-6)
-    .reverse();
+  const sortedArticles = [...articles].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
+  const leadArticle = sortedArticles[0];
+  const magazineArticles = sortedArticles.slice(1, 7);
 
   return (
     <main>
       <section className="magazine-cover shell">
         <div className="cover-kicker">Número actual · {issueDate}</div>
         <div className="cover-grid">
-          <article className="cover-main">
+          <article
+            className="cover-main"
+            style={leadArticle?.image ? {
+              backgroundImage: `linear-gradient(180deg, rgba(14,17,22,0.30), rgba(14,17,22,0.92)), url(${leadArticle.image})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center"
+            } : undefined}
+          >
             <span className="story-label">Tema de portada</span>
-            <h1>Construir IA útil cuando todo cambia cada semana</h1>
-            <p>
-              Modelos nuevos, repos que se mueven, hardware local, agentes de código, RAG y costes reales:
-              una edición para decidir qué probar, qué ignorar y qué llevar a producción.
-            </p>
+            <h1>{leadArticle ? leadArticle.title : "Construir IA útil cuando todo cambia cada semana"}</h1>
+            <p>{leadArticle ? leadArticle.deck : "Modelos nuevos, repos que se mueven, hardware local, agentes de código, RAG y costes reales."}</p>
             <div className="actions">
-              <Link className="button primary" href={`/leer/${cover.slug}/`}>Leer portada</Link>
-              <Link className="button secondary dark" href="/modelos/">Radar de modelos</Link>
+              <Link className="button primary" href={leadArticle ? `/articulos/${leadArticle.slug}/` : `/leer/${cover.slug}/`}>Leer portada</Link>
+              <Link className="button secondary dark" href="/radar/">Ver radar</Link>
             </div>
           </article>
           <aside className="cover-lines">

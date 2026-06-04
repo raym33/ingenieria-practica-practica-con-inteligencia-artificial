@@ -12,7 +12,7 @@ export default function ModelosPage() {
   const rag = models.filter((item) => hasAny(item, ["embeddings", "reranking", "rag"])).slice(0, 8);
   const general = models.filter((item) => !local.includes(item) && !rag.includes(item)).slice(0, 16);
   const modelArticles = articles
-    .filter((article) => ["Inferencia local", "Software IA", "Benchmarks", "Comparativa"].includes(article.section))
+    .filter((article) => (article.tags || []).includes("Modelos locales"))
     .slice(-6)
     .reverse();
 

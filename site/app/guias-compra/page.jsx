@@ -52,7 +52,7 @@ const guides = [
 
 export default function GuiasCompraPage() {
   const buyingArticles = articles
-    .filter((article) => ["Guía de compra", "Hardware IA", "Productos IA", "Software IA"].includes(article.section))
+    .filter((article) => (article.tags || []).includes("Compra"))
     .slice(-8)
     .reverse();
 

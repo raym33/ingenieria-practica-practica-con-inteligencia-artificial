@@ -53,7 +53,7 @@ const sources = [
 ];
 
 export default function SaasIaPage() {
-  const saasArticles = articles.filter((article) => ["SaaS IA", "Herramientas IA"].includes(article.section));
+  const saasArticles = articles.filter((article) => ["SaaS", "Herramientas"].includes(article.section));
   return (
     <main>
       <section className="section shell compact-section">
