@@ -1,6 +1,7 @@
 import { articles } from "../lib/articles";
 import { getChapters } from "../lib/content";
 import { SITE_URL } from "../lib/site-config";
+import { getAllTags } from "../lib/tags";
 
 const staticRoutes = [
   "/",
@@ -19,6 +20,7 @@ const staticRoutes = [
   "/labs/",
   "/sobre/",
   "/buscar/",
+  "/tags/",
   "/newsletter/"
 ];
 
@@ -26,6 +28,7 @@ export default function sitemap() {
   const routes = [
     ...staticRoutes,
     ...articles.map((article) => `/articulos/${article.slug}/`),
+    ...getAllTags().map((tag) => `/tags/${tag.slug}/`),
     ...getChapters().map((chapter) => `/leer/${chapter.slug}/`)
   ];
 

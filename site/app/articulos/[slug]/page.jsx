@@ -3,6 +3,7 @@ import { Byline } from "../../../components/Byline";
 import { articles, getArticle } from "../../../lib/articles";
 import { formatDate } from "../../../lib/format";
 import { SITE_AUTHOR, SITE_NAME } from "../../../lib/site-config";
+import { tagSlug } from "../../../lib/tags";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -55,6 +56,11 @@ export default async function ArticlePage({ params }) {
           <h2>Fuentes consultadas</h2>
           {article.sources.map(([label, href]) => <a href={href} key={href}>{label}</a>)}
         </section>
+        <div className="article-tags" aria-label="Temas del artículo">
+          {(article.tags || []).map((tag) => (
+            <Link className="tag" href={`/tags/${tagSlug(tag)}/`} key={tag}>{tag}</Link>
+          ))}
+        </div>
         <Link className="text-link" href="/articulos/">Volver a artículos</Link>
       </article>
     </main>

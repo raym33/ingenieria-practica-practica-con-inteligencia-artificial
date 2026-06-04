@@ -2839,3 +2839,47 @@ body::before {
 .cmdk-results p {
   padding: 18px 20px;
 }
+
+/* Subseccion: sistema de tags */
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0;
+}
+
+.article-tags .tag {
+  color: var(--ink);
+}
+
+.tags-cloud {
+  align-items: stretch;
+}
+
+.tag-topic {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 190px;
+  padding: 13px 14px;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  font-weight: 900;
+}
+
+.tag-topic:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+}
+
+.tag-topic strong {
+  display: grid;
+  place-items: center;
+  min-width: 28px;
+  height: 28px;
+  margin-left: 12px;
+  background: var(--green-soft);
+  color: var(--teal);
+  font-size: 12px;
+}
