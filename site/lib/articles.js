@@ -711,6 +711,118 @@ export const articles = [
         text: "Instálalo (brew tap lablup/tap && brew install mlxcel), arranca mlxcel-server y mide tok/s con tu modelo y cuantización reales. Evita TurboQuant en M1/M2 hasta que sus kernels maduren. Trátalo como un experimento serio para serving local en Apple Silicon, no como reemplazo de producción de mlx-lm u Ollama todavía."
       }
     ]
+  },
+  {
+    slug: "mistral-ia-soberana-europa-builders",
+    image: "/articulos/mistral-ia-soberana-europa-builders.png",
+    imageAlt: "Ilustración editorial: un núcleo de cómputo europeo con anillo de estrellas, datos fluyendo hacia infraestructura propia",
+    publishedAt: "2026-06-04",
+    tags: ["Modelos locales", "Inferencia local", "Europa"],
+    section: "Europa",
+    title: "Mistral y la IA soberana: por qué Europa juega su propia partida",
+    deck: "Mistral cerró en marzo financiación —incluidos 830 M$ de deuda— para un clúster de data center en París y multiplicó por 20 sus ingresos en un año. Su apuesta, pesos abiertos y cómputo europeo, es la jugada de soberanía del continente.",
+    verdict: "Para un builder europeo, Mistral importa menos por la carrera de parámetros y más por lo que habilita: modelos de pesos abiertos que puedes ejecutar en tu propia infraestructura y un proveedor sujeto a normativa de la UE. Si tu cliente no puede mandar datos a EE. UU., esta es una vía real; mide calidad y coste antes de migrar por bandera.",
+    sources: [
+      ["CNBC — Mistral financia un clúster de data center en París", "https://www.cnbc.com/2026/03/30/mistral-ai-paris-data-center-cluster-debt-financing.html"],
+      ["Mistral AI — European AI playbook", "https://europe.mistral.ai/"]
+    ],
+    body: [
+      {
+        heading: "Qué ha pasado",
+        text: "Mistral, fundada en 2023 en París por antiguos investigadores de DeepMind y Meta, ha levantado más de 3.000 M$ en ocho rondas en menos de tres años. En marzo de 2026 cerró 830 M$ de deuda con un consorcio de siete bancos para construir un clúster de data center propio en París, y sus ingresos pasaron de unos 20 M$ a inicios de 2025 a más de 400 M$ en febrero de 2026."
+      },
+      {
+        heading: "La jugada: soberanía y pesos abiertos",
+        text: "La estrategia no es solo tamaño de modelo: es ofrecer pesos abiertos que gobiernos y empresas puedan ejecutar en su propia infraestructura. En mercados donde la preocupación por la soberanía del dato descarta a proveedores estadounidenses, poder autohospedar el modelo es una ventaja concreta, no un eslogan."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "Un proveedor europeo con modelos abiertos cambia el cálculo de cumplimiento (RGPD, sectores regulados) y de dependencia. Puedes autohospedar vía vLLM o llama.cpp, auditar el modelo y no atarte a una sola nube extranjera. Para una consultora o pyme técnica europea, eso abre puertas que una API cerrada cierra."
+      },
+      {
+        heading: "Las dudas honestas",
+        text: "Soberano no es magia: hace falta cómputo, talento y un catálogo al día frente a OpenAI, Anthropic y Google. Financiar data centers con deuda es una apuesta intensiva en capital, y el liderazgo en calidad sigue disputado. La etiqueta europea no debe sustituir a la medición."
+      },
+      {
+        heading: "Qué probar",
+        text: "Evalúa los modelos abiertos de Mistral en tu tarea real, autohospedados o vía su API, y compara calidad y coste por respuesta válida con tu stack actual. Comprueba el encaje de cumplimiento de tu caso: si el dato no puede salir de la UE, la ecuación cambia a favor."
+      }
+    ]
+  },
+  {
+    slug: "jupiter-gigafactorias-ia-europa",
+    image: "/articulos/jupiter-gigafactorias-ia-europa.png",
+    imageAlt: "Ilustración editorial: un superordenador como monolito de racks iluminados bajo un arco de estrellas europeas",
+    publishedAt: "2026-06-04",
+    tags: ["Hardware", "Europa", "Compra"],
+    section: "Europa",
+    title: "JUPITER y las gigafactorías de IA: Europa construye su cómputo",
+    deck: "El primer superordenador exaescala europeo ya está en marcha con 24.000 chips NVIDIA, y la UE moviliza 200.000 M€ (20.000 M€ para 'gigafactorías de IA'). Qué significa para quien construye en Europa.",
+    verdict: "El cómputo soberano deja de ser un eslogan: JUPITER y las cinco gigafactorías son acceso real a entrenamiento e inferencia para startups, universidades y pymes europeas. El cuello de botella deja de ser conseguir la GPU y pasa a ser saber pedir tiempo de cómputo y usarlo bien.",
+    sources: [
+      ["EuroHPC JU — AI Factories", "https://www.eurohpc-ju.europa.eu/eurohpc-ju-selects-six-additional-ai-factories-expand-europes-ai-capabilities-2025-10-10_en"],
+      ["Comisión Europea — JUPITER, primer exaescala europeo", "https://digital-strategy.ec.europa.eu/en/factpages/digital-success-stories-jupiter-first-european-exascale-supercomputer"]
+    ],
+    body: [
+      {
+        heading: "Qué ha pasado",
+        text: "JUPITER, en el Jülich Supercomputing Centre (Alemania), es el primer superordenador exaescala de Europa. Su módulo Booster monta unos 24.000 superchips NVIDIA GH200 Grace Hopper y supera 1 exaFLOP/s en doble precisión, con mucho más en cargas de IA. Está concebido como 'AI Factory': infraestructura para que startups, universidades y centros de investigación entrenen y desplieguen modelos."
+      },
+      {
+        heading: "La apuesta de los 200.000 M€",
+        text: "La Comisión lanzó InvestAI para movilizar 200.000 M€, con un fondo europeo de 20.000 M€ destinado a grandes clústeres, las llamadas 'gigafactorías de IA'. Para finales de 2026 se desplegarán cinco superordenadores de IA en Finlandia, Alemania, Italia, Luxemburgo y Suecia, equipados con alrededor de 100.000 chips de última generación."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "Es acceso a un cómputo que ninguna pyme puede permitirse en solitario, pensado para entrenar o servir modelos sin depender únicamente de nubes estadounidenses. Para el ecosistema europeo, tener fábricas de IA públicas cambia quién puede intentar entrenar un modelo serio."
+      },
+      {
+        heading: "Las advertencias",
+        text: "Un superordenador no es una API: hay convocatorias, colas, schedulers y una curva de aprendizaje real (MPI, HPC). Y conviene el matiz: casi todo el músculo sigue siendo silicio NVIDIA. Es soberanía de cómputo y de datos, todavía no de chips."
+      },
+      {
+        heading: "Qué hacer",
+        text: "Si construyes en Europa, mira los programas de acceso de EuroHPC y las AI Factories: muchas convocatorias están abiertas a startups y academia. Aprender a solicitar y exprimir tiempo de HPC se está convirtiendo en una ventaja competitiva concreta."
+      }
+    ]
+  },
+  {
+    slug: "tinybird-datos-tiempo-real-ia-espana",
+    image: "/articulos/tinybird-datos-tiempo-real-ia-espana.png",
+    imageAlt: "Ilustración editorial: un flujo de eventos en tiempo real convertido en una API de baja latencia",
+    publishedAt: "2026-06-04",
+    tags: ["SaaS", "Europa", "Inferencia local"],
+    section: "Europa",
+    title: "Datos en tiempo real para IA: lo que Tinybird dice del ecosistema español",
+    deck: "La madrileña Tinybird convirtió la analítica en tiempo real sobre ClickHouse en producto, levantó decenas de millones y creció su ARR un 180% en 2025. Un buen caso de la IA española que va más allá del wrapper.",
+    verdict: "El ecosistema español de IA ya no es solo demos: hay infraestructura real y vendible. Tinybird recuerda que el valor para builders está en lo aburrido-pero-crítico (datos, latencia, fiabilidad), no en el enésimo chatbot. Si construyes producto de IA, mira primero tu capa de datos.",
+    sources: [
+      ["Silicon — Tinybird levanta financiación y se expande a EE. UU.", "https://www.silicon.es/tinybird-ronda-financiacion-eeuu-236952"],
+      ["Tinybird — web oficial", "https://www.tinybird.co/"],
+      ["Gobierno de España — 40 M€ para casos de uso de IA en pymes", "https://digital.gob.es/comunicacion/notas-prensa/secretaria-digitalizacion-e-inteligencia-artificial/2026/03/el-gobierno-invertira-40-millones-de-euros-para-facilitar-el-acc"]
+    ],
+    body: [
+      {
+        heading: "Qué es Tinybird",
+        text: "Fundada en Madrid en 2019 por Jorge Gómez Sancha y Javier Santana, Tinybird es una plataforma de datos en tiempo real, construida sobre ClickHouse, que convierte consultas analíticas en APIs de baja latencia. Cerró una Serie A de 37 M$ (CRV, Singular) y una Serie B de 30 M$ (unos 28 M€, liderada por Balderton); su ARR creció un 180% en 2025, superando los 15 M€."
+      },
+      {
+        heading: "Por qué encaja con la IA",
+        text: "Las aplicaciones de IA viven o mueren por sus datos: features en tiempo real, RAG con datos frescos, analítica de uso y de coste por respuesta. Una capa que pasa de segundos a milisegundos habilita productos que antes no eran viables, y reduce la infraestructura que hay que mantener."
+      },
+      {
+        heading: "El contexto español",
+        text: "No es un caso aislado. El ecosistema español de IA ha crecido con fuerza en capital privado, y el Gobierno destina 40 M€ a acercar casos de uso de IA a las pymes, además de instrumentos públicos no dilutivos como ENISA y CDTI. Hay financiación y hay ingeniería."
+      },
+      {
+        heading: "La lectura sin humo",
+        text: "Que una startup integre IA no la hace valiosa: lo valioso es resolver un problema caro y repetido. La infraestructura de datos —lo 'aburrido'— es justo donde España tiene ingenieros y producto de verdad, y donde un builder encuentra ventaja antes que en el modelo de moda."
+      },
+      {
+        heading: "Qué probar y para quién",
+        text: "Si montas producto de IA, evalúa tu capa de datos antes que el modelo. Herramientas como Tinybird tienen sentido cuando necesitas analítica o features en tiempo real con baja latencia y poca infraestructura que operar. Mide latencia y coste con tu volumen real antes de comprometerte."
+      }
+    ]
   }
 ];
 
