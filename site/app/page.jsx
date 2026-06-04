@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { articles } from "../lib/articles";
 import { getChapters, getModelItems, getRadarItems } from "../lib/content";
 
 export default function HomePage() {
@@ -13,7 +14,50 @@ export default function HomePage() {
   const labChapter = chapters.find((chapter) => chapter.file === "31-capitulo-30-laboratorio-de-implementacion.md");
   const featured = [productionChapter, hardwareChapter, evalChapter, costChapter, labChapter].filter(Boolean);
   const latestRadar = radarItems.slice(0, 5);
+  const coverArticles = articles.slice(-6).reverse();
+  const leadArticle = coverArticles[0];
+  const dossierArticles = coverArticles.slice(1, 5);
   const issueDate = new Intl.DateTimeFormat("es-ES", { dateStyle: "long" }).format(new Date());
+  const quickDecisions = [
+    ["Comprar portátil IA", "Mira RAM/VRAM, runtime y batería; la NPU no basta para LLMs grandes.", "/guias-compra/"],
+    ["Probar modelo local", "Empieza con tarea real, contexto real y mide TTFT antes de mirar tokens/s.", "/modelos/"],
+    ["Montar RAG", "Primero retrieval, permisos y evaluación; después modelos más grandes.", "/leer/17-capitulo-16-que-problema-resuelve-rag/"],
+    ["Crear SaaS IA", "Busca workflow repetido, output revisable y coste por respuesta válida.", "/saas-ia/"]
+  ];
+  const shelfGroups = [
+    {
+      title: "Leer actualidad",
+      items: [
+        ["Radar de modelos", `${modelItems.length} señales para vigilar`, "Hugging Face, GGUF, embeddings, MLX y modelos locales.", "/modelos/", "accent-red"],
+        ["Inferencia", "Hardware y software real", "Mac, GPU, GGUF, MLX, vLLM, latencia y límites prácticos.", "/inferencia/", "accent-gold"],
+        ["Artículos", "Análisis redactados", "Compra, seguridad, RAG local e inferencia con fuentes al final.", "/articulos/", "accent-teal"]
+      ]
+    },
+    {
+      title: "Comprar y montar stack",
+      items: [
+        ["Productos IA", "Comprar con criterio", "Microsoft, NVIDIA, Apple, Dell, Lenovo, Samsung y workstations.", "/productos/", "accent-red"],
+        ["Guías compra", "Qué comprar y por qué", "Portátiles, Mac, RTX, workstations, mini PCs y dispositivos IA.", "/guias-compra/", "accent-gold"],
+        ["Stack local", "De portátil a laboratorio", "Ollama, MLX, llama.cpp, Open WebUI, RAG, seguridad y redes.", "/stack-ia-local/", "accent-teal"]
+      ]
+    },
+    {
+      title: "Construir",
+      items: [
+        ["Ideas", "Construir con IDEs IA", "MVPs para Codex, Claude Code, Lovable, OpenRouter y Cursor.", "/ideas/", "accent-gold"],
+        ["SaaS IA", "Ideas que se pueden vender", "Problemas, MVPs, pricing, agentes e IDEs IA para construir.", "/saas-ia/", "accent-red"],
+        ["Herramientas IA", "Qué usar para construir", "Codex, Claude Code, OpenRouter, Lovable, Cursor y runtimes.", "/herramientas-ia/", "accent-teal"]
+      ]
+    },
+    {
+      title: "Medir y aprender",
+      items: [
+        ["Benchmarks", "Métricas que importan", "TTFT, tokens/s, RAM/VRAM, KV cache, coste y reproducibilidad.", "/benchmarks/", "accent-red"],
+        ["Banco de pruebas", "Labs ejecutables", "Costes, retrieval, jueces LLM y benchmarks locales.", "/labs/", "accent-teal"],
+        ["Posts de X", "Señales agrupadas", "Benchmarks, bugs, modelos, agentes y hardware con contexto.", "/x-ia/", "accent-gold"]
+      ]
+    }
+  ];
   const topicRows = [
     { label: "Inferencia local", href: "/inferencia/", kicker: "hardware, runtimes, tokens/s" },
     { label: "Modelos locales", href: "/leer/08-capitulo-7-modelos-locales/", kicker: "Ollama, LM Studio, MLX, GGUF" },
@@ -36,13 +80,12 @@ export default function HomePage() {
       <section className="news-hero shell">
         <article className="lead-story">
           <div className="story-label">Tema de portada</div>
-          <h1>La revista para builders que quieren estar al día sin tragarse el hype</h1>
+          <h1>{leadArticle ? leadArticle.title : "La revista para builders que quieren estar al día sin tragarse el hype"}</h1>
           <p>
-            Modelos, agentes, RAG, hardware local, repos, pruebas y costes reales. Una portada viva para programadores
-            que necesitan criterio técnico, no titulares vacíos.
+            {leadArticle ? leadArticle.deck : "Modelos, agentes, RAG, hardware local, repos, pruebas y costes reales. Una portada viva para programadores que necesitan criterio técnico, no titulares vacíos."}
           </p>
           <div className="actions">
-            <Link className="button primary" href="/revista/">Leer el número</Link>
+            <Link className="button primary" href={leadArticle ? `/articulos/${leadArticle.slug}/` : "/revista/"}>Leer portada</Link>
             <Link className="button secondary dark" href="/radar/">Ver radar diario</Link>
           </div>
         </article>
@@ -62,6 +105,40 @@ export default function HomePage() {
         </aside>
       </section>
 
+      <section className="section shell compact-section">
+        <div className="front-grid">
+          <div>
+            <div className="section-header">
+              <div>
+                <div className="eyebrow">Dossier de portada</div>
+                <h2>Lo que conviene leer antes de comprar, migrar o construir</h2>
+              </div>
+              <Link className="text-link" href="/articulos/">Todos los artículos</Link>
+            </div>
+            <div className="story-grid">
+              {dossierArticles.map((article) => (
+                <Link className="story-card" href={`/articulos/${article.slug}/`} key={article.slug}>
+                  <span>{article.section}</span>
+                  <h3>{article.title}</h3>
+                  <p>{article.verdict}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+          <aside className="side-rail">
+            <div className="panel-heading">
+              <span>Decisión rápida</span>
+            </div>
+            {quickDecisions.map(([title, text, href]) => (
+              <Link className="topic-row" href={href} key={title}>
+                <strong>{title}</strong>
+                <span>{text}</span>
+              </Link>
+            ))}
+          </aside>
+        </div>
+      </section>
+
       <section className="ticker-band">
         <div className="shell ticker-inner">
           <strong>Hoy en el radar</strong>
@@ -75,67 +152,27 @@ export default function HomePage() {
       </section>
 
       <section className="section shell compact-section">
-        <div className="magazine-shelf">
-          <Link className="shelf-card accent-red" href="/modelos/">
-            <span>Radar de modelos</span>
-            <strong>{modelItems.length} señales para vigilar</strong>
-            <p>Hugging Face, GGUF, embeddings, MLX y modelos locales.</p>
-          </Link>
-          <Link className="shelf-card accent-teal" href="/labs/">
-            <span>Banco de pruebas</span>
-            <strong>Labs ejecutables</strong>
-            <p>Costes, retrieval, jueces LLM y benchmarks locales.</p>
-          </Link>
-          <Link className="shelf-card accent-gold" href="/inferencia/">
-            <span>Inferencia</span>
-            <strong>Hardware y software real</strong>
-            <p>Mac, GPU, GGUF, MLX, vLLM, latencia y límites prácticos.</p>
-          </Link>
-          <Link className="shelf-card accent-red" href="/productos/">
-            <span>Productos IA</span>
-            <strong>Comprar con criterio</strong>
-            <p>Microsoft, NVIDIA, Apple, Dell, Lenovo, Samsung y workstations.</p>
-          </Link>
-          <Link className="shelf-card accent-teal" href="/x-ia/">
-            <span>Posts de X</span>
-            <strong>Señales agrupadas</strong>
-            <p>Benchmarks, bugs, modelos, agentes y hardware con contexto.</p>
-          </Link>
-          <Link className="shelf-card accent-gold" href="/ideas/">
-            <span>Ideas</span>
-            <strong>Construir con IDEs IA</strong>
-            <p>MVPs para Codex, Claude Code, Lovable, OpenRouter y Cursor.</p>
-          </Link>
-          <Link className="shelf-card accent-red" href="/benchmarks/">
-            <span>Benchmarks</span>
-            <strong>Métricas que importan</strong>
-            <p>TTFT, tokens/s, RAM/VRAM, KV cache, coste y reproducibilidad.</p>
-          </Link>
-          <Link className="shelf-card accent-teal" href="/stack-ia-local/">
-            <span>Stack local</span>
-            <strong>De portátil a laboratorio</strong>
-            <p>Ollama, MLX, llama.cpp, Open WebUI, RAG, seguridad y redes.</p>
-          </Link>
-          <Link className="shelf-card accent-gold" href="/saas-ia/">
-            <span>SaaS IA</span>
-            <strong>Ideas que se pueden vender</strong>
-            <p>Problemas, MVPs, pricing, agentes e IDEs IA para construir.</p>
-          </Link>
-          <Link className="shelf-card accent-red" href="/guias-compra/">
-            <span>Guías compra</span>
-            <strong>Qué comprar y por qué</strong>
-            <p>Portátiles, Mac, RTX, workstations, mini PCs y dispositivos IA.</p>
-          </Link>
-          <Link className="shelf-card accent-teal" href="/herramientas-ia/">
-            <span>Herramientas IA</span>
-            <strong>Qué usar para construir</strong>
-            <p>Codex, Claude Code, OpenRouter, Lovable, Cursor y runtimes.</p>
-          </Link>
-          <Link className="shelf-card accent-gold" href="/articulos/">
-            <span>Artículos</span>
-            <strong>Análisis redactados</strong>
-            <p>Compra, seguridad, RAG local e inferencia con fuentes al final.</p>
-          </Link>
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Kiosko técnico</div>
+            <h2>Entra por lo que necesitas resolver</h2>
+          </div>
+        </div>
+        <div className="shelf-groups">
+          {shelfGroups.map((group) => (
+            <section className="shelf-group" key={group.title}>
+              <div className="panel-heading"><span>{group.title}</span></div>
+              <div className="magazine-shelf compact-shelf">
+                {group.items.map(([label, title, text, href, accent]) => (
+                  <Link className={`shelf-card ${accent}`} href={href} key={href}>
+                    <span>{label}</span>
+                    <strong>{title}</strong>
+                    <p>{text}</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
       </section>
 

@@ -298,6 +298,22 @@ a {
   gap: 14px;
 }
 
+.shelf-groups {
+  display: grid;
+  gap: 18px;
+}
+
+.shelf-group {
+  padding: 0 16px 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.compact-shelf {
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 16px;
+}
+
 .shelf-card {
   min-height: 150px;
   display: flex;
@@ -307,6 +323,12 @@ a {
   background: var(--surface);
   border: 1px solid var(--line);
   border-top: 6px solid var(--ink);
+}
+
+.shelf-group .shelf-card {
+  min-height: 132px;
+  border-color: #e3e7ee;
+  background: #fbfcfd;
 }
 
 .shelf-card span,
@@ -323,6 +345,10 @@ a {
   color: var(--blue);
   font-size: 24px;
   line-height: 1.1;
+}
+
+.shelf-group .shelf-card strong {
+  font-size: 20px;
 }
 
 .shelf-card p,
