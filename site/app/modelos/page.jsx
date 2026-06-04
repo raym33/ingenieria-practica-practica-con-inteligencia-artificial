@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { articles } from "../../lib/articles";
 import { getModelItems } from "../../lib/content";
 
 export const metadata = {
@@ -10,6 +11,10 @@ export default function ModelosPage() {
   const local = models.filter((item) => hasAny(item, ["gguf", "mlx", "modelos-locales", "cuantizacion"])).slice(0, 12);
   const rag = models.filter((item) => hasAny(item, ["embeddings", "reranking", "rag"])).slice(0, 8);
   const general = models.filter((item) => !local.includes(item) && !rag.includes(item)).slice(0, 16);
+  const modelArticles = articles
+    .filter((article) => ["Inferencia local", "Software IA", "Benchmarks", "Comparativa"].includes(article.section))
+    .slice(-6)
+    .reverse();
 
   return (
     <main>
@@ -34,6 +39,25 @@ export default function ModelosPage() {
       </section>
 
       <ModelSection title="Local, GGUF, MLX y cuantización" items={local} />
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Criterio editorial</div>
+            <h2>Antes de probar otro modelo, lee esto</h2>
+          </div>
+          <Link className="text-link" href="/articulos/">Artículos</Link>
+        </div>
+        <div className="article-grid">
+          {modelArticles.map((article) => (
+            <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
+              <span>{article.section}</span>
+              <h2>{article.title}</h2>
+              <p>{article.deck}</p>
+              <strong>{article.verdict}</strong>
+            </Link>
+          ))}
+        </div>
+      </section>
       <ModelSection title="Embeddings, reranking y RAG" items={rag} />
       <ModelSection title="Más modelos recientes" items={general} />
     </main>

@@ -44,6 +44,34 @@ const ideas = [
     stack: "RSS, GitHub, Reddit, X vía Grok, clasificador, newsletter.",
     mvp: "Radar por temas, resúmenes, impacto y acciones sugeridas.",
     monetization: "Newsletter premium + dashboard privado."
+  },
+  {
+    title: "Probador de hardware IA para compradores",
+    user: "consultores, tiendas técnicas, departamentos IT",
+    stack: "Next.js, runner local, Ollama/LM Studio/llama.cpp, export JSON, tabla comparativa.",
+    mvp: "Suite de prompts, medición TTFT/decode/RAM, ficha por máquina y recomendación editorial.",
+    monetization: "Informes de compra, afiliación responsable o licencia para consultoras."
+  },
+  {
+    title: "Asistente local para compliance documental",
+    user: "pymes reguladas, clínicas, academias, asesorías",
+    stack: "Foundry Local u Ollama, RAG privado, permisos, auditoría, export DOCX/PDF.",
+    mvp: "Responder preguntas con citas, marcar documentos desactualizados y generar checklist.",
+    monetization: "Setup + mantenimiento mensual por sector."
+  },
+  {
+    title: "Copiloto de presupuestos técnicos",
+    user: "freelancers, estudios web, integradores IA",
+    stack: "CRM simple, plantillas, OpenRouter, base de costes, export PDF.",
+    mvp: "Convertir notas de cliente en alcance, fases, riesgos, precio y propuesta editable.",
+    monetization: "SaaS vertical para consultores o pack de plantillas premium."
+  },
+  {
+    title: "Radar de repos GitHub para equipos IA",
+    user: "builders que necesitan seguir frameworks y agentes",
+    stack: "GitHub API, estrellas/commits/releases, clasificador LLM, newsletter.",
+    mvp: "Detectar repos con tracción, resumir cambios y proponer prueba de 30 minutos.",
+    monetization: "Newsletter pro + alertas por stack."
   }
 ];
 

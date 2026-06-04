@@ -360,6 +360,98 @@ export const articles = [
         text: "Es noticia de portada, no recomendación cerrada. Hay que seguirla, pedir benchmarks y compararla contra Mac Studio, RTX PRO y PCs con GPU tradicional antes de convertirla en guía de compra."
       }
     ]
+  },
+  {
+    slug: "foundry-local-windows-ia-pc-builder",
+    section: "Software IA",
+    title: "Microsoft Foundry Local: Windows quiere ser plataforma de IA local",
+    deck: "Foundry Local cambia la conversación del AI PC: no se trata solo de Copilot, sino de ejecutar modelos locales en apps reales con aceleración de hardware.",
+    verdict: "Es una señal fuerte para builders Windows. Antes de apostar, valida modelos disponibles, APIs, privacidad, fallback CPU/GPU/NPU y empaquetado.",
+    sources: [
+      ["Windows AI developer", "https://developer.microsoft.com/en-us/windows/ai"],
+      ["Foundry Local GA", "https://devblogs.microsoft.com/foundry/foundry-local-ga/"],
+      ["Microsoft Build 2026", "https://news.microsoft.com/build-2026/"],
+      ["Microsoft Build 2026 official blog", "https://blogs.microsoft.com/blog/2026/06/02/microsoft-build-2026-be-yourself-at-work/"]
+    ],
+    body: [
+      {
+        heading: "La noticia real",
+        text: "Microsoft está empujando Windows como plataforma para desarrollar IA local, no solo como sistema con un asistente encima. Foundry Local promete ejecutar modelos en dispositivos con aceleración GPU, NPU o CPU, y eso puede importar mucho para apps de escritorio, industria, educación y pymes."
+      },
+      {
+        heading: "Qué gana el lector",
+        text: "Un builder Windows podría integrar inferencia local sin montar todo desde cero con drivers y backends distintos. Si el modelo, el runtime y la API encajan, hay menos fricción para crear apps con privacidad, baja latencia y coste predecible."
+      },
+      {
+        heading: "La letra pequeña",
+        text: "Hay que comprobar qué modelos están disponibles, cómo se empaquetan, qué pasa cuando no hay NPU, cómo se actualizan, qué logs genera el sistema y si la calidad sirve para el caso real."
+      },
+      {
+        heading: "Prueba mínima",
+        text: "Crea una app pequeña con extracción JSON, resumen y búsqueda local. Mide latencia en CPU, GPU y NPU, revisa consumo, errores y facilidad de instalación en otro PC."
+      }
+    ]
+  },
+  {
+    slug: "ryzen-ai-halo-strix-halo-compra-llm-local",
+    section: "Hardware IA",
+    title: "Ryzen AI Halo y Strix Halo: el x86 con memoria unificada entra en la pelea",
+    deck: "AMD quiere ocupar el hueco entre portátil, mini workstation y laboratorio local con mucha memoria. La oportunidad es enorme, pero la recomendación depende del runtime.",
+    verdict: "Muy prometedor para IA local en formato compacto. Compra solo si tu modelo funciona bien en ROCm, Vulkan, llama.cpp, Ollama o LM Studio.",
+    sources: [
+      ["AMD Ryzen AI Halo developer platform", "https://www.amd.com/en/blogs/2026/amd-powers-next-generation-agent-computers-with-new-ryzen-ai-hal.html"],
+      ["AMD CES 2026 Ryzen AI announcements", "https://www.amd.com/en/newsroom/press-releases/2026-1-5-amd-expands-ai-leadership-across-client-graphics-.html"],
+      ["Reddit Strix Halo setups", "https://www.reddit.com/r/StrixHalo/comments/1tv41uh/strix_halo_ryzen_ai_max_395_128gb_owners_whats/"],
+      ["Reddit Strix Halo LLM results", "https://www.reddit.com/r/LocalLLM/comments/1tu7xw4/collecting_strix_halo_ryzen_ai_max_395_local_llm/"]
+    ],
+    body: [
+      {
+        heading: "Por qué importa",
+        text: "Ryzen AI Halo apunta a sistemas con mucha memoria y enfoque de agentes locales. Para LLMs, esa memoria puede ser más importante que la etiqueta AI PC, porque permite probar modelos y contextos que no caben en GPUs pequeñas."
+      },
+      {
+        heading: "Dónde está el riesgo",
+        text: "El hardware puede ser bueno y aun así frustrante si el runtime no está maduro. En AMD hay que mirar ROCm, Vulkan, forks de llama.cpp, drivers, sistema operativo y compatibilidad del modelo exacto."
+      },
+      {
+        heading: "Lo que Reddit aporta",
+        text: "Las discusiones de usuarios con Strix Halo son valiosas porque suelen incluir configuración real, modelos, cuantización, RAM y errores. No sustituyen un benchmark formal, pero muestran dónde se atascan los compradores reales."
+      },
+      {
+        heading: "Veredicto práctico",
+        text: "Es una plataforma que merece seguimiento editorial fuerte. Para un lector técnico puede ser una gran máquina de laboratorio. Para una pyme que necesita soporte inmediato, conviene esperar pruebas reproducibles."
+      }
+    ]
+  },
+  {
+    slug: "snapdragon-x2-ai-pc-npu-no-es-llm-server",
+    section: "Guía de compra",
+    title: "Snapdragon X2 y los AI PC baratos: NPU no significa servidor LLM",
+    deck: "Qualcomm está llevando NPUs potentes a más formatos y precios. Eso mejora apps locales, pero no convierte automáticamente un portátil ligero en workstation de inferencia.",
+    verdict: "Compra Snapdragon X2 por batería, movilidad y funciones on-device. Para LLMs grandes, sigue mirando memoria, GPU, runtime y compatibilidad.",
+    sources: [
+      ["Qualcomm Snapdragon X Series desktop PCs", "https://www.qualcomm.com/news/onq/2026/01/accelerating-the-future-of-desktop-pcs-snapdragon-x-series"],
+      ["Snapdragon X2 Plus product brief", "https://www.qualcomm.com/content/dam/qcomm-martech/dm-assets/images/company/news-media/media-center/press-kits/ces-2026/documents/ProductBrief_SnapdragonX2Plus.pdf"],
+      ["Microsoft Copilot+ PC NPU guide", "https://learn.microsoft.com/en-us/windows/ai/npu-devices/"]
+    ],
+    body: [
+      {
+        heading: "La buena noticia",
+        text: "NPUs más capaces en equipos más baratos pueden democratizar funciones locales: voz, cámara, traducción, clasificación, modelos pequeños y flujos privados sin nube."
+      },
+      {
+        heading: "La confusión habitual",
+        text: "TOPS de NPU no responde si puedes ejecutar un 14B con contexto largo, si tienes memoria suficiente o si tu runtime soporta el acelerador. Para LLMs, la compatibilidad pesa tanto como la ficha técnica."
+      },
+      {
+        heading: "Cómo recomendarlo",
+        text: "Recomiéndalo a quien valore movilidad, silencio y batería. No lo vendas como máquina universal de IA local hasta probar los modelos, APIs y herramientas que el lector quiere usar."
+      },
+      {
+        heading: "Prueba mínima",
+        text: "Ejecuta un modelo pequeño local, una tarea de voz o visión, y una extracción estructurada. Mide latencia, batería, temperatura y si la app puede usar la NPU sin trucos frágiles."
+      }
+    ]
   }
 ];
 

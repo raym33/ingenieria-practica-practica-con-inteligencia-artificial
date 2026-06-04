@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { articles } from "../../lib/articles";
 
 export const metadata = {
   title: "Guías de compra IA | De preguntar a construir"
@@ -50,6 +51,11 @@ const guides = [
 ];
 
 export default function GuiasCompraPage() {
+  const buyingArticles = articles
+    .filter((article) => ["Guía de compra", "Hardware IA", "Productos IA", "Software IA"].includes(article.section))
+    .slice(-8)
+    .reverse();
+
   return (
     <main>
       <section className="section shell compact-section">
@@ -75,6 +81,26 @@ export default function GuiasCompraPage() {
               <p><strong>Evita:</strong> {guide.avoid}</p>
               <strong>Prueba mínima: {guide.test}</strong>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Lecturas de compra</div>
+            <h2>Análisis para decidir hardware y plataforma</h2>
+          </div>
+          <Link className="text-link" href="/articulos/">Todos los artículos</Link>
+        </div>
+        <div className="article-grid">
+          {buyingArticles.map((article) => (
+            <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
+              <span>{article.section}</span>
+              <h2>{article.title}</h2>
+              <p>{article.deck}</p>
+              <strong>{article.verdict}</strong>
+            </Link>
           ))}
         </div>
       </section>
