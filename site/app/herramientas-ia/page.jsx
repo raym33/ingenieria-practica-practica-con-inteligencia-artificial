@@ -36,7 +36,7 @@ const workflows = [
 ];
 
 export default function HerramientasIaPage() {
-  const toolArticles = articles.filter((article) => article.section === "Herramientas IA");
+  const toolArticles = articles.filter((article) => article.section === "Herramientas");
   return (
     <main>
       <section className="section shell compact-section">

@@ -94,7 +94,7 @@ const sources = [
 ];
 
 export default function ProductosPage() {
-  const productArticles = articles.filter((article) => ["Productos IA", "Guía de compra", "Comparativa", "Seguridad"].includes(article.section));
+  const productArticles = articles.filter((article) => ["Producto", "Guía de compra", "Comparativa", "Seguridad"].includes(article.section));
   return (
     <main>
       <section className="section shell compact-section">

@@ -116,7 +116,7 @@ export default function InferenciaPage() {
   const radar = getRadarItems();
   const models = getModelItems();
   const inferenceArticles = articles
-    .filter((article) => ["Inferencia local", "Software IA", "Hardware IA", "Productos IA", "Benchmarks"].includes(article.section))
+    .filter((article) => (article.tags || []).includes("Inferencia local"))
     .slice(-6)
     .reverse();
   const inferenceSignals = radar

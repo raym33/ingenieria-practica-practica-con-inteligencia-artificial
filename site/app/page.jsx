@@ -2,19 +2,11 @@ import Link from "next/link";
 import { ArticleCover } from "../components/ArticleCover";
 import { NewsletterForm } from "../components/NewsletterForm";
 import { articles } from "../lib/articles";
-import { getChapters, getRadarItems } from "../lib/content";
+import { getRadarItems } from "../lib/content";
 import { formatDate } from "../lib/format";
 
 export default function HomePage() {
-  const chapters = getChapters();
   const radarItems = getRadarItems();
-  const leadChapter = chapters.find((chapter) => chapter.file === "45-capitulo-44-roadmap-de-aprendizaje.md") || chapters[0];
-  const productionChapter = chapters.find((chapter) => chapter.file === "37-capitulo-36-despliegue-y-operacion.md");
-  const hardwareChapter = chapters.find((chapter) => chapter.file === "09-capitulo-8-hardware-real-para-ia-local.md");
-  const evalChapter = chapters.find((chapter) => chapter.file === "32-capitulo-31-evaluacion-de-sistemas-ia.md");
-  const costChapter = chapters.find((chapter) => chapter.file === "35-capitulo-34-costes-latencia-y-rendimiento.md");
-  const labChapter = chapters.find((chapter) => chapter.file === "31-capitulo-30-laboratorio-de-implementacion.md");
-  const featured = [productionChapter, hardwareChapter, evalChapter, costChapter, labChapter].filter(Boolean);
   const latestRadar = radarItems.slice(0, 5);
   const coverArticles = articles.slice(-6).reverse();
   const leadArticle = coverArticles[0];
@@ -68,13 +60,6 @@ export default function HomePage() {
       href: "/aprender/",
       links: [["Capítulos", "/biblioteca/"], ["Rutas", "/rutas/"], ["Biblioteca", "/biblioteca/"]]
     }
-  ];
-  const topicRows = [
-    { label: "Inferencia local", href: "/inferencia/", kicker: "hardware, runtimes, tokens/s" },
-    { label: "Modelos locales", href: "/leer/08-capitulo-7-modelos-locales/", kicker: "Ollama, LM Studio, MLX, GGUF" },
-    { label: "RAG real", href: "/leer/20-capitulo-19-rag-avanzado/", kicker: "retrieval, reranking, permisos" },
-    { label: "Agentes", href: "/leer/28-capitulo-27-arquitecturas-agenticas/", kicker: "tools, memoria, límites" },
-    { label: "Producción", href: "/leer/37-capitulo-36-despliegue-y-operacion/", kicker: "evals, trazas, rollback" }
   ];
 
   return (
@@ -224,103 +209,6 @@ export default function HomePage() {
             <p>Un resumen semanal para builders que quieren estar al día de IA, software y hardware sin vivir dentro del feed.</p>
           </div>
           <NewsletterForm />
-        </div>
-      </section>
-
-      <section className="section shell compact-section">
-        <div className="section-header">
-          <div>
-            <div className="eyebrow">Centro de estudio</div>
-            <h2>Libro, radar y banco de pruebas en un solo sitio</h2>
-          </div>
-          <Link className="text-link" href="/biblioteca/">Explorar biblioteca</Link>
-        </div>
-        <div className="stats">
-          <div className="stat"><strong>{chapters.length}</strong><span>capítulos</span></div>
-          <div className="stat"><strong>{radarItems.length}</strong><span>señales recientes</span></div>
-          <div className="stat"><strong>Labs</strong><span>código ejecutable</span></div>
-          <div className="stat"><strong>PDF</strong><span>versión descargable</span></div>
-        </div>
-      </section>
-
-      <section className="section shell compact-section">
-        <div className="section-header">
-          <div>
-            <div className="eyebrow">Selección editorial</div>
-            <h2>Portada, pruebas y criterio</h2>
-          </div>
-          <Link className="text-link" href="/revista/">Ver sumario</Link>
-        </div>
-        <div className="cover-teasers">
-          <article>
-            <span>Prueba</span>
-            <h3>Qué modelo local merece tu RAM</h3>
-            <p>El criterio no es el benchmark aislado: es latencia, memoria, calidad suficiente y caso de uso.</p>
-          </article>
-          <article>
-            <span>Stack</span>
-            <h3>Ollama, MLX, llama.cpp o vLLM</h3>
-            <p>La herramienta correcta depende de si estás explorando, midiendo o sirviendo usuarios concurrentes.</p>
-          </article>
-          <article>
-            <span>Comparativa</span>
-            <h3>RAG, agentes o workflow</h3>
-            <p>La mayoría de productos necesita menos autonomía y más arquitectura explícita.</p>
-          </article>
-        </div>
-      </section>
-
-      <section className="section shell">
-        <div className="front-grid">
-          <div>
-            <div className="section-header">
-              <div>
-                <div className="eyebrow">Guías destacadas</div>
-                <h2>Lo que un builder necesita esta semana</h2>
-              </div>
-            </div>
-            <div className="story-grid">
-              {featured.map((chapter) => (
-                <Link className="story-card" href={`/leer/${chapter.slug}/`} key={chapter.slug}>
-                  <span>{chapter.readingTime} min</span>
-                  <h3>{chapter.title}</h3>
-                  <p>{chapter.excerpt}</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-          <aside className="side-rail">
-            <div className="panel-heading">
-              <span>Secciones rápidas</span>
-            </div>
-            {topicRows.map((topic) => (
-              <Link className="topic-row" href={topic.href} key={topic.href}>
-                <strong>{topic.label}</strong>
-                <span>{topic.kicker}</span>
-              </Link>
-            ))}
-          </aside>
-        </div>
-      </section>
-
-      <section className="section shell">
-        <div className="section-header">
-          <div>
-            <div className="eyebrow">Rutas prácticas</div>
-            <h2>Aprende por objetivo, no por orden de índice</h2>
-          </div>
-          <Link className="text-link" href="/rutas/">Ver rutas</Link>
-        </div>
-        <div className="chapter-grid">
-          {chapters.slice(0, 6).map((chapter) => (
-            <Link className="chapter-card dense" href={`/leer/${chapter.slug}/`} key={chapter.slug}>
-              <div>
-                <h3>{chapter.title}</h3>
-                <p>{chapter.excerpt}</p>
-              </div>
-              <div className="meta-row"><span>{chapter.readingTime} min</span><span>Leer</span></div>
-            </Link>
-          ))}
         </div>
       </section>
     </main>
