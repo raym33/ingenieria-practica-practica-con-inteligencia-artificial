@@ -89,7 +89,14 @@ export default function HomePage() {
       </section>
 
       <section className="news-hero shell">
-        <article className="lead-story">
+        <article
+          className="lead-story"
+          style={leadArticle?.image ? {
+            backgroundImage: `linear-gradient(180deg, rgba(14,17,22,0.30), rgba(14,17,22,0.92)), url(${leadArticle.image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          } : undefined}
+        >
           <div className="story-label">Tema de portada</div>
           <h1>{leadArticle ? leadArticle.title : "La revista para builders que quieren estar al día sin tragarse el hype"}</h1>
           <p>
