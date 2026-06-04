@@ -21,12 +21,13 @@ export default function XIaPage() {
       <section className="section shell compact-section">
         <div className="section-header">
           <div>
-            <div className="eyebrow">Posts de X</div>
-            <h1>Señales tempranas de IA, agrupadas por utilidad</h1>
+            <div className="eyebrow">Radar · X</div>
+            <h1>Lo que se mueve en X</h1>
             <p className="section-lead">
-              X sirve como radar de campo: benchmarks, bugs, comandos, límites y discusiones. Aquí cada post se resume con contexto editorial para decidir si merece prueba, guía o seguimiento.
+              Un corte del <a className="text-link" href="/radar/">radar</a>: solo señales de X, agrupadas por tema (benchmarks, hardware, modelos, serving, agentes). Cada post se resume con contexto para decidir si merece prueba, guía o seguimiento.
             </p>
           </div>
+          <a className="button primary" href="/radar/">Ver radar completo</a>
         </div>
       </section>
 

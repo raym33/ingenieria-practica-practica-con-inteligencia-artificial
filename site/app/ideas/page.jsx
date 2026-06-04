@@ -81,10 +81,10 @@ export default function IdeasPage() {
       <section className="section shell compact-section">
         <div className="section-header">
           <div>
-            <div className="eyebrow">Ideas para construir</div>
-            <h1>Proyectos implementables con IDEs y agentes de IA</h1>
+            <div className="eyebrow">Construir · Ideas</div>
+            <h1>Ideas construibles para empezar este finde</h1>
             <p className="section-lead">
-              Ideas pensadas para lectores que usan Codex, Claude Code, Lovable, Cursor, Replit, OpenRouter o herramientas similares. Cada idea busca un problema real, un MVP y una vía de monetización.
+              Proyectos concretos para quien usa Codex, Claude Code, Lovable o Cursor: cada idea trae problema real, a quién sirve, stack y MVP. ¿Buscas el molde de negocio y qué herramienta usar? Pásate por <a className="text-link" href="/saas-ia/">Patrones de SaaS con IA</a>.
             </p>
           </div>
         </div>

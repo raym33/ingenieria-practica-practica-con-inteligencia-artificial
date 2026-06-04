@@ -59,10 +59,10 @@ export default function SaasIaPage() {
       <section className="section shell compact-section">
         <div className="section-header">
           <div>
-            <div className="eyebrow">SaaS con IA</div>
-            <h1>Ideas vendibles, patrones de producto y herramientas para construir</h1>
+            <div className="eyebrow">Construir · Negocio</div>
+            <h1>Patrones de SaaS con IA (y qué herramienta usar)</h1>
             <p className="section-lead">
-              Una sección para transformar señales técnicas en productos: MVP, stack, riesgo, monetización y prompts iniciales para agentes de código.
+              Los moldes que se repiten —copiloto vertical, automatización de backoffice, benchmark como producto— con su riesgo y las herramientas para construirlos. ¿Quieres ideas concretas para empezar? Mira <Link className="text-link" href="/ideas/">Ideas construibles</Link>.
             </p>
           </div>
         </div>
