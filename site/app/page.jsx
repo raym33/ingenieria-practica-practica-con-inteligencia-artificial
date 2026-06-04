@@ -91,6 +91,21 @@ export default function HomePage() {
             <strong>Hardware y software real</strong>
             <p>Mac, GPU, GGUF, MLX, vLLM, latencia y límites prácticos.</p>
           </Link>
+          <Link className="shelf-card accent-red" href="/productos/">
+            <span>Productos IA</span>
+            <strong>Comprar con criterio</strong>
+            <p>Microsoft, NVIDIA, Apple, Dell, Lenovo, Samsung y workstations.</p>
+          </Link>
+          <Link className="shelf-card accent-teal" href="/x-ia/">
+            <span>Posts de X</span>
+            <strong>Señales agrupadas</strong>
+            <p>Benchmarks, bugs, modelos, agentes y hardware con contexto.</p>
+          </Link>
+          <Link className="shelf-card accent-gold" href="/ideas/">
+            <span>Ideas</span>
+            <strong>Construir con IDEs IA</strong>
+            <p>MVPs para Codex, Claude Code, Lovable, OpenRouter y Cursor.</p>
+          </Link>
         </div>
       </section>
 
