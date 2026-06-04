@@ -595,6 +595,78 @@ export const articles = [
         text: "Pon un vatímetro (o usa tegrastats en Jetson), apunta el precio de tu kWh y cuenta solo los tokens de respuestas válidas. Coste por token = (vatios por horas por precio del kWh) dividido entre tokens útiles. Ese número, no los tok/s, te dice si comprar hardware sale a cuenta frente a pagar una API."
       }
     ]
+  },
+  {
+    slug: "claude-code-github-action-inyeccion-prompt-vuln",
+    publishedAt: "2026-06-04",
+    tags: ["Seguridad", "Agentes"],
+    section: "Seguridad",
+    title: "La vulnerabilidad de la GitHub Action de Claude Code: una issue podía robar tus credenciales",
+    deck: "Una inyección de prompt desde una issue maliciosa permitía escribir en el repositorio y filtrar los tokens OIDC del workflow. Anthropic lo corrigió en la v1.0.94; si la usas en CI, conviene auditar.",
+    verdict: "Si usas la Action de Claude Code —o cualquier agente con shell— en CI, actualiza a v1.0.94 o posterior y trata las issues y PRs externas como entrada no confiable. La lección no es 'Claude Code es inseguro', sino que un agente con shell en CI es superficie de ataque: limita permisos, secretos y comandos auto-aprobados.",
+    sources: [
+      ["GMO Flatt Security — análisis técnico (RyotaK)", "https://flatt.tech/research/posts/poisoning-claude-code-one-github-issue-to-break-the-supply-chain/"],
+      ["SecurityWeek — agentes vulnerables a inyección vía comentarios", "https://www.securityweek.com/claude-code-gemini-cli-github-copilot-agents-vulnerable-to-prompt-injection-via-comments/"],
+      ["Señal en X — @TheHackersNews", "https://x.com/TheHackersNews/status/2062559658175521227"]
+    ],
+    body: [
+      {
+        heading: "Qué pasó",
+        text: "El investigador RyotaK, de GMO Flatt Security, descubrió que la GitHub Action de Claude Code confiaba en cualquier actor cuyo nombre terminara en [bot], sin comprobar permisos reales. Como las GitHub Apps pueden crear issues en repositorios públicos usando solo un token de instalación, un atacante externo no autenticado podía saltarse ese control por completo."
+      },
+      {
+        heading: "Cómo se encadenaba el ataque",
+        text: "Con el control saltado, una issue con un falso mensaje de error servía de inyección de prompt para que el agente ejecutara comandos. Claude Code permite ciertos comandos (como cat y head) sin aprobación explícita, lo que dejaba leer /proc/self/environ y exponer ACTIONS_ID_TOKEN_REQUEST_TOKEN y su URL: las credenciales para pedir un token OIDC. Con ese token se podía escribir en repos que dependían del workflow. De un comentario a un ataque de cadena de suministro."
+      },
+      {
+        heading: "Por qué importa más allá de Claude Code",
+        text: "No es el fallo de un producto concreto: es el patrón de cualquier agente con shell en CI. Inyección de prompt, más comandos aparentemente inofensivos, más secretos en el entorno del job, igual a exfiltración. Gemini CLI y GitHub Copilot han tenido variantes del mismo problema vía comentarios."
+      },
+      {
+        heading: "Qué arregló la v1.0.94",
+        text: "Anthropic añadió una comprobación de actor humano (checkHumanActor) en modo agente, desactivó por defecto el resumen del run, limpió las variables de entorno en los procesos hijos que lanza el agente, incorporó un wrapper de gh que valida argumentos y bloquea URLs de exfiltración, e hizo que se ignoren las issues y comentarios editados después de disparar el workflow. El investigador puntuó la severidad como alta (CVSS v4.0 7,8)."
+      },
+      {
+        heading: "Qué hacer tú",
+        text: "Actualiza a v1.0.94 o posterior. Trata toda issue o PR de fuera como no confiable. Da el mínimo privilegio al GITHUB_TOKEN, no metas secretos jugosos en el entorno del job, y revisa qué comandos auto-aprueba tu agente. Si automatizas con agentes en CI, asume que el prompt es código que un extraño puede influir."
+      }
+    ]
+  },
+  {
+    slug: "mlxcel-motor-inferencia-rust-mlx-apple-silicon",
+    publishedAt: "2026-06-04",
+    tags: ["Apple Silicon", "MLX", "Inferencia local", "Modelos locales"],
+    section: "Análisis",
+    title: "mlxcel: un motor de inferencia en Rust sobre MLX para Apple Silicon, con benchmarks honestos",
+    deck: "Un binario sin Python, compatible con la API de OpenAI, que iguala a mlx-lm y supera a Ollama en decode sobre un M1 Max. Su autor también publica dónde todavía no brilla.",
+    verdict: "Prometedor para servir modelos en Apple Silicon sin entorno Python: iguala a mlx-lm (a un ~6%) y va ~1,3x sobre Ollama en decode. Pero es v0.1.0 y su KV-cache 'TurboQuant' penaliza fuerte en M1 (parece optimizado para chips M más nuevos). Pruébalo como serving ligero, no como apuesta de producción todavía.",
+    sources: [
+      ["Kubesimplify — mlxcel probado en M1 Max (análisis y benchmarks)", "https://blog.kubesimplify.com/mlxcel-rust-native-inference-engine-tested-on-m1-max"],
+      ["MLX — framework de Apple", "https://github.com/ml-explore/mlx"],
+      ["Señal en X — @kubesimplify", "https://x.com/kubesimplify/status/2062531594519499152"]
+    ],
+    body: [
+      {
+        heading: "Qué es",
+        text: "mlxcel es un motor de inferencia nativo en Rust que envuelve el framework MLX de Apple mediante FFI. Llegó como v0.1.0 (28 de mayo de 2026) y ofrece una CLI y un servidor HTTP compatible con OpenAI, ambos como binarios compilados: sin entorno de Python. Se instala con brew, sin más dependencias que el runtime de Metal."
+      },
+      {
+        heading: "Los números, con fuente y en M1 Max",
+        text: "En decode con Llama 3.2 3B (4-bit): mlxcel 63,33 tok/s, mlx-lm 67,63 y Ollama 48,73. Con Qwen 2.5 7B (4-bit): 31,33 / 31,80 / 24,23. Es decir, a la par de mlx-lm (dentro de un 6%) y alrededor de 1,3x sobre Ollama. En prefill con prompts largos, los tres rondan 420-440 tok/s: paridad. Son cifras del autor, medidas y publicadas, no un tweet suelto."
+      },
+      {
+        heading: "Lo que su propio autor admite",
+        text: "El KV-cache cuantizado 'TurboQuant' penaliza 3,6x en M1 Max (de 63 a 17 tok/s en la variante más segura): los kernels Metal parecen optimizados para la generación M5, no para M1. Además, al ser v0.1.0, la inferencia distribuida está a medio validar y el speculative decoding solo cubre dos pares de modelos. Que el autor documente sus límites con números es, en sí, una buena señal editorial."
+      },
+      {
+        heading: "Por qué importa para builders en Mac",
+        text: "Un serving compatible con OpenAI, escrito en Rust, sobre MLX y sin Python, baja la fricción de montar inferencia local en un Mac. Ocupa el hueco entre mlx-lm (una librería que integras en código) y Ollama (comodidad pero menos control), ofreciendo binarios listos y rendimiento competitivo."
+      },
+      {
+        heading: "Cómo probarlo",
+        text: "Instálalo (brew tap lablup/tap && brew install mlxcel), arranca mlxcel-server y mide tok/s con tu modelo y cuantización reales. Evita TurboQuant en M1/M2 hasta que sus kernels maduren. Trátalo como un experimento serio para serving local en Apple Silicon, no como reemplazo de producción de mlx-lm u Ollama todavía."
+      }
+    ]
   }
 ];
 

@@ -1,0 +1,17 @@
+{
+  "rawId": "99bc5684526a33b4",
+  "title": "Pi Codex sube el timeout de procesos largos de 30s a 300s para reducir llamadas de herramienta de seguimiento",
+  "url": "https://x.com/Howaboua/status/2062556412669214780",
+  "publishedAt": "2026-06-04",
+  "summary": "Cambio pequeño pero práctico en Pi Codex: cuando el agente envía un poll vacío con write_sdtin, puede correr hasta 300 segundos (antes 30s). Reduce llamadas repetidas durante operaciones largas como builds. Instalación vía pi install npm:@howaboua/pi-codex-conversion.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Inferencia local"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

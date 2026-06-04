@@ -1,0 +1,17 @@
+{
+  "rawId": "f3a2c6c60ddc4f1f",
+  "title": "Ejemplo real de inyección de prompt + riesgo de cadena de suministro: Cline comprometido 8 horas, empujó OpenClaw a 170 paquetes npm vía RCE en postinstall",
+  "url": "https://x.com/keef_ai/status/2062551883923800297",
+  "publishedAt": "2026-06-04",
+  "summary": "Reporte de compromiso de toolchain de agentes: Cline explotado durante ocho horas; una inyección de prompt sorteó protecciones de path traversal llevando a RCE y push no autorizado de OpenClaw en 170 paquetes npm vía script postinstall. Subraya riesgos en herramientas de agentes y acciones irreversibles. Señal sin fuente primaria verificada.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Seguridad",
+    "Agentes"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

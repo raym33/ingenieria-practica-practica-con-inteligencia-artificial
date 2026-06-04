@@ -1,0 +1,19 @@
+{
+  "rawId": "7e95252277611c62",
+  "title": "Nuevo motor de inferencia mlxcel, nativo en Rust sobre MLX para Apple Silicon; análisis con benchmarks reales en M1 Max y comparación con mlx-lm/Ollama",
+  "url": "https://x.com/kubesimplify/status/2062531594519499152",
+  "publishedAt": "2026-06-04",
+  "summary": "mlxcel es un motor de inferencia nativo en Rust sobre el stack MLX de Apple. Incluye análisis de arquitectura, datos reales de rendimiento en M1 Max, comparación directa con mlx-lm y Ollama, y evaluación de dónde funciona bien TurboQuant y dónde no. Útil para optimización local y serving compatible con OpenAI en Apple Silicon. Fuente primaria: https://blog.kubesimplify.com/mlxcel-rust-native-inference-engine-tested-on-m1-max",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Apple Silicon",
+    "MLX",
+    "Inferencia local",
+    "Modelos locales"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

@@ -1,0 +1,17 @@
+{
+  "rawId": "ff842f406fc30efc",
+  "title": "Herramienta de evaluación automática de RAG: compara 9 estrategias de chunking/retrieval/reranking con Q&A dorado auto-generado desde PDFs",
+  "url": "https://x.com/dhruv_garg9/status/2062493123734041076",
+  "publishedAt": "2026-06-04",
+  "summary": "Nueva herramienta que ingiere cualquier PDF, autogenera un set de Q&A dorado, compara combinaciones de 9 estrategias de chunking por retrieval (incluyendo HyDE y Cohere Rerank), puntúa respuestas contra ground truth y selecciona automáticamente el pipeline ganador. Orientada a identificar qué funciona mejor para documentos concretos en RAG de producción.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "RAG",
+    "Inferencia local"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

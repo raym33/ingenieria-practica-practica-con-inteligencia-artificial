@@ -1,0 +1,17 @@
+{
+  "rawId": "c08d2ce8d91192c6",
+  "title": "Vulnerabilidad en la GitHub Action de Claude Code permite inyección de prompt para escribir en el repo y filtrar credenciales OIDC; corregida en v1.0.94",
+  "url": "https://x.com/TheHackersNews/status/2062559658175521227",
+  "publishedAt": "2026-06-04",
+  "summary": "Una issue de GitHub maliciosa en modo agente podía secuestrar la Action de Claude Code, convirtiendo una inyección de prompt en acceso de escritura al repositorio y filtrando credenciales del workflow que un atacante podía reutilizar. El bypass confiaba en actores tipo bot. Corregido en v1.0.94; se recomienda auditar workflows. Fuente primaria: informe de The Hacker News.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Seguridad",
+    "Agentes"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

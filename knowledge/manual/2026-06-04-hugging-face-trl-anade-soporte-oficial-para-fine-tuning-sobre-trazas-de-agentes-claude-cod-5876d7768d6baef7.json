@@ -1,0 +1,17 @@
+{
+  "rawId": "1c51d090f17d0887",
+  "title": "Hugging Face TRL añade soporte oficial para fine-tuning sobre trazas de agentes (Claude Code, Codex, OpenClaw, Pi)",
+  "url": "https://x.com/adithya_s_k/status/2062553572433080797",
+  "publishedAt": "2026-06-04",
+  "summary": "trl ya permite entrenar modelos agénticos especializados directamente sobre trazas de agentes (Claude Code, Codex, OpenClaw, Pi y más). Usa datasets v5; eliges trazas locales, sintéticas o de la comunidad. Acerca un stack estándar para fine-tuning de modelos agénticos. Señal del ecosistema Hugging Face.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Modelos locales"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}
