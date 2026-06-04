@@ -238,6 +238,128 @@ export const articles = [
         text: "Lovable puede ser útil para enseñar una idea rápido, pero necesita especificación clara. Si el flujo no está pensado, solo acelera la creación de una demo confusa."
       }
     ]
+  },
+  {
+    slug: "ollama-mlx-apple-silicon-cambio-real",
+    section: "Inferencia local",
+    title: "Ollama con MLX en Apple Silicon: por qué importa para builders",
+    deck: "La IA local en Mac deja de ser solo comodidad: MLX, memoria unificada y servidores compatibles con OpenAI están convirtiendo Apple Silicon en un laboratorio serio.",
+    verdict: "Mac es cada vez mejor para laboratorio privado y demos técnicas. Para producción multiusuario, exige medición de concurrencia, p95 y memoria.",
+    sources: [
+      ["Ollama MLX preview", "https://ollama.com/blog/mlx"],
+      ["Docker Model Runner vLLM en macOS", "https://www.docker.com/blog/docker-model-runner-vllm-metal-macos/"],
+      ["vLLM-MLX paper", "https://arxiv.org/abs/2601.19139"],
+      ["PyTorch ExecuTorch MLX delegate", "https://pytorch.org/blog/running-pytorch-models-on-apple-silicon-gpus-with-the-executorch-mlx-delegate/"]
+    ],
+    body: [
+      {
+        heading: "Qué cambió",
+        text: "Ollama, Docker, PyTorch y proyectos de serving están moviendo más inferencia hacia MLX y Metal. Eso reduce la distancia entre una demo cómoda en Mac y un endpoint local más serio para desarrollo, RAG privado o agentes personales."
+      },
+      {
+        heading: "Por qué no basta con tokens por segundo",
+        text: "La mejora de backend puede subir decode, pero el producto se decide por TTFT, prefill, memoria libre, contexto útil, estabilidad del servidor y facilidad de repetir la prueba en otro equipo."
+      },
+      {
+        heading: "Dónde encaja",
+        text: "Encaja muy bien para consultores, builders y pymes que quieren datos locales, ruido bajo y despliegues pequeños. También encaja para comparar modelos antes de pagar cloud. No encaja como sustituto automático de un servidor CUDA con batching y usuarios concurrentes."
+      },
+      {
+        heading: "Prueba editorial",
+        text: "Publica tres fichas: prompt corto, RAG con contexto real y dos usuarios concurrentes. Si la máquina mantiene TTFT razonable, RAM estable y calidad suficiente, entonces la recomendación empieza a ser defendible."
+      }
+    ]
+  },
+  {
+    slug: "docker-vllm-macos-laboratorio-serving",
+    section: "Software IA",
+    title: "Docker Model Runner con vLLM en macOS: el laboratorio se parece más a producción",
+    deck: "Cuando el entorno local empieza a hablar OpenAI-compatible, usar contenedores y medir serving, el salto de demo a producto se vuelve menos artesanal.",
+    verdict: "Úsalo para reproducibilidad y pruebas de API. No confundas compatibilidad local con capacidad real de servir carga de producción.",
+    sources: [
+      ["Docker Model Runner vLLM en macOS", "https://www.docker.com/blog/docker-model-runner-vllm-metal-macos/"],
+      ["vLLM docs", "https://docs.vllm.ai/"],
+      ["OpenAI-compatible APIs en llama.cpp", "https://github.com/ggml-org/llama.cpp"]
+    ],
+    body: [
+      {
+        heading: "La señal importante",
+        text: "Docker Model Runner llevando vLLM/Metal al Mac apunta a una tendencia: el entorno local ya no es solo una app de chat. Se está convirtiendo en una forma de probar servidores de modelos con API, aislamiento y contratos reproducibles."
+      },
+      {
+        heading: "Qué gana un builder",
+        text: "Gana una ruta más clara para desarrollar contra endpoints OpenAI-compatible, probar cambios de modelo, mantener configuraciones versionadas y enseñar demos sin depender siempre de una cuenta cloud."
+      },
+      {
+        heading: "Qué hay que medir",
+        text: "La medición debe incluir arranque, cold start, TTFT, p95, memoria, estabilidad tras varias requests y comportamiento con contexto largo. El contenedor ordena el entorno, pero no elimina los límites físicos del Mac."
+      },
+      {
+        heading: "Veredicto práctico",
+        text: "Es una pieza muy interesante para laboratorios, formación y prototipos de SaaS. En producción, sigue mandando la misma pregunta: cuántos usuarios, qué SLA, qué coste por respuesta válida y quién opera el sistema."
+      }
+    ]
+  },
+  {
+    slug: "amd-rocm-vulkan-llamacpp-inferencia",
+    section: "Hardware IA",
+    title: "AMD, ROCm, Vulkan y llama.cpp: mucho potencial, pero exige pruebas reales",
+    deck: "Las GPUs AMD pueden ser atractivas para IA local, pero el backend, los drivers y el soporte de cada modelo cambian mucho la experiencia.",
+    verdict: "AMD puede ser buena compra si tu stack exacto funciona. Antes de recomendar, prueba ROCm y Vulkan con el modelo, contexto y sistema operativo reales.",
+    sources: [
+      ["llama.cpp GitHub", "https://github.com/ggml-org/llama.cpp"],
+      ["llama.cpp ROCm discussion", "https://github.com/ggml-org/llama.cpp/discussions"],
+      ["LocalLLaMA multi-GPU ROCm discussion", "https://www.reddit.com/r/LocalLLaMA/comments/1sckfqf/unable_to_run_llamacpp_with_multiple_gpus_on_rocm/"],
+      ["LocalLLaMA tensor parallelism discussion", "https://www.reddit.com/r/LocalLLaMA/comments/1qx0kzb/pr_to_implemt_tensor_parallelism_in_llamacpp/"]
+    ],
+    body: [
+      {
+        heading: "La promesa",
+        text: "AMD ofrece VRAM atractiva por precio y un camino cada vez más serio con ROCm, Vulkan y llama.cpp. Para builders con presupuesto ajustado, eso merece atención."
+      },
+      {
+        heading: "El problema",
+        text: "El soporte no se resume en 'tiene VRAM'. Cambian drivers, kernels, backend, formato del modelo, flags, multi-GPU y estabilidad. Una RX que va bien con Vulkan puede comportarse distinto con ROCm."
+      },
+      {
+        heading: "Cómo evaluarlo",
+        text: "Mide con el modelo exacto que quieres usar, en el sistema operativo objetivo, con contexto real y al menos veinte requests. Anota errores, salida corrupta, throttling, consumo y si el runtime permite reproducir la receta."
+      },
+      {
+        heading: "Regla de compra",
+        text: "AMD es interesante si te gusta medir y puedes aceptar fricción. Para un cliente que necesita soporte predecible, NVIDIA sigue siendo más fácil de defender."
+      }
+    ]
+  },
+  {
+    slug: "rtx-spark-pc-agentico-que-significa",
+    section: "Productos IA",
+    title: "RTX Spark y el PC agentico: qué significa para comprar hardware",
+    deck: "La nueva narrativa de PCs con superchips IA mezcla Windows, agentes, memoria unificada y GPU Blackwell. La parte útil es separar plataforma prometedora de compra necesaria.",
+    verdict: "Interesa como señal de dirección del mercado. Para comprar hoy, exige disponibilidad, precio, benchmarks reproducibles y compatibilidad de runtimes.",
+    sources: [
+      ["Tom's Hardware RTX Spark Computex 2026", "https://www.tomshardware.com/laptops/nvidia-unveils-rtx-spark-superchip-at-computex-2026-new-platform-promises-to-turn-windows-into-an-agentic-ai-os-with-arm-cpu-blackwell-gpu-and-128gb-unified-memory"],
+      ["NVIDIA RTX PRO Workstations", "https://www.nvidia.com/en-us/products/workstations/"],
+      ["Microsoft Copilot+ PC developer guide", "https://learn.microsoft.com/en-us/windows/ai/npu-devices/"]
+    ],
+    body: [
+      {
+        heading: "La tesis",
+        text: "El PC se está vendiendo como plataforma agentica: más memoria, aceleradores locales, integración con Windows y capacidad de ejecutar modelos cerca del usuario. Es una dirección importante, aunque todavía necesita pruebas independientes."
+      },
+      {
+        heading: "Qué debe mirar el lector",
+        text: "No basta con TOPS ni con la palabra agente. Mira memoria utilizable, ancho de banda, VRAM o memoria unificada, compatibilidad de vLLM/llama.cpp/Ollama, consumo, ruido, drivers y precio total."
+      },
+      {
+        heading: "Dónde puede cambiar el mercado",
+        text: "Si estas plataformas llegan con 128 GB de memoria unificada, GPU moderna y buen soporte de runtimes, podrían ocupar el hueco entre portátil AI PC y workstation cara. Ese hueco es exactamente donde viven muchos builders."
+      },
+      {
+        heading: "Veredicto editorial",
+        text: "Es noticia de portada, no recomendación cerrada. Hay que seguirla, pedir benchmarks y compararla contra Mac Studio, RTX PRO y PCs con GPU tradicional antes de convertirla en guía de compra."
+      }
+    ]
   }
 ];
 

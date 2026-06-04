@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { articles } from "../../lib/articles";
 import { getChapters, getModelItems, getRadarItems } from "../../lib/content";
 
 export const metadata = {
@@ -18,6 +19,10 @@ export default function RevistaPage() {
     chapters.find((chapter) => chapter.file === "37-capitulo-36-despliegue-y-operacion.md")
   ].filter(Boolean);
   const lab = chapters.find((chapter) => chapter.file === "31-capitulo-30-laboratorio-de-implementacion.md");
+  const magazineArticles = articles
+    .filter((article) => ["Inferencia local", "Software IA", "Hardware IA", "Productos IA", "Benchmarks", "SaaS IA"].includes(article.section))
+    .slice(-6)
+    .reverse();
 
   return (
     <main>
@@ -60,6 +65,26 @@ export default function RevistaPage() {
           <MagazineBlock title="Radar" items={radar.slice(0, 5)} href="/radar/" />
           <MagazineBlock title="Modelos" items={models.slice(0, 5)} href="/modelos/" />
           <MagazineBlock title="Taller" items={lab ? [lab, ...features.slice(0, 4)] : features} chapterMode href="/labs/" />
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Dossier</div>
+            <h2>Inferencia, hardware y software que merece portada</h2>
+          </div>
+          <Link className="text-link" href="/articulos/">Leer artículos</Link>
+        </div>
+        <div className="article-grid">
+          {magazineArticles.map((article) => (
+            <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
+              <span>{article.section}</span>
+              <h2>{article.title}</h2>
+              <p>{article.deck}</p>
+              <strong>{article.verdict}</strong>
+            </Link>
+          ))}
         </div>
       </section>
 

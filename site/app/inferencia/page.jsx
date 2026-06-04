@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { articles } from "../../lib/articles";
 import { getModelItems, getRadarItems } from "../../lib/content";
 
 export const metadata = {
@@ -114,6 +115,10 @@ const fieldNotes = [
 export default function InferenciaPage() {
   const radar = getRadarItems();
   const models = getModelItems();
+  const inferenceArticles = articles
+    .filter((article) => ["Inferencia local", "Software IA", "Hardware IA", "Productos IA", "Benchmarks"].includes(article.section))
+    .slice(-6)
+    .reverse();
   const inferenceSignals = radar
     .filter((item) => hasAny(item, ["inferencia", "hardware", "modelos-locales", "gguf", "mlx", "cuantizacion"]))
     .slice(0, 8);
@@ -215,6 +220,26 @@ export default function InferenciaPage() {
               <h3>{title}</h3>
               <p>{verify}</p>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Análisis de revista</div>
+            <h2>Lecturas para decidir stack de inferencia</h2>
+          </div>
+          <Link className="text-link" href="/articulos/">Todos los artículos</Link>
+        </div>
+        <div className="article-grid">
+          {inferenceArticles.map((article) => (
+            <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
+              <span>{article.section}</span>
+              <h2>{article.title}</h2>
+              <p>{article.deck}</p>
+              <strong>{article.verdict}</strong>
+            </Link>
           ))}
         </div>
       </section>
