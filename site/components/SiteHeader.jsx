@@ -25,6 +25,7 @@ export function SiteHeader() {
       <nav className="section-nav" aria-label="Principal">
         <div className="shell nav-links">
           <Link href="/revista/">Revista</Link>
+          <Link href="/ediciones/">Ediciones</Link>
           <Link href="/radar/">Últimas señales</Link>
           <Link href="/modelos/">Modelos</Link>
           <Link href="/inferencia/">Inferencia</Link>

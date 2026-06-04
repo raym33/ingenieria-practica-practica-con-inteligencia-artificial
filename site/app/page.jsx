@@ -74,7 +74,7 @@ export default function HomePage() {
           <span>{issueDate}</span>
         </div>
         <p>Radar, pruebas y guías para decidir qué merece entrar en tu stack de IA.</p>
-        <Link href="/revista/">Abrir edición</Link>
+        <Link href="/ediciones/">Ver ediciones</Link>
       </section>
 
       <section className="news-hero shell">

@@ -59,7 +59,7 @@ export default function RevistaPage() {
             <div className="eyebrow">Sumario editorial</div>
             <h2>Qué merece tu atención ahora</h2>
           </div>
-          <Link className="text-link" href="/radar/">Ver radar completo</Link>
+          <Link className="text-link" href="/ediciones/">Archivo de ediciones</Link>
         </div>
         <div className="magazine-columns">
           <MagazineBlock title="Radar" items={radar.slice(0, 5)} href="/radar/" />
@@ -98,7 +98,7 @@ export default function RevistaPage() {
             La web funciona como kiosko diario. El PDF funciona como número coleccionable. El repositorio conserva versiones,
             fuentes, propuestas editoriales y labs para que cada edición pueda auditarse.
           </p>
-          <Link className="button primary" href="/descargas/">Descargar edición</Link>
+          <Link className="button primary" href="/ediciones/">Ver ediciones</Link>
         </div>
       </section>
     </main>
