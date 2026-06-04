@@ -1,0 +1,19 @@
+{
+  "rawId": "07201659603c9401",
+  "title": "Gemma 4 12B se ejecuta en laptops con 16GB VRAM y reportes de 8GB RAM con soporte GGUF en Ollama y LM Studio",
+  "url": "https://x.com/Krongggggg/status/2062493778414653940",
+  "publishedAt": "2026-06-04",
+  "summary": "Google liberó Gemma 4 12B (Apache 2.0). Ejecutable en laptop 16GB VRAM/unified memory; reportes de funcionamiento en 8GB RAM. Unsloth AI y LM Studio agregaron GGUF el mismo día. Soporte inmediato en Ollama, LM Studio, llama.cpp, MLX, vLLM. Datos literales: 16GB VRAM, 8GB RAM posible, modelo Gemma 4 12B. No hay fuente primaria directa en post.",
+  "notes": "Destino sugerido: /modelos",
+  "tags": [
+    "x",
+    "grok",
+    "Modelos locales",
+    "Ollama",
+    "Benchmarks",
+    "Hardware"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

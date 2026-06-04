@@ -1,0 +1,19 @@
+{
+  "rawId": "be6e4f784d50c413",
+  "title": "Holo-3.1-35B-A3B-NVFP4 alcanza 75.40 tokens/s (c=1) y casi 200 tokens/s (c=10) con vLLM en NVIDIA DGX Spark",
+  "url": "https://x.com/spark_arena/status/2062181904116596860",
+  "publishedAt": "2026-06-03",
+  "summary": "Benchmark en NVIDIA DGX Spark con vLLM: Hcompany/Holo-3.1-35B-A3B-NVFP4 logra 75.40 tokens/sec en c=1 y casi 200 tokens per second en c=10 para text generation. Fuente primaria: https://spark-arena.com/benchmark/2bf2209e-0827-4de6-9df9-8ad70ae1b618. Datos literales: modelo específico, hardware DGX Spark, 75.40 tok/s c=1.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "NVIDIA RTX",
+    "vLLM",
+    "Benchmarks",
+    "Inferencia local"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

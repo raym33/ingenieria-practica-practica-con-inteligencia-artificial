@@ -482,6 +482,119 @@ export const articles = [
         text: "Ejecuta un modelo pequeño local, una tarea de voz o visión, y una extracción estructurada. Mide latencia, batería, temperatura y si la app puede usar la NPU sin trucos frágiles."
       }
     ]
+  },
+  {
+    slug: "multi-rtx-3090-tensor-parallel-benchmarks-x",
+    publishedAt: "2026-06-04",
+    tags: ["NVIDIA RTX", "llama.cpp", "vLLM", "Inferencia local", "Benchmarks"],
+    section: "Benchmark",
+    title: "Multi-RTX 3090 y Tensor Parallel: lo que dicen los benchmarks de X (y cómo verificarlo)",
+    deck: "Builders están sumando 3090 usadas y activando Tensor Parallel para servir modelos de 27-35B en local. Las cifras circulan en X sin fuente; la función de llama.cpp, en cambio, sí es real y está documentada.",
+    verdict: "La señal de fondo es sólida: Tensor Parallel en llama.cpp existe y suma la VRAM de varias GPUs. Las velocidades concretas vienen de X y sin verificar: úsalas como punto de partida para tu propia prueba, nunca como garantía. Mide TTFT, decode y vigila el cuello de PCIe.",
+    sources: [
+      ["llama.cpp — documentación multi-GPU (Tensor Parallel)", "https://github.com/ggml-org/llama.cpp/blob/master/docs/multi-gpu.md"],
+      ["llama.cpp — releases", "https://github.com/ggml-org/llama.cpp/releases"],
+      ["Señal en X — @sakurayukiai (sin verificar)", "https://x.com/sakurayukiai/status/2062505654430859303"],
+      ["Señal en X — @MatulaWojtek (sin verificar)", "https://x.com/MatulaWojtek/status/2062479026455736715"],
+      ["Señal en X — @geldeki (sin verificar)", "https://x.com/geldeki/status/2060696839859413412"]
+    ],
+    body: [
+      {
+        heading: "Qué se está reportando en X",
+        text: "Varios builders publican números altos exprimiendo 3090 de segunda mano. Uno reporta 44,7 tok/s de decode con 250k de contexto combinando una 3090 y una 3080 Ti. Otro, 1298 tok/s de prompt y 76 tok/s de generación con un Qwen 27B Q5 en tres 3090 (Tensor Parallel y MTP activados). Un tercero, con dos 3090 en vLLM, pasa de unos 95 tokens/s en petición única a unos 268 en concurrencia 4. Son cifras llamativas, pero ninguna trae fuente reproducible: son capturas de pantalla."
+      },
+      {
+        heading: "La novedad técnica sí es verificable",
+        text: "Más allá de los tweets, la pieza real es que llama.cpp incorporó Tensor Parallel (build b8738, abril de 2026): en lugar de repartir capas por GPU, divide cada operación entre todas y las mantiene ocupadas en cada token, con mejoras de 3-4x sobre el reparto por capas. Un matiz importante: alguna señal lo da como 'solo CUDA', pero la documentación oficial lo describe como backend-agnóstico (NVIDIA, AMD y Apple Silicon). Cuando el tweet y los docs no coinciden, manda el doc."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "Tres 3090 usadas suman 72 GB de VRAM por una fracción de lo que cuesta una GPU profesional. Con Tensor Parallel, eso habilita servir modelos de 27-35B cuantizados en casa, con throughput que sube al añadir concurrencia. Es la diferencia entre 'cabe el modelo' y 'puedo servir a varios a la vez'."
+      },
+      {
+        heading: "Los límites que nadie tuitea",
+        text: "El cuello de PCIe en placas de consumo penaliza la comunicación entre GPUs; en vLLM, las dimensiones del modelo deben ser divisibles por el número de GPUs (por eso una de las pruebas 'no arranca en 3'); en llama.cpp, la cuantización de KV cache aún no está soportada con Tensor Parallel y el soporte de MoE es limitado. Nada de esto aparece en las cifras de portada."
+      },
+      {
+        heading: "Cómo verificarlo tú",
+        text: "Coge tu modelo, tu cuantización y tu contexto reales. Mide TTFT y tok/s de decode, compara reparto por capas frente a Tensor Parallel, y observa la utilización por GPU (nvidia-smi) y el tráfico PCIe. Si la concurrencia es tu caso, mide a 1, 2 y 4 peticiones. Solo entonces sabrás si esos números aplican a tu máquina."
+      }
+    ]
+  },
+  {
+    slug: "gemma-4-12b-modelo-local-gguf-dia-1",
+    publishedAt: "2026-06-04",
+    tags: ["Modelos locales", "Ollama", "MLX", "Benchmarks"],
+    section: "Modelos",
+    title: "Gemma 4 12B: el modelo local de la semana, con GGUF el día 1",
+    deck: "Google libera Gemma 4 12B (Apache 2.0, multimodal sin encoder, 256K de contexto) y el ecosistema local lo soporta desde el primer día. Qué hace falta para correrlo y qué medir antes de adoptarlo.",
+    verdict: "Candidato local de referencia por licencia permisiva y soporte day-0. El '8 GB de RAM' es el mínimo cuantizado, no la experiencia recomendada: cuenta con 16 GB de VRAM o memoria unificada y mide calidad real en tu caso. Las velocidades que circulan en X van sin hardware claro: orientativas, no comparables.",
+    sources: [
+      ["Google AI — documentación de Gemma 4", "https://ai.google.dev/gemma/docs/core"],
+      ["Hugging Face — google/gemma-4-12B", "https://huggingface.co/google/gemma-4-12B"],
+      ["Hugging Face — unsloth/gemma-4-12b-it-GGUF", "https://huggingface.co/unsloth/gemma-4-12b-it-GGUF"],
+      ["Señal en X — @Krongggggg (sin verificar)", "https://x.com/Krongggggg/status/2062493778414653940"],
+      ["Señal en X — @_LEFBE, benchmark (sin verificar)", "https://x.com/_LEFBE/status/2062487987657548256"]
+    ],
+    body: [
+      {
+        heading: "Qué ha pasado",
+        text: "Google publicó Gemma 4 12B el 3 de junio de 2026 bajo licencia Apache 2.0. Es multimodal nativo (texto, imagen, audio y vídeo), con una arquitectura sin encoder separado y ventana de contexto de 256K. Lo relevante para builders no es solo el modelo: es que llegó con soporte del ecosistema local desde el minuto uno."
+      },
+      {
+        heading: "Por qué importa",
+        text: "Apache 2.0 significa uso comercial sin ataduras. Y el soporte day-0 es real: Unsloth y LM Studio publicaron cuantizaciones GGUF el mismo día, y funciona en Ollama, llama.cpp, MLX y vLLM. Un modelo abierto, multimodal y permisivo que corre en una laptop cambia lo que una pyme técnica puede montar sin depender de la nube."
+      },
+      {
+        heading: "Requisitos reales frente al hype",
+        text: "La cifra honesta es 16 GB de VRAM o memoria unificada para una experiencia cómoda. Los 8 GB que circulan son posibles con cuantización agresiva (GPTQ, AWQ o GGUF), a costa de calidad y contexto. 'Corre en 8 GB' no es lo mismo que 'rinde bien en 8 GB'."
+      },
+      {
+        heading: "Rendimiento reportado, con cautela",
+        text: "En X aparecen números como 51 t/s para gemma-4-12B-it-GGUF, pero sin especificar hardware: sirven de orientación, no de comparación. La velocidad de un 12B depende tanto de la GPU y la cuantización como del propio modelo."
+      },
+      {
+        heading: "Cómo probarlo",
+        text: "Descárgalo con Ollama o LM Studio (GGUF) o vía MLX en Apple Silicon, y mídelo en tu tarea real: TTFT, tok/s, RAM usada y —si te interesa lo multimodal— calidad en imagen y audio. Compáralo contra el modelo que ya usas antes de migrar."
+      }
+    ]
+  },
+  {
+    slug: "coste-eficiencia-inferencia-local-tokens-por-julio",
+    publishedAt: "2026-06-03",
+    tags: ["Inferencia local", "Benchmarks", "Hardware", "Compra"],
+    section: "Análisis",
+    title: "Tokens por julio y coste por token: la métrica de inferencia local que casi nadie mira",
+    deck: "Más allá de los tok/s de portada, lo que decide si la IA local sale a cuenta es la energía que consume y el coste por token. Tres señales recientes lo ponen sobre la mesa.",
+    verdict: "Los tok/s venden, pero tok/J y coste por token deciden. Si vas a servir en local de forma sostenida, mide consumo (con tegrastats o un vatímetro) y coste por respuesta válida, no solo velocidad pico. Las cifras de X son dirección útil, no factura.",
+    sources: [
+      ["spark-arena — benchmark Holo-3.1-35B en DGX Spark", "https://spark-arena.com/benchmark/2bf2209e-0827-4de6-9df9-8ad70ae1b618"],
+      ["Señal en X — @YuvrajS9886, metodología tok/J (sin verificar)", "https://x.com/YuvrajS9886/status/2062129348677976369"],
+      ["Señal en X — @zeroclaw_build, coste/token (sin verificar)", "https://x.com/zeroclaw_build/status/2062505920064598338"],
+      ["Señal en X — @spark_arena (DGX Spark)", "https://x.com/spark_arena/status/2062181904116596860"]
+    ],
+    body: [
+      {
+        heading: "Por qué tok/s no basta",
+        text: "La velocidad pico es la métrica fácil de tuitear, pero no dice cuánto cuesta operar un modelo en local de forma continua. Para eso hacen falta dos números que casi nadie publica: tokens por julio (eficiencia energética) y coste por token (la factura real)."
+      },
+      {
+        heading: "tok/J: el benchmark de Jetson",
+        text: "Una señal interesante propone medir output tok/J en NVIDIA Jetson con llama.cpp: barre prompt (128-2048) por generación (64-256) por 4 modos de potencia, lo que da 384 mediciones por modelo, leyendo el consumo con tegrastats. No trae cifras de portada, pero sí algo más valioso: una metodología reproducible para comparar eficiencia, no solo velocidad."
+      },
+      {
+        heading: "Coste por token: el caso del NUC",
+        text: "Otro builder afirma 0,003 $/token ejecutando lotes nocturnos en un mini PC NUC i7 frente a 0,015 $/token de una API en la nube. La cifra va sin fuente, así que es anécdota; pero el marco es sólido: el trabajo no urgente (batch nocturno) es donde la inferencia local amortiza mejor el hardware."
+      },
+      {
+        heading: "El contrapunto: concurrencia en DGX Spark",
+        text: "Un benchmark con fuente (spark-arena) muestra un Holo-3.1-35B en NVIDIA DGX Spark pasando de 75 tok/s en petición única a casi 200 en concurrencia 10. La lección: el coste por token mejora cuando saturas el hardware con varias peticiones, no cuando lo usas a medias."
+      },
+      {
+        heading: "Cómo medirlo tú",
+        text: "Pon un vatímetro (o usa tegrastats en Jetson), apunta el precio de tu kWh y cuenta solo los tokens de respuestas válidas. Coste por token = (vatios por horas por precio del kWh) dividido entre tokens útiles. Ese número, no los tok/s, te dice si comprar hardware sale a cuenta frente a pagar una API."
+      }
+    ]
   }
 ];
 

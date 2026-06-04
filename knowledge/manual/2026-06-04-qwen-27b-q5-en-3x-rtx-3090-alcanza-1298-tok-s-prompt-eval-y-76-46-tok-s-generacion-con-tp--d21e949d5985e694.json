@@ -1,0 +1,19 @@
+{
+  "rawId": "a1508c3143706109",
+  "title": "Qwen 27B Q5 en 3x RTX 3090 alcanza 1298 tok/s prompt eval y 76.46 tok/s generación con TP y MTP",
+  "url": "https://x.com/MatulaWojtek/status/2062479026455736715",
+  "publishedAt": "2026-06-04",
+  "summary": "Prueba en 3x RTX 3090 (TP on, MTP on): prompt eval 1298 tok/s y generación 76.46 tok/s con qwen27b 3.6 q5. En vLLM no inicia por dimensiones no divisibles por 3. Datos literales: modelo Qwen 27B Q5, hardware 3x RTX 3090, 1298 tok/s prompt / 76.46 tok/s gen. No hay fuente primaria enlazada.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "NVIDIA RTX",
+    "vLLM",
+    "llama.cpp",
+    "Benchmarks"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

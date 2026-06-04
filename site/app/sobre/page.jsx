@@ -39,7 +39,7 @@ export default function SobrePage() {
             <h1>IA aplicada, hardware real y productos que se pueden construir</h1>
             <p className="section-lead">
               De preguntar a construir es una revista viva y un libro en evolución sobre ingeniería práctica con inteligencia artificial.
-              La publica Ramon Guillamon bajo Creative Commons, con foco en builders que quieren criterio técnico sin humo.
+              Un magazine independiente con foco en builders que quieren criterio técnico sin humo.
             </p>
           </div>
           <Link className="button primary" href="/ediciones/">Ver ediciones</Link>
@@ -67,9 +67,8 @@ export default function SobrePage() {
           </div>
           <aside className="side-rail">
             <div className="panel-heading"><span>Contacto</span></div>
-            <p className="check-row">Autor: Ramon Guillamon</p>
+            <p className="check-row">Edición: Redacción</p>
             <p className="check-row">Email: learntouseai@gmail.com</p>
-            <p className="check-row">Licencia: Creative Commons</p>
             <Link className="button primary full-button" href="/newsletter/">Recibir newsletter</Link>
           </aside>
         </div>

@@ -1,0 +1,19 @@
+{
+  "rawId": "4505d084d2870e43",
+  "title": "Inferencia local en NUC i7 13th gen logra $0.003/token vs $0.015 de Claude en modo batch nocturno",
+  "url": "https://x.com/zeroclaw_build/status/2062505920064598338",
+  "publishedAt": "2026-06-04",
+  "summary": "Ejecución de inference batches nocturnos en NUC i7 13th gen: costo $0.003/token frente a $0.015 de Claude. Datos literales: hardware NUC i7 13th gen, precio por token local $0.003. No hay fuente primaria enlazada.",
+  "notes": "Destino sugerido: /inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Hardware",
+    "Compra",
+    "Benchmarks"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

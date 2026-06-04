@@ -1,0 +1,19 @@
+{
+  "rawId": "aca83eb2b8e23584",
+  "title": "Gemma 4 12B (Google) optimizada para ejecución local en 16GB VRAM con soporte inmediato de ecosistema GGUF",
+  "url": "https://x.com/ryma_jp/status/2062493778414653940",
+  "publishedAt": "2026-06-04",
+  "summary": "Google lanzó Gemma 4 12B con diseño multimodal encoder-less. Ejecutable en 16GB VRAM laptop; reportes de 8GB RAM. Unsloth y LM Studio añadieron GGUF day-0. Soporte completo Ollama, LM Studio, llama.cpp, MLX, vLLM. Datos literales: 16GB VRAM mínimo oficial, modelo 12B. No hay fuente primaria enlazada en el post.",
+  "notes": "Destino sugerido: /modelos",
+  "tags": [
+    "x",
+    "grok",
+    "Modelos locales",
+    "Ollama",
+    "Hardware",
+    "Benchmarks"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

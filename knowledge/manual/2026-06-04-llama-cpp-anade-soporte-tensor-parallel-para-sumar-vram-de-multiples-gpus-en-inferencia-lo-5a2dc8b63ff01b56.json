@@ -1,0 +1,19 @@
+{
+  "rawId": "c4b1afef345f7847",
+  "title": "llama.cpp añade soporte Tensor Parallel para sumar VRAM de múltiples GPUs en inferencia local",
+  "url": "https://x.com/AiXsatoshi/status/2062500276331065422",
+  "publishedAt": "2026-06-04",
+  "summary": "llama.cpp ahora soporta Tensor Parallel: suma VRAM de GPUs múltiples para modelos grandes y generación más rápida. Solo CUDA backend, Flash Attention requerido, KV cache quant no soportado aún, MoE limitado, posible slowdown si inter-GPU lento. Datos literales: feature Tensor Parallel (sin números de rendimiento específicos). No hay fuente primaria enlazada.",
+  "notes": "Destino sugerido: /inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "llama.cpp",
+    "Inferencia local",
+    "NVIDIA RTX",
+    "Hardware"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

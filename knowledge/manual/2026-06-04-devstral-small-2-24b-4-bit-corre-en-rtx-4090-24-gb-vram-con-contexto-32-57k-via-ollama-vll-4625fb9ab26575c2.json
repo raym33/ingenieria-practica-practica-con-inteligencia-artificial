@@ -1,0 +1,19 @@
+{
+  "rawId": "9be2244990d74934",
+  "title": "Devstral Small 2 (24B) 4-bit corre en RTX 4090 (24 GB VRAM) con contexto 32-57k vía Ollama/vLLM/LM Studio",
+  "url": "https://x.com/leploutos/status/2062491399174389878",
+  "publishedAt": "2026-06-04",
+  "summary": "Modelo Devstral Small 2 24B cuantizado 4-bit mantiene 32-57k contexto en RTX 4090 (24 GB VRAM). Para 128k+ se requiere hardware superior o CPU offload (más lento). Compatible con Vibe CLI en Ollama/vLLM/LM Studio. Datos literales: RTX 4090 24GB VRAM, modelo 24B 4-bit, contexto 32-57k. No hay fuente primaria enlazada.",
+  "notes": "Destino sugerido: /inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "NVIDIA RTX",
+    "Ollama",
+    "vLLM",
+    "Modelos locales"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

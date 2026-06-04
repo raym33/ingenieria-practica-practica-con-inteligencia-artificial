@@ -1,0 +1,18 @@
+{
+  "rawId": "2eed67535dbeef43",
+  "title": "Ka1zen reporta 90.9 t/s generación con Qwen3.6-35B-A3B-GGUF y 51.1 t/s con gemma-4-12B-it-GGUF",
+  "url": "https://x.com/_LEFBE/status/2062487987657548256",
+  "publishedAt": "2026-06-04",
+  "summary": "Stats de generación: Modelo bartowski/Qwen_Qwen3.6-35B-A3B-GGUF (7966→1575 tokens): TTFT 3.68 s, speed 90.9 t/s. Modelo ggml-org/gemma-4-12B-it-GGUF (850 tokens output): TTFT 4.86 s, speed 51.1 t/s. Datos literales: 90.9 t/s y 51.1 t/s generación, modelos GGUF específicos. Hardware no especificado (inferencia local). No hay fuente primaria enlazada.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Modelos locales",
+    "Benchmarks",
+    "Inferencia local"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "guardar_para_contexto"
+}
