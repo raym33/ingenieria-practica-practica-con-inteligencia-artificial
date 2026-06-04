@@ -121,6 +121,16 @@ export default function HomePage() {
             <strong>Ideas que se pueden vender</strong>
             <p>Problemas, MVPs, pricing, agentes e IDEs IA para construir.</p>
           </Link>
+          <Link className="shelf-card accent-red" href="/guias-compra/">
+            <span>Guías compra</span>
+            <strong>Qué comprar y por qué</strong>
+            <p>Portátiles, Mac, RTX, workstations, mini PCs y dispositivos IA.</p>
+          </Link>
+          <Link className="shelf-card accent-teal" href="/herramientas-ia/">
+            <span>Herramientas IA</span>
+            <strong>Qué usar para construir</strong>
+            <p>Codex, Claude Code, OpenRouter, Lovable, Cursor y runtimes.</p>
+          </Link>
         </div>
       </section>
 

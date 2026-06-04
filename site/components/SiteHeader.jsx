@@ -35,6 +35,8 @@ export function SiteHeader() {
           <Link href="/benchmarks/">Benchmarks</Link>
           <Link href="/stack-ia-local/">Stack IA local</Link>
           <Link href="/saas-ia/">SaaS IA</Link>
+          <Link href="/guias-compra/">Guías compra</Link>
+          <Link href="/herramientas-ia/">Herramientas IA</Link>
           <Link href="/biblioteca/">IA aplicada</Link>
           <Link href="/rutas/">Guías</Link>
           <Link href="/leer/09-capitulo-8-hardware-real-para-ia-local/">Hardware</Link>
