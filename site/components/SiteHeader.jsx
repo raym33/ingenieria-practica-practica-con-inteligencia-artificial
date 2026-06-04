@@ -31,6 +31,7 @@ export function SiteHeader() {
           <Link href="/benchmarks/">Benchmarks</Link>
           <Link href="/ideas/">Construir</Link>
           <Link href="/guias-compra/">Guías</Link>
+          <Link href="/buscar/">Buscar</Link>
           <Link href="/labs/">Labs</Link>
           <Link href="/newsletter/">Newsletter</Link>
           <Link href="/sobre/">Sobre</Link>

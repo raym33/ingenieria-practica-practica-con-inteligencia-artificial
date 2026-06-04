@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
+import { articles } from "../lib/articles.js";
 
 const siteRoot = path.resolve(new URL("..", import.meta.url).pathname);
 const projectRoot = path.resolve(siteRoot, "..");
@@ -160,10 +161,61 @@ const modelRadar = radar
 
 fs.writeFileSync(path.join(dataDir, "models.json"), JSON.stringify(modelRadar, null, 2));
 
+const cleanText = (value) => String(value || "")
+  .replace(/https?:\/\/\S+/g, " ")
+  .replace(/[#*_`>~]/g, " ")
+  .replace(/\s+/g, " ")
+  .trim();
+
+const searchEntries = [
+  ...chapters.map((chapter) => ({
+    type: "Capítulo",
+    title: chapter.title,
+    summary: chapter.excerpt,
+    href: `/leer/${chapter.slug}/`,
+    tags: ["libro", "academia", ...chapter.sections.slice(0, 4).map(slugify)],
+    text: cleanText(`${chapter.title} ${chapter.excerpt} ${chapter.searchText}`)
+  })),
+  ...articles.map((article) => ({
+    type: article.section,
+    title: article.title,
+    summary: article.deck,
+    href: `/articulos/${article.slug}/`,
+    tags: [slugify(article.section), ...article.sources.map(([label]) => slugify(label)).slice(0, 4)],
+    text: cleanText(`${article.title} ${article.deck} ${article.verdict} ${article.body.map((section) => `${section.heading} ${section.text}`).join(" ")}`)
+  })),
+  ...radar.slice(0, 40).map((item) => ({
+    type: "Radar",
+    title: item.title,
+    summary: cleanText(item.summary || item.rawSummary).slice(0, 260),
+    href: item.url || "/radar/",
+    tags: item.tags || [],
+    text: cleanText(`${item.title} ${item.summary || item.rawSummary || ""} ${(item.tags || []).join(" ")}`)
+  })),
+  ...modelRadar.slice(0, 40).map((item) => ({
+    type: "Modelo",
+    title: item.title,
+    summary: cleanText(item.summary || item.rawSummary).slice(0, 260),
+    href: item.url || "/modelos/",
+    tags: item.tags || [],
+    text: cleanText(`${item.title} ${item.summary || item.rawSummary || ""} ${(item.tags || []).join(" ")}`)
+  }))
+];
+
+const seenSearchItems = new Set();
+const searchIndex = searchEntries.filter((item) => {
+  const key = `${item.href}::${item.title}`.toLowerCase();
+  if (seenSearchItems.has(key)) return false;
+  seenSearchItems.add(key);
+  return true;
+});
+
+fs.writeFileSync(path.join(dataDir, "search.json"), JSON.stringify(searchIndex, null, 2));
+
 const latestRelease = path.join(projectRoot, "releases/latest");
 if (fs.existsSync(latestRelease)) {
   const pdf = fs.readdirSync(latestRelease).find((file) => file.endsWith(".pdf"));
   if (pdf) fs.copyFileSync(path.join(latestRelease, pdf), path.join(downloadsDir, "de-preguntar-a-construir.pdf"));
 }
 
-console.log(`Generated ${chapters.length} chapters, ${radar.length} radar items and ${modelRadar.length} model items.`);
+console.log(`Generated ${chapters.length} chapters, ${radar.length} radar items, ${modelRadar.length} model items and ${searchIndex.length} search items.`);
