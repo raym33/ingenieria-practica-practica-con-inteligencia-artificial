@@ -20,6 +20,7 @@ export const articles = [
       },
       {
         heading: "Dónde empieza la confusión",
+        figure: { src: "/articulos/diagramas/npu-vs-gpu-vram.png", alt: "Diagrama comparativo NPU de un AI PC frente a GPU con VRAM", caption: "NPU vs GPU+VRAM: cada una sirve para cosas distintas; la etiqueta AI PC no las equipara." },
         text: "La etiqueta AI PC no dice cuánta VRAM tienes, qué modelo cabe, qué contexto puedes usar ni si vLLM, llama.cpp o SGLang van a rendir bien. Para inferencia LLM, la memoria y el runtime siguen mandando."
       },
       {
@@ -122,6 +123,7 @@ export const articles = [
       },
       {
         heading: "La arquitectura mínima",
+        figure: { src: "/articulos/diagramas/pipeline-rag.png", alt: "Diagrama del pipeline de RAG: documentos, chunking, embeddings, base vectorial, retrieval, reranking, LLM y respuesta", caption: "El pipeline de RAG, paso a paso: el retrieval y el reranking pesan tanto como el modelo." },
         text: "Para empezar: documentos bien procesados, embeddings locales, almacenamiento simple, retrieval explícito y un modelo que responda con citas. Si el corpus es pequeño, una solución en memoria o SQLite puede ser suficiente."
       },
       {
@@ -190,6 +192,7 @@ export const articles = [
       },
       {
         heading: "La ficha mínima",
+        figure: { src: "/articulos/diagramas/que-medir-llm.png", alt: "Diagrama de la línea de tiempo de una inferencia: prefill, TTFT, decode y respuesta", caption: "Qué medir: TTFT (primer token) y decode (tokens/s) cuentan historias distintas." },
         text: "Modelo exacto, cuantización, runtime, backend, versión, hardware, contexto, prompt, TTFT, prefill, decode, RAM/VRAM y calidad sobre tarea real. Sin eso, el benchmark no es comparable."
       },
       {
@@ -537,6 +540,7 @@ export const articles = [
       },
       {
         heading: "La novedad técnica sí es verificable",
+        figure: { src: "/articulos/diagramas/tensor-parallel-vs-capas.png", alt: "Diagrama: reparto por capas frente a Tensor Parallel entre dos GPUs", caption: "Reparto por capas vs Tensor Parallel: cómo se divide el modelo entre varias GPUs." },
         text: "Más allá de los tweets, la pieza real es que llama.cpp incorporó Tensor Parallel (build b8738, abril de 2026): en lugar de repartir capas por GPU, divide cada operación entre todas y las mantiene ocupadas en cada token, con mejoras de 3-4x sobre el reparto por capas. Un matiz importante: alguna señal lo da como 'solo CUDA', pero la documentación oficial lo describe como backend-agnóstico (NVIDIA, AMD y Apple Silicon). Cuando el tweet y los docs no coinciden, manda el doc."
       },
       {

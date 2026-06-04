@@ -3288,6 +3288,26 @@ a:hover {
   display: block;
 }
 
+.article-figure {
+  margin: 26px 0 8px;
+}
+
+.article-figure img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+  background: #0e1116;
+}
+
+.article-figure figcaption {
+  margin-top: 10px;
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
 .article-cover--hero {
   aspect-ratio: 1200 / 420;
   margin: 18px 0 28px;
