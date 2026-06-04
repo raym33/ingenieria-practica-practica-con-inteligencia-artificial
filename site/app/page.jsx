@@ -131,6 +131,11 @@ export default function HomePage() {
             <strong>Qué usar para construir</strong>
             <p>Codex, Claude Code, OpenRouter, Lovable, Cursor y runtimes.</p>
           </Link>
+          <Link className="shelf-card accent-gold" href="/articulos/">
+            <span>Artículos</span>
+            <strong>Análisis redactados</strong>
+            <p>Compra, seguridad, RAG local e inferencia con fuentes al final.</p>
+          </Link>
         </div>
       </section>
 
