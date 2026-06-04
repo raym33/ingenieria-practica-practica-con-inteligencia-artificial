@@ -485,6 +485,8 @@ export const articles = [
   },
   {
     slug: "multi-rtx-3090-tensor-parallel-benchmarks-x",
+    image: "/articulos/multi-rtx-3090-tensor-parallel-benchmarks-x.png",
+    imageAlt: "Ilustración editorial de varias GPU idénticas en paralelo con flujos de datos teal que se fusionan en un solo haz",
     publishedAt: "2026-06-04",
     tags: ["NVIDIA RTX", "llama.cpp", "vLLM", "Inferencia local", "Benchmarks"],
     section: "Benchmark",
@@ -523,6 +525,8 @@ export const articles = [
   },
   {
     slug: "gemma-4-12b-modelo-local-gguf-dia-1",
+    image: "/articulos/gemma-4-12b-modelo-local-gguf-dia-1.png",
+    imageAlt: "Ilustración editorial de una gema facetada dorada sobre una placa, irradiando conexiones a un portátil y un mini-PC",
     publishedAt: "2026-06-04",
     tags: ["Modelos locales", "Ollama", "MLX", "Benchmarks"],
     section: "Modelos",
@@ -561,6 +565,8 @@ export const articles = [
   },
   {
     slug: "coste-eficiencia-inferencia-local-tokens-por-julio",
+    image: "/articulos/coste-eficiencia-inferencia-local-tokens-por-julio.png",
+    imageAlt: "Ilustración editorial de una balanza que equilibra un flujo de tokens contra un símbolo de energía",
     publishedAt: "2026-06-03",
     tags: ["Inferencia local", "Benchmarks", "Hardware", "Compra"],
     section: "Análisis",
@@ -598,6 +604,8 @@ export const articles = [
   },
   {
     slug: "claude-code-github-action-inyeccion-prompt-vuln",
+    image: "/articulos/claude-code-github-action-inyeccion-prompt-vuln.png",
+    imageAlt: "Ilustración editorial de un escudo metálico agrietado con una llave y credenciales de luz escapando",
     publishedAt: "2026-06-04",
     tags: ["Seguridad", "Agentes"],
     section: "Seguridad",
@@ -634,6 +642,8 @@ export const articles = [
   },
   {
     slug: "mlxcel-motor-inferencia-rust-mlx-apple-silicon",
+    image: "/articulos/mlxcel-motor-inferencia-rust-mlx-apple-silicon.png",
+    imageAlt: "Ilustración editorial de un chip con bloques de memoria unificada y engranajes de tono óxido",
     publishedAt: "2026-06-04",
     tags: ["Apple Silicon", "MLX", "Inferencia local", "Modelos locales"],
     section: "Análisis",
