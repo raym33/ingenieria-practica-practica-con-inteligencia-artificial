@@ -51,6 +51,12 @@ export default async function ArticlePage({ params }) {
             <section key={section.heading}>
               <h2>{section.heading}</h2>
               <p>{section.text}</p>
+              {section.figure ? (
+                <figure className="article-figure">
+                  <img src={section.figure.src} alt={section.figure.alt} loading="lazy" />
+                  {section.figure.caption ? <figcaption>{section.figure.caption}</figcaption> : null}
+                </figure>
+              ) : null}
             </section>
           ))}
         </div>
