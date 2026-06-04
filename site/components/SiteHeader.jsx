@@ -25,24 +25,20 @@ export function SiteHeader() {
         <div className="masthead-meta" aria-label="Estado editorial">
           <span>Radar diario</span>
           <strong>Inferencia · RAG · Agentes · Hardware</strong>
+          <div className="masthead-meta-links">
+            <Link href="/newsletter/">Newsletter</Link>
+            <Link href="/sobre/">Sobre</Link>
+          </div>
         </div>
       </div>
       <nav className="section-nav" aria-label="Principal">
         <div className="shell nav-links">
-          <Link href="/revista/">Revista</Link>
-          <Link href="/ediciones/">Ediciones</Link>
+          <Link href="/actualidad/">Actualidad</Link>
+          <Link href="/decidir/">Decidir</Link>
+          <Link href="/construir/">Construir</Link>
+          <Link href="/aprender/">Aprender</Link>
           <Link href="/radar/">Radar</Link>
-          <Link href="/productos/">Productos IA</Link>
-          <Link href="/fichas/">Fichas</Link>
-          <Link href="/comparar/">Comparar</Link>
-          <Link href="/benchmarks/">Benchmarks</Link>
-          <Link href="/ideas/">Construir</Link>
-          <Link href="/guias-compra/">Guías</Link>
           <Link href="/buscar/">Buscar</Link>
-          <Link href="/tags/">Temas</Link>
-          <Link href="/labs/">Labs</Link>
-          <Link href="/newsletter/">Newsletter</Link>
-          <Link href="/sobre/">Sobre</Link>
         </div>
       </nav>
       <CommandPalette />

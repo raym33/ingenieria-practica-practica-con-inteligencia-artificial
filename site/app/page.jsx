@@ -2,13 +2,12 @@ import Link from "next/link";
 import { ArticleCover } from "../components/ArticleCover";
 import { NewsletterForm } from "../components/NewsletterForm";
 import { articles } from "../lib/articles";
-import { getChapters, getModelItems, getRadarItems } from "../lib/content";
+import { getChapters, getRadarItems } from "../lib/content";
 import { formatDate } from "../lib/format";
 
 export default function HomePage() {
   const chapters = getChapters();
   const radarItems = getRadarItems();
-  const modelItems = getModelItems();
   const leadChapter = chapters.find((chapter) => chapter.file === "45-capitulo-44-roadmap-de-aprendizaje.md") || chapters[0];
   const productionChapter = chapters.find((chapter) => chapter.file === "37-capitulo-36-despliegue-y-operacion.md");
   const hardwareChapter = chapters.find((chapter) => chapter.file === "09-capitulo-8-hardware-real-para-ia-local.md");
@@ -44,39 +43,30 @@ export default function HomePage() {
       text: "TOPS de NPU, marketing de agentes o tokens/s aislados no bastan para recomendar hardware."
     }
   ];
-  const shelfGroups = [
+  const pillars = [
     {
-      title: "Leer actualidad",
-      items: [
-        ["Radar de modelos", `${modelItems.length} señales para vigilar`, "Hugging Face, GGUF, embeddings, MLX y modelos locales.", "/modelos/", "accent-red"],
-        ["Inferencia", "Hardware y software real", "Mac, GPU, GGUF, MLX, vLLM, latencia y límites prácticos.", "/inferencia/", "accent-gold"],
-        ["Artículos", "Análisis redactados", "Compra, seguridad, RAG local e inferencia con fuentes al final.", "/articulos/", "accent-teal"]
-      ]
+      label: "Actualidad",
+      title: "Qué ha pasado y por qué importa",
+      href: "/actualidad/",
+      links: [["Artículos", "/articulos/"], ["Radar", "/radar/"], ["Señales de X", "/x-ia/"]]
     },
     {
-      title: "Comprar y montar stack",
-      items: [
-        ["Productos IA", "Comprar con criterio", "Microsoft, NVIDIA, Apple, Dell, Lenovo, Samsung y workstations.", "/productos/", "accent-red"],
-        ["Comparar", "Decidir stack", "Mac, RTX, runtimes, herramientas y proveedores con veredicto editorial.", "/comparar/", "accent-teal"],
-        ["Guías compra", "Qué comprar y por qué", "Portátiles, Mac, RTX, workstations, mini PCs y dispositivos IA.", "/guias-compra/", "accent-gold"],
-        ["Stack local", "De portátil a laboratorio", "Ollama, MLX, llama.cpp, Open WebUI, RAG, seguridad y redes.", "/stack-ia-local/", "accent-teal"]
-      ]
+      label: "Decidir",
+      title: "Comparar y comprar sin humo",
+      href: "/decidir/",
+      links: [["Comparador", "/comparar/"], ["Fichas", "/fichas/"], ["Guías", "/guias-compra/"]]
     },
     {
-      title: "Construir",
-      items: [
-        ["Ideas", "Construir con IDEs IA", "MVPs para Codex, Claude Code, Lovable, OpenRouter y Cursor.", "/ideas/", "accent-gold"],
-        ["SaaS IA", "Ideas que se pueden vender", "Problemas, MVPs, pricing, agentes e IDEs IA para construir.", "/saas-ia/", "accent-red"],
-        ["Herramientas IA", "Qué usar para construir", "Codex, Claude Code, OpenRouter, Lovable, Cursor y runtimes.", "/herramientas-ia/", "accent-teal"]
-      ]
+      label: "Construir",
+      title: "De la idea al producto",
+      href: "/construir/",
+      links: [["Ideas", "/ideas/"], ["Herramientas", "/herramientas-ia/"], ["Labs", "/labs/"]]
     },
     {
-      title: "Medir y aprender",
-      items: [
-        ["Benchmarks", "Métricas que importan", "TTFT, tokens/s, RAM/VRAM, KV cache, coste y reproducibilidad.", "/benchmarks/", "accent-red"],
-        ["Banco de pruebas", "Labs ejecutables", "Costes, retrieval, jueces LLM y benchmarks locales.", "/labs/", "accent-teal"],
-        ["Posts de X", "Señales agrupadas", "Benchmarks, bugs, modelos, agentes y hardware con contexto.", "/x-ia/", "accent-gold"]
-      ]
+      label: "Aprender",
+      title: "El libro vivo y las rutas",
+      href: "/aprender/",
+      links: [["Capítulos", "/biblioteca/"], ["Rutas", "/rutas/"], ["Biblioteca", "/biblioteca/"]]
     }
   ];
   const topicRows = [
@@ -196,24 +186,25 @@ export default function HomePage() {
       <section className="section shell compact-section">
         <div className="section-header">
           <div>
-            <div className="eyebrow">Kiosko técnico</div>
-            <h2>Entra por lo que necesitas resolver</h2>
+            <div className="eyebrow">Por dónde entrar</div>
+            <h2>Elige por lo que quieres hacer</h2>
           </div>
         </div>
-        <div className="shelf-groups">
-          {shelfGroups.map((group) => (
-            <section className="shelf-group" key={group.title}>
-              <div className="panel-heading"><span>{group.title}</span></div>
-              <div className="magazine-shelf compact-shelf">
-                {group.items.map(([label, title, text, href, accent]) => (
-                  <Link className={`shelf-card ${accent}`} href={href} key={href}>
-                    <span>{label}</span>
-                    <strong>{title}</strong>
-                    <p>{text}</p>
-                  </Link>
+        <div className="pillars">
+          {pillars.map((pillar) => (
+            <article className="pillar-card" key={pillar.href}>
+              <Link className="pillar-main-link" href={pillar.href} aria-label={`${pillar.label}: ${pillar.title}`} />
+              <span>{pillar.label}</span>
+              <h3>{pillar.title}</h3>
+              <div className="pillar-sublinks">
+                {pillar.links.map(([label, href], index) => (
+                  <span key={href}>
+                    {index > 0 ? <em aria-hidden="true">·</em> : null}
+                    <Link className="text-link" href={href}>{label}</Link>
+                  </span>
                 ))}
               </div>
-            </section>
+            </article>
           ))}
         </div>
       </section>
