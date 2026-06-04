@@ -32,6 +32,7 @@ export function SiteHeader() {
           <Link href="/x-ia/">Posts de X</Link>
           <Link href="/reddit-lab/">Reddit Lab</Link>
           <Link href="/ideas/">Ideas</Link>
+          <Link href="/benchmarks/">Benchmarks</Link>
           <Link href="/biblioteca/">IA aplicada</Link>
           <Link href="/rutas/">Guías</Link>
           <Link href="/leer/09-capitulo-8-hardware-real-para-ia-local/">Hardware</Link>

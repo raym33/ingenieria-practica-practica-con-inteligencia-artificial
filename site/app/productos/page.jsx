@@ -58,6 +58,25 @@ const products = [
   ["Samsung Galaxy AI", "IA integrada en dispositivo/ecosistema", "Productividad, traducción, notas, cámara", "Funciones varían por región, modelo y versión."]
 ];
 
+const buyingRules = [
+  {
+    title: "Copilot+ PC no significa workstation de LLMs",
+    text: "Microsoft define Copilot+ PC por una NPU de más de 40 TOPS. Eso sirve para experiencias locales eficientes, pero no sustituye VRAM, memoria unificada o una GPU fuerte cuando quieres correr modelos grandes."
+  },
+  {
+    title: "RTX PRO Blackwell es una señal seria para builders profesionales",
+    text: "NVIDIA posiciona RTX PRO para inferencia, agentes, ciencia, simulación y workstations. La clave editorial es la memoria: 48/72/96 GB cambia qué modelos y contextos puedes probar de verdad."
+  },
+  {
+    title: "ThinkPad/Dell/Corsair importan por integración, no por etiqueta IA",
+    text: "Para consultores y pymes técnicas, una workstation tiene valor si llega con GPU, drivers, soporte, garantía, refrigeración y camino claro de despliegue. La ficha de marketing no basta."
+  },
+  {
+    title: "Apple Silicon gana como laboratorio silencioso",
+    text: "Mac Studio y Mac mini no compiten igual que CUDA. Su ventaja está en memoria unificada, consumo bajo, MLX, llama.cpp y experiencia de escritorio. Para serving multiusuario pesado, mide antes."
+  }
+];
+
 const sources = [
   ["Microsoft Copilot+ PCs", "https://learn.microsoft.com/en-us/windows/ai/npu-devices/"],
   ["NVIDIA DGX Spark", "https://docs.nvidia.com/dgx/dgx-spark/hardware.html"],
@@ -117,6 +136,25 @@ export default function ProductosPage() {
               <span>{use}</span>
               <span>{limit}</span>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Criterio de compra</div>
+            <h2>Reglas rápidas para no comprar humo</h2>
+          </div>
+        </div>
+        <div className="article-grid">
+          {buyingRules.map((rule) => (
+            <article className="editorial-card" key={rule.title}>
+              <span>Regla editorial</span>
+              <h2>{rule.title}</h2>
+              <p>{rule.text}</p>
+              <strong>Pregunta siempre: modelo, runtime, memoria, contexto, latencia y soporte.</strong>
+            </article>
           ))}
         </div>
       </section>

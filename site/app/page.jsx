@@ -106,6 +106,11 @@ export default function HomePage() {
             <strong>Construir con IDEs IA</strong>
             <p>MVPs para Codex, Claude Code, Lovable, OpenRouter y Cursor.</p>
           </Link>
+          <Link className="shelf-card accent-red" href="/benchmarks/">
+            <span>Benchmarks</span>
+            <strong>Métricas que importan</strong>
+            <p>TTFT, tokens/s, RAM/VRAM, KV cache, coste y reproducibilidad.</p>
+          </Link>
         </div>
       </section>
 
