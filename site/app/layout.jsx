@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" suppressHydrationWarning>
       <body>
-        <script dangerouslySetInnerHTML={{ __html: "(function(){try{var t=localStorage.getItem('revista-theme');if(!t){t=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();" }} />
+        <script dangerouslySetInnerHTML={{ __html: "(function(){try{var t=localStorage.getItem('revista-theme');if(!t){t='dark';}document.documentElement.dataset.theme=t;}catch(e){}})();" }} />
         <SiteHeader />
         {children}
         <footer className="site-footer">
