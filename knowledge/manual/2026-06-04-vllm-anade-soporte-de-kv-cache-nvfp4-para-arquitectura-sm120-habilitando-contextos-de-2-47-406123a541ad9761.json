@@ -1,0 +1,18 @@
+{
+  "rawId": "686d1c204fc35ef1",
+  "title": "vLLM añade soporte de KV cache NVFP4 para arquitectura SM120, habilitando contextos de 2,47M en multi-GPU",
+  "url": "https://x.com/Hikari_07_jp/status/2062510899186094299",
+  "publishedAt": "2026-06-04",
+  "summary": "Actualización reciente de vLLM introduce KV cache NVFP4 para SM120 (p.ej. en 2x RTX PRO 6000). Habilita ventanas de contexto muy largas, como 2,47M tokens para modelos Step 3.7 Flash NVFP4. Parche y detalles en GitHub. Fuente primaria: https://github.com/hikarioyama/vllm-nvfp4-kv-sm120",
+  "notes": "Destino sugerido: /inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "vLLM",
+    "Inferencia local",
+    "Modelos locales"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

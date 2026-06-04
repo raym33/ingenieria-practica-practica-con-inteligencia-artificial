@@ -1,0 +1,18 @@
+{
+  "rawId": "b6d2358a5e6794e2",
+  "title": "Rialo lanza guardrails a nivel hardware (RISC-V REX) para agentes empresariales: permisos y bloqueo de inyección de prompt en el chip",
+  "url": "https://x.com/LinYue93820/status/2062509263524925784",
+  "publishedAt": "2026-06-04",
+  "summary": "Rialo presenta un entorno de ejecución REX basado en RISC-V que fija permisos del agente, límites de presupuesto y alcance de llamadas a nivel de chip (no software). Busca dar a empresas fronteras auditables y forzadas por hardware para miles de agentes, reduciendo riesgos de inyección de prompt o exceso de alcance. En vivo con ejemplos de red-line check.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Seguridad",
+    "Agentes",
+    "Hardware"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

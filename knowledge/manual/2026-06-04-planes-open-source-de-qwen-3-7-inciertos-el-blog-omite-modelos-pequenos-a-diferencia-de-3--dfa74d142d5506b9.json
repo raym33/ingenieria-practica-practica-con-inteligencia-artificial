@@ -1,0 +1,16 @@
+{
+  "rawId": "5b8ea814aed8c27b",
+  "title": "Planes open-source de Qwen 3.7 inciertos: el blog omite modelos pequeños (a diferencia de 3.6); un comentario borrado sugería un posible 27B",
+  "url": "https://x.com/AiBattle_/status/2062532335497535819",
+  "publishedAt": "2026-06-04",
+  "summary": "El resumen del blog de Qwen 3.7 Plus no menciona próximos modelos open-source (a diferencia de 3.6 Plus, que sí lo hacía). Un miembro del equipo Qwen borró un comentario que indicaba que probablemente lanzarían otro 27B. Builders echan en falta 9B y 122B de un sondeo previo; tamaños y fechas de pesos abiertos siguen sin estar claros.",
+  "notes": "Destino sugerido: /modelos",
+  "tags": [
+    "x",
+    "grok",
+    "Modelos locales"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

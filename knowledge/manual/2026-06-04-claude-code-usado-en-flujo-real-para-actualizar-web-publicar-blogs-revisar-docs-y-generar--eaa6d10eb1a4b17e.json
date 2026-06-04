@@ -1,0 +1,16 @@
+{
+  "rawId": "b8dc93c8d6cf83d4",
+  "title": "Claude Code usado en flujo real para actualizar web, publicar blogs, revisar docs y generar changelogs en un solo prompt",
+  "url": "https://x.com/devopsyoung/status/2062558048283975949",
+  "publishedAt": "2026-06-04",
+  "summary": "Desarrolladores reportan usar Claude Code para tareas de contenido durante el trabajo de producto: actualizar la web oficial, publicar posts, revisar documentación y autogenerar changelogs con un único prompt. Permite despliegues rápidos y sincronizados, tipo CI/CD para contenido de producto.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}
