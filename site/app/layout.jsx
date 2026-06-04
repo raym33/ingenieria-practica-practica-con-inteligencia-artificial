@@ -44,8 +44,8 @@ export default function RootLayout({ children }) {
               <p>Revista, libro vivo y radar práctico sobre ingeniería con inteligencia artificial.</p>
             </div>
             <div>
-              <span>Autor</span>
-              <p>Ramon Guillamon · Creative Commons</p>
+              <span>Edición</span>
+              <p>Magazine independiente de IA para builders</p>
             </div>
             <div>
               <span>Contacto</span>

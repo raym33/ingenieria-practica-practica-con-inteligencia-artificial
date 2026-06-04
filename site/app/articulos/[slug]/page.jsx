@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Byline } from "../../../components/Byline";
 import { articles, getArticle } from "../../../lib/articles";
 import { formatDate } from "../../../lib/format";
-import { SITE_AUTHOR, SITE_NAME } from "../../../lib/site-config";
+import { SITE_NAME } from "../../../lib/site-config";
 import { tagSlug } from "../../../lib/tags";
 
 export function generateStaticParams() {
@@ -37,7 +37,7 @@ export default async function ArticlePage({ params }) {
   return (
     <main>
       <article className="article-page shell">
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.deck, datePublished: article.publishedAt, dateModified: article.publishedAt, author: { "@type": "Person", name: SITE_AUTHOR }, publisher: { "@type": "Organization", name: SITE_NAME } }) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.deck, datePublished: article.publishedAt, dateModified: article.publishedAt, author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME } }) }} />
         <div className="article-kicker">{article.section}</div>
         <h1>{article.title}</h1>
         <p className="article-deck">{article.deck}</p>

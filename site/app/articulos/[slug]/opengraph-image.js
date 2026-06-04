@@ -31,7 +31,7 @@ export default async function Image({ params }) {
             </div>
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", color: "#b9c1cd", fontSize: 26, fontWeight: 700 }}>
-            <div style={{ display: "flex" }}>Ramón Guillamón</div>
+            <div style={{ display: "flex" }}>Redacción</div>
             <div style={{ display: "flex" }}>ingenieria-practica-practica-con-in.vercel.app</div>
           </div>
         </div>
