@@ -154,7 +154,15 @@ function Motif({ id, accent, ghost = false }) {
   return <Component accent={accent} ghost={ghost} />;
 }
 
-export function ArticleCover({ slug, section, tags = [], variant = "hero" }) {
+export function ArticleCover({ slug, section, tags = [], variant = "hero", image, imageAlt }) {
+  if (image) {
+    return (
+      <div className={`article-cover article-cover--${variant}`}>
+        <img className="article-cover-img" src={image} alt={imageAlt || section || ""} loading="lazy" />
+      </div>
+    );
+  }
+
   const hash = hashSlug(slug);
   const accent = ACCENTS[hash % ACCENTS.length];
   const motifId = motifFor({ section, tags, hash });

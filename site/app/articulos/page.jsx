@@ -25,7 +25,7 @@ export default function ArticulosPage() {
         <div className="article-grid">
           {articles.map((article) => (
             <Link className="editorial-card" href={`/articulos/${article.slug}/`} key={article.slug}>
-              <ArticleCover slug={article.slug} section={article.section} tags={article.tags} variant="card" />
+              <ArticleCover slug={article.slug} section={article.section} tags={article.tags} image={article.image} imageAlt={article.imageAlt} variant="card" />
               <span>{article.section}</span>
               <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
               <h2>{article.title}</h2>

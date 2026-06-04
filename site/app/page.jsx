@@ -139,7 +139,7 @@ export default function HomePage() {
             <div className="story-grid">
               {dossierArticles.map((article) => (
                 <Link className="story-card" href={`/articulos/${article.slug}/`} key={article.slug}>
-                  <ArticleCover slug={article.slug} section={article.section} tags={article.tags} variant="card" />
+                  <ArticleCover slug={article.slug} section={article.section} tags={article.tags} image={article.image} imageAlt={article.imageAlt} variant="card" />
                   <span>{article.section}</span>
                   <time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
                   <h3>{article.title}</h3>

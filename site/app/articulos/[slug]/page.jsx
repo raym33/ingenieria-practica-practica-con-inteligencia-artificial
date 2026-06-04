@@ -40,7 +40,7 @@ export default async function ArticlePage({ params }) {
       <article className="article-page shell">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.deck, datePublished: article.publishedAt, dateModified: article.publishedAt, author: { "@type": "Organization", name: SITE_NAME }, publisher: { "@type": "Organization", name: SITE_NAME } }) }} />
         <div className="article-kicker">{article.section}</div>
-        <ArticleCover slug={article.slug} section={article.section} tags={article.tags} variant="hero" />
+        <ArticleCover slug={article.slug} section={article.section} tags={article.tags} image={article.image} imageAlt={article.imageAlt} variant="hero" />
         <h1>{article.title}</h1>
         <p className="article-deck">{article.deck}</p>
         <time className="article-date" dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time>
