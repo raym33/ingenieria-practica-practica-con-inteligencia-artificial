@@ -54,6 +54,7 @@ export default function HomePage() {
       title: "Comprar y montar stack",
       items: [
         ["Productos IA", "Comprar con criterio", "Microsoft, NVIDIA, Apple, Dell, Lenovo, Samsung y workstations.", "/productos/", "accent-red"],
+        ["Comparar", "Decidir stack", "Mac, RTX, runtimes, herramientas y proveedores con veredicto editorial.", "/comparar/", "accent-teal"],
         ["Guías compra", "Qué comprar y por qué", "Portátiles, Mac, RTX, workstations, mini PCs y dispositivos IA.", "/guias-compra/", "accent-gold"],
         ["Stack local", "De portátil a laboratorio", "Ollama, MLX, llama.cpp, Open WebUI, RAG, seguridad y redes.", "/stack-ia-local/", "accent-teal"]
       ]

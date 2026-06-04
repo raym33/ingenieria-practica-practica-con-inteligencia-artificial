@@ -2,6 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
 import { articles } from "../lib/articles.js";
+import { comparativas } from "../lib/comparativas.js";
+import { fichas } from "../lib/fichas.js";
 
 const siteRoot = path.resolve(new URL("..", import.meta.url).pathname);
 const projectRoot = path.resolve(siteRoot, "..");
@@ -183,6 +185,22 @@ const searchEntries = [
     href: `/articulos/${article.slug}/`,
     tags: [slugify(article.section), ...article.sources.map(([label]) => slugify(label)).slice(0, 4)],
     text: cleanText(`${article.title} ${article.deck} ${article.verdict} ${article.body.map((section) => `${section.heading} ${section.text}`).join(" ")}`)
+  })),
+  ...comparativas.map((comparativa) => ({
+    type: "Comparador",
+    title: comparativa.title,
+    summary: comparativa.deck,
+    href: `/comparar/#${comparativa.slug}`,
+    tags: [slugify(comparativa.categoria), ...comparativa.opciones.map((opcion) => slugify(opcion.nombre)).slice(0, 4)],
+    text: cleanText(`${comparativa.title} ${comparativa.deck} ${comparativa.veredicto} ${comparativa.comoDecidir.join(" ")} ${comparativa.opciones.map((opcion) => `${opcion.nombre} ${opcion.etiqueta} ${opcion.ideal} ${opcion.evitar}`).join(" ")}`)
+  })),
+  ...fichas.map((ficha) => ({
+    type: "Ficha",
+    title: `${ficha.marca} ${ficha.nombre}`,
+    summary: ficha.veredicto,
+    href: "/fichas/",
+    tags: [slugify(ficha.tipo), slugify(ficha.etiqueta), ...ficha.runtimes.map(slugify).slice(0, 4)],
+    text: cleanText(`${ficha.marca} ${ficha.nombre} ${ficha.tipo} ${ficha.memoria} ${ficha.aceleracion} ${ficha.usoRecomendado} ${ficha.modelos} ${ficha.limitaciones} ${ficha.veredicto}`)
   })),
   ...radar.slice(0, 40).map((item) => ({
     type: "Radar",

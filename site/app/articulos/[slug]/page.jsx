@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { articles, getArticle } from "../../../lib/articles";
+import { SITE_AUTHOR, SITE_NAME } from "../../../lib/site-config";
 
 export function generateStaticParams() {
   return articles.map((article) => ({ slug: article.slug }));
@@ -8,7 +9,20 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const article = getArticle(slug);
-  return { title: article ? `${article.title} | De preguntar a construir` : "Artículo" };
+  return {
+    title: article ? `${article.title} | De preguntar a construir` : "Artículo",
+    description: article?.deck,
+    openGraph: article ? {
+      type: "article",
+      title: article.title,
+      description: article.deck
+    } : undefined,
+    twitter: article ? {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.deck
+    } : undefined
+  };
 }
 
 export default async function ArticlePage({ params }) {
@@ -19,6 +33,7 @@ export default async function ArticlePage({ params }) {
   return (
     <main>
       <article className="article-page shell">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "Article", headline: article.title, description: article.deck, author: { "@type": "Person", name: SITE_AUTHOR }, publisher: { "@type": "Organization", name: SITE_NAME } }) }} />
         <div className="article-kicker">{article.section}</div>
         <h1>{article.title}</h1>
         <p className="article-deck">{article.deck}</p>
