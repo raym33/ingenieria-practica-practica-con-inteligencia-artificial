@@ -111,6 +111,16 @@ export default function HomePage() {
             <strong>Métricas que importan</strong>
             <p>TTFT, tokens/s, RAM/VRAM, KV cache, coste y reproducibilidad.</p>
           </Link>
+          <Link className="shelf-card accent-teal" href="/stack-ia-local/">
+            <span>Stack local</span>
+            <strong>De portátil a laboratorio</strong>
+            <p>Ollama, MLX, llama.cpp, Open WebUI, RAG, seguridad y redes.</p>
+          </Link>
+          <Link className="shelf-card accent-gold" href="/saas-ia/">
+            <span>SaaS IA</span>
+            <strong>Ideas que se pueden vender</strong>
+            <p>Problemas, MVPs, pricing, agentes e IDEs IA para construir.</p>
+          </Link>
         </div>
       </section>
 
