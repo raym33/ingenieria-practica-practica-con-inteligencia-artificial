@@ -6,8 +6,8 @@ export const metadata = {
 };
 
 const buildLinks = [
-  ["Ideas", "Ideas", "MVPs y productos concretos que un builder puede convertir en software real.", "/ideas/"],
-  ["SaaS", "SaaS IA", "Problemas, workflows, pricing y agentes para construir productos vendibles.", "/saas-ia/"],
+  ["Ideas", "Ideas construibles", "Proyectos concretos para empezar este finde: problema, a quién sirve, stack y MVP.", "/ideas/"],
+  ["SaaS", "Patrones de SaaS IA", "Los moldes de negocio que se repiten y qué herramienta usar para construir algo vendible.", "/saas-ia/"],
   ["Herramientas", "Herramientas IA", "Codex, Claude Code, Cursor, Lovable, OpenRouter y runtimes para programar.", "/herramientas-ia/"],
   ["Pruebas", "Banco de pruebas", "Labs ejecutables para medir retrieval, costes, jueces LLM y modelos locales.", "/labs/"],
   ["Local", "Stack local", "Ollama, MLX, llama.cpp, Open WebUI, RAG privado, red y seguridad.", "/stack-ia-local/"]

@@ -22,6 +22,7 @@ export default function RadarPage() {
               Modelos, repos, papers, herramientas, hardware y prácticas que merecen seguimiento antes de convertirlas en capítulo, lab o checklist.
             </p>
           </div>
+          <a className="text-link" href="/x-ia/">Solo señales de X →</a>
         </div>
         <div className="topic-cloud">
           {topTags.map((tag) => <span key={tag}>{tag}</span>)}
