@@ -26,24 +26,14 @@ export function SiteHeader() {
         <div className="shell nav-links">
           <Link href="/revista/">Revista</Link>
           <Link href="/ediciones/">Ediciones</Link>
-          <Link href="/radar/">Últimas señales</Link>
-          <Link href="/modelos/">Modelos</Link>
-          <Link href="/inferencia/">Inferencia</Link>
+          <Link href="/radar/">Radar</Link>
           <Link href="/productos/">Productos IA</Link>
-          <Link href="/x-ia/">Posts de X</Link>
-          <Link href="/reddit-lab/">Reddit Lab</Link>
-          <Link href="/ideas/">Ideas</Link>
           <Link href="/benchmarks/">Benchmarks</Link>
-          <Link href="/stack-ia-local/">Stack IA local</Link>
-          <Link href="/saas-ia/">SaaS IA</Link>
-          <Link href="/guias-compra/">Guías compra</Link>
-          <Link href="/herramientas-ia/">Herramientas IA</Link>
-          <Link href="/articulos/">Artículos</Link>
-          <Link href="/biblioteca/">IA aplicada</Link>
-          <Link href="/rutas/">Guías</Link>
-          <Link href="/leer/09-capitulo-8-hardware-real-para-ia-local/">Hardware</Link>
+          <Link href="/ideas/">Construir</Link>
+          <Link href="/guias-compra/">Guías</Link>
           <Link href="/labs/">Labs</Link>
-          <Link href="/descargas/">Descargas</Link>
+          <Link href="/newsletter/">Newsletter</Link>
+          <Link href="/sobre/">Sobre</Link>
         </div>
       </nav>
     </header>

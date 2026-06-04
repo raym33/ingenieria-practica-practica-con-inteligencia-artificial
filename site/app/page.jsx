@@ -24,6 +24,23 @@ export default function HomePage() {
     ["Montar RAG", "Primero retrieval, permisos y evaluación; después modelos más grandes.", "/leer/17-capitulo-16-que-problema-resuelve-rag/"],
     ["Crear SaaS IA", "Busca workflow repetido, output revisable y coste por respuesta válida.", "/saas-ia/"]
   ];
+  const editorialStance = [
+    {
+      label: "Recomendamos",
+      title: "Medir antes de comprar",
+      text: "Mac con memoria suficiente, RTX con VRAM real, labs reproducibles y stacks que puedas operar."
+    },
+    {
+      label: "Vigilamos",
+      title: "RTX Spark, Strix Halo, Foundry Local y Snapdragon X2",
+      text: "Prometen mucho para IA local, pero necesitan disponibilidad, benchmarks y compatibilidad de runtimes."
+    },
+    {
+      label: "Evitamos",
+      title: "Comprar por etiqueta AI PC",
+      text: "TOPS de NPU, marketing de agentes o tokens/s aislados no bastan para recomendar hardware."
+    }
+  ];
   const shelfGroups = [
     {
       title: "Leer actualidad",
@@ -154,6 +171,25 @@ export default function HomePage() {
       <section className="section shell compact-section">
         <div className="section-header">
           <div>
+            <div className="eyebrow">Criterio editorial</div>
+            <h2>Recomendamos, vigilamos y evitamos</h2>
+          </div>
+          <Link className="text-link" href="/sobre/">Cómo verificamos</Link>
+        </div>
+        <div className="cover-teasers">
+          {editorialStance.map((item) => (
+            <article key={item.label}>
+              <span>{item.label}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
             <div className="eyebrow">Kiosko técnico</div>
             <h2>Entra por lo que necesitas resolver</h2>
           </div>
@@ -173,6 +209,17 @@ export default function HomePage() {
               </div>
             </section>
           ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="newsletter-strip">
+          <div>
+            <span>Newsletter</span>
+            <h2>5 señales, 3 decisiones, 1 benchmark y 1 idea construible</h2>
+            <p>Un resumen semanal para builders que quieren estar al día de IA, software y hardware sin vivir dentro del feed.</p>
+          </div>
+          <Link className="button primary" href="/newsletter/">Apuntarme</Link>
         </div>
       </section>
 
