@@ -1,6 +1,8 @@
 export const articles = [
   {
     slug: "copilot-pc-no-es-workstation-llm",
+    image: "/articulos/copilot-pc-no-es-workstation-llm.png",
+    imageAlt: "Ilustración editorial: un portátil fino con NPU junto a una torre de GPU mucho mayor",
     publishedAt: "2026-04-20",
     tags: ["Compra","Hardware","Inferencia local"],
     section: "Guía de compra",
@@ -32,6 +34,8 @@ export const articles = [
   },
   {
     slug: "apple-silicon-vs-nvidia-inferencia-local",
+    image: "/articulos/apple-silicon-vs-nvidia-inferencia-local.png",
+    imageAlt: "Ilustración editorial: dos monolitos enfrentados, memoria unificada frente a GPU con disipación",
     publishedAt: "2026-04-23",
     tags: ["Apple Silicon","NVIDIA RTX","Inferencia local","Hardware"],
     section: "Comparativa",
@@ -64,6 +68,8 @@ export const articles = [
   },
   {
     slug: "ollama-seguridad-servidor-local",
+    image: "/articulos/ollama-seguridad-servidor-local.png",
+    imageAlt: "Ilustración editorial: un servidor local tras un cortafuegos con un puerto abierto en alerta",
     publishedAt: "2026-04-26",
     tags: ["Ollama","Seguridad","Inferencia local"],
     section: "Seguridad",
@@ -96,6 +102,8 @@ export const articles = [
   },
   {
     slug: "rag-local-reddit-lecciones",
+    image: "/articulos/rag-local-reddit-lecciones.png",
+    imageAlt: "Ilustración editorial: documentos fluyendo por un embudo de recuperación hacia un modelo",
     publishedAt: "2026-04-29",
     tags: ["RAG","Ollama","Modelos locales","Inferencia local"],
     section: "Reddit Lab",
@@ -128,6 +136,8 @@ export const articles = [
   },
   {
     slug: "rtx-pro-blackwell-workstation-ia",
+    image: "/articulos/rtx-pro-blackwell-workstation-ia.png",
+    imageAlt: "Ilustración editorial: una GPU profesional con grandes pilas de VRAM iluminadas",
     publishedAt: "2026-05-02",
     tags: ["NVIDIA RTX","Hardware","Inferencia local","Compra"],
     section: "Productos IA",
@@ -161,6 +171,8 @@ export const articles = [
   },
   {
     slug: "benchmarks-llm-que-medir",
+    image: "/articulos/benchmarks-llm-que-medir.png",
+    imageAlt: "Ilustración editorial: un panel de instrumentos con gauges y curvas de rendimiento",
     publishedAt: "2026-05-05",
     tags: ["Benchmarks","Inferencia local","Modelos locales"],
     section: "Benchmarks",
@@ -192,6 +204,8 @@ export const articles = [
   },
   {
     slug: "de-idea-a-saas-ia-con-agentes",
+    image: "/articulos/de-idea-a-saas-ia-con-agentes.png",
+    imageAlt: "Ilustración editorial: una chispa-idea transformándose en un producto a través de engranajes",
     publishedAt: "2026-05-09",
     tags: ["SaaS","Agentes","Compra"],
     section: "SaaS IA",
@@ -224,6 +238,8 @@ export const articles = [
   },
   {
     slug: "codex-claude-code-openrouter-lovable",
+    image: "/articulos/codex-claude-code-openrouter-lovable.png",
+    imageAlt: "Ilustración editorial: cuatro módulos convergiendo sobre una estructura de código",
     publishedAt: "2026-05-12",
     tags: ["Agentes","SaaS","Modelos locales"],
     section: "Herramientas IA",
@@ -257,6 +273,8 @@ export const articles = [
   },
   {
     slug: "ollama-mlx-apple-silicon-cambio-real",
+    image: "/articulos/ollama-mlx-apple-silicon-cambio-real.png",
+    imageAlt: "Ilustración editorial: un chip Apple Silicon con memoria unificada alimentando un modelo local",
     publishedAt: "2026-05-15",
     tags: ["Ollama","MLX","Apple Silicon","Inferencia local"],
     section: "Inferencia local",
@@ -290,6 +308,8 @@ export const articles = [
   },
   {
     slug: "docker-vllm-macos-laboratorio-serving",
+    image: "/articulos/docker-vllm-macos-laboratorio-serving.png",
+    imageAlt: "Ilustración editorial: un cubo-contenedor con un motor de serving sobre un Mac",
     publishedAt: "2026-05-18",
     tags: ["vLLM","Apple Silicon","Inferencia local","Modelos locales"],
     section: "Software IA",
@@ -322,6 +342,8 @@ export const articles = [
   },
   {
     slug: "amd-rocm-vulkan-llamacpp-inferencia",
+    image: "/articulos/amd-rocm-vulkan-llamacpp-inferencia.png",
+    imageAlt: "Ilustración editorial: una GPU AMD con capas ROCm y Vulkan apiladas",
     publishedAt: "2026-05-21",
     tags: ["AMD","llama.cpp","Inferencia local","Hardware"],
     section: "Hardware IA",
@@ -355,6 +377,8 @@ export const articles = [
   },
   {
     slug: "rtx-spark-pc-agentico-que-significa",
+    image: "/articulos/rtx-spark-pc-agentico-que-significa.png",
+    imageAlt: "Ilustración editorial: una caja-ordenador de IA compacta emitiendo flujos de agentes",
     publishedAt: "2026-05-24",
     tags: ["NVIDIA RTX","Agentes","Hardware","Compra"],
     section: "Productos IA",
@@ -387,6 +411,8 @@ export const articles = [
   },
   {
     slug: "foundry-local-windows-ia-pc-builder",
+    image: "/articulos/foundry-local-windows-ia-pc-builder.png",
+    imageAlt: "Ilustración editorial: una plataforma que forja bloques de modelo en local",
     publishedAt: "2026-05-28",
     tags: ["Modelos locales","Inferencia local","Compra"],
     section: "Software IA",
@@ -420,6 +446,8 @@ export const articles = [
   },
   {
     slug: "ryzen-ai-halo-strix-halo-compra-llm-local",
+    image: "/articulos/ryzen-ai-halo-strix-halo-compra-llm-local.png",
+    imageAlt: "Ilustración editorial: un APU x86 compacto con un gran pool de memoria unificada",
     publishedAt: "2026-05-31",
     tags: ["AMD","Hardware","Compra","Inferencia local"],
     section: "Hardware IA",
@@ -453,6 +481,8 @@ export const articles = [
   },
   {
     slug: "snapdragon-x2-ai-pc-npu-no-es-llm-server",
+    image: "/articulos/snapdragon-x2-ai-pc-npu-no-es-llm-server.png",
+    imageAlt: "Ilustración editorial: un chip NPU móvil eficiente frente a una pila de servidor mayor",
     publishedAt: "2026-06-03",
     tags: ["Compra","Hardware","Inferencia local"],
     section: "Guía de compra",
