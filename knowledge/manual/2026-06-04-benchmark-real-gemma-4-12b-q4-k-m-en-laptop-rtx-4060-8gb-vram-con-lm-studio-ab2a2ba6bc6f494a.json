@@ -1,0 +1,22 @@
+{
+  "rawId": "e1065f20172de3bd",
+  "title": "Benchmark real: Gemma 4 12B Q4_K_M en laptop RTX 4060 8GB VRAM con LM Studio",
+  "url": "https://x.com/forgedaocc/status/2062431071522976139",
+  "publishedAt": "2026-06-04",
+  "summary": "NVIDIA RTX 4060 Laptop. Categoría: Laptop GPU Inference. Hardware: RTX 4060 Laptop 8GB VRAM, Windows notebook, 12K contexto, single concurrent. Uso IA: Inferencia local de LLM (Gemma 4 12B) con LM Studio. Métricas: ≈8.35 tokens/s (Flash Attention + GPU KV Cache), modelo ocupa ~7.04 GiB VRAM. Límite: Velocidad moderada en laptop (no modo inference activado); depende de laptop cooling. Por qué importa: Demuestra que laptops gaming asequibles pueden ejecutar modelos modernos de 12B parámetros localmente con configs reales y métricas concretas, ideal para devs móviles o presupuestos limitados",
+  "notes": "Destino sugerido: productos/inferencia/x-ia",
+  "tags": [
+    "x",
+    "grok",
+    "benchmark-local",
+    "hardware",
+    "inferencia",
+    "lm-studio",
+    "nvidia",
+    "productos",
+    "productos-ia"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

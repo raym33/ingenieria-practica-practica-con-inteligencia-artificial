@@ -71,6 +71,11 @@ const editorialLeads = [
     label: "Serving",
     title: "TTFT y goodput entran en portada",
     text: "Señales alrededor de SGLang, vLLM y allocators como mooncake recuerdan que producción no va de tokens/s aislados: va de colas, KV cache, p95 y throughput útil."
+  },
+  {
+    label: "Seguridad",
+    title: "Ollama expuesto deja de ser laboratorio y pasa a ser superficie de ataque",
+    text: "CVE-2026-7482 confirma que la inferencia local también necesita hardening: versión actualizada, localhost por defecto, autenticación, firewall y cuidado con endpoints de creación/push de modelos."
   }
 ];
 
@@ -96,6 +101,14 @@ const caveats = [
   ["Strix Halo", "TOPS y memoria unificada no bastan si el runtime no usa NPU o exige particionar memoria."],
   ["MLX long-context", "Los 256K impresionan, pero muchas pruebas viven en Macs de muchísima RAM."],
   ["MTP avanzado", "Puede ser rápido y estable con una receta exacta; otras variantes especulativas fallan."]
+];
+
+const fieldNotes = [
+  ["RTX 4060 laptop", "Gemma 4 12B puede entrar en 8 GB VRAM con LM Studio, pero 8 t/s es laboratorio móvil, no serving."],
+  ["Mac + Metal", "36 tok/s en Gemma 4 12B refuerza Apple Silicon como plataforma cómoda, aunque hay que saber cuantización y memoria real."],
+  ["llama.cpp multi-GPU", "La colaboración NVIDIA/llama.cpp alrededor de tensor parallelism apunta a PCs RTX más serios para inferencia local."],
+  ["Clusters Apple", "Mac Studio/Mac mini como negocio de inferencia es una señal interesante; falta auditoría de workload, latencia y clientes."],
+  ["Ollama CVE", "Actualizar y cerrar exposición externa no es opcional si Ollama toca documentos internos o agentes con credenciales."]
 ];
 
 export default function InferenciaPage() {
@@ -215,6 +228,23 @@ export default function InferenciaPage() {
         </div>
         <div className="caveat-grid">
           {caveats.map(([title, text]) => (
+            <article className="caveat-card" key={title}>
+              <strong>{title}</strong>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section shell compact-section">
+        <div className="section-header">
+          <div>
+            <div className="eyebrow">Notas de campo</div>
+            <h2>Nuevas señales que merecen prueba o artículo propio</h2>
+          </div>
+        </div>
+        <div className="caveat-grid">
+          {fieldNotes.map(([title, text]) => (
             <article className="caveat-card" key={title}>
               <strong>{title}</strong>
               <p>{text}</p>

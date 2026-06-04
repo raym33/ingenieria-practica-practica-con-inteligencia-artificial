@@ -1,0 +1,23 @@
+{
+  "rawId": "b06cf174778794ec",
+  "title": "Gemma-4-12B corre a 36 tok/s en Mac con llama.cpp via Metal (solo 10 GB RAM)",
+  "url": "https://x.com/FarAICoder/status/2062449287657562564",
+  "publishedAt": "2026-06-04",
+  "summary": "Apple Apple Silicon (Mac unspecified). Categoría: Apple Silicon + llama.cpp. Hardware: Unified Memory ~10 GB asignados. Uso IA: Inferencia local eficiente de LLM (Gemma-4-12B) sin GPU dedicada ni cloud. Métricas: 36 tokens/s vía Metal con llama.cpp. Límite: Requiere suficiente unified memory; no detalla modelo exacto quantization. Por qué importa: Muestra cómo Apple Silicon + llama.cpp está desplazando GPUs NVIDIA para inferencia local de modelos frontier en hardware consumer, con cero costo cloud",
+  "notes": "Destino sugerido: productos/inferencia/x-ia",
+  "tags": [
+    "x",
+    "grok",
+    "apple",
+    "benchmark-local",
+    "hardware",
+    "inferencia",
+    "llama-cpp",
+    "nvidia",
+    "productos",
+    "productos-ia"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

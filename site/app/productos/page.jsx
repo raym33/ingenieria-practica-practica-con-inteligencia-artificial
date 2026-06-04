@@ -32,6 +32,20 @@ const articles = [
     summary: "La IA en móviles aporta traducción, edición, resumen, búsqueda visual y asistencia contextual. Es útil para productividad personal, pero no reemplaza una máquina de inferencia ni un stack local de desarrollo.",
     verdict: "Evalúa privacidad, disponibilidad por región y si el flujo puede exportar datos hacia tus herramientas.",
     sources: ["Samsung Galaxy AI", "Samsung on-device AI"]
+  },
+  {
+    label: "Seguridad",
+    title: "Ollama no debe exponerse como si fuera una API SaaS cualquiera",
+    summary: "CVE-2026-7482 recuerda que un servidor local de modelos también es infraestructura sensible. Si Ollama queda expuesto, una vulnerabilidad en la carga GGUF puede acabar filtrando memoria de proceso: prompts, variables de entorno, claves o contexto.",
+    verdict: "Actualiza a 0.17.1 o posterior, no expongas endpoints de gestión sin autenticación y pon firewall/reverse proxy.",
+    sources: ["NVD CVE-2026-7482", "SentinelOne", "IONIX"]
+  },
+  {
+    label: "Caso de negocio",
+    title: "Clusters Apple: prometedores, pero hay que separar señal de prueba auditada",
+    summary: "X trae casos llamativos de Mac Studio y Mac mini usados como clusters de inferencia rentable. Son útiles como radar, pero antes de recomendarlos hay que pedir factura, modelo, concurrencia, consumo, latencia, software de clustering y coste de operación.",
+    verdict: "Publicable como tendencia; no como recomendación de compra hasta tener benchmark reproducible.",
+    sources: ["Posts de X curados", "Reddit Lab pendiente"]
   }
 ];
 
@@ -51,7 +65,10 @@ const sources = [
   ["Lenovo ThinkPad X9 Aura Edition", "https://www.lenovo.com/us/en/p/len101t0111"],
   ["Apple Mac Studio", "https://www.apple.com/shop/buy-mac/mac-studio/m3-ultra-chip-32-core-cpu-80-core-gpu-96gb-memory-8tb-storage"],
   ["Samsung Galaxy AI", "https://www.samsung.com/galaxy-ai/"],
-  ["Corsair/Origin PC + NVIDIA NIM", "https://ir.corsair.com/node/10466/pdf"]
+  ["Corsair/Origin PC + NVIDIA NIM", "https://ir.corsair.com/node/10466/pdf"],
+  ["NVD CVE-2026-7482", "https://nvd.nist.gov/vuln/detail/CVE-2026-7482"],
+  ["SentinelOne CVE-2026-7482", "https://www.sentinelone.com/vulnerability-database/cve-2026-7482/"],
+  ["IONIX CVE-2026-7482", "https://www.ionix.io/threat-center/cve-2026-7482/"]
 ];
 
 export default function ProductosPage() {

@@ -1,0 +1,21 @@
+{
+  "rawId": "27576fa2dfc25b41",
+  "title": "4 Mac Minis + EXO forman cluster local AI que genera $14k/mes (70B+ models)",
+  "url": "https://x.com/0xkerazcity/status/2062448354135560269",
+  "publishedAt": "2026-06-04",
+  "summary": "Apple Mac Mini cluster. Categoría: Apple Silicon Cluster. Hardware: 4x Mac Mini conectados con EXO. Uso IA: Inferencia local escalable de modelos 70B+ para clientes. Métricas: $14k/mes revenue; escalado añadiendo más Mac Mini (sin cloud recurring). Límite: Requiere software de clustering (EXO); crecimiento incremental. Por qué importa: Ejemplo práctico de cómo devs están monetizando inferencia local con hardware Apple barato y eficiente vs cloud GPUs",
+  "notes": "Destino sugerido: productos/inferencia/x-ia",
+  "tags": [
+    "x",
+    "grok",
+    "apple",
+    "cluster",
+    "hardware",
+    "inferencia",
+    "productos",
+    "productos-ia"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "nota_breve"
+}

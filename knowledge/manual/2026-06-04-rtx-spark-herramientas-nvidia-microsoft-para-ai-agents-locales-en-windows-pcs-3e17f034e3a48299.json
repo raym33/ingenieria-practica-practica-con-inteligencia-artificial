@@ -1,0 +1,22 @@
+{
+  "rawId": "13f785ba3142bc47",
+  "title": "RTX Spark + herramientas NVIDIA/Microsoft para AI agents locales en Windows PCs",
+  "url": "https://x.com/ggerganov/status/2062443065214702027",
+  "publishedAt": "2026-06-04",
+  "summary": "NVIDIA RTX Spark / Blackwell SoC. Categoría: NVIDIA PC AI Tools. Hardware: RTX systems, multi-GPU support, 128GB unified memory (Blackwell SoC). Uso IA: Agentes AI personales on-device con sandboxing y aceleración RTX. Métricas: Mejoras en inferencia local rápida y multi-GPU. Límite: Nuevo hardware/software; adopción temprana. Por qué importa: NVIDIA entra fuerte al mercado PC local AI compitiendo con Apple Silicon; integra con llama.cpp y Windows AI APIs",
+  "notes": "Destino sugerido: productos/inferencia/x-ia",
+  "tags": [
+    "x",
+    "grok",
+    "apple",
+    "hardware",
+    "inferencia",
+    "llama-cpp",
+    "nvidia",
+    "productos",
+    "productos-ia"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

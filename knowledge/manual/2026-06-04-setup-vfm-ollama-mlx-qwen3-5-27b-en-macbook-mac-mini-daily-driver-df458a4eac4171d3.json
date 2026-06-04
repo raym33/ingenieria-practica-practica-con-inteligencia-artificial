@@ -1,0 +1,22 @@
+{
+  "rawId": "3ee393b00fee9b09",
+  "title": "Setup VFM: Ollama + MLX + Qwen3.5 27B en MacBook/Mac Mini (daily driver)",
+  "url": "https://x.com/a_koutsioubas/status/2062447078987485282",
+  "publishedAt": "2026-06-04",
+  "summary": "Apple MacBook / Mac Mini (Apple Silicon). Categoría: Apple Silicon + MLX. Hardware: Unified Memory suficiente para 27B. Uso IA: Inferencia local casual / non-coding con OpenWebUI. Métricas: Muy buena experiencia diaria; stop burning API tokens. Límite: Requiere suficiente unified memory para modelos grandes. Por qué importa: Configuración práctica y económica para usuarios Apple que quieren LLM local potente sin cloud",
+  "notes": "Destino sugerido: productos/inferencia/x-ia",
+  "tags": [
+    "x",
+    "grok",
+    "apple",
+    "hardware",
+    "inferencia",
+    "mlx",
+    "ollama",
+    "productos",
+    "productos-ia"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}

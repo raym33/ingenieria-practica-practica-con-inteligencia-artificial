@@ -1,0 +1,22 @@
+{
+  "rawId": "2f03fbfa1a757338",
+  "title": "Cluster real de 60 Mac Studio genera $80k/mes en inferencia local (electricidad solo $300)",
+  "url": "https://x.com/antisadh/status/2062447653468913920",
+  "publishedAt": "2026-06-04",
+  "summary": "Apple Mac Studio. Categoría: Apple Silicon Cluster. Hardware: 60x Mac Studio en rack (estanterías wire), bajo consumo vs servidores NVIDIA. Uso IA: Servicios de inferencia local para clientes (research, content, workflows). Métricas: $80k/mes revenue (11 clientes), electricidad $300/mes vs $14k/mes en cloud H100s. Límite: Inversión inicial alta (~$36k solo hardware en caso similar); logística de rack. Por qué importa: Caso real de negocio: hardware consumer Apple reemplaza clusters NVIDIA caros para inferencia local rentable y sostenible",
+  "notes": "Destino sugerido: productos/inferencia/x-ia",
+  "tags": [
+    "x",
+    "grok",
+    "apple",
+    "cluster",
+    "hardware",
+    "inferencia",
+    "nvidia",
+    "productos",
+    "productos-ia"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "nota_breve"
+}

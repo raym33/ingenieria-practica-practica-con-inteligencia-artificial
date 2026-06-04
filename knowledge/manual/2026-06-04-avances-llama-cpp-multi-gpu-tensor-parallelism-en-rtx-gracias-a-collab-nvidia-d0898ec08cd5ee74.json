@@ -1,0 +1,21 @@
+{
+  "rawId": "ca31136db7c21bc0",
+  "title": "Avances llama.cpp: multi-GPU + tensor parallelism en RTX gracias a collab NVIDIA",
+  "url": "https://x.com/ggerganov/status/2062443065214702027",
+  "publishedAt": "2026-06-04",
+  "summary": "NVIDIA / llama.cpp RTX systems + llama.cpp. Categoría: Software Inference Engine. Hardware: Sistemas RTX multi-GPU (detalles en blog NVIDIA RTX Spark). Uso IA: Inferencia local escalable con tensor parallelism y multi-GPU en ggml/llama.cpp. Métricas: Mejoras significativas de performance en RTX (gains en multi-GPU). Límite: Avance reciente; requiere hardware compatible multi-GPU. Por qué importa: Actualización clave de bajo nivel para inferencia local en NVIDIA; habilita mejor escalado en PCs RTX y prepara hardware-agnostic tensor parallelism",
+  "notes": "Destino sugerido: productos/inferencia/x-ia",
+  "tags": [
+    "x",
+    "grok",
+    "hardware",
+    "inferencia",
+    "llama-cpp",
+    "nvidia",
+    "productos",
+    "productos-ia"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "nota_breve"
+}
