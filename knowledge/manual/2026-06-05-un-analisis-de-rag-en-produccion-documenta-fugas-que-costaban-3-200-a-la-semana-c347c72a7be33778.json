@@ -1,0 +1,16 @@
+{
+  "rawId": "ac7e37a72b157634",
+  "title": "Un análisis de RAG en producción documenta fugas que costaban 3.200 $ a la semana",
+  "url": "https://x.com/KubaiKevin/status/2062798414971093349",
+  "publishedAt": "2026-06-05",
+  "summary": "Detalla tres trampas habituales que los tutoriales ignoran (leaks de conexiones, prompt bloat y thrashing de índices vectoriales) y cómo se resolvieron tras detectar el gasto. Fuente primaria: kubaik.github.io.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "RAG"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

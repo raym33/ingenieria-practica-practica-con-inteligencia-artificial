@@ -1,0 +1,19 @@
+{
+  "rawId": "4826018e34b8430d",
+  "title": "Open-LLM-VTuber: compañero de IA 100% offline con Ollama, voz local y avatar animado",
+  "url": "https://x.com/RituWithAI/status/2062780612071801175",
+  "publishedAt": "2026-06-05",
+  "summary": "Proyecto open-source cross-platform (macOS/Linux/Windows), soporte NVIDIA/CPU. LLM vía Ollama, TTS local, Whisper local, percepción visual y modo mascota de escritorio. ~7.952 estrellas y 1.044 forks en GitHub.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Ollama",
+    "Modelos locales",
+    "Inferencia local",
+    "Agentes"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

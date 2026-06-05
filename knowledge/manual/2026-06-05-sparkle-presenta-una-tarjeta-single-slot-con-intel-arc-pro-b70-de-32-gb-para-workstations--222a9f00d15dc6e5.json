@@ -1,0 +1,18 @@
+{
+  "rawId": "88cc815c04006064",
+  "title": "Sparkle presenta una tarjeta single-slot con Intel Arc Pro B70 de 32 GB para workstations de IA local",
+  "url": "https://x.com/steeve/status/2062810430213406995",
+  "publishedAt": "2026-06-05",
+  "summary": "Permite configuraciones compactas con hasta 256 GB de VRAM total en entornos de inferencia local. Señal de alternativa a NVIDIA en VRAM por euro.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Hardware",
+    "AMD",
+    "Inferencia local"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "guardar_para_contexto"
+}

@@ -1,0 +1,18 @@
+{
+  "rawId": "9e424baa32508f0a",
+  "title": "Google lanza Magenta RealTime 2 con pesos abiertos para música en tiempo real (corre en Apple Silicon)",
+  "url": "https://x.com/vinyothiemeb/status/2062724209277898831",
+  "publishedAt": "2026-06-05",
+  "summary": "Modelo de música IA reactiva con control MIDI/texto/audio en tiempo real y ejemplos para DAW y plugins. Fuente primaria: magenta.withgoogle.com.",
+  "notes": "Destino sugerido: /modelos",
+  "tags": [
+    "x",
+    "grok",
+    "Apple Silicon",
+    "Modelos locales",
+    "Inferencia local"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}
