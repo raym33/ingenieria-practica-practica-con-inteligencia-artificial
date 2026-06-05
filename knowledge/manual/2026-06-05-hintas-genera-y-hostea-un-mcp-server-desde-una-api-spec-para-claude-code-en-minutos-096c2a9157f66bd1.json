@@ -1,0 +1,17 @@
+{
+  "rawId": "7e765d3239fa81ad",
+  "title": "Hintas: genera y hostea un MCP server desde una API spec para Claude Code en minutos",
+  "url": "https://x.com/iliakakhadze/status/2062713974844744025",
+  "publishedAt": "2026-06-05",
+  "summary": "Analiza una spec de API, construye y hostea el MCP server y lo mantiene actualizado. Conecta APIs propias a Claude Code para flujos agentic. Señal de la 'fontanería' MCP que se automatiza.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Herramientas"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

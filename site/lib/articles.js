@@ -1159,6 +1159,113 @@ export const articles = [
         text: "Empieza con tareas pequeñas, independientes y verificables (un test, un refactor acotado), lanza dos o tres agentes y mide cuánto tardas en revisar y mezclar. Si el tiempo de revisión se dispara, has movido el problema, no lo has resuelto."
       }
     ]
+  },
+  {
+    slug: "claude-code-seguridad-guia-anthropic-agentes",
+    publishedAt: "2026-06-05",
+    tags: ["Seguridad", "Agentes", "Herramientas"],
+    section: "Seguridad",
+    title: "Agentes con criterio: la guía de seguridad de Claude Code que deberías leer",
+    deck: "Anthropic documenta cómo tratar un agente de código como lo que es: un runtime de desarrollador privilegiado. Permisos, deny rules, sandbox, MCP aprobados y OAuth para lo remoto.",
+    verdict: "Si das a un agente acceso a tu repo, tu shell o tus secretos, su seguridad es tu responsabilidad, no la suya. La guía de Anthropic es la base mínima: modo plan por defecto, denegar secretos y bash peligroso, aislar en sandbox y aprobar los MCP uno a uno. Léela antes de soltar un agente en CI o en producción.",
+    sources: [
+      ["Claude Code — documentación de seguridad", "https://code.claude.com/docs/en/security"],
+      ["Anthropic — How we contain Claude", "https://www.anthropic.com/engineering/how-we-contain-claude"],
+      ["Señal en X — @nowlovepan", "https://x.com/nowlovepan/status/2062801466935673021"]
+    ],
+    body: [
+      {
+        heading: "Qué hay",
+        text: "Anthropic mantiene documentación de seguridad para Claude Code y un artículo de ingeniería ('How we contain Claude') sobre cómo acotar lo que puede hacer un agente. La tesis es clara: un agente de código es un runtime de desarrollador con privilegios, y hay que tratarlo como tal."
+      },
+      {
+        heading: "Las piezas que importan",
+        text: "Modo por defecto o 'plan' antes de actuar; deny rules para secretos y comandos de bash peligrosos; ask rules para efectos privilegiados; bash en sandbox o dev containers; servidores MCP aprobados; hooks gestionados; y, para MCP remotos, OAuth 2.1 (formalizado en la especificación de noviembre de 2025)."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "Lo vimos con el CVE de la GitHub Action de Claude Code y con la divulgación de Chema Alonso: un agente que consume entrada no confiable y tiene herramientas es superficie de ataque. La inyección de prompt no es teoría, y los secretos del entorno son el botín."
+      },
+      {
+        heading: "El patrón, no el producto",
+        text: "Esto aplica a cualquier agente de código (Codex, Cursor y demás), no solo a Claude Code: mínimo privilegio, validación, aislamiento y aprobar explícitamente cada integración MCP. La comodidad de 'que lo haga todo' es justo el riesgo."
+      },
+      {
+        heading: "Qué hacer hoy",
+        text: "Revisa qué comandos auto-aprueba tu agente, qué secretos hay en su entorno, qué MCP tiene conectados y si corre en sandbox. Antes de meterlo en CI o producción, haz una validación adversaria: intenta tú mismo que se salga del carril."
+      }
+    ]
+  },
+  {
+    slug: "cve-mcp-server-claude-analista-seguridad",
+    publishedAt: "2026-06-05",
+    tags: ["Seguridad", "Agentes", "Herramientas"],
+    section: "Herramientas",
+    title: "cve-mcp-server: convertir Claude en un analista de vulnerabilidades vía MCP",
+    deck: "Un servidor MCP open-source da al agente 27 herramientas de seguridad sobre 21 APIs (CVE, EPSS, CISA KEV, MITRE…), varias sin clave. En vez de 15 pestañas, una pregunta.",
+    verdict: "Buen ejemplo de para qué sirve MCP de verdad: en lugar de un chat que 'sabe' de CVEs, un agente que consulta fuentes reales (NVD, EPSS, KEV) y las correlaciona. Que 8 herramientas funcionen sin API key baja la barrera a cero. Útil para triage; el criterio de a qué dar prioridad sigue siendo tuyo.",
+    sources: [
+      ["cve-mcp-server — repositorio (mukul975)", "https://github.com/mukul975/cve-mcp-server"],
+      ["The Cyber Express / CybersecurityNews — análisis", "https://cybersecuritynews.com/cve-mcp-server-and-claude/"],
+      ["Señal en X — @itsharmanjot", "https://x.com/itsharmanjot/status/2062803143575101818"]
+    ],
+    body: [
+      {
+        heading: "Qué es",
+        text: "cve-mcp-server (open-source) es un servidor MCP que da a Claude —en Desktop o en Code— 27 herramientas de inteligencia de seguridad sobre 21 APIs: búsqueda de CVE, scoring EPSS, CISA KEV, MITRE ATT&CK, Shodan, VirusTotal y más, organizadas en cinco categorías."
+      },
+      {
+        heading: "Por qué importa",
+        text: "En vez de hacer malabares con 15 pestañas (NVD, EPSS, KEV, Shodan…), preguntas una vez y el agente correlaciona la inteligencia. Es el caso de uso real de MCP: dar al modelo acceso a fuentes en vivo, no que se las invente."
+      },
+      {
+        heading: "El detalle bueno: scoring honesto",
+        text: "En lugar de fiarlo todo al CVSS, usa una fórmula que pondera el EPSS al 35% (el mejor predictor de explotación real), más KEV y prueba de concepto. Es exactamente el tipo de criterio 'sin humo' que falta en muchos paneles de vulnerabilidades."
+      },
+      {
+        heading: "Barrera de entrada baja",
+        text: "Ocho herramientas funcionan sin ninguna API key (EPSS, CISA KEV, OSV.dev, MITRE, CWE, CVSS y NVD a tasa reducida). Se configura en Claude Desktop y Claude Code de fábrica. Como alternativa gratuita a suites enterprise, es una señal a seguir."
+      },
+      {
+        heading: "El asterisco",
+        text: "Un agente que correlaciona inteligencia acelera el triage, no decide por ti qué parchear primero ni sustituye a un analista. Y, como con todo MCP, dale solo las claves que necesita. Pruébalo en tu flujo de vulnerabilidades real antes de fiarte."
+      }
+    ]
+  },
+  {
+    slug: "frameworks-agentes-separar-senal-de-hype",
+    publishedAt: "2026-06-05",
+    tags: ["Agentes", "Herramientas", "Benchmarks"],
+    section: "Análisis",
+    title: "La fiebre de los frameworks de agentes: cómo separar la señal del humo",
+    deck: "Cada semana aparece otro framework de agentes 'definitivo', con miles de estrellas y un curso de pago. Una guía para evaluar estas herramientas sin tragarte el marketing — desde una revista que vive de filtrarlo.",
+    verdict: "Antes de adoptar un framework de agentes, desconfía de tres cosas: cifras de estrellas implausibles, cuentas que lo promocionan en cadena y la ausencia de fuente primaria reproducible. Lo que vale se mide en tu repo, no en un hilo. La pregunta no es '¿cuántas estrellas?', sino '¿resuelve un problema caro y puedo verificarlo?'.",
+    sources: [
+      ["Claude Code — documentación de seguridad (ejemplo de fuente primaria)", "https://code.claude.com/docs/en/security"],
+      ["cve-mcp-server — repositorio verificable", "https://github.com/mukul975/cve-mcp-server"]
+    ],
+    body: [
+      {
+        heading: "Qué está pasando",
+        text: "El ecosistema de agentes y MCP crece de verdad —Claude Code, Codex, Cursor, OpenCode— y con él una marea de 'frameworks definitivos'. El problema no es la innovación: es el ruido. En una sola semana hemos visto proyectos anunciados con 140.000 o 200.000 estrellas en GitHub."
+      },
+      {
+        heading: "Por qué esas cifras son una bandera roja",
+        text: "Para situarnos: los repositorios más populares del mundo rondan unos pocos cientos de miles de estrellas tras años de uso masivo. Un framework de agentes desconocido que aparece de golpe con 200.000 no es un éxito: es una cifra que no se sostiene. Cuando además llega empaquetado con 'curso completo disponible' y lo promocionan en cadena las mismas cuentas, el patrón es marketing, no señal."
+      },
+      {
+        heading: "Las tres preguntas sin humo",
+        text: "¿Hay fuente primaria? (un repo real, un release, un changelog, no un hilo). ¿Es reproducible? (puedes clonarlo y medirlo, o solo te lo cuentan). ¿Resuelve un problema caro y concreto? (o es una capa más sobre lo que ya hace tu agente). Si las tres no se responden, es humo."
+      },
+      {
+        heading: "Cómo lo hacemos aquí",
+        text: "En esta revista solo convertimos en artículo lo que tiene fuente primaria verificable. Por eso publicamos la guía de seguridad de Claude Code (docs de Anthropic) o cve-mcp-server (repo real, con licencia), y dejamos en el radar —o fuera— lo que solo trae estrellas y promesas. No es escepticismo por deporte: es respeto por tu tiempo."
+      },
+      {
+        heading: "Qué hacer tú",
+        text: "Cuando veas el próximo framework 'que lo cambia todo', clónalo, míralo por dentro y pruébalo en una tarea real antes de integrarlo. Mide lo que te importa (coste, control, fiabilidad). Las estrellas no compilan; tu caso, sí."
+      }
+    ]
   }
 ];
 

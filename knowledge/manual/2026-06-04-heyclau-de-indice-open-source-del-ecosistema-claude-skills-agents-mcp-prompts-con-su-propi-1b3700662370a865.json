@@ -1,0 +1,17 @@
+{
+  "rawId": "e7f5d665d102d67e",
+  "title": "heyclau.de: índice open-source del ecosistema Claude (skills, agents, MCP, prompts) con su propio MCP server",
+  "url": "https://x.com/Anti_Gravity00/status/2062635608556585388",
+  "publishedAt": "2026-06-04",
+  "summary": "Indexa el ecosistema Claude y expone un MCP server para que Claude busque y cargue tools en vivo. Open source, API en vivo. Verificar madurez del repo antes de recomendar.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Herramientas"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "guardar_para_contexto"
+}

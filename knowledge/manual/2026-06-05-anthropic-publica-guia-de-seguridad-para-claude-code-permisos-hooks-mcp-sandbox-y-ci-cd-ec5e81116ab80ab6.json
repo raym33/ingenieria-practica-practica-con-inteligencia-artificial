@@ -1,0 +1,18 @@
+{
+  "rawId": "beb219fe99821b0f",
+  "title": "Anthropic publica guía de seguridad para Claude Code: permisos, hooks, MCP, sandbox y CI/CD",
+  "url": "https://x.com/nowlovepan/status/2062801466935673021",
+  "publishedAt": "2026-06-05",
+  "summary": "Docs oficiales (code.claude.com/docs/security) y artículo de ingeniería de Anthropic: tratar Claude Code como runtime de desarrollador privilegiado, con deny rules para secretos y bash peligroso, ask rules, sandbox/dev containers, MCP aprobados y OAuth 2.1 para MCP remotos. Fuente: Anthropic.",
+  "notes": "Destino sugerido: /actualidad",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Seguridad",
+    "Herramientas"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

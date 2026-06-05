@@ -1,0 +1,18 @@
+{
+  "rawId": "9a10602095a24b5b",
+  "title": "Robinhood lanza beta de trading agentic con MCP: agentes externos (Claude, ChatGPT) analizan y ejecutan operaciones",
+  "url": "https://x.com/2xdog/status/2062728550986448959",
+  "publishedAt": "2026-06-05",
+  "summary": "Vía Model Context Protocol, agentes de terceros se conectan a Robinhood para análisis de cartera, monitorización y ejecución de trades en una cuenta separada. Ejemplo de adopción de MCP en finanzas. Operar dinero con agentes exige máxima cautela.",
+  "notes": "Destino sugerido: /actualidad",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Seguridad",
+    "SaaS"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}
