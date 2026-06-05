@@ -937,6 +937,117 @@ export const articles = [
         text: "Mínimo privilegio para las herramientas del agente, validación y saneado de la salida, aislar lo que toca secretos, y tratar toda entrada externa como hostil. Probar tú mismo inyecciones contra tu propio asistente es la mejor forma de entender —y reducir— el riesgo."
       }
     ]
+  },
+  {
+    slug: "rag-produccion-tres-fugas-coste-reales",
+    image: "/articulos/rag-produccion-tres-fugas-coste-reales.png",
+    imageAlt: "Ilustración editorial: una tubería de datos con tres fugas marcadas y un contador de coste",
+    publishedAt: "2026-06-05",
+    tags: ["RAG", "Inferencia local", "Benchmarks"],
+    section: "Análisis",
+    title: "RAG en producción: tres fugas que costaban 3.200 $ a la semana (y cómo se taparon)",
+    deck: "Un builder documenta el lado caro de RAG que los tutoriales ignoran: conexiones que se filtran, prompts que se hinchan e índices vectoriales que se fragmentan. Con números reales y arreglos concretos.",
+    verdict: "Lo que dispara el coste de un RAG en producción no es el modelo: es la fontanería (conexiones, calidad del retrieval, configuración del índice). Antes de cambiar de LLM, mide y arregla tu pipeline. Este caso bajó de 3.300 $ a 1.200 $ a la semana sirviendo 2,8x más peticiones, sin tocar el modelo.",
+    sources: [
+      ["Kubaik — Leaky RAG: 3 production traps tutorials ignore", "https://kubaik.github.io/leaky-rag-3-prod-traps-tutorials-ignore/"],
+      ["Señal en X — @KubaiKevin", "https://x.com/KubaiKevin/status/2062798414971093349"]
+    ],
+    body: [
+      {
+        heading: "El problema que nadie tuitea",
+        text: "Los tutoriales montan un RAG en 50 líneas, pero en producción, bajo concurrencia, el coste se dispara. Un builder lo documentó con números: 3.200 $ la primera semana en una instancia GPU p3.2xlarge, antes de optimizar nada."
+      },
+      {
+        heading: "Fuga 1: conexiones que no se cierran",
+        text: "Chroma con el pooling de LangChain abría 16 procesos worker, cada uno con su contexto CUDA; con 100 peticiones concurrentes, la memoria de GPU se llenaba de contextos muertos y llegaban los OOM y los segfaults. El arreglo: migrar a Qdrant con pooling explícito (tope de 100 conexiones, max_concurrency=10), con lo que la CPU bajó del 70% y los OOM cayeron del 1,2% al 0,02%."
+      },
+      {
+        heading: "Fuga 2: prompts que engordan",
+        text: "Sin control de calidad del retrieval, el contexto recuperado es ruidoso y el prompt crece (310 tokens de media) — y la factura del LLM lo sigue. El arreglo: un reranker (cross-encoder bge-reranker-large) filtra el top-20 a lo que de verdad vale y el prompt baja a 155 tokens. Con prefix caching de vLLM, 120 ms menos por petición."
+      },
+      {
+        heading: "Fuga 3: el índice vectorial se fragmenta",
+        text: "La configuración HNSW por defecto de Chroma (M=16, efConstruction=200) se fragmenta bajo carga: 1.000 vectores concurrentes disparaban la CPU al 95%, la latencia a 800 ms y el recall caía del 92% al 65%. El arreglo: Qdrant con HNSW afinado (M=32, efConstruction=512) y almacenamiento en disco (build de 6 h a 35 min; memoria de 8 GB a 3,2 GB), más una caché Redis que absorbe el 73% de las consultas a 15 ms. La latencia p95 pasó de 800 ms a 185 ms."
+      },
+      {
+        heading: "La lección sin humo",
+        text: "El resultado fue bajar de 3.300 $ a 1.200 $ a la semana sirviendo 2,8x más peticiones, sin cambiar de modelo. Mide tu pipeline —conexiones, tamaño de prompt, recall bajo carga— antes de culpar al LLM o comprar más GPU. El cuello de botella casi nunca es el que parece."
+      }
+    ]
+  },
+  {
+    slug: "open-llm-vtuber-companero-ia-local-offline",
+    image: "/articulos/open-llm-vtuber-companero-ia-local-offline.png",
+    imageAlt: "Ilustración editorial: un asistente de escritorio local con capas de LLM, voz y visión, sin nube",
+    publishedAt: "2026-06-05",
+    tags: ["Ollama", "Modelos locales", "Inferencia local", "Agentes"],
+    section: "Análisis",
+    title: "Open-LLM-VTuber: un compañero de IA que corre 100% en tu máquina",
+    deck: "Un proyecto open-source junta Ollama, voz local (TTS y Whisper) y un avatar animado para un asistente de escritorio sin nube. Buen ejemplo de hasta dónde llega ya el stack local.",
+    verdict: "Más allá de lo simpático del avatar, es una demostración concreta de que el stack local —razonar, hablar, escuchar y ver— ya cabe en un portátil sin enviar nada a la nube. Útil como plantilla para asistentes privados; trátalo como base de la que aprender, no como producto terminado.",
+    sources: [
+      ["Open-LLM-VTuber — repositorio en GitHub", "https://github.com/Open-LLM-VTuber/Open-LLM-VTuber"],
+      ["Señal en X — @RituWithAI", "https://x.com/RituWithAI/status/2062780612071801175"]
+    ],
+    body: [
+      {
+        heading: "Qué es",
+        text: "Un proyecto open-source multiplataforma (macOS, Linux, Windows) que arma un compañero de IA de escritorio 100% offline: LLM vía Ollama, TTS local, transcripción con Whisper local, percepción visual y un modo 'mascota' flotante. Ronda las 7.900 estrellas en GitHub, con soporte para NVIDIA y CPU."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "Demuestra que el stack local completo —razonar, hablar, escuchar y ver— ya funciona sin nube ni cuotas de API. Para casos con datos sensibles o sin internet fiable, es la prueba de que las piezas existen y encajan."
+      },
+      {
+        heading: "Lo interesante de la arquitectura",
+        text: "Cada capa es intercambiable: el LLM por Ollama, la voz por motores TTS locales, el oído por Whisper. Es una plantilla de cómo ensamblar un asistente privado por componentes, no una caja negra; justo lo que un builder necesita para adaptarlo a su caso."
+      },
+      {
+        heading: "El asterisco",
+        text: "Un proyecto comunitario joven no es software de producción: la calidad de voz, la latencia y la robustez dependen de tu hardware y de los modelos que elijas. El avatar vende, pero lo valioso es el patrón de ensamblaje local, no la mascota."
+      },
+      {
+        heading: "Qué probar",
+        text: "Clónalo, conéctalo a un modelo pequeño en Ollama y a un TTS local, y mide la latencia de voz y el consumo en tu equipo. Es un buen punto de partida para construir un asistente privado a medida sin depender de la nube."
+      }
+    ]
+  },
+  {
+    slug: "google-magenta-realtime-2-musica-ia-local",
+    image: "/articulos/google-magenta-realtime-2-musica-ia-local.png",
+    imageAlt: "Ilustración editorial: ondas de audio generándose en tiempo real desde un núcleo en un chip Apple Silicon",
+    publishedAt: "2026-06-05",
+    tags: ["Apple Silicon", "Modelos locales", "Inferencia local"],
+    section: "Modelos",
+    title: "Magenta RealTime 2: Google abre un modelo de música que corre en tu Mac",
+    deck: "Pesos abiertos para generar música reactiva en tiempo real, con control por MIDI, texto y audio, y ejemplos para DAW y plugins. La IA generativa local se sale del texto.",
+    verdict: "Señal de que el 'modelo local' ya no es solo chat: la generación creativa en tiempo real, con pesos abiertos en Apple Silicon, abre productos para músicos y makers. Para builders es un recordatorio de que el stack local sirve para más que LLMs de texto. Mídelo en tu flujo creativo real antes de integrarlo.",
+    sources: [
+      ["Google Magenta — Magenta RealTime 2", "https://magenta.withgoogle.com/magenta-realtime-2"],
+      ["Señal en X — @vinyothiemeb", "https://x.com/vinyothiemeb/status/2062724209277898831"]
+    ],
+    body: [
+      {
+        heading: "Qué ha pasado",
+        text: "Google publicó Magenta RealTime 2 con pesos abiertos: un modelo de música por IA reactiva, con control por MIDI, texto y audio en tiempo real, y ejemplos para DAW y plugins. Corre en local, incluido Apple Silicon."
+      },
+      {
+        heading: "Por qué importa",
+        text: "Amplía el 'modelo local' más allá del texto. Generación creativa en tiempo real, con pesos abiertos y latencia baja, habilita instrumentos y productos que antes dependían de la nube o sencillamente no existían en local."
+      },
+      {
+        heading: "Para quién",
+        text: "Músicos, makers y builders de herramientas creativas. Que controles la música por MIDI, texto o audio y que todo corra en tu equipo cambia lo que se puede integrar en un DAW o en un plugin sin enviar nada fuera."
+      },
+      {
+        heading: "El matiz honesto",
+        text: "'Tiempo real' depende de tu hardware, y la calidad y el control fino de la música generativa siguen siendo terreno de prueba. Es una base potente, no un sustituto del criterio musical ni un producto cerrado."
+      },
+      {
+        heading: "Qué probar",
+        text: "Descárgalo, intégralo en tu DAW o en un prototipo de plugin, y mide latencia y control en tu flujo real. Compáralo con lo que ya usas antes de construir producto encima."
+      }
+    ]
   }
 ];
 

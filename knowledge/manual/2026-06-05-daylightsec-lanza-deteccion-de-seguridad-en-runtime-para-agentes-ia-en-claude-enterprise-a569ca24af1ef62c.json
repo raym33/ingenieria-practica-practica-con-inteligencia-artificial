@@ -1,0 +1,18 @@
+{
+  "rawId": "5c1ffcd70613b956",
+  "title": "DaylightSec lanza detección de seguridad en runtime para agentes IA en Claude Enterprise",
+  "url": "https://x.com/TechNadu/status/2062810303407223199",
+  "publishedAt": "2026-06-05",
+  "summary": "Detecta inyección de prompts, uso no autorizado de MCP, exfiltración de datos, abuso de identidad y agentes descontrolados a través de flujos MDR existentes.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Seguridad",
+    "SaaS"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

@@ -1,0 +1,17 @@
+{
+  "rawId": "1409548310c7fc67",
+  "title": "Ideogram 4.0: modelo abierto de generación de imágenes de 9.3B, líder entre open-weights en DesignArena",
+  "url": "https://x.com/BizYetcom/status/2062741283291160585",
+  "publishedAt": "2026-06-05",
+  "summary": "Primer modelo de pesos abiertos de Ideogram; primer puesto entre open-weights en DesignArena (solo por detrás de cerrados de OpenAI y Google). Resolución nativa 2K, fondos transparentes y control vía JSON. Pesos y código en GitHub y Hugging Face.",
+  "notes": "Destino sugerido: /modelos",
+  "tags": [
+    "x",
+    "grok",
+    "Modelos locales",
+    "Benchmarks"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

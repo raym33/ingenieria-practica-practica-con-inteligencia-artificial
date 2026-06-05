@@ -1,0 +1,19 @@
+{
+  "rawId": "9e36bf38424a4f2b",
+  "title": "Commits recientes de llama.cpp aceleran Qwen 35B a 260-280 tok/s en dual RTX 5070Ti",
+  "url": "https://x.com/CharlesBanks99/status/2062801514893091048",
+  "publishedAt": "2026-06-05",
+  "summary": "Mejoras de soporte sm_120 (Blackwell) y rendimiento en setups locales pequeños, según logs de ejecución en hardware real. Sin fuente primaria más allá del post.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "llama.cpp",
+    "NVIDIA RTX",
+    "Inferencia local",
+    "Hardware"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}
