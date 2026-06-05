@@ -1,0 +1,19 @@
+{
+  "rawId": "a6081cd7b2caa4b8",
+  "title": "Caso de coste: Mac Mini M4 para agentes en local frente a la factura de una API en la nube",
+  "url": "https://x.com/L1vsun/status/2062197031490171135",
+  "publishedAt": "2026-06-03",
+  "summary": "Afirma reemplazar 170$ en 10 días de API por un Mac Mini M4 de ~600$ (una vez), con breakeven ~36 días. AVISO: la cifra de ~700 tok/s que menciona es implausible para un LLM real en Mac Mini M4 (verificar modelo); el marco de coste sí es útil. Cero rate limits, datos en casa.",
+  "notes": "Destino sugerido: /empresa",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Hardware",
+    "Compra",
+    "Empresa"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "convertir_en_articulo"
+}

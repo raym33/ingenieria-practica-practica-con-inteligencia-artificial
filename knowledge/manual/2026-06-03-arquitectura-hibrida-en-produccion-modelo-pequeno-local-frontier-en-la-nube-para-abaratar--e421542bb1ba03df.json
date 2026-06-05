@@ -1,0 +1,18 @@
+{
+  "rawId": "8739a0762210902c",
+  "title": "Arquitectura híbrida en producción: modelo pequeño local + frontier en la nube para abaratar IA en empresa",
+  "url": "https://x.com/patilvishi/status/2062015569315147871",
+  "publishedAt": "2026-06-03",
+  "summary": "Sistemas reales por capas (orquestador, RAG, tools, memoria, guardrails, validación). Híbrido: modelo local pequeño para tareas sensibles y de coste + frontier en nube para lo pesado. Reduce coste de tokens y mejora residencia del dato en pyme/empresa.",
+  "notes": "Destino sugerido: /empresa",
+  "tags": [
+    "x",
+    "grok",
+    "Empresa",
+    "Inferencia local",
+    "Modelos locales"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "convertir_en_articulo"
+}

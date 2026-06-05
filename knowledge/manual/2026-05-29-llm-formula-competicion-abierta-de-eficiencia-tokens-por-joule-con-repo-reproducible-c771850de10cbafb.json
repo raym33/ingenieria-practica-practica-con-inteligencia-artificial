@@ -1,0 +1,18 @@
+{
+  "rawId": "d1fd1fb13a134471",
+  "title": "LLM Formula: competición abierta de eficiencia (tokens por joule) con repo reproducible",
+  "url": "https://x.com/Tono_Ken3/status/2060202836672336262",
+  "publishedAt": "2026-05-29",
+  "summary": "Misma tarea; gana quien hace más tokens por joule, no quien tiene más cluster. Cualquier GPU, Mac o CPU. Enfoque en eficiencia energética para inferencia local/on-prem. Repo: github.com/lna-lab/LLM-Formura1.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}
