@@ -1,0 +1,19 @@
+{
+  "rawId": "c62bf10e49c2938f",
+  "title": "Servidor local sin Python/CUDA con Transformers.js + WebGPU en M1 Max: 117 tok/s (LFM 2.5 350M), ~8 tok/s (Gemma 4 E4B)",
+  "url": "https://x.com/kubesimplify/status/2062461780501373269",
+  "publishedAt": "2026-06-04",
+  "summary": "API compatible OpenAI vía Transformers.js + ONNX. LFM 2.5 350M: 117 tok/s; Gemma 4 E4B Q4: ~8 tok/s en WebGPU; Whisper Tiny para STT. Blog con comandos y números.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware",
+    "Apple Silicon"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

@@ -1,0 +1,19 @@
+{
+  "rawId": "9036ed9cc66c7c72",
+  "title": "Gemma 4 12B Q4_K_M en Mac con llama.cpp + Metal: 36 tok/s, ~10GB RSS, 32K contexto",
+  "url": "https://x.com/mylifcc/status/2062234047359947199",
+  "publishedAt": "2026-06-03",
+  "summary": "API local compatible OpenAI en Mac. ~36 tok/s, RAM baja (~10GB RSS). Viable en Apple Silicon de gama media-alta para uso diario.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware",
+    "Apple Silicon"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

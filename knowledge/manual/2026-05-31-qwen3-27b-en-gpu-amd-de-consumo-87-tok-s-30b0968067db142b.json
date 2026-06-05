@@ -1,0 +1,19 @@
+{
+  "rawId": "b69d7c12f863992f",
+  "title": "Qwen3 27B en GPU AMD de consumo: 87 tok/s",
+  "url": "https://x.com/cyrilXBT/status/2061081575413178555",
+  "publishedAt": "2026-05-31",
+  "summary": "Modelo open en una gráfica retail (no datacenter). Velocidad superior a muchos modelos cloud de pago. Señal de madurez de la inferencia local en AMD accesible. Sin desglose de cuantización/hardware exacto.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware",
+    "AMD"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

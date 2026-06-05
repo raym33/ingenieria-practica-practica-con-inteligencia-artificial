@@ -1,0 +1,19 @@
+{
+  "rawId": "c1a0cd29a9e00541",
+  "title": "Aion-1.0-Instruct Q4_K_M en M4 Max: ~209-213 tok/s con llama.cpp + Metal",
+  "url": "https://x.com/old_sound/status/2062520004742959267",
+  "publishedAt": "2026-06-04",
+  "summary": "Conversión Edge ONNX a GGUF Q4_K_M. Generación estable a 209-213 tok/s en M4 Max. Modelo instruct pequeño y reciente.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware",
+    "Apple Silicon"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

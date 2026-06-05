@@ -1344,6 +1344,113 @@ export const articles = [
         text: "Estima tus horas o tokens reales al mes, multiplícalos por 12-24 meses e incluye el coste oculto de operar (electricidad, mantenimiento, tu tiempo). Compara las tres opciones con tu número, no con el de un hilo. Casi siempre la respuesta es 'depende del uso', y por eso hay que medirlo."
       }
     ]
+  },
+  {
+    slug: "gemma-4-12b-cuanto-rinde-en-cada-hardware",
+    publishedAt: "2026-06-05",
+    tags: ["Empresa", "Inferencia local", "Benchmarks", "Hardware"],
+    section: "Benchmark",
+    title: "Gemma 4 12B en local: cuánto rinde en cada hardware (con números)",
+    deck: "El modelo open-source de la semana corre a velocidad de uso diario tanto en un Mac de gama alta como en una RTX 3060 de 12 GB. Reunimos las mediciones y lo que dicen para tu compra.",
+    verdict: "Para una pyme, la conclusión es liberadora: un 12B útil cabe y rinde (~21-36 tok/s) en hardware que ya tienes o que cuesta poco —una RTX 3060 de 12 GB o un Mac con memoria suficiente—. La cuantización es la palanca: Q4/Q5 dan el mejor equilibrio VRAM/velocidad. Mide con tu prompt real, pero el techo de entrada es bajo.",
+    sources: [
+      ["seapy — Gemma 4 12B en Mac Studio (medición verificada)", "https://seapy.com/gemma4-12b-mac-studio-local-serving/"],
+      ["Hugging Face — google/gemma-4-12B", "https://huggingface.co/google/gemma-4-12B"],
+      ["Señal en X — @ItsmeAjayKV (RTX 3060, sin verificar)", "https://x.com/ItsmeAjayKV/status/2062542245719572577"],
+      ["Señal en X — @analogalok (RTX 4060, sin verificar)", "https://x.com/analogalok/status/2062237722820128987"]
+    ],
+    body: [
+      {
+        heading: "Qué hemos reunido",
+        text: "Tras el lanzamiento de Gemma 4 12B, varios builders publicaron mediciones del mismo modelo en hardware distinto. Las juntamos para ver el patrón, marcando qué está verificado (la del Mac, con guía y blog) y qué es un reporte suelto de X. La gráfica comparativa está en la sección Empresa."
+      },
+      {
+        heading: "Apple Silicon: ~33-36 tok/s y poca RAM",
+        text: "En un Mac Studio M4 Max (64 GB), servido con MLX, da ~33 tok/s ocupando solo 14 GB —medición verificada con pasos de instalación—. Con llama.cpp y Metal, otro reporte da ~36 tok/s y ~10 GB de RAM. Es velocidad de uso diario con memoria de sobra para multitarea."
+      },
+      {
+        heading: "RTX 3060 12 GB: la sorpresa",
+        text: "Una GPU de consumo barata sostiene el 12B. En Q5_K_XL, ~33,3 tok/s con 9,3 GB de VRAM; en Q6_K_XL, 26 tok/s; e incluso Q8 con offload parcial, 14,9 tok/s. El prefill ronda los 1.000-1.150 tok/s. La 3060 sigue viva en 2026 (estas cifras son reportes de X, sin método publicado)."
+      },
+      {
+        heading: "La cuantización manda",
+        text: "El mismo modelo pasa de 14,9 a ~36 tok/s según la cuantización y el hardware. Q4 y Q5 son el sweet spot: caben en 12 GB, van rápidos y mantienen calidad razonable. Subir a Q8 cuesta velocidad sin tanta mejora perceptible para la mayoría de tareas."
+      },
+      {
+        heading: "Qué significa para tu empresa",
+        text: "No necesitas una GPU de datacenter para automatizar con un 12B open-source en local. Una RTX 3060 de 12 GB o un Mac con memoria suficiente bastan para tareas reales (clasificar, extraer, redactar borradores). Mide TTFT y calidad con tu caso, pero la barrera de entrada es baja —y eso cambia la cuenta frente a la nube."
+      }
+    ]
+  },
+  {
+    slug: "mac-mini-m4-agentes-breakeven-coste-empresa",
+    publishedAt: "2026-06-05",
+    tags: ["Empresa", "Compra", "Hardware", "Inferencia local"],
+    section: "Empresa",
+    title: "¿Compensa un Mac Mini para automatizar con agentes? La cuenta del breakeven",
+    deck: "Un caso que circula afirma sustituir 170 $ de API en 10 días por un Mac Mini M4 de ~600 $, con breakeven en ~36 días. La idea es buena; los números, para mirarlos con lupa.",
+    verdict: "El marco es correcto: para uso intensivo y sostenido de agentes, un equipo barato amortiza rápido frente a una API que cobra por uso. Pero ojo con las cifras del caso —un '700 tok/s' en Mac Mini M4 no cuadra para un LLM real—. Haz tu propia cuenta con tu volumen y tu modelo; la conclusión (comprar gana con uso alto) suele sostenerse aunque los números del hilo no.",
+    sources: [
+      ["Apple — Mac mini", "https://www.apple.com/mac-mini/"],
+      ["Señal en X — @L1vsun (caso de coste, sin verificar)", "https://x.com/L1vsun/status/2062197031490171135"]
+    ],
+    body: [
+      {
+        heading: "El caso, en una frase",
+        text: "Alguien afirma que su factura de API de un agente de código (170 $ en 10 días) la sustituyó por un Mac Mini M4 de ~600 $ una sola vez, con un breakeven de unos 36 días y sin límites de uso."
+      },
+      {
+        heading: "Por qué el marco es sólido",
+        text: "Es exactamente la lógica de 'servidor propio frente a nube': para carga sostenida y repetida, el CapEx de un equipo barato amortiza frente al coste por uso de una API. A 170 $ cada 10 días, el gasto anualizado supera con creces el precio del Mac Mini."
+      },
+      {
+        heading: "Por qué las cifras piden lupa",
+        text: "El caso menciona ~700 tok/s en un Mac Mini M4. Para un LLM real, esa velocidad no cuadra con ese hardware (sería propio de un modelo diminuto o de una métrica mal medida). Cuando un número no encaja con la física conocida, desconfía aunque la conclusión te guste."
+      },
+      {
+        heading: "Cómo hacer TU cuenta",
+        text: "Coge tu gasto real de API al mes, el precio del equipo y el coste de operarlo (electricidad, tu tiempo). Calcula el breakeven con tu volumen, no con el del hilo. Y comprueba que el modelo que necesitas corre a velocidad usable: los 33-36 tok/s de un 12B en Mac son realistas; los 700, no."
+      },
+      {
+        heading: "El veredicto para una pyme",
+        text: "Comprar hardware para automatizar gana cuando el uso es alto, constante y con datos que prefieres en casa. El caso del Mac Mini apunta en la dirección correcta; solo cámbiale los números por los tuyos antes de pasar por caja."
+      }
+    ]
+  },
+  {
+    slug: "arquitectura-hibrida-local-nube-ia-empresa",
+    publishedAt: "2026-06-05",
+    tags: ["Empresa", "Inferencia local", "Modelos locales"],
+    section: "Empresa",
+    title: "Pequeño en local, grande en la nube: la arquitectura híbrida que abarata la IA en empresa",
+    deck: "Los sistemas de IA en producción no eligen entre local y nube: combinan un modelo pequeño local para lo sensible y barato con uno grande en la nube para lo pesado. Así se controla coste y datos.",
+    verdict: "La pregunta 'local o nube' es falsa: en producción la respuesta es 'las dos, por capas'. Un modelo pequeño local filtra, clasifica y maneja lo sensible (datos en casa, coste cero por llamada); el frontier en la nube se reserva para lo que de verdad lo necesita. Diseña el enrutado por tarea y mide cuántas llamadas a la API cara evitas.",
+    sources: [
+      ["Señal en X — @patilvishi (patrón de arquitectura)", "https://x.com/patilvishi/status/2062015569315147871"],
+      ["Hugging Face — modelos abiertos para la capa local", "https://huggingface.co/models"]
+    ],
+    body: [
+      {
+        heading: "El patrón real",
+        text: "Los sistemas de IA en producción no son 'un modelo': son capas (orquestador, RAG, herramientas, memoria, guardrails, validación). Y cada vez más reparten el trabajo entre un modelo pequeño local y uno grande en la nube según la tarea."
+      },
+      {
+        heading: "Por qué híbrido y no uno solo",
+        text: "El modelo local pequeño se encarga de lo frecuente, lo sensible y lo barato (clasificar, enrutar, extraer, manejar datos que no deben salir). El frontier en la nube se reserva para el razonamiento pesado que el pequeño no resuelve. Pagas la nube solo cuando hace falta."
+      },
+      {
+        heading: "El beneficio para una pyme",
+        text: "Baja la factura de tokens (muchas llamadas se quedan en local, gratis) y mejora la residencia del dato (lo sensible no viaja). Es control de coste y de cumplimiento sin renunciar a la potencia cuando se necesita."
+      },
+      {
+        heading: "El coste oculto: la orquestación",
+        text: "Un híbrido es más piezas que mantener (enrutado, fallback, validación). El ahorro es real, pero hay que diseñarlo: decidir qué tarea va a qué modelo y medir que el local acierta lo suficiente como para no acabar reenviándolo todo a la nube."
+      },
+      {
+        heading: "Cómo empezar",
+        text: "Identifica las tareas frecuentes y de bajo riesgo y prueba a resolverlas con un modelo pequeño local (un 12B como Gemma 4 cabe en hardware modesto, como hemos medido). Enruta a la nube solo lo que el local falle. Mide el porcentaje de llamadas que evitas: ese número es tu ahorro."
+      }
+    ]
   }
 ];
 

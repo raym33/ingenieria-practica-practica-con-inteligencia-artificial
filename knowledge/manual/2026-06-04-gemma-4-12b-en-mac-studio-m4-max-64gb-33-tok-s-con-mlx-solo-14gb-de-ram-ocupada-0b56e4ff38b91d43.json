@@ -1,0 +1,19 @@
+{
+  "rawId": "f0b0062acabfdaed",
+  "title": "Gemma 4 12B en Mac Studio M4 Max 64GB: 33 tok/s con MLX, solo 14GB de RAM ocupada",
+  "url": "https://x.com/seapy/status/2062678507839422604",
+  "publishedAt": "2026-06-04",
+  "summary": "Gemma 4 12B multimodal servido en local con MLX, API compatible OpenAI vía launchd. ~33 tok/s, 14GB de 64GB ocupados, sin throttling. Blog con pasos completos. Fuente primaria: https://seapy.com/gemma4-12b-mac-studio-local-serving/",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware",
+    "Apple Silicon"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

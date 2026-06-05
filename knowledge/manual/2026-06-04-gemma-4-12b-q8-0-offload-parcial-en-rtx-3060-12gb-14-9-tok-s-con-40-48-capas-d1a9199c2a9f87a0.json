@@ -1,0 +1,19 @@
+{
+  "rawId": "fbad2d02f67ee232",
+  "title": "Gemma 4 12B Q8_0 (offload parcial) en RTX 3060 12GB: 14,9 tok/s con 40/48 capas",
+  "url": "https://x.com/ItsmeAjayKV/status/2062542245719572577",
+  "publishedAt": "2026-06-04",
+  "summary": "Q8_0 con -ngl 40: 14,9 tok/s, 986 prefill, ~11,2GB VRAM. Incluso un quant alto funciona en GPU de 12GB con offload parcial (a costa de velocidad).",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware",
+    "NVIDIA RTX"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "guardar_para_contexto"
+}

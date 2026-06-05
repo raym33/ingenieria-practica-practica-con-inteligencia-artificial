@@ -1,0 +1,19 @@
+{
+  "rawId": "858eb8cd499005cb",
+  "title": "Gemma 4 12B Q4_K_M en RTX 4060: 21 tok/s con llama.cpp CUDA",
+  "url": "https://x.com/analogalok/status/2062237722820128987",
+  "publishedAt": "2026-06-03",
+  "summary": "GPU de gama de entrada. Arquitectura encoder-free multimodal, 6,6GB GGUF, 256K contexto nativo. Flags -ngl 99 -c 8000. En Hugging Face.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware",
+    "NVIDIA RTX"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

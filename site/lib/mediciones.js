@@ -42,6 +42,23 @@ export const mediciones = [
     items: [
       { label: "3× RTX 3090 (TP+MTP)", value: 76.46, highlight: true }
     ]
+  },
+  {
+    id: "gemma4-12b-por-hardware",
+    title: "Gemma 4 12B — generación (tok/s) por hardware y cuantización",
+    note: "El mismo modelo open-source rinde parecido en un Mac de gama alta y en una RTX 3060 de 12GB. Mezcla una medición verificada (Mac M4 Max, blog) con reportes de X.",
+    unit: "tok/s",
+    confidence: "no-verificado",
+    confidenceLabel: "1 verificado (Mac M4 Max) + reportes de X",
+    source: ["seapy — Gemma 4 12B en Mac Studio (medición verificada)", "https://seapy.com/gemma4-12b-mac-studio-local-serving/"],
+    items: [
+      { label: "Mac · llama.cpp Q4_K_M", value: 36 },
+      { label: "RTX 3060 12GB · Q5_K_XL", value: 33.3 },
+      { label: "Mac M4 Max · MLX", value: 33, highlight: true },
+      { label: "RTX 3060 12GB · Q6_K_XL", value: 26 },
+      { label: "RTX 4060 · Q4_K_M", value: 21 },
+      { label: "RTX 3060 12GB · Q8_0 (offload)", value: 14.9 }
+    ]
   }
 ];
 

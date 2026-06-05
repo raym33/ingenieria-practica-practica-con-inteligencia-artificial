@@ -1,0 +1,19 @@
+{
+  "rawId": "c7276d76be0738d5",
+  "title": "Gemma 4 12B Q5_K_XL en RTX 3060 12GB: 33,3 tok/s decode, 1152 tok/s prefill, 9,3GB VRAM",
+  "url": "https://x.com/ItsmeAjayKV/status/2062542245719572577",
+  "publishedAt": "2026-06-04",
+  "summary": "llama.cpp CUDA, contexto 4K, Flash Attention, KV cache q8. Q5_K_XL: 33,3 tok/s decode, 1152 prefill, ~9,3GB VRAM. La RTX 3060 12GB sigue viable en 2026 para un 12B open.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware",
+    "NVIDIA RTX"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

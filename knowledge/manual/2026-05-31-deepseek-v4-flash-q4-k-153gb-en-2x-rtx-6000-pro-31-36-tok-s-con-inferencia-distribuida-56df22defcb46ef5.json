@@ -1,0 +1,19 @@
+{
+  "rawId": "27f0928a833f12cb",
+  "title": "DeepSeek-V4-Flash Q4_K (153GB) en 2x RTX 6000 Pro: 31-36 tok/s con inferencia distribuida",
+  "url": "https://x.com/support_huihui/status/2060985520315118084",
+  "publishedAt": "2026-05-31",
+  "summary": "ds4-server para inferencia distribuida single-machine o multi-GPU. Q4_K de 153GB alcanza 31-36 tok/s. Escalado en hardware pro para modelos grandes open.",
+  "notes": "Destino sugerido: /inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Benchmarks",
+    "Hardware",
+    "NVIDIA RTX"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "guardar_para_contexto"
+}
