@@ -1,0 +1,19 @@
+{
+  "rawId": "20484ea47c877fd5",
+  "title": "LLMhop: router Go stateless que sirve varios runtimes locales (vLLM, SGLang, llama.cpp) bajo un endpoint OpenAI",
+  "url": "https://x.com/mirkolenz/status/2062644703200510155",
+  "publishedAt": "2026-06-04",
+  "summary": "Binario unico sin dependencias; auth por modelo y modulo NixOS para despliegue declarativo con systemd/Podman. Fuente: repo del autor.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "vLLM",
+    "llama.cpp",
+    "Runtimes",
+    "Inferencia local"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

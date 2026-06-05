@@ -1,0 +1,18 @@
+{
+  "rawId": "9cee295acd42b466",
+  "title": "TIDE: framework para agentes que descubren problemas proactivos no mencionados por el usuario",
+  "url": "https://x.com/SoyeongJeong97/status/2062778756633448482",
+  "publishedAt": "2026-06-05",
+  "summary": "Permite a los agentes identificar problemas ocultos y recomendar pasos accionables. Paper e implementación en Hugging Face. Fuente primaria: huggingface.co/papers/2606.04743.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Modelos locales",
+    "Benchmarks"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

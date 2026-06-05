@@ -1,0 +1,17 @@
+{
+  "rawId": "6c6c1490e878f283",
+  "title": "Agents' Last Exam: un benchmark de agentes grande con outcomes verificables y valor económico",
+  "url": "https://x.com/Underfox3/status/2062766128405848459",
+  "publishedAt": "2026-06-05",
+  "summary": "Evalúa tareas de largo horizonte con resultados verificables. Paper en arXiv 2606.05405.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Benchmarks"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

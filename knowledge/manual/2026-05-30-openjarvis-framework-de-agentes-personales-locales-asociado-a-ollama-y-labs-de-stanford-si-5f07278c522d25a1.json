@@ -1,0 +1,19 @@
+{
+  "rawId": "6652a34849ca424d",
+  "title": "OpenJarvis: framework de agentes personales locales asociado a Ollama y labs de Stanford (sin verificar)",
+  "url": "https://x.com/parth_jm/status/2060612678746341403",
+  "publishedAt": "2026-05-30",
+  "summary": "Agentes para briefing matutino, investigacion con citas y coding Python local; prioriza hardware personal. La atribucion exacta (Ollama/Stanford) conviene verificarla.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Ollama",
+    "Agentes",
+    "Inferencia local",
+    "Modelos locales"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "guardar_para_contexto"
+}

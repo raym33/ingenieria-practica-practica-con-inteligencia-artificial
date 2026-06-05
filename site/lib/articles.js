@@ -1048,6 +1048,117 @@ export const articles = [
         text: "Descárgalo, intégralo en tu DAW o en un prototipo de plugin, y mide latencia y control en tu flujo real. Compáralo con lo que ya usas antes de construir producto encima."
       }
     ]
+  },
+  {
+    slug: "alibaba-open-code-review-agentes-deterministas",
+    image: "/articulos/alibaba-open-code-review-agentes-deterministas.png",
+    imageAlt: "Ilustración editorial: un diff de código revisado por una capa determinista que acota dónde mira un agente",
+    publishedAt: "2026-06-05",
+    tags: ["Agentes", "Herramientas", "Seguridad"],
+    section: "Herramientas",
+    title: "Alibaba abre su revisor de código: por qué mezcla agentes con lógica determinista",
+    deck: "Tras dos años revisando el código de decenas de miles de desarrolladores y cazando millones de defectos, Alibaba libera su herramienta. La lección no es 'otro agente', sino cómo combina LLM con ingeniería determinista.",
+    verdict: "El patrón vale más que la herramienta: lo determinista (selección de archivos, bundling, reglas) acota dónde mira el LLM, y el agente decide dentro de ese marco. Si montas revisión de código con IA, esta arquitectura híbrida es la que evita el caos. Corre en local con tu propia API; pruébala en tu repo antes de adoptarla.",
+    sources: [
+      ["Alibaba — open-code-review (GitHub, Apache-2.0)", "https://github.com/alibaba/open-code-review"],
+      ["Señal en X — @GrzGik", "https://x.com/GrzGik/status/2062812785663185278"]
+    ],
+    body: [
+      {
+        heading: "Qué ha pasado",
+        text: "Alibaba ha liberado bajo Apache-2.0 la herramienta de revisión de código que usaba internamente: un CLI que analiza diffs de Git y genera comentarios a nivel de línea. Llevaba dos años en producción sirviendo a decenas de miles de desarrolladores y, según la compañía, cazando millones de defectos."
+      },
+      {
+        heading: "La idea clave: híbrido determinista + agente",
+        text: "No deja todo en manos del LLM. Una capa determinista hace la selección precisa de archivos, agrupa los relacionados en unidades aisladas (divide y vencerás en cambios grandes), aplica reglas finas y módulos de posicionamiento y reflexión. Encima, un agente con prompts y herramientas afinadas para revisión toma las decisiones dinámicas."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "Es justo el antídoto al 'agente que se pierde'. Acotar con lógica determinista dónde mira el modelo —y dejarle decidir solo dentro de ese marco— es lo que hace fiable a un revisor automático. Es un patrón reutilizable mucho más allá del code review."
+      },
+      {
+        heading: "Lo práctico",
+        text: "Funciona con las APIs de OpenAI y Anthropic (el ejemplo usa Claude Opus 4.6), corre en local como CLI (NPM o binario) sobre tu repositorio Git, y trae reglas para fallos comunes (NPE, thread-safety, XSS, inyección SQL). Controlas el modelo y los datos."
+      },
+      {
+        heading: "El asterisco honesto",
+        text: "'Millones de defectos' es una cifra de Alibaba, sin desglose; y un revisor con IA acelera, no sustituye, el criterio humano. Pruébalo en tu repo, mide los falsos positivos y ajusta las reglas a tu stack antes de confiarle la revisión."
+      }
+    ]
+  },
+  {
+    slug: "mistral-rs-motor-inferencia-rust-agentic",
+    image: "/articulos/mistral-rs-motor-inferencia-rust-agentic.png",
+    imageAlt: "Ilustración editorial: un engranaje de óxido (Rust) impulsando un flujo de inferencia veloz",
+    publishedAt: "2026-06-05",
+    tags: ["Inferencia local", "Modelos locales", "llama.cpp"],
+    section: "Análisis",
+    title: "mistral.rs: un motor de inferencia en Rust que se declara 'nativamente agéntico'",
+    deck: "La versión 0.8.2 de mistral.rs presume de ser hasta 2,79× más rápida que llama.cpp en sus propios benchmarks, con CUDA en GB10, B200 y H100. Otro runtime en Rust que pelea por el serving local.",
+    verdict: "mistral.rs es un runtime local serio y polifacético, con orientación agéntica. El '2,79× sobre llama.cpp' es su propio benchmark en hardware concreto: trátalo como techo optimista, no como tu resultado. Mídelo en tu GPU y tu modelo antes de migrar.",
+    sources: [
+      ["mistral.rs — repositorio en GitHub", "https://github.com/EricLBuehler/mistral.rs"],
+      ["Señal en X — @ProfBuehlerMIT", "https://x.com/ProfBuehlerMIT/status/2061770676025856280"]
+    ],
+    body: [
+      {
+        heading: "Qué ha pasado",
+        text: "mistral.rs, un motor de inferencia escrito en Rust, lanzó la v0.8.2 con soporte CUDA benchmarkeado en GB10, B200 y H100 y mejoras específicas (por ejemplo en Gemma 4 E4B Q8). Se presenta como 'nativamente agéntico' y afirma ser hasta 2,79× más rápido que llama.cpp en sus pruebas."
+      },
+      {
+        heading: "Por qué Rust y por qué importa",
+        text: "Como mlxcel en Apple Silicon, mistral.rs apuesta por binarios en Rust para el serving local: menos fricción de entorno, control de bajo nivel y buen rendimiento. Es parte de una ola de runtimes que disputan el terreno a llama.cpp y a Ollama."
+      },
+      {
+        heading: "Lo de 'nativamente agéntico'",
+        text: "Orienta la API a flujos de agentes (tool calling y demás) en vez de solo chat. Para quien construye agentes locales, un runtime pensado para eso ahorra pegamento entre piezas."
+      },
+      {
+        heading: "El asterisco del 2,79×",
+        text: "Es un número del propio proyecto, en hardware y modelos concretos. Los 'Nx más rápido que llama.cpp' casi nunca se reproducen igual en tu caso: dependen del modelo, la cuantización, el contexto y la GPU. Es señal de que va rápido, no una garantía."
+      },
+      {
+        heading: "Qué probar",
+        text: "Si exploras runtimes locales, instálalo y mide TTFT y tok/s con tu modelo y cuantización reales frente a llama.cpp u Ollama en tu GPU. Y vigila la compatibilidad de los modelos que necesitas: la madurez del ecosistema importa tanto como el pico de velocidad."
+      }
+    ]
+  },
+  {
+    slug: "kanbots-orquestar-agentes-cli-paralelo-kanban",
+    image: "/articulos/kanbots-orquestar-agentes-cli-paralelo-kanban.png",
+    imageAlt: "Ilustración editorial: un tablero kanban con varias columnas-carril ejecutando agentes en paralelo aislados",
+    publishedAt: "2026-06-05",
+    tags: ["Agentes", "Herramientas"],
+    section: "Herramientas",
+    title: "kanbots: un tablero kanban para lanzar 11 agentes de código a la vez",
+    deck: "Una herramienta open-source despacha agentes CLI (Claude Code, Codex, Gemini, Cursor) en worktrees de git aislados, coordinados desde un kanban. Orquestar agentes en paralelo empieza a ser un patrón.",
+    verdict: "La idea potente no es el tablero: es ejecutar varios agentes en paralelo con aislamiento real de git (un worktree por tarea) para que no se pisen. Orquestar varios multiplica el trabajo… y el caos si no hay aislamiento. Pruébalo en tareas pequeñas e independientes primero; el cuello de botella se moverá a tu capacidad de revisar.",
+    sources: [
+      ["kanbots — repositorio en GitHub", "https://github.com/leodavinci1/kanbots"],
+      ["Señal en X — @CamilleRoux", "https://x.com/CamilleRoux/status/2062776492929544594"]
+    ],
+    body: [
+      {
+        heading: "Qué es",
+        text: "Una herramienta open-source que convierte un tablero kanban en un orquestador: despacha hasta 11 agentes de CLI (Claude Code, Codex, Gemini, Cursor…) en paralelo, cada uno en su worktree de git aislado. Funciona en modo local (SQLite) o sobre GitHub Issues, con un servidor MCP."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "El siguiente paso tras 'usar un agente' es 'coordinar varios'. El aislamiento por worktree es la clave: cada agente trabaja en su copia, sin pisar a los demás, y tú revisas y mezclas. Es paralelizar el trabajo sin convertir el repositorio en un campo de batalla."
+      },
+      {
+        heading: "El patrón emergente",
+        text: "Ya habíamos visto orquestación de agentes (y sus riesgos de seguridad). kanbots la lleva al flujo visual del kanban, que encaja con cómo los equipos ya gestionan tareas. La novedad es de experiencia de uso y de aislamiento, no de modelo."
+      },
+      {
+        heading: "El asterisco",
+        text: "Más agentes en paralelo es más coste, más diffs que revisar y más superficie de error. La autonomía sin revisión es deuda; aquí, multiplicada. El aislamiento ayuda, pero el cuello de botella se mueve a tu capacidad de revisar y mezclar."
+      },
+      {
+        heading: "Qué probar",
+        text: "Empieza con tareas pequeñas, independientes y verificables (un test, un refactor acotado), lanza dos o tres agentes y mide cuánto tardas en revisar y mezclar. Si el tiempo de revisión se dispara, has movido el problema, no lo has resuelto."
+      }
+    ]
   }
 ];
 

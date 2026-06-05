@@ -1,0 +1,18 @@
+{
+  "rawId": "f58c090ecee08d60",
+  "title": "mistral.rs v0.8.2: motor de inferencia local en Rust, nativamente agentic y hasta 2.79x mas rapido que llama.cpp (afirmado)",
+  "url": "https://x.com/ProfBuehlerMIT/status/2061770676025856280",
+  "publishedAt": "2026-06-02",
+  "summary": "Soporte CUDA benchmarkeado en GB10, B200 y H100; mejoras en Gemma 4 E4B Q8. La cifra 2.79x es del proyecto. Fuente: repo oficial mistral.rs.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Inferencia local",
+    "Modelos locales",
+    "Runtimes"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "convertir_en_articulo"
+}

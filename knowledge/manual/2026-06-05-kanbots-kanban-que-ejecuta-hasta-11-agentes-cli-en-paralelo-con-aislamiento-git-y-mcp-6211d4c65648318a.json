@@ -1,0 +1,17 @@
+{
+  "rawId": "e8aca760f73f1cfa",
+  "title": "kanbots: kanban que ejecuta hasta 11 agentes CLI en paralelo con aislamiento git y MCP",
+  "url": "https://x.com/CamilleRoux/status/2062776492929544594",
+  "publishedAt": "2026-06-05",
+  "summary": "Open-source; despacha agentes (Claude Code, Codex, Gemini, Cursor) en worktrees aislados. Modo local SQLite o GitHub Issues con servidor MCP. Fuente: github.com/leodavinci1/kanbots.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Herramientas"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}
