@@ -1266,6 +1266,84 @@ export const articles = [
         text: "Cuando veas el próximo framework 'que lo cambia todo', clónalo, míralo por dentro y pruébalo en una tarea real antes de integrarlo. Mide lo que te importa (coste, control, fiabilidad). Las estrellas no compilan; tu caso, sí."
       }
     ]
+  },
+  {
+    slug: "ia-local-pymes-que-medir-antes-de-automatizar",
+    publishedAt: "2026-06-05",
+    tags: ["Empresa", "Inferencia local", "Benchmarks", "Compra"],
+    section: "Empresa",
+    title: "IA local para pymes: qué medir antes de automatizar",
+    deck: "Antes de comprar hardware o elegir modelo, hay cuatro números que deciden si una automatización con IA local sale a cuenta. Ninguno es el que más se tuitea.",
+    verdict: "Para una pyme, la pregunta no es '¿qué modelo es mejor?', sino '¿esta automatización sale a cuenta y es fiable?'. Mide coste por respuesta válida, latencia (TTFT), tasa de revisión humana y memoria. Si esos cuatro cuadran, un modelo open-source en local suele ganar a la API en tareas repetidas.",
+    sources: [
+      ["Kubesimplify — cómo medir runtimes locales (M1 Max)", "https://blog.kubesimplify.com/mlxcel-rust-native-inference-engine-tested-on-m1-max"],
+      ["Ollama — ejecutar modelos en local", "https://ollama.com/"]
+    ],
+    body: [
+      {
+        heading: "El error de empezar por el modelo",
+        text: "Muchas pymes eligen modelo o compran GPU antes de saber qué van a automatizar y cómo medirán si funciona. El orden correcto es el inverso: workflow primero, luego cómo lo mides, después el modelo y solo al final el hardware."
+      },
+      {
+        heading: "Número 1: coste por respuesta válida",
+        text: "No el coste por token ni por hora de GPU: cuánto cuesta cada salida que de verdad sirve, descartando las que hay que rehacer. Una API barata con un 30% de respuestas inservibles puede salir más cara que un modelo local 'lento' que acierta."
+      },
+      {
+        heading: "Número 2: latencia que el flujo tolera (TTFT)",
+        text: "Para un agente que responde a un cliente en vivo, el tiempo hasta el primer token manda; para un lote nocturno, casi no importa. Mide el TTFT en tu contexto real, no el tok/s de portada de un benchmark ajeno."
+      },
+      {
+        heading: "Número 3: fiabilidad (tasa de revisión humana)",
+        text: "¿Cuántas de cada 100 salidas necesita revisar una persona? Esa cifra, y no el benchmark, decide si la automatización ahorra trabajo o lo crea. Mídela con tus datos y tus prompts antes de prometer ahorros."
+      },
+      {
+        heading: "Número 4: memoria, que fija qué cabe",
+        text: "La RAM o VRAM decide qué modelo y qué contexto puedes correr en local. Es lo que separa 'cabe' de 'no cabe', y se decide antes de hablar de velocidad. Para una pyme, la memoria suele importar más que los TOPS de una NPU."
+      },
+      {
+        heading: "Por qué la IA local gana en automatización repetida",
+        text: "Una vez medido, el trabajo repetido y no urgente —clasificar, extraer, resumir, redactar borradores— es donde un modelo open-source en hardware propio amortiza: sin coste por llamada y con los datos en casa. Este es el marco; el número, lo pones tú con tu caso."
+      }
+    ]
+  },
+  {
+    slug: "servidor-propio-alquilado-nube-ia-local-pyme",
+    publishedAt: "2026-06-05",
+    tags: ["Empresa", "Hardware", "Compra", "Inferencia local"],
+    section: "Empresa",
+    title: "¿Servidor propio, alquilado o nube? La cuenta de la IA local en una pyme",
+    deck: "Comprar hardware, alquilar GPU por horas o pagar API: las tres salen a cuenta en casos distintos. La variable que decide es el patrón de uso, no el precio de catálogo.",
+    verdict: "Uso esporádico o muy variable: nube/API. Carga sostenida y repetida con datos sensibles: hardware propio amortiza. Cargas grandes puntuales (fine-tuning, lotes): GPU alquilada por horas. Calcula el coste a 12-24 meses con tu volumen real antes de comprar nada.",
+    sources: [
+      ["Apple Mac Studio (opción de compra)", "https://www.apple.com/mac-studio/"],
+      ["NVIDIA DGX Spark (opción de compra)", "https://www.nvidia.com/en-us/products/workstations/dgx-spark/"]
+    ],
+    body: [
+      {
+        heading: "Las tres opciones, en una frase",
+        text: "Comprar (CapEx, control total, amortizas con uso), alquilar GPU por horas (OpEx flexible, ideal para picos y cargas grandes puntuales) o pagar API (cero infraestructura, coste por uso que escala con el volumen). No hay una ganadora absoluta: hay una ganadora para tu patrón."
+      },
+      {
+        heading: "La variable que decide: patrón de uso",
+        text: "No es el precio por hora ni por token aislado, sino cuántas horas reales de cómputo usas al mes y cómo se distribuyen. Uso constante favorece comprar; uso en picos, alquilar; uso esporádico, API."
+      },
+      {
+        heading: "Hardware propio: cuándo amortiza",
+        text: "Carga sostenida y repetida (automatizaciones diarias, RAG interno, asistentes), datos que no deben salir de la empresa y un horizonte de uno o dos años. Un equipo con memoria suficiente para tu modelo paga su precio si lo usas de verdad."
+      },
+      {
+        heading: "GPU alquilada por horas: el punto medio",
+        text: "Para fine-tuning, lotes pesados o probar modelos grandes sin comprar, alquilar GPU (RunPod, Vast, hyperscalers) evita el CapEx. Pagas solo cuando computas: ideal para cargas puntuales e intensas que no justifican un servidor propio parado el resto del tiempo."
+      },
+      {
+        heading: "Nube/API: cuándo gana",
+        text: "Volumen bajo o muy variable, sin equipo técnico para operar infraestructura, o cuando necesitas el último modelo cerrado el día de su lanzamiento. Si usas poco, el coste por respuesta válida de una API puede ser imbatible."
+      },
+      {
+        heading: "Cómo hacer la cuenta",
+        text: "Estima tus horas o tokens reales al mes, multiplícalos por 12-24 meses e incluye el coste oculto de operar (electricidad, mantenimiento, tu tiempo). Compara las tres opciones con tu número, no con el de un hilo. Casi siempre la respuesta es 'depende del uso', y por eso hay que medirlo."
+      }
+    ]
   }
 ];
 
