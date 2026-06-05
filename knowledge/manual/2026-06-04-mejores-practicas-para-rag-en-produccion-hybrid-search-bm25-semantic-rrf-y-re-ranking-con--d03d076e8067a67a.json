@@ -1,0 +1,19 @@
+{
+  "rawId": "d1a695581f16bbfc",
+  "title": "Mejores prácticas para RAG en producción: hybrid search (BM25 + semantic), RRF y re-ranking con cross-encoder",
+  "url": "https://x.com/InfoQ/status/2062623199142035654",
+  "publishedAt": "2026-06-04",
+  "summary": "InfoQ y Machine Learning Mastery: embeddings solos dejan calidad en la mesa. Recomiendan fusionar lexical (BM25) + vector, Reciprocal Rank Fusion (RRF) y re-ranker cross-encoder para maximizar accuracy en pipelines reales.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "RAG",
+    "Benchmarks",
+    "Inferencia local",
+    "Herramientas"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

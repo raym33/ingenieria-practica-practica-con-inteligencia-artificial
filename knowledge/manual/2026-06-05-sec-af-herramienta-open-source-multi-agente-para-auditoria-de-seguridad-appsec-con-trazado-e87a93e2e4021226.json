@@ -1,0 +1,19 @@
+{
+  "rawId": "b8efa9f2ebc6c218",
+  "title": "SEC-AF: herramienta open-source multi-agente para auditoría de seguridad AppSec con trazado de explotabilidad",
+  "url": "https://x.com/VivekIntel/status/2062768386409689273",
+  "publishedAt": "2026-06-05",
+  "summary": "Sobre AgentField. ~200+ llamadas de agente para data-flow tracing source-to-sink, veredictos Confirmed/Likely/Inconclusive, remediación y SARIF. En DVGA: 106 findings, 61 dedup, 28 confirmed exploitable (~94% reducción de ruido). Apache 2.0.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Seguridad",
+    "Agentes",
+    "Herramientas",
+    "Benchmarks"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

@@ -1,0 +1,19 @@
+{
+  "rawId": "575aa82e5f1064bc",
+  "title": "Aion-1.0-Instruct corre local en M4 Max con llama.cpp + Metal: ~209-213 tok/s en Q4_K_M",
+  "url": "https://x.com/old_sound/status/2062520238151811295",
+  "publishedAt": "2026-06-04",
+  "summary": "Conversión Edge ONNX a GGUF Q4_K_M. Generación estable a ~210 tok/s en M4 Max. Ejemplo de inferencia local eficiente en Apple Silicon con un nuevo modelo instruct. Post con vídeo de demo.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "Apple Silicon",
+    "llama.cpp",
+    "Modelos locales",
+    "Inferencia local"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

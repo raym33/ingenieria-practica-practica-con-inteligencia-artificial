@@ -1,0 +1,18 @@
+{
+  "rawId": "9f8a074d713b6efa",
+  "title": "Chema Alonso publica 'Hacking LLM-Assistants Just for Fun': prompt injection, jailbreak y misalignment en asistentes",
+  "url": "https://x.com/chemaalonso/status/2062779364710797810",
+  "publishedAt": "2026-06-05",
+  "summary": "Post en El lado del mal con hacks reales en asistentes LLM (Gemini y similares): técnicas de inyección, jailbreaks y problemas de alineamiento. Riesgos de seguridad para agentes y asistentes en uso real. Fuente primaria: blog elladodelmal.com.",
+  "notes": "Destino sugerido: /actualidad",
+  "tags": [
+    "x",
+    "grok",
+    "Seguridad",
+    "Agentes",
+    "Europa"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

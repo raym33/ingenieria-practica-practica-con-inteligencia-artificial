@@ -1,0 +1,19 @@
+{
+  "rawId": "27434e3c3074ba94",
+  "title": "Emprendedor afirma construir cluster de 1000 Mac Mini M4 para inferencia local con Ollama frente a H100 cloud",
+  "url": "https://x.com/huoshan007/status/2062722738108920167",
+  "publishedAt": "2026-06-05",
+  "summary": "Compra 1000 unidades a 599$ para data center propio. Afirma consumo eléctrico muy bajo frente a alquilar H100 cloud. Ollama soporta la Messages API de Anthropic (Claude Code local). NOTA EDITORIAL: la cifra de coste eléctrico es implausible (1000 equipos a 10-20W son 10-20 kW, cientos de € al mes). Tratar como anécdota de TCO, no como dato.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Hardware",
+    "Ollama",
+    "Inferencia local",
+    "Compra"
+  ],
+  "relevance": "media",
+  "confidence": "baja",
+  "editorialAction": "guardar_para_contexto"
+}

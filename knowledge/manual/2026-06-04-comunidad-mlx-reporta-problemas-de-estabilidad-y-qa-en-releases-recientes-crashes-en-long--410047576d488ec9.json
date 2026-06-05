@@ -1,0 +1,18 @@
+{
+  "rawId": "f7f4af124eb5c6d9",
+  "title": "Comunidad MLX reporta problemas de estabilidad y QA en releases recientes: crashes en long-context y batch",
+  "url": "https://x.com/ivanfioravanti/status/2062612852846772301",
+  "publishedAt": "2026-06-04",
+  "summary": "Desarrollador pide más tests y QA en el ecosistema MLX; menciona que benchmarks largos o batch en producción rompen con frecuencia y prefiere la estabilidad de llama.cpp. Señal de madurez para uso en producción en Apple Silicon.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Apple Silicon",
+    "MLX",
+    "Inferencia local"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "guardar_para_contexto"
+}
