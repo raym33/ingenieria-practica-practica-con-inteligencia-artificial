@@ -1,0 +1,19 @@
+{
+  "rawId": "996a78cbbc234d12",
+  "title": "SGLang añade soporte day-0 para Nemotron 3 Ultra y Higgs Audio v3 TTS para voice agents",
+  "url": "https://x.com/lmsysorg/status/2062644196415291902",
+  "publishedAt": "2026-06-04",
+  "summary": "Colaboración NVIDIA-LMSYS: SGLang sirve Nemotron 3 Ultra. Higgs Audio v3 (~4B, backbone Qwen3-4B): streaming low-latency, 100 idiomas, zero-shot voice cloning, 20+ tokens de control. 14.74 req/s a RTF 0.262 en 1x H100 (bf16) con CUDA Graph y RadixAttention. Fuente primaria: blog lmsys.org y boson.ai.",
+  "notes": "Destino sugerido: /inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "SGLang",
+    "Inferencia local",
+    "Benchmarks"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

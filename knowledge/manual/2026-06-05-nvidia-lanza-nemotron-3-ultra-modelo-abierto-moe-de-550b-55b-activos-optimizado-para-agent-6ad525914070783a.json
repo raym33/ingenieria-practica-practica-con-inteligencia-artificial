@@ -1,0 +1,19 @@
+{
+  "rawId": "9bf3e12f1da50e75",
+  "title": "NVIDIA lanza Nemotron 3 Ultra, modelo abierto MoE de 550B (55B activos) optimizado para agentes autónomos",
+  "url": "https://x.com/yifan_zhang_/status/2062755078029889614",
+  "publishedAt": "2026-06-05",
+  "summary": "Modelo híbrido Transformer-Mamba con hasta 1M contexto, tool calling, coding y deep research. Afirma 5x inferencia más rápida y hasta 30% menor coste en tareas agentic vs otros modelos frontier open. Soporte day-0 en vLLM y SGLang. Reporte técnico con comparativas. Disponible en OpenRouter. Fuente primaria: NVIDIA technical report (research.nvidia.com).",
+  "notes": "Destino sugerido: /modelos",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Modelos locales",
+    "vLLM",
+    "Benchmarks"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

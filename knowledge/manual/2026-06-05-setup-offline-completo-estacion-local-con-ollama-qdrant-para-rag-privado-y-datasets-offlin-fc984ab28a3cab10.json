@@ -1,0 +1,19 @@
+{
+  "rawId": "6ce7a53d185f1766",
+  "title": "Setup offline completo: estación local con Ollama + Qdrant para RAG privado y datasets offline",
+  "url": "https://x.com/CycleDecoded/status/2062751036788322361",
+  "publishedAt": "2026-06-05",
+  "summary": "Sistema todo-en-uno sin nube: RAG semántico local, notas Markdown, CyberChef, cursos offline y benchmarks de hardware. Enfocado en privacidad total y escenarios sin internet. El post detalla el stack y sus ventajas frente a SaaS.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "RAG",
+    "Ollama",
+    "Inferencia local",
+    "Seguridad"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "guardar_para_contexto"
+}

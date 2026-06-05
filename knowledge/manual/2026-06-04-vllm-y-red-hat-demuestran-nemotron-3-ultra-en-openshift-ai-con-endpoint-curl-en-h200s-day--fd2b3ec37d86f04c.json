@@ -1,0 +1,19 @@
+{
+  "rawId": "7de03d8ea3e872ae",
+  "title": "vLLM y Red Hat demuestran Nemotron 3 Ultra en OpenShift AI con endpoint curl en H200s (day-0)",
+  "url": "https://x.com/RedHat_AI/status/2062637885564535248",
+  "publishedAt": "2026-06-04",
+  "summary": "Soporte inmediato en vLLM estable. Demo en vivo de endpoint sirviendo el nuevo MoE de 550B. Combina con el curso de Red Hat para cuantización y benchmark realista. Refuerza vLLM como runtime production-ready para modelos frontier open.",
+  "notes": "Destino sugerido: /inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "vLLM",
+    "Agentes",
+    "Inferencia local",
+    "Benchmarks"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

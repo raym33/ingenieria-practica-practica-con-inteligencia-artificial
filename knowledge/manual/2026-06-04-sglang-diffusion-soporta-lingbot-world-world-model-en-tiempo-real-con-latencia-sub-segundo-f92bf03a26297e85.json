@@ -1,0 +1,19 @@
+{
+  "rawId": "2603e10b7a6a9ff8",
+  "title": "SGLang-Diffusion soporta LingBot World: world model en tiempo real con latencia sub-segundo y ~30fps en H200",
+  "url": "https://x.com/lmsysorg/status/2062534372524277927",
+  "publishedAt": "2026-06-04",
+  "summary": "Primera integración de world model en tiempo real en SGLang-Diffusion. Chunk latency sub-segundo + interpolación para salida tipo 30fps. Cookbook en docs.sglang.io. Señal para embodied AI y agentes con simulación visual.",
+  "notes": "Destino sugerido: /inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "SGLang",
+    "Agentes",
+    "Inferencia local",
+    "Benchmarks"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

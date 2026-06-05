@@ -1,0 +1,19 @@
+{
+  "rawId": "bdc6779c023ccaf0",
+  "title": "Red Hat lanza curso gratuito práctico: cuantizar BF16 a INT4, servir con vLLM y benchmarkear bajo carga realista",
+  "url": "https://x.com/rhdevelopers/status/2062643809435926824",
+  "publishedAt": "2026-06-04",
+  "summary": "Hands-on con LLM Compressor y GuideLLM. Cubre memory management, tradeoffs de cuantización, concurrent requests en vLLM y métricas de serving (latencia, throughput, coste). Enfoque enterprise open-source. En developers.redhat.com.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "vLLM",
+    "Benchmarks",
+    "Inferencia local",
+    "Herramientas"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

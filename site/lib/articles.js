@@ -823,6 +823,120 @@ export const articles = [
         text: "Si montas producto de IA, evalúa tu capa de datos antes que el modelo. Herramientas como Tinybird tienen sentido cuando necesitas analítica o features en tiempo real con baja latencia y poca infraestructura que operar. Mide latencia y coste con tu volumen real antes de comprometerte."
       }
     ]
+  },
+  {
+    slug: "nvidia-nemotron-3-ultra-modelo-abierto-agentes",
+    image: "/articulos/nvidia-nemotron-3-ultra-modelo-abierto-agentes.png",
+    imageAlt: "Ilustración editorial: un núcleo de modelo MoE con capas Mamba y atención, contexto largo fluyendo",
+    publishedAt: "2026-06-05",
+    tags: ["Agentes", "Modelos locales", "vLLM", "Benchmarks"],
+    section: "Modelos",
+    title: "Nemotron 3 Ultra: NVIDIA abre un modelo de 550B para agentes (y rompe el molde Transformer)",
+    deck: "NVIDIA libera pesos, datos y recetas de un MoE de 550B (55B activos) híbrido Mamba-Transformer, con 1M de contexto y licencia comercial. Pensado para agentes que corren durante horas.",
+    verdict: "La noticia no es 'otro modelo grande': es que NVIDIA abre pesos, datos y recetas con licencia comercial y una arquitectura híbrida Mamba que escala mejor en contexto largo. Para builders, el reto pasa de 'qué modelo' a 'tengo hardware para servir 55B activos'. Mídelo en tu tarea agéntica antes de creerte el 6x.",
+    sources: [
+      ["NVIDIA Research — Nemotron 3 Ultra", "https://research.nvidia.com/labs/nemotron/Nemotron-3-Ultra/"],
+      ["NVIDIA Newsroom — familia Nemotron 3", "https://nvidianews.nvidia.com/news/nvidia-debuts-nemotron-3-family-of-open-models"],
+      ["NVIDIA Build — probar el modelo", "https://build.nvidia.com/nvidia/nemotron-3-ultra-550b-a55b"]
+    ],
+    body: [
+      {
+        heading: "Qué ha pasado",
+        text: "El 4 de junio de 2026 NVIDIA abrió Nemotron 3 Ultra: 550B de parámetros totales, 55B activos (MoE), con arquitectura híbrida Mamba-Attention. Libera pesos, datos de entrenamiento y recetas bajo licencia abierta con uso comercial, ventana de 1M de contexto y un checkpoint NVFP4 para Blackwell, Hopper y Ampere. Disponible en Hugging Face, OpenRouter, ModelScope y NIM."
+      },
+      {
+        heading: "Por qué la arquitectura importa",
+        text: "En vez de un Transformer puro, mezcla capas Mamba (escalado sub-cuadrático para secuencias largas) con unas pocas de atención (recall preciso en contextos grandes). Eso es lo que habilita el millón de tokens de contexto y el throughput alto: NVIDIA afirma hasta ~6x más throughput que LLMs abiertos comparables (5,9x frente a GLM-5.1)."
+      },
+      {
+        heading: "Para quién y para qué",
+        text: "Está optimizado para agentes de larga duración: tool calling, coding y deep research. Si construyes agentes que mantienen contexto durante horas, un modelo abierto con ventana de 1M y licencia comercial cambia el cálculo de dependencia y de coste frente a una API cerrada."
+      },
+      {
+        heading: "El asterisco honesto",
+        text: "55B activos siguen siendo mucho hardware para servir en local; la mayoría lo usará vía API (OpenRouter, NIM). Y en el índice de Artificial Analysis queda segundo entre los abiertos de EE. UU., aún por detrás de modelos chinos como Kimi K2.6. 'Abierto y rápido' no significa 'el mejor'."
+      },
+      {
+        heading: "Qué probar",
+        text: "Pruébalo en OpenRouter o NIM con tu tarea agéntica real (herramientas, contexto largo), mide latencia y coste por tarea completada, y compáralo con tu modelo actual. El 6x es de NVIDIA; el que cuenta es el tuyo."
+      }
+    ]
+  },
+  {
+    slug: "red-hat-curso-cuantizar-vllm-benchmark-serving",
+    image: "/articulos/red-hat-curso-cuantizar-vllm-benchmark-serving.png",
+    imageAlt: "Ilustración editorial: un modelo comprimiéndose de BF16 a INT4 y sirviéndose bajo medidores de carga",
+    publishedAt: "2026-06-05",
+    tags: ["vLLM", "Benchmarks", "Inferencia local", "Herramientas"],
+    section: "Herramientas",
+    title: "Cuantizar, servir y medir: el curso gratuito de Red Hat para no comprar GPU a ciegas",
+    deck: "Red Hat publica un curso práctico para pasar un modelo de BF16 a INT4 con LLM Compressor, servirlo en vLLM y medirlo bajo carga real con GuideLLM. Justo lo que falta antes de dimensionar infraestructura.",
+    verdict: "Material útil y honesto: enseña los tradeoffs de la cuantización y a medir el serving (latencia, throughput, coste) en vez de fiarte de un tok/s aislado. Si vas a comprar GPUs o llevar un modelo a producción, hacer este ejercicio primero te ahorra dinero. Open-source y sin humo.",
+    sources: [
+      ["Red Hat Developers — formación de IA", "https://developers.redhat.com/"],
+      ["LLM Compressor (vLLM project)", "https://github.com/vllm-project/llm-compressor"],
+      ["Señal en X — @rhdevelopers", "https://x.com/rhdevelopers/status/2062643809435926824"]
+    ],
+    body: [
+      {
+        heading: "Qué ofrece",
+        text: "Un curso hands-on de Red Hat que cubre la cuantización de BF16 a INT4 con LLM Compressor, el despliegue en vLLM y el benchmarking bajo carga realista con GuideLLM. Toca gestión de memoria, los tradeoffs de precisión de la cuantización, peticiones concurrentes y métricas de serving."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "La pregunta cara no es '¿qué modelo?', sino '¿cuánta GPU necesito para servirlo a mi carga?'. Cuantizar bien puede meter un modelo en menos VRAM; medir bajo concurrencia real te dice el throughput y el coste por respuesta antes de gastar en hardware."
+      },
+      {
+        heading: "Lo que mide de verdad",
+        text: "GuideLLM somete el endpoint a carga concurrente y reporta latencia, throughput y coste, no el tok/s de una sola petición. Esa es la diferencia entre una demo bonita y una estimación de infraestructura sobre la que decidir compras."
+      },
+      {
+        heading: "El sesgo a tener en cuenta",
+        text: "Es material de Red Hat y gira en torno a su stack (vLLM, OpenShift AI). La metodología es transferible, pero recuerda que toda formación de fabricante empuja su ecosistema. El método vale; las conclusiones, mídelas en tu caso."
+      },
+      {
+        heading: "Cómo aprovecharlo",
+        text: "Coge tu modelo objetivo, cuantízalo con LLM Compressor, sírvelo en vLLM y pásale GuideLLM con un patrón de carga parecido al tuyo. El número que salga —coste por respuesta válida bajo concurrencia— es el que decide qué hardware comprar."
+      }
+    ]
+  },
+  {
+    slug: "chema-alonso-hacking-asistentes-llm-seguridad",
+    image: "/articulos/chema-alonso-hacking-asistentes-llm-seguridad.png",
+    imageAlt: "Ilustración editorial: un asistente LLM con una entrada maliciosa colándose entre sus permisos",
+    publishedAt: "2026-06-05",
+    tags: ["Seguridad", "Agentes", "Europa"],
+    section: "Seguridad",
+    title: "Hackear asistentes LLM: la seguridad de la IA, contada desde España",
+    deck: "Chema Alonso recopila inyección de prompt, jailbreaks y problemas de alineamiento en asistentes como Gemini. Un recordatorio, desde el ecosistema español, de que tu agente es tan seguro como su entrada menos confiable.",
+    verdict: "Si pones un asistente o agente LLM delante de usuarios o de datos sensibles, trátalo como superficie de ataque desde el día uno: la inyección de prompt no es teoría. Defiende con mínimo privilegio, validación de salida y desconfianza por defecto. Y de paso, esta divulgación sitúa a la escena española de seguridad IA donde merece.",
+    sources: [
+      ["El lado del mal — blog de Chema Alonso", "https://www.elladodelmal.com/"],
+      ["Hacking IA: Jailbreak, Prompt Injection, Hallucinations & Unalignment (0xWord)", "https://www.elladodelmal.com/2026/02/hacking-ia-jailbreak-prompt-injection.html"],
+      ["Señal en X — @chemaalonso", "https://x.com/chemaalonso/status/2062779364710797810"]
+    ],
+    body: [
+      {
+        heading: "Qué ha publicado",
+        text: "En su blog 'El lado del mal', Chema Alonso recopila técnicas de hacking de asistentes LLM —inyección de prompt, jailbreaks y desalineamiento— con ejemplos prácticos sobre asistentes como Gemini. Se apoya en su libro 'Hacking IA: Jailbreak, Prompt Injection, Hallucinations & Unalignment', publicado en 0xWord."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "Cualquier agente que lea entradas no confiables —issues, emails, documentos, páginas web— puede ser manipulado para ejecutar acciones o filtrar datos. Lo vimos con el CVE de la GitHub Action de Claude Code; aquí está el cuerpo teórico-práctico que hay detrás de esos ataques."
+      },
+      {
+        heading: "El patrón común",
+        text: "El prompt es código que un extraño puede influir. Si tu asistente tiene herramientas (shell, APIs, escritura) y consume entrada externa, la inyección de prompt convierte una conversación en una vía de ataque. No es un bug de un producto: es la forma de la tecnología."
+      },
+      {
+        heading: "El ángulo español y europeo",
+        text: "Que esta divulgación venga de la escena española importa para builders del continente: hay comunidad, libros y formación en seguridad de IA en español, no solo papers en inglés. La revista para builders europeos también se nutre de esto."
+      },
+      {
+        heading: "Qué hacer",
+        text: "Mínimo privilegio para las herramientas del agente, validación y saneado de la salida, aislar lo que toca secretos, y tratar toda entrada externa como hostil. Probar tú mismo inyecciones contra tu propio asistente es la mejor forma de entender —y reducir— el riesgo."
+      }
+    ]
   }
 ];
 
