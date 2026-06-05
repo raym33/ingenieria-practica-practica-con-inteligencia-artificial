@@ -1,0 +1,17 @@
+{
+  "rawId": "220e8c820b9d495e",
+  "title": "SentientAGI: RAG como pre-filtro de tools en agentes: -29% fallos y -40% latencia",
+  "url": "https://x.com/web3_tech_/status/2062774301426667553",
+  "publishedAt": "2026-06-05",
+  "summary": "En un agente con +40 tools, RAG reduce la lista a las 15 más relevantes por query; paralelismo de tools independientes reduce latencia 40% y tool calls 28%. 95% de queries en <=2 iteraciones. Fuente: blog oficial de SentientAGI.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "RAG",
+    "Agentes"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

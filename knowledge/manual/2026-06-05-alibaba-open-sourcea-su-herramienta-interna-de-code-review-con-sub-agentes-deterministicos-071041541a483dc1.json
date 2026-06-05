@@ -1,0 +1,17 @@
+{
+  "rawId": "b557132b7e3ebc28",
+  "title": "Alibaba open-sourcea su herramienta interna de code review con sub-agentes determinísticos tras 2 años en producción",
+  "url": "https://x.com/GrzGik/status/2062812785663185278",
+  "publishedAt": "2026-06-05",
+  "summary": "Capturo millones de defectos; bundling determinista de archivos + sub-agentes aislados. Funciona localmente con cualquier LLM API. Fuente: github.com/alibaba/open-code-review.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Herramientas"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

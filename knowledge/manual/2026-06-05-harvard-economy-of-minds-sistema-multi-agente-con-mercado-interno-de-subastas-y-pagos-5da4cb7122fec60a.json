@@ -1,0 +1,17 @@
+{
+  "rawId": "0e1cb0202de38d25",
+  "title": "Harvard: Economy of Minds, sistema multi-agente con mercado interno de subastas y pagos",
+  "url": "https://x.com/neural_avb/status/2062797729693409725",
+  "publishedAt": "2026-06-05",
+  "summary": "Agentes coordinan via mecanismo de mercado, acumulan riqueza y resuelven tareas complejas. Paper con implementacion experimental.",
+  "notes": "Destino sugerido: /modelos",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Benchmarks"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

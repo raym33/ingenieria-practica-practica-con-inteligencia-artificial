@@ -1,0 +1,17 @@
+{
+  "rawId": "30f8d66b01fcd7f7",
+  "title": "MySQL MCP Server en Go: implementacion open-source del Model Context Protocol",
+  "url": "https://x.com/AIDailyGems/status/2062810194359308437",
+  "publishedAt": "2026-06-05",
+  "summary": "Herramienta self-hosted para contexto de modelos. Fuente: github.com/askdba/mysql-mcp-server.",
+  "notes": "Destino sugerido: /stack-ia-local",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Inferencia local"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}
