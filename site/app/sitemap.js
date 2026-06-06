@@ -5,6 +5,7 @@ import { getAllTags } from "../lib/tags";
 
 const staticRoutes = [
   "/",
+  "/empieza-aqui/",
   "/actualidad/",
   "/decidir/",
   "/construir/",
