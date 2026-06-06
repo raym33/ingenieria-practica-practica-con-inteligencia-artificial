@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeIcon } from "../../components/ThemeIcon";
 import { getAllTags } from "../../lib/tags";
 
 export const metadata = {
@@ -23,7 +24,10 @@ export default function TagsPage() {
         <div className="topic-cloud tags-cloud">
           {tags.map((tag) => (
             <Link className="tag-topic" href={`/tags/${tag.slug}/`} key={tag.slug}>
-              <span>{tag.name}</span>
+              <span className="tag-topic-label">
+                <ThemeIcon name={tag.name} />
+                <span>{tag.name}</span>
+              </span>
               <strong>{tag.count}</strong>
             </Link>
           ))}

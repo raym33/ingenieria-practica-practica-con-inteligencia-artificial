@@ -34,7 +34,7 @@ const ideas = [
   {
     title: "Generador de informes para pymes",
     user: "asesorías, inmobiliarias, clínicas, formación",
-    stack: "Lovable o Next.js, plantillas DOCX/PDF, OpenRouter, validación humana.",
+    stack: "Lovable o Next.js, plantillas DOCX, OpenRouter, validación humana.",
     mvp: "Formulario + datos + borrador editable + exportación.",
     monetization: "Pago por informe o licencia mensual."
   },
@@ -55,14 +55,14 @@ const ideas = [
   {
     title: "Asistente local para compliance documental",
     user: "pymes reguladas, clínicas, academias, asesorías",
-    stack: "Foundry Local u Ollama, RAG privado, permisos, auditoría, export DOCX/PDF.",
+    stack: "Foundry Local u Ollama, RAG privado, permisos, auditoría, documentos editables.",
     mvp: "Responder preguntas con citas, marcar documentos desactualizados y generar checklist.",
     monetization: "Setup + mantenimiento mensual por sector."
   },
   {
     title: "Copiloto de presupuestos técnicos",
     user: "freelancers, estudios web, integradores IA",
-    stack: "CRM simple, plantillas, OpenRouter, base de costes, export PDF.",
+    stack: "CRM simple, plantillas, OpenRouter, base de costes, propuesta editable.",
     mvp: "Convertir notas de cliente en alcance, fases, riesgos, precio y propuesta editable.",
     monetization: "SaaS vertical para consultores o pack de plantillas premium."
   },

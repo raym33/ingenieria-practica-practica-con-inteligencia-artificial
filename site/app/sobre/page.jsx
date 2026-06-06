@@ -38,7 +38,7 @@ export default function SobrePage() {
             <div className="eyebrow">Sobre la revista</div>
             <h1>IA aplicada, hardware real y productos que se pueden construir</h1>
             <p className="section-lead">
-              De preguntar a construir es una revista viva y un libro en evolución sobre ingeniería práctica con inteligencia artificial.
+              De preguntar a construir es una revista viva y una guía de conceptos y terminología de IA aplicada.
               Un magazine independiente con foco en builders que quieren criterio técnico sin humo.
             </p>
           </div>

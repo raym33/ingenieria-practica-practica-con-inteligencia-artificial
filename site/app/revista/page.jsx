@@ -98,8 +98,8 @@ export default function RevistaPage() {
             <h2>Una revista que se actualiza como software</h2>
           </div>
           <p>
-            La web funciona como kiosko diario. El PDF funciona como número coleccionable. El repositorio conserva versiones,
-            fuentes, propuestas editoriales y labs para que cada edición pueda auditarse.
+            La edición online reúne la portada, el radar, las guías y los laboratorios. El repositorio conserva versiones,
+            fuentes y propuestas editoriales para que cada edición pueda auditarse.
           </p>
           <Link className="button primary" href="/ediciones/">Ver ediciones</Link>
         </div>

@@ -69,7 +69,7 @@ export default function EmpiezaAquiPage() {
             <div className="eyebrow">Empieza aquí</div>
             <h1>¿Por dónde entras?</h1>
             <p className="section-lead">
-              Hay mucho aquí dentro —libro vivo, radar, guías, mediciones—. Elige tu objetivo y te damos
+              Hay mucho aquí dentro —guía de conceptos, radar, guías, mediciones—. Elige tu objetivo y te damos
               una ruta ordenada para no perderte. Cada paso es contenido real que puedes leer hoy.
             </p>
           </div>

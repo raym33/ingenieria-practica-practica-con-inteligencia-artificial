@@ -3,13 +3,13 @@ import { getChapters } from "../../lib/content";
 
 export const metadata = {
   title: "Aprender | De preguntar a construir",
-  description: "Capítulos, rutas, biblioteca y descargas del libro vivo sobre IA aplicada."
+  description: "Capítulos, rutas y biblioteca de la guía de conceptos y terminología de IA."
 };
 
 const learningLinks = [
-  ["Biblioteca", "Biblioteca", "Todos los capítulos y referencias del libro vivo.", "/biblioteca/"],
+  ["Biblioteca", "Biblioteca", "Todos los capítulos y referencias básicas de conceptos de IA.", "/biblioteca/"],
   ["Rutas", "Rutas", "Itinerarios por objetivo para aprender sin seguir el índice lineal.", "/rutas/"],
-  ["PDF", "Descargas (PDF)", "Versiones descargables para leer, revisar y compartir.", "/descargas/"]
+  ["Online", "Lectura online", "Una entrada directa a la guía y a la edición diaria.", "/descargas/"]
 ];
 
 export default function AprenderPage() {
@@ -23,7 +23,7 @@ export default function AprenderPage() {
         <div className="section-header">
           <div>
             <div className="eyebrow">Aprender</div>
-            <h1>El libro vivo y las rutas</h1>
+            <h1>Guía de conceptos y rutas</h1>
             <p className="section-lead">Capítulos, rutas y materiales para construir criterio técnico sobre IA aplicada desde fundamentos hasta producción.</p>
           </div>
         </div>

@@ -84,8 +84,8 @@ const routes = [
     ]
   },
   {
-    title: "Libro vivo y cierre",
-    description: "Para mantener el libro actualizado, estudiar con ruta y cerrar el paso de usuario a constructor.",
+    title: "Guía, aprendizaje y cierre",
+    description: "Para mantener la guía de conceptos actualizada, estudiar con una ruta y cerrar el paso de usuario a constructor.",
     chapters: [
       ["Capítulo 43", "/leer/44-capitulo-43-libro-vivo-automatizacion-editorial/"],
       ["Capítulo 44", "/leer/45-capitulo-44-roadmap-de-aprendizaje/"],
@@ -102,7 +102,7 @@ export default function RutasPage() {
     <main className="section shell">
       <h1>Rutas de estudio</h1>
       <p className="section-lead">
-        El libro puede leerse completo, pero estas rutas ayudan a estudiar según tu objetivo: entender el mapa, elegir modelos, construir RAG, diseñar chatbots o pasar a producción.
+        La guía puede leerse completa, pero estas rutas ayudan a estudiar según tu objetivo: entender el mapa, elegir modelos, construir RAG, diseñar chatbots o pasar a producción.
       </p>
       <div className="route-grid">
         {routes.map((route) => (

@@ -8,7 +8,7 @@ export function NewsletterForm() {
   if (isPlaceholder) {
     return (
       <form className="newsletter-form" onSubmit={(event) => event.preventDefault()}>
-        <input type="email" name="email" placeholder="tu@email.com" aria-label="Email" />
+        <input type="email" name="email" placeholder="Tu correo" aria-label="Email" />
         <button type="submit">Avísame</button>
         <small className="newsletter-note">Las suscripciones abren muy pronto. Mientras, tienes el radar y las ediciones aquí en la web.</small>
       </form>
@@ -17,7 +17,7 @@ export function NewsletterForm() {
 
   return (
     <form className="newsletter-form" method="post" action={NEWSLETTER_ACTION} target="_blank">
-      <input type="email" name="email" placeholder="tu@email.com" aria-label="Email" required />
+      <input type="email" name="email" placeholder="Tu correo" aria-label="Email" required />
       <button type="submit">Apuntarme</button>
     </form>
   );

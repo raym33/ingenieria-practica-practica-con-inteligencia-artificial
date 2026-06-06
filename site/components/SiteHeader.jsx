@@ -9,7 +9,6 @@ export function SiteHeader() {
         <div className="shell top-strip-inner">
           <span>Revista viva de IA aplicada, software y hardware para builders</span>
           <div className="top-strip-actions">
-            <Link href="/descargas/">PDF actualizado</Link>
             <ThemeToggle />
           </div>
         </div>

@@ -41,7 +41,8 @@ export default function RootLayout({ children }) {
           <div className="shell footer-grid">
             <div>
               <strong>De preguntar a construir</strong>
-              <p>Revista, libro vivo y radar práctico sobre ingeniería con inteligencia artificial.</p>
+              <p>Revista, guía de conceptos y terminología de IA y radar práctico.</p>
+              <p>Proyecto open source · Contenido bajo Creative Commons BY 4.0 — copia, comparte y edita libremente.</p>
             </div>
             <div>
               <span>Edición</span>
@@ -49,7 +50,7 @@ export default function RootLayout({ children }) {
             </div>
             <div>
               <span>Contacto</span>
-              <p>learntouseai@gmail.com · <a href="/feed.xml">RSS</a></p>
+              <p>learntouseai@gmail.com · <a href="/feed.xml">RSS</a> · <a href="/privacidad/">Privacidad</a></p>
             </div>
           </div>
         </footer>

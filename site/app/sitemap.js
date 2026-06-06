@@ -12,6 +12,7 @@ const staticRoutes = [
   "/construir/",
   "/empresa/",
   "/aprender/",
+  "/descargas/",
   "/revista/",
   "/ediciones/",
   "/radar/",
@@ -26,6 +27,7 @@ const staticRoutes = [
   "/inferencia/",
   "/labs/",
   "/sobre/",
+  "/privacidad/",
   "/buscar/",
   "/tags/",
   "/newsletter/"

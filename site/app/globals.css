@@ -3357,6 +3357,30 @@ a:hover {
 }
 .brief-legend .source-dot { margin: 0 2px 0 8px; }
 
+.brief-updated {
+  margin-top: 14px;
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+}
+.brief-prio {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 1px 6px;
+  background: var(--coral);
+  color: #fff;
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .article-figure {
   margin: 26px 0 8px;
 }
@@ -3870,4 +3894,15 @@ img { max-width: 100%; }
   .bench-value {
     white-space: normal;
   }
+}
+
+.tag-topic-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.tag-topic-label svg {
+  flex: 0 0 auto;
 }
