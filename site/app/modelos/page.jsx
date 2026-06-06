@@ -95,7 +95,8 @@ function ModelCard({ item }) {
 }
 
 function hasAny(item, tags) {
-  return tags.some((tag) => (item.tags || []).includes(tag));
+  const itemTags = (item.tags || []).map((tag) => String(tag).toLowerCase());
+  return tags.some((tag) => itemTags.includes(tag.toLowerCase()));
 }
 
 function formatSummary(item) {
