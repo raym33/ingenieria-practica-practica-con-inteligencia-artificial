@@ -154,7 +154,7 @@ if (radar.length === 0) {
 fs.writeFileSync(path.join(dataDir, "radar.json"), JSON.stringify(radar, null, 2));
 
 const modelRadar = radar
-  .filter((item) => item.sourceType === "huggingface-model" || (item.tags || []).some((tag) => ["modelos", "modelos-locales", "gguf", "mlx", "embeddings"].includes(tag)))
+  .filter((item) => item.sourceType === "huggingface-model" || (item.tags || []).some((tag) => ["modelos", "modelos locales", "modelos-locales", "gguf", "mlx", "embeddings", "reranking"].includes(String(tag).toLowerCase())))
   .sort((a, b) => {
     const sourceScore = (item) => item.sourceType === "huggingface-model" ? 0 : 1;
     return sourceScore(a) - sourceScore(b) || String(b.createdAt || b.publishedAt).localeCompare(String(a.createdAt || a.publishedAt));
