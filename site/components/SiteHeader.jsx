@@ -35,6 +35,7 @@ export function SiteHeader() {
       </div>
       <nav className="section-nav" aria-label="Principal">
         <div className="shell nav-links">
+          <Link href="/hoy/">Hoy</Link>
           <Link href="/actualidad/">Actualidad</Link>
           <Link href="/decidir/">Decidir</Link>
           <Link href="/construir/">Construir</Link>
