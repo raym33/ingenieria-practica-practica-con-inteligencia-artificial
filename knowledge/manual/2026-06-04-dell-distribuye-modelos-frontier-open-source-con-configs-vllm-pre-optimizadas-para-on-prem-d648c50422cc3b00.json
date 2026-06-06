@@ -1,0 +1,19 @@
+{
+  "rawId": "7d90d2523ca7baa1",
+  "title": "Dell distribuye modelos frontier open-source con configs vLLM pre-optimizadas para on-prem",
+  "url": "https://x.com/nivelepsilon/status/2062642840480419911",
+  "publishedAt": "2026-06-04",
+  "summary": "Dell envía modelos open-source (DeepSeek V4, Kimi K2.6, GLM 5.1) con configuraciones vLLM pre-tuned que cumplen SLOs en on-prem para sus GPUs. Señal de IA local 'llave en mano' para empresa. Fuente: huggingface.co/blog/balaatdell/dell-enterprise-hub-at-dell-tech-world-2026.",
+  "notes": "Destino sugerido: /empresa",
+  "tags": [
+    "x",
+    "grok",
+    "vLLM",
+    "Empresa",
+    "Inferencia local",
+    "Hardware"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

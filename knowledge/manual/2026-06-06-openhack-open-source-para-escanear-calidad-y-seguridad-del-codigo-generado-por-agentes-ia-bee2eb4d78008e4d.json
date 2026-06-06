@@ -1,0 +1,17 @@
+{
+  "rawId": "8c7bf15c9d65112f",
+  "title": "OpenHack: open-source para escanear calidad y seguridad del código generado por agentes IA",
+  "url": "https://x.com/bryanonchain/status/2063163506027868394",
+  "publishedAt": "2026-06-06",
+  "summary": "Proyecto open-source para mantener calidad y seguridad en el código que producen los agentes IA. Fuente: github.com/openhackai/openhack.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Seguridad",
+    "Agentes"
+  ],
+  "relevance": "baja",
+  "confidence": "alta",
+  "editorialAction": "guardar_para_contexto"
+}

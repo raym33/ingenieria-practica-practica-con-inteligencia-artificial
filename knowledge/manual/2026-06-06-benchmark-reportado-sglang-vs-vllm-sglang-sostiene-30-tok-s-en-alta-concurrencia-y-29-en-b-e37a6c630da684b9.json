@@ -1,0 +1,18 @@
+{
+  "rawId": "e7915799b08de2d2",
+  "title": "Benchmark reportado SGLang vs vLLM: SGLang sostiene 30 tok/s en alta concurrencia y +29% en batch H100",
+  "url": "https://x.com/ZettabyteCloud/status/2063092572982325442",
+  "publishedAt": "2026-06-06",
+  "summary": "En multi-turn con alta concurrencia, SGLang sostiene ~30 tok/s mientras vLLM cae de 22 a 16; en batch H100, SGLang ~16.200 tok/s vs ~12.500 de vLLM. Reportado en X, sin metodología publicada: úsalo como hipótesis a verificar.",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "vLLM",
+    "Benchmarks",
+    "Inferencia local"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "convertir_en_articulo"
+}

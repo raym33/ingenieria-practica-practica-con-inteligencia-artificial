@@ -1,0 +1,19 @@
+{
+  "rawId": "c56a399b9c4f93fc",
+  "title": "Benchmark: Nemotron 3 Nano 30B-A3B en 2x RTX PRO 6000 — la curva de concurrencia que mata la latencia",
+  "url": "https://x.com/Quentin_Mkting/status/2062489760342352038",
+  "publishedAt": "2026-06-04",
+  "summary": "Con 2x RTX PRO 6000 y vLLM: a 512 req concurrentes ~5.000 tok/s pero p95 TTFT 44,6s; a 5 rps p95 TTFT 646ms y ~1.992 tok/s; a 6 rps la latencia explota por encolado. Reportado en X (sin método publicado).",
+  "notes": "Destino sugerido: /benchmarks",
+  "tags": [
+    "x",
+    "grok",
+    "NVIDIA RTX",
+    "Benchmarks",
+    "vLLM",
+    "Inferencia local"
+  ],
+  "relevance": "alta",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

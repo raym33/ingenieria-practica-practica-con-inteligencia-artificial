@@ -1,0 +1,18 @@
+{
+  "rawId": "5da32b659b62fd29",
+  "title": "Maestro CLI: orquestación YAML open-source para pipelines de IA + shell",
+  "url": "https://x.com/tiagojcperez/status/2063214037886722171",
+  "publishedAt": "2026-06-06",
+  "summary": "Herramienta open-source para definir, ejecutar e inspeccionar flujos multi-paso que combinan LLMs (Claude, Codex, Gemini, Ollama, llama.cpp) con comandos shell vía YAML. Útil para orquestar agentes sin código complejo. Fuente: github.com/tiagojcperez/maestro-cli.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Agentes",
+    "Ollama",
+    "Inferencia local"
+  ],
+  "relevance": "alta",
+  "confidence": "alta",
+  "editorialAction": "convertir_en_articulo"
+}

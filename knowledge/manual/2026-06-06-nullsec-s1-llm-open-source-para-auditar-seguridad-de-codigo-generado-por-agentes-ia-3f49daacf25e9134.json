@@ -1,0 +1,18 @@
+{
+  "rawId": "e8f7202eff9d7fa6",
+  "title": "Nullsec S1: LLM open-source para auditar seguridad de código generado por agentes IA",
+  "url": "https://x.com/trynullsec/status/2063158603058421985",
+  "publishedAt": "2026-06-06",
+  "summary": "Infraestructura open-source de LLM de seguridad para auditar apps, agentes y software generado por IA. Fuente: github.com/trynullsec/nullsec-s1.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Seguridad",
+    "Agentes",
+    "Modelos locales"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

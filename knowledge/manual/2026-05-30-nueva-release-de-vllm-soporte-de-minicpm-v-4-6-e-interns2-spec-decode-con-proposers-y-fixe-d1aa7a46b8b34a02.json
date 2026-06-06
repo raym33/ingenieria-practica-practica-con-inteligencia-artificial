@@ -1,0 +1,18 @@
+{
+  "rawId": "aca3cf8b959e3fd4",
+  "title": "Nueva release de vLLM: soporte de MiniCPM-V 4.6 e InternS2, spec decode con proposers y fixes multi-GPU",
+  "url": "https://x.com/vllm_project/status/2060751897733255534",
+  "publishedAt": "2026-05-30",
+  "summary": "vLLM añade arquitecturas MiniCPM-V 4.6 e InternS2 Preview, speculative decoding con proposers personalizados, mejoras de tool calling y correcciones multi-GPU. Fuente: repo oficial de vLLM.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "vLLM",
+    "Modelos locales",
+    "Inferencia local"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

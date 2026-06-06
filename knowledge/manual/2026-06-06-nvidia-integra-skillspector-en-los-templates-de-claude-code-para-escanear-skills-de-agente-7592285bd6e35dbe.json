@@ -1,0 +1,17 @@
+{
+  "rawId": "84004fbbf584b8cd",
+  "title": "NVIDIA integra Skillspector en los templates de Claude Code para escanear skills de agentes",
+  "url": "https://x.com/dani_avila7/status/2063099370375880765",
+  "publishedAt": "2026-06-06",
+  "summary": "Skillspector queda integrado en el repo de Claude Code Templates: los nuevos PR de skills se escanean automáticamente en busca de problemas de seguridad. Fuente: github.com/davila7/claude-code-templates/pull/623.",
+  "notes": "Destino sugerido: /herramientas-ia",
+  "tags": [
+    "x",
+    "grok",
+    "Seguridad",
+    "Agentes"
+  ],
+  "relevance": "media",
+  "confidence": "alta",
+  "editorialAction": "publicar_en_radar"
+}

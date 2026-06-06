@@ -1,0 +1,19 @@
+{
+  "rawId": "1f5453831f47179a",
+  "title": "llama.cpp añade tensor parallelism multi-GPU en ggml y sandboxing para agentes locales",
+  "url": "https://x.com/Doxposting/status/2062570291088199787",
+  "publishedAt": "2026-06-04",
+  "summary": "Actualización con tensor parallelism multi-GPU en ggml, aceleración RTX en APIs de Windows AI y sandboxing para agentes locales en hardware de consumo. Sin enlace primario en el post; verificar en el repo de llama.cpp.",
+  "notes": "Destino sugerido: /inferencia",
+  "tags": [
+    "x",
+    "grok",
+    "llama.cpp",
+    "NVIDIA RTX",
+    "Inferencia local",
+    "Agentes"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "publicar_en_radar"
+}

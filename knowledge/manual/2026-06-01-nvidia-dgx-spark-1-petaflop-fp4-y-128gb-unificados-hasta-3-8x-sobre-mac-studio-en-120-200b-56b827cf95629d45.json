@@ -1,0 +1,19 @@
+{
+  "rawId": "0da52db2f5de98dc",
+  "title": "NVIDIA DGX Spark: 1 petaFLOP FP4 y 128GB unificados, hasta 3,8x sobre Mac Studio en 120-200B (afirmado)",
+  "url": "https://x.com/vipera_llc/status/2061310165232636090",
+  "publishedAt": "2026-06-01",
+  "summary": "DGX Spark ofrece 1 petaFLOP FP4 tensor + 128GB de memoria unificada; afirma hasta 3,8x más rápido que Mac Studio M4/M3 Ultra en generación con modelos de 120-200B. Cifra del fabricante/post, a verificar con benchmark independiente.",
+  "notes": "Destino sugerido: /productos",
+  "tags": [
+    "x",
+    "grok",
+    "NVIDIA RTX",
+    "Hardware",
+    "Inferencia local",
+    "Compra"
+  ],
+  "relevance": "media",
+  "confidence": "media",
+  "editorialAction": "guardar_para_contexto"
+}

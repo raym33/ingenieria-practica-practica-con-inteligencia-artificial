@@ -1451,6 +1451,112 @@ export const articles = [
         text: "Identifica las tareas frecuentes y de bajo riesgo y prueba a resolverlas con un modelo pequeño local (un 12B como Gemma 4 cabe en hardware modesto, como hemos medido). Enruta a la nube solo lo que el local falle. Mide el porcentaje de llamadas que evitas: ese número es tu ahorro."
       }
     ]
+  },
+  {
+    slug: "dell-modelos-frontier-vllm-on-prem-empresa",
+    publishedAt: "2026-06-06",
+    tags: ["Empresa", "vLLM", "Inferencia local", "Hardware"],
+    section: "Empresa",
+    title: "Dell empaqueta modelos frontier open-source con vLLM listo para on-prem",
+    deck: "Dell distribuye DeepSeek V4, Kimi K2.6 y GLM 5.1 con configuraciones vLLM pre-optimizadas que cumplen SLOs en servidores propios. La IA local 'llave en mano' para empresa empieza a existir.",
+    verdict: "Para una empresa que quiere IA on-prem sin montarlo todo a mano, que un fabricante entregue modelos abiertos + configs vLLM probadas baja la barrera real: la fontanería, no el modelo. No es magia —sigues midiendo tu caso y tu SLO— pero el punto de partida deja de ser una hoja en blanco.",
+    sources: [
+      ["Hugging Face — Dell Enterprise Hub (Dell Tech World 2026)", "https://huggingface.co/blog/balaatdell/dell-enterprise-hub-at-dell-tech-world-2026"],
+      ["Señal en X — @nivelepsilon", "https://x.com/nivelepsilon/status/2062642840480419911"]
+    ],
+    body: [
+      {
+        heading: "Qué ha pasado",
+        text: "Dell, en su Enterprise Hub, ha empezado a distribuir modelos frontier open-source (DeepSeek V4, Kimi K2.6, GLM 5.1) acompañados de configuraciones vLLM pre-optimizadas para sus GPUs, pensadas para cumplir SLOs de latencia y throughput en despliegues on-prem."
+      },
+      {
+        heading: "Por qué importa para empresa",
+        text: "El cuello de botella de la IA local en una pyme o empresa no suele ser el modelo —son abiertos y gratuitos— sino la fontanería: elegir runtime, tunear vLLM, dimensionar la GPU y cumplir un SLO. Que el fabricante entregue eso probado convierte 'monta tu stack' en 'arranca y mide'."
+      },
+      {
+        heading: "El matiz on-prem",
+        text: "Esto encaja con la razón número uno para hacer IA local en empresa: datos que no deben salir. Modelos abiertos, serving propio y datos en casa. Dell pone el camino; el control sigue siendo tuyo."
+      },
+      {
+        heading: "Lo que no resuelve",
+        text: "Una config 'que cumple SLOs' los cumple para un perfil de carga; el tuyo puede ser otro. Y atarte a un fabricante para el tuning tiene su precio. Mide TTFT, throughput y coste con tu tráfico real antes de dar el SLO por bueno."
+      },
+      {
+        heading: "Qué hacer",
+        text: "Si valoras la IA on-prem, usa estos paquetes como punto de partida, no como verdad: reproduce el benchmark con tu modelo, tu contexto y tu concurrencia, y compáralo con montar vLLM tú mismo (que sigue siendo open-source y gratis)."
+      }
+    ]
+  },
+  {
+    slug: "vllm-vs-sglang-runtime-concurrencia",
+    publishedAt: "2026-06-06",
+    tags: ["vLLM", "Benchmarks", "Inferencia local"],
+    section: "Benchmark",
+    title: "vLLM o SGLang: qué runtime aguanta mejor la concurrencia",
+    deck: "Un benchmark que circula da a SGLang ventaja en alta concurrencia y en batch sobre H100. Viene sin metodología publicada, pero plantea la pregunta correcta para servir agentes.",
+    verdict: "Si sirves a un usuario, casi cualquier runtime vale; la diferencia aparece bajo concurrencia. El benchmark reportado favorece a SGLang en multi-turn y batch, pero sin método publicado es una hipótesis, no un veredicto. La decisión real: mídelos tú con tu modelo y tu patrón de carga (1, 10, 100 peticiones).",
+    sources: [
+      ["SGLang — repositorio (para reproducir)", "https://github.com/sgl-project/sglang"],
+      ["vLLM — repositorio (para reproducir)", "https://github.com/vllm-project/vllm"],
+      ["Señal en X — @ZettabyteCloud (benchmark sin método publicado)", "https://x.com/ZettabyteCloud/status/2063092572982325442"]
+    ],
+    body: [
+      {
+        heading: "El número que circula",
+        text: "Un benchmark multi-turn da a SGLang ~30 tok/s sostenidos en alta concurrencia mientras vLLM cae de 22 a 16; en batch sobre H100, SGLang ~16.200 tok/s frente a ~12.500 de vLLM (alrededor de un 29% más). Llamativo."
+      },
+      {
+        heading: "Por qué tratarlo con pinzas",
+        text: "Viene de un post sin metodología publicada: ni versiones, ni modelo exacto, ni parámetros. En serving, esos detalles cambian el resultado por completo. Lo tomamos como señal de 'esto merece tu propia prueba', no como ranking."
+      },
+      {
+        heading: "Dónde se decide de verdad",
+        text: "Ambos runtimes son excelentes para una sola petición. La diferencia emerge con concurrencia y batch —justo el caso de servir agentes o multiusuario—. Ahí pesan el scheduling, el prefix caching y el manejo del KV cache, donde SGLang (RadixAttention) y vLLM (PagedAttention) toman caminos distintos."
+      },
+      {
+        heading: "Cómo elegir sin humo",
+        text: "Coge tu modelo y tu patrón de carga real, levanta los dos y mide tok/s sostenidos y p95 de TTFT a 1, 10 y 100 peticiones concurrentes. El que aguante tu pico con tu latencia objetivo gana —para ti—."
+      },
+      {
+        heading: "El recordatorio",
+        text: "Un 29% en un benchmark ajeno no se traslada a tu factura ni a tu SLO. La pregunta no es 'cuál es más rápido', sino 'cuál cumple mi objetivo de latencia al coste que puedo pagar'."
+      }
+    ]
+  },
+  {
+    slug: "maestro-cli-orquestar-pipelines-ia-yaml",
+    publishedAt: "2026-06-06",
+    tags: ["Agentes", "Herramientas", "Inferencia local"],
+    section: "Herramientas",
+    title: "Maestro CLI: orquestar pipelines de IA y shell con un YAML",
+    deck: "Una herramienta open-source para encadenar LLMs (locales o de API) con comandos de shell en flujos declarativos. Menos pegamento, más pipeline reproducible.",
+    verdict: "El valor no es 'otro framework de agentes': es declarar un flujo multi-paso (LLM → shell → LLM) en un YAML versionable y reproducible, mezclando modelos locales (Ollama, llama.cpp) y de API. Útil para automatizaciones serias donde quieres ver y repetir cada paso. Pruébalo en una tarea real antes de producción.",
+    sources: [
+      ["Maestro CLI — repositorio en GitHub", "https://github.com/tiagojcperez/maestro-cli"],
+      ["Señal en X — @tiagojcperez", "https://x.com/tiagojcperez/status/2063214037886722171"]
+    ],
+    body: [
+      {
+        heading: "Qué es",
+        text: "Maestro CLI es una herramienta open-source que permite definir, ejecutar e inspeccionar flujos multi-paso en archivos YAML, combinando LLMs (Claude, Codex, Gemini, Ollama, llama.cpp) con comandos de shell."
+      },
+      {
+        heading: "Por qué importa para builders",
+        text: "Gran parte de la automatización con IA es pegamento entre 'pídele al modelo' y 'haz algo con la salida'. Declararlo en YAML —versionable, repetible, inspeccionable— convierte un script frágil en un pipeline que puedes auditar y reejecutar."
+      },
+      {
+        heading: "Mezclar local y nube",
+        text: "Que acepte Ollama y llama.cpp junto a APIs encaja con la arquitectura híbrida (pequeño local + grande en la nube): enrutas cada paso al modelo que toca, dentro de un solo flujo."
+      },
+      {
+        heading: "El asterisco",
+        text: "El YAML declarativo escala bien hasta que el flujo necesita lógica de verdad (ramas, reintentos, estado). Como toda orquestación, el ahorro depende de que tus pasos sean claros y verificables; si no, mueves la complejidad, no la quitas."
+      },
+      {
+        heading: "Qué probar",
+        text: "Coge una automatización que ya hagas a mano (resumir, clasificar, generar un informe) y escríbela como pipeline YAML con un modelo local. Mide si ganas en reproducibilidad y mantenimiento frente a tu script actual."
+      }
+    ]
   }
 ];
 
