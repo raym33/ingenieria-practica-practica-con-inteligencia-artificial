@@ -56,7 +56,7 @@ export default function HomePage() {
     },
     {
       label: "Aprender",
-      title: "El libro vivo y las rutas",
+      title: "Guía de conceptos y rutas",
       href: "/aprender/",
       links: [["Capítulos", "/biblioteca/"], ["Rutas", "/rutas/"], ["Biblioteca", "/biblioteca/"]]
     }

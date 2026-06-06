@@ -21,7 +21,8 @@ export default function HoyPage() {
   const sorted = [...articles].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
   const fecha = sorted[0]?.publishedAt;
   const lead = sorted.slice(0, 6);
-  const radar = getRadarItems().slice(0, 8);
+  const radarAll = getRadarItems();
+  const radar = radarAll.slice(0, 8);
   const charts = mediciones.slice(-2).reverse();
   const chapters = getChapters();
   const deepen = [
@@ -36,12 +37,13 @@ export default function HoyPage() {
       <section className="section shell compact-section">
         <div className="section-header">
           <div>
-            <div className="eyebrow">El parte · {formatDate(fecha)}</div>
+            <div className="eyebrow">El parte de hoy</div>
             <h1>Lo nuevo en IA, en 3 minutos</h1>
             <p className="section-lead">
               Para ingenieros y consultores de IA sin tiempo. Qué ha cambiado, qué funciona, qué medir y qué hacer.
               Una pestaña al día y vas al corriente, sin humo.
             </p>
+            <p className="brief-updated">Última actualización · {formatDate(fecha)} · {radarAll.length} señales en seguimiento</p>
           </div>
         </div>
       </section>
@@ -80,7 +82,10 @@ export default function HoyPage() {
                   <span className={`source-dot ${verificada ? "dot-green" : "dot-amber"}`} aria-hidden="true" />
                   <span className="brief-radar-body">
                     <strong>{item.title}</strong>
-                    <span>{(item.tags || []).filter((t) => t !== "x" && t !== "grok").slice(0, 3).join(" · ") || cleanSummary(item)}</span>
+                    <span>
+                      {String(item.relevance || "").toLowerCase() === "alta" ? <em className="brief-prio">prioridad</em> : null}
+                      {(item.tags || []).filter((t) => t !== "x" && t !== "grok").slice(0, 3).join(" · ") || cleanSummary(item)}
+                    </span>
                   </span>
                 </a>
               );

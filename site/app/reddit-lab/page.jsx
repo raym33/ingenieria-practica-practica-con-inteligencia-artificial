@@ -44,7 +44,7 @@ const redditSignals = [
     lesson: "AMD puede tener buena relación coste/rendimiento, pero exige validar drivers, backend y estabilidad."
   },
   {
-    title: "RAG empresarial con Ollama no es solo conectar PDFs",
+    title: "RAG empresarial con Ollama no es solo conectar documentos",
     source: "r/ollama",
     text: "Las preguntas reales giran alrededor de chunking, número de resultados, búsqueda híbrida, Open WebUI, LangChain y control del pipeline.",
     lesson: "El valor del RAG está en retrieval, permisos, evaluación y UX, no en decir 'conecté documentos'."

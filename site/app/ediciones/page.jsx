@@ -54,9 +54,9 @@ const issueBlueprints = [
   {
     number: "001",
     date: "3 junio 2026",
-    title: "De libro vivo a revista técnica",
-    deck: "La primera edición fija la tesis: construir con IA requiere libro, radar, fuentes, labs, versiones y criterio editorial.",
-    theme: "Libro vivo, RAG, agentes y producto",
+    title: "De guía de conceptos a revista técnica",
+    deck: "La primera edición fija la tesis: construir con IA requiere una referencia básica, radar, fuentes, labs, versiones y criterio editorial.",
+    theme: "Conceptos de IA, RAG, agentes y producto",
     articleSlugs: [
       "copilot-pc-no-es-workstation-llm",
       "apple-silicon-vs-nvidia-inferencia-local",
